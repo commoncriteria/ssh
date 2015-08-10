@@ -1,16 +1,16 @@
-Email Client
+Extended Package for Secure Shell (SSH)
 ============
 
-Protection Profile for Email Clients
+Extended Package for Secure Shell (SSH)
 
 ## Links
-[Application Software Extended Package for Email Clients](http://common-criteria.rhcloud.com/emailclient/output/emailclient-release.html)
+[Extended Package for Secure Shell](http://common-criteria.rhcloud.com/ssh/output/ssh-release.html)
 
 ## Quickstart
 To clone this project along with its _transforms_ submodule run:
 
 ````
-  git clone --recursive git@github.com:commoncriteria/emailclient.git
+  git clone --recursive git@github.com:commoncriteria/ssh.git
 ````
 To pull updates from the upstream _transforms_ submodule and commit them run:
 ````
