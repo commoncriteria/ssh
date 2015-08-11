@@ -218,10 +218,11 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         this component are implemented is out of scope of the assurance activity for this
         requirement.</note>
       </f-element>
+	  </f-component>
 
+      <f-component id="fcs_sshc_ext.1">
 
-
-      <f-element id="fcs_sshc_ext.1.2" status="optional">
+      <f-element id="fcs_sshc_ext.1.2">
         <title>The OS shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based, password-based.</title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
@@ -241,7 +242,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           authenticator.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.3" status="optional">
+      <f-element id="fcs_sshc_ext.1.3">
         <title>The OS shall ensure that, as described in RFC 4253, packets greater than 
         <assignable>number of bytes</assignable>bytes in an SSH transport connection are
         dropped.</title>
@@ -254,7 +255,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <br />The evaluator will demonstrate that if the TOE receives a packet larger than that
         specified in this component, that packet is dropped.</aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.4" status="optional">
+      <f-element id="fcs_sshc_ext.1.4">
         <title>The OS shall ensure that the SSH transport implementation uses the following
         encryption algorithms and rejects all other encryption algorithms: aes128-cbc, aes256-cbc, 
         <selectables>
@@ -287,7 +288,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.5" status="optional">
+      <f-element id="fcs_sshc_ext.1.5">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>ssh-rsa</selectable>
@@ -326,7 +327,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.6" status="optional">
+      <f-element id="fcs_sshc_ext.1.6">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>hmac-sha1</selectable>
@@ -364,7 +365,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           observe that the attempt fails.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.7" status="optional">
+      <f-element id="fcs_sshc_ext.1.7">
         <title>The OS shall ensure that [selection: diffie-hellman-group14-sha1,
         ecdh-sha2-nistp256] and [selection: ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other
         methods] are the only allowed key exchange methods used for the SSH protocol.</title>
@@ -380,7 +381,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           allowed key exchange method, and observe that each attempt succeeds.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.8" status="optional">
+      <f-element id="fcs_sshc_ext.1.8">
         <title>The OS shall ensure that the SSH connection be rekeyed after no more than 2
         <htm:sup>28</htm:sup>packets have been transmitted using that key.</title>
         <aactivity>
