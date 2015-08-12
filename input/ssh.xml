@@ -198,9 +198,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
-    <f-component id="fcs_ssh_ext.1" name="SSH Client Protocol">
+    <f-component id="fcs_ssh_ext.1" name="SSH Protocol" type="threshold">
 	    <f-element>
-        <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
+        <title>The product shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
         4254 and 
         <selectables>
           <selectable>5647</selectable>
@@ -220,7 +220,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       </f-element>
 	  </f-component>
 
-      <f-component id="fcs_sshc_ext.1">
+      <f-component id="fcs_sshc_ext.1" name="SSH Protocol - Client" type="sel-based">
 
       <f-element id="fcs_sshc_ext.1.2">
         <title>The OS shall ensure that the SSH protocol implementation supports the following
@@ -423,27 +423,8 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         </aactivity>
       </f-element>
     </f-component>
-    <f-component id="fcs_sshs_ext.1" name="SSH Server Protocol" status="sel-based">
-      <f-element id="fcs_sshs_ext.1.1" status="sel-based">
-        <title>The OS shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
-        4254 and 
-        <selectables>
-          <selectable>5647</selectable>
-          <selectable>5656</selectable>
-          <selectable>6187</selectable>
-          <selectable>6668</selectable>
-          <selectable>no other RFCs</selectable>
-        </selectables></title>
-        <note role="application">The ST author selects which of the additional RFCs to which
-        conformance is being claimed. Note that these need to be consistent with selections in
-        later elements of this component (e.g., cryptographic algorithms permitted). RFC 4253
-        indicates that certain cryptographic algorithms are "REQUIRED". This means that the
-        implementation must include support, not that the algorithms must be enabled for use.
-        Ensuring that algorithms indicated as "REQUIRED" but not listed in the later elements of
-        this component are implemented is out of scope of the assurance activity for this
-        requirement.</note>
-      </f-element>
-      <f-element id="fcs_sshs_ext.1.2" status="sel-based">
+    <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.2">
         <title>The OS shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based, password-based.</title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
