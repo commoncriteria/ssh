@@ -162,9 +162,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <br />This Extended Package does not repeat the threats, assumptions, and organizational security
   policies identified in any base PPs, though they all apply given the conformance and hence
   dependence of this 
-  <abbr linkend="EP" />on it. Together the threats, assumptions and organizational security
+  <abbr linkend="EP" /> on it. Together the threats, assumptions and organizational security
   policies of the base PP and those defined in this 
-  <abbr linkend="EP" />describe those addressed by the product as the Target of
+  <abbr linkend="EP" /> describe those addressed by the product as the Target of
   Evaluation.</chapter>
   <chapter title="Security Objectives" id="sobj">This Extended Package adds SFRs to objectives
   identified in the base PP and describes an additional objective specific to this 
@@ -225,7 +225,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
 
       <f-component id="fcs_sshc_ext.1" name="SSH Protocol - Client" type="sel-based">
 
-      <f-element id="fcs_sshc_ext.1.2">
+      <f-element id="fcs_sshc_ext.1.1">
         <title>The OS shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based, password-based.</title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
@@ -245,7 +245,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           authenticator.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.3">
+      <f-element id="fcs_sshc_ext.1.2">
         <title>The OS shall ensure that, as described in RFC 4253, packets greater than 
         <assignable>number of bytes</assignable>bytes in an SSH transport connection are
         dropped.</title>
@@ -258,7 +258,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <br />The evaluator will demonstrate that if the TOE receives a packet larger than that
         specified in this component, that packet is dropped.</aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.4">
+      <f-element id="fcs_sshc_ext.1.3">
         <title>The OS shall ensure that the SSH transport implementation uses the following
         encryption algorithms and rejects all other encryption algorithms: aes128-cbc, aes256-cbc, 
         <selectables>
@@ -291,7 +291,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.5">
+      <f-element id="fcs_sshc_ext.1.4">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>ssh-rsa</selectable>
@@ -330,7 +330,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.6">
+      <f-element id="fcs_sshc_ext.1.5">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>hmac-sha1</selectable>
@@ -368,7 +368,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           observe that the attempt fails.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.7">
+      <f-element id="fcs_sshc_ext.1.6">
         <title>The OS shall ensure that [selection: diffie-hellman-group14-sha1,
         ecdh-sha2-nistp256] and [selection: ecdh-sha2-nistp384, ecdh-sha2-nistp521, no other
         methods] are the only allowed key exchange methods used for the SSH protocol.</title>
@@ -384,7 +384,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           allowed key exchange method, and observe that each attempt succeeds.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.8">
+      <f-element id="fcs_sshc_ext.1.7">
         <title>The OS shall ensure that the SSH connection be rekeyed after no more than 2
         <htm:sup>28</htm:sup>packets have been transmitted using that key.</title>
         <aactivity>
@@ -396,7 +396,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           </testlist>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.9" status="optional">
+      <f-element id="fcs_sshc_ext.1.8" status="optional">
         <title>The OS shall ensure that the SSH client authenticates the identity of the SSH server
         using a local database associating each host name with its corresponding public key or 
         <selectables>
@@ -427,7 +427,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       </f-element>
     </f-component>
     <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
-      <f-element id="fcs_sshs_ext.1.2">
+      <f-element id="fcs_sshs_ext.1.1">
         <title>The OS shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based, password-based.</title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
@@ -446,7 +446,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           successfully authenticated by the TOE using a password as an authenticator.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.3" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.2">
         <title>The OS shall ensure that, as described in RFC 4253, packets greater than 
         <assignable>number of bytes</assignable>bytes in an SSH transport connection are
         dropped.</title>
@@ -459,7 +459,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <br />The evaluator will demonstrate that if the TOE receives a packet larger than that
         specified in this component, that packet is dropped.</aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.4" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.3">
         <title>The OS shall ensure that the SSH transport implementation uses the following
         encryption algorithms and rejects all other encryption algorithms: 
         <assignable>encryption algorithms</assignable>.</title>
@@ -482,7 +482,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.5" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.4">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <assignable>list of public key algorithms</assignable>as its public key algorithm(s) and
         rejects all other public key algorithms.</title>
@@ -506,7 +506,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           rejected.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.6" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.5">
         <title>The OS shall ensure that the SSH transport implementation uses 
         <assignable>list of MAC algorithms</assignable>as its MAC algorithm(s) and rejects all
         other MAC algorithm(s).</title>
@@ -530,7 +530,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           observe that the attempt fails.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.7" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.6">
         <title>The OS shall ensure that 
         <assignable>list of key exchange methods</assignable>are the only allowed key exchange
         methods used for the SSH protocol.</title>
@@ -546,7 +546,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           succeeds.</test>
         </testlist></aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.8" status="sel-based">
+      <f-element id="fcs_sshs_ext.1.7">
         <title>The OS shall ensure that the SSH connection be rekeyed after no more than 2
         <htm:sup>28</htm:sup>packets have been transmitted using that key.</title>
         <aactivity>
@@ -582,7 +582,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   with those in 
   <appref linkend="optional" />, 
   <appref linkend="sel-based" />, and 
-  <appref linkend="objective" />but are not listed (e.g., FMT-type requirements) are also included
+  <appref linkend="objective" /> but are not listed (e.g., FMT-type requirements) are also included
   in the 
   <abbr linkend="ST" />.</appendix>
   <appendix title="Selection-Based Requirements" id="sel-based">As indicated in the introduction to
