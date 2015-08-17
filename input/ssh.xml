@@ -181,15 +181,15 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <cite linkend="bibCC" />. The following notations are used: 
   <ul>
     <li>
-    <b>Selection</b>(denoted by 
+    <b>Selection</b> (denoted by 
     <i>italicized text</i>): is used to select one or more options provided by the [CC] in stating
     a requirement.</li>
     <li>
-    <b>Assignment</b>operation (denoted by 
+    <b>Assignment</b> operation (denoted by 
     <i>italicized text</i>): is used to assign a specific value to an unspecified parameter, such
     as the length of a password. Showing the value in square brackets indicates assignment.</li>
     <li>
-    <b>Iteration</b>operation: are identified with a number inside parentheses (e.g. "(1)").</li>
+    <b>Iteration</b> operation: are identified with a number inside parentheses (e.g. "(1)").</li>
   </ul>
   <section title="Security Functional Requirements" id="sfr">The Security Functional Requirements
   included in this section are derived from Part 2 of the Common Criteria for Information
