@@ -26,9 +26,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   </RevisionHistory>
   <RevisionHistory role="final">
     <entry>
-      <version>v 1.0</version>
-      <date>2015-07-14</date>
-      <subject>Release - Extended Package for Secure Shell</subject>
+      <version>1.0</version>
+      <date>2015-09-14</date>
+      <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
