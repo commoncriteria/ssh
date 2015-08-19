@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../transforms/esr2html.xsl"?>
+
+<ESR xmlns="http://common-criteria.rhcloud.com/ns/esr" name="Secure Shell (SSH)">
+
+	<intro>
+		<esrtitle>Secure Shell (SSH)</esrtitle>
+		<maintainer>National Information Assurance Partnership</maintainer>
+		<identifier>42</identifier>
+		<version>0.8</version>
+		<status>draft</status>
+		<issuedate>19 August 2015</issuedate>
+		<approver/>
+		<supercedes/>
+	</intro>
+
+	<section title="Background and Purpose" id="purpose">
+		<!-- This section sets the context for not only the ESR, but what is 
+			expected of the resulting Protection Profile (PP). The intent is 
+			that the remaining sections provide succinct statements that 
+			highlight the relevant aspects to be addressed by the Technical 
+			Community (TC) constructing the PP. Here, the authors provide a 
+			narrative that introduces the reader to the problem being solved, 
+			and presents key aspects that support or guide the TC, and may
+			elaborate on subtleties not apparent in the “bulleted” high level
+			statements.
+		-->
+		Secure Shell (SSH)...
+	</section>
+
+	<section title="Use Cases" id="usecases">
+		<!-- 
+			This section is intended to provide the initial scope/bound of the 
+			security problem by providing the reader with concise statements 
+			regarding the scenarios in which the technology is being used. The 
+			intended usage presented here should lay the groundwork for the 
+			identifying the resources to be protected, and what threats must be
+			considered in the drafting of the Essential Security Requirements 
+			(ESR) and for the TC to consider when writing the PP.
+		-->
+		<p> SSH is a communication protocal provided by a platform or an application to enable secure communications for management of <ul>
+				<li>End user systems such as a desktop or laptop</li>
+				<li>Server systems, which run on physical or virtual hardware</li>
+				<li>Hardware devices, such as routers and switches</li>
+			</ul>
+		</p>
+	</section>
+
+	<section title="Resources to be protected" id="resourcesprotected">
+		<!-- 
+    		This section is intended to provide the initial scope/bound of the 
+    		security problem by providing the reader with concise statements
+    		regarding the scenarios in which the technology is being used. The 
+    		intended usage presented here should lay the groundwork for the 
+    		identifying the resources to be protected, and what threats must be
+    		considered in the drafting of the Essential Security Requirements 
+    		(ESR) and for the TC to consider when writing the PP.
+    	-->
+		<p>
+			<ul>
+				<li>Network communications</li>
+			</ul>
+		</p>
+	</section>
+
+	<section title="Attacker access" id="attackeraccess"> The following assumptions are made about
+		attackers' ability to develop attacks: <ul>
+			<li> An attacker has an arbitrary amount of time to analyze the behavior of SSH, its
+				interaction with its platform, and the data it transmits over the network. </li>
+			<li> An attacker is able to acquire their own copy of the target software and study its
+				behavior on a platform that they control. </li>
+		</ul>
+		<p/> The attacker is expected to engage in the following general classes of attack: <!-- added in order to allow for rather direct flow to Threats section in PP -->
+		<ul>
+			<li> Network eavesdropping, in which an attacker may monitor and gain access to data
+				exchanged between the SSH Clients and other endpoints. </li>
+			<li> Network attack, in which an attacker may initiate malicious communications with an SSH Client
+				or alter communications between the SSH Client and other endpoints. </li>
+			<li> Local attack, in which an attacker has gained the ability to execute code on the
+				system, which may be used to escalate privilege or access data without
+				authorization. </li>
+		</ul>
+	</section>
+
+	<section title="Essential Security Requirements" id="requirements">
+		<!--
+        	This is where the authors present an initial set of English 
+        	requirements that specify security functionality, rather than 
+        	design and/or implementation characteristics. These requirements 
+        	will provide the foundation for which the detailed set of 
+        	requirements is derived. It is important that the requirements 
+        	captured here make an attempt to fully address the categories 
+        	(e.g., access control, identification and authentication, 
+        	management capabilities, roles of administration, secure 
+        	communications, and audit). That's not to say the requirements are 
+        	fully specified or detailed enough to simply translate to Common 
+        	Criteria security functional requirements. The goal is that there 
+        	is enough information contained here, as well as the other sections
+        	of this document, to provide the TC enough information to ensure 
+        	they have an understanding of what is minimally required in breath.
+        -->
+		<p> The following are the essential security requirements expected to be implemented by an
+			SSH Client within the established scope: 
+			<ul>
+				<li>SSH software shall implement the SSH protocol that complies with RFCs</li>
+				<li>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
+				<li>SSH transport implementation uses the following encryption algorithms:
+					<ul>
+					  <li>aes128-cbc</li>
+					  <li>aes256-cbc</li>
+					</ul>
+				</li>
+				<li>SSH connection be rekeyed after no more than 2^28packets have been transmitted</li>
+			</ul>
+		</p>
+	</section>
+
+	<section title="Assumptions" id="assumptions">
+		<!--
+			Simply put, this section presents the aspects of the product and 
+			its	intended environment that can be assumed to hold true. This 
+			will provide additional scope on the resulting PP.
+		-->
+		The following assumptions are made for the operating system product and its operational
+		environment: <ul>
+			<li>The underlying platform is physically protected, to a large extent. The hardware
+				that the OS manages is secured by defensive measures that make physical attacks
+				impractical for most attackers. At the same time, casual passersby might attempt to
+				trivially access the system. </li>
+			<li>The OS implements some security-relevant functionality that does not require
+				evaluation (e.g., network time synchronization, process scheduling, and virtual
+				memory management including process separation). </li>
+			<li>Depending on configuration and capability, the OS may or may not be: <ul>
+					<li>configuration-managed by the enterprise</li>
+					<li>bound to directory services to support multi-user login</li> These do not
+					fundamentally increase or decrease overall risk exposure, and represent
+					operational choices. </ul>
+			</li>
+			<li> The OS runs application software developed by a third-party. The applications are
+				not intentionally developed to be malicious, but can contain inadvertent coding
+				errors. These errors introduce risk that control of an application may be seized by
+				a malicious entity. The OS shall confine these applications within the originally
+				designated operating environment. </li>
+			<li>The platform is connected to a network. For purposes of sending/receiving data, to
+				include software updates, the platform is connected to other entities. Other
+				entities on the network are not inherently trustable. </li>
+			<li>Administrators are not malicious in nature.</li>
+			<li> Users are not malicious in nature. </li>
+		</ul>
+	</section>
+
+
+	<section title="Optional Extensions" id="extensions"> 
+		None
+	</section>
+
+	<section title="Outside the TOE's Scope" id="outsidescope">
+		<!--
+			This is where the authors explicitly state things they do not want 
+			to be considered for inclusion in an evaluation against a 
+			resulting PP.  Items expressed here could include threats, 
+			functions or capabilities that would require assurance activities 
+			that are too subjective, or specific expertise not available in the
+			evaluation facilities expected to assess products against the PP 
+			(e.g., assessing anti-tamper measures). 
+		-->
+		The following list contains items that are explicitly out-of-scope for any evaluation
+		against the OS PP <ul>
+			<li>Malicious, Highly-Privileged Administrators - Highly-privileged administrators
+				acting maliciously can disable most, if not all, security protections on the OS.
+				Additionally procedural controls that are out of scope of this document should be
+				considered to help highlight administrator accounts acting suspiciously.</li>
+			<li>Zero Days - The disclosure of recently published vulnerabilities (Zero Days) should
+				not be used as a reason to fail an OS undergoing evaluation.</li>
+			<li>Unofficial Versions - Non-vendor supplied install images often contain added
+				functionality and may weaken the normal operating functionality of the OS</li>
+			<li>Platform - The OS PP shall not address the hardware or firmware of the underlying
+				platform to include the boot sequence before control is handed off to the OS. That
+				the platform itself is virtual or physical is irrelevant to any evaluations. </li>
+			<li>Applications - The OS PP shall not address applications that are not delivered as
+				part of the OS installation process. </li>
+		</ul>
+	</section>
+</ESR>

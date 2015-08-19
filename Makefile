@@ -2,9 +2,11 @@ IN = input
 OUT = output
 TRANS = transforms
 SSH_XML=$(IN)/ssh.xml
+ESR_XML=$(IN)/esr.xml
 TABLE=$(OUT)/ssh-table.html
 SIMPLIFIED=$(OUT)/ssh-table-reqs.html
 SSH_HTML=$(OUT)/ssh.html
+ESR_HTML=$(OUT)/ssh-esr.html
 SSH_OP_HTML=$(OUT)/ssh-optionsappendix.html
 SSH_RELEASE_HTML=$(OUT)/ssh-release.html
 OUTPUTS=$(TABLE) $(SIMPLIFIED) $(SSH_HTML) $(SSH_OP_HTML) $(SSH_RELEASE_HTML)
@@ -18,6 +20,10 @@ $(SSH_HTML):  $(TRANS)/pp2html.xsl $(SSH_XML)
 	xsltproc -o $(SSH_HTML) $(TRANS)/pp2html.xsl $(SSH_XML)
 	xsltproc --stringparam appendicize on -o $(SSH_OP_HTML) $(TRANS)/pp2html.xsl $(SSH_XML)
 	xsltproc --stringparam appendicize on --stringparam release final -o $(SSH_RELEASE_HTML) $(TRANS)/pp2html.xsl $(SSH_XML)
+
+esr:$(ESR_HTML)
+$(ESR_HTML):  $(TRANS)/esr2html.xsl $(TRANS)/ppcommons.xsl $(ESR_XML)
+	xsltproc -o $(ESR_HTML) $(TRANS)/esr2html.xsl $(ESR_XML)
 
 table: $(TABLE)
 $(TABLE): $(TRANS)/pp2table.xsl $(SSH_XML)
