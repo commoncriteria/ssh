@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/esr2html.xsl"?>
 
-<ESR xmlns="http://common-criteria.rhcloud.com/ns/esr" name="Secure Shell (SSH)">
+<ESR xmlns="http://common-criteria.rhcloud.com/ns/esr" name="Secure Shell">
 
 	<intro>
 		<esrtitle>Secure Shell (SSH)</esrtitle>
@@ -25,7 +25,7 @@
 			elaborate on subtleties not apparent in the “bulleted” high level
 			statements.
 		-->
-		Secure Shell (SSH)...
+		Secure Shell (SSH)
 	</section>
 
 	<section title="Use Cases" id="usecases">
