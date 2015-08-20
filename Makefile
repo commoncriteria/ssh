@@ -10,7 +10,7 @@ ESR_HTML=$(OUT)/ssh-esr.html
 SSH_OP_HTML=$(OUT)/ssh-optionsappendix.html
 SSH_RELEASE_HTML=$(OUT)/ssh-release.html
 OUTPUTS=$(TABLE) $(SIMPLIFIED) $(SSH_HTML) $(SSH_OP_HTML) $(SSH_RELEASE_HTML)
-all: $(TABLE) $(SIMPLIFIED) $(SSH_HTML)
+all: $(TABLE) $(SIMPLIFIED) $(SSH_HTML) $(ESR_HTML)
 
 spellcheck: $(OUTPUTS)
 	bash -c "hunspell -l -H -p <(cat transforms/dictionaries/CommonCriteria.txt transforms/dictionaries/Computer.txt transforms/dictionaries/Crypto.txt transforms/dictionaries/SSHSpecific.txt) output/*.html | sort"
