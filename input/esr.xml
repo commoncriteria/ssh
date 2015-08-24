@@ -4,12 +4,12 @@
 <ESR xmlns="http://common-criteria.rhcloud.com/ns/esr" name="Secure Shell">
 
 	<intro>
-		<esrtitle>Secure Shell (SSH)</esrtitle>
+		<esrtitle>Extended Package for SSH Server and Client Functionality</esrtitle>
 		<maintainer>National Information Assurance Partnership</maintainer>
 		<identifier>42</identifier>
 		<version>0.8</version>
 		<status>draft</status>
-		<issuedate>19 August 2015</issuedate>
+		<issuedate>24 August 2015</issuedate>
 		<approver/>
 		<supercedes/>
 	</intro>
@@ -25,7 +25,29 @@
 			elaborate on subtleties not apparent in the “bulleted” high level
 			statements.
 		-->
-		Secure Shell (SSH)
+		Secure Shell (SSH) is an encrypted network protocol for initiating shell sessions
+		between a client and a server. An SSH session allows a user to interact with the remote system
+		via a text-based shell. Typically SSH is used to perform privileged tasks on 
+		remote machines.
+		<br/>
+		This essential security requirements (ESR) document outlines the high-level
+		security requirements for an SSH Client or Server, which will be expressed in a Common Criteria 
+		Extended Package (EP). These requirements address threats within a scope established 
+		by use cases and environment assumptions. 
+		<br/>
+		The security functionality must be realistic and achievable by commercially available 
+		products. The resulting EP will also include objective and repeatable evaluation activities, 
+		so that evaluations can be executed in a timely manner.
+		<br/>
+		With regard to evaluation scope, the SSH Client or Server itself is composed of the software 
+		that is delivered to the end user in the SSH product. This typically includes
+		a user mode application, covered by the Application Software Protection Profile and this
+		SSH Extended Package. An SSH Client or Server could also be delivered as part of 
+		an Operating System which could include user mode or kernel mode components. In this 
+		case the SSH Client or Server would be covered by either the General Purpose Operating 
+		System Protection Profile or the Mobile Device Fundamentals Protection Profile 
+		and this SSH Extended Package.
+		
 	</section>
 
 	<section title="Use Cases" id="usecases">
@@ -38,7 +60,8 @@
 			considered in the drafting of the Essential Security Requirements 
 			(ESR) and for the TC to consider when writing the PP.
 		-->
-		<p> SSH is a communication protocal provided by a platform or an application to enable secure communications for management of <ul>
+		<p> SSH is a network protocol provided by an application or an Operating System 
+			to enable secure communications for management of <ul>
 				<li>End user systems such as a desktop or laptop</li>
 				<li>Server systems, which run on physical or virtual hardware</li>
 				<li>Hardware devices, such as routers and switches</li>
@@ -58,7 +81,9 @@
     	-->
 		<p>
 			<ul>
-				<li>Network communications</li>
+				<li>Sensitive data transmited over the network.</li>
+				<li>Sensitive data that is necessary to store in non-volatile memory.</li>
+				<li>The configuration of the SSH client itself.</li>
 			</ul>
 		</p>
 	</section>
@@ -70,12 +95,12 @@
 			<li> An attacker is able to acquire their own copy of the target software and study its
 				behavior on a platform that they control. </li>
 		</ul>
-		<p/> The attacker is expected to engage in the following general classes of attack: <!-- added in order to allow for rather direct flow to Threats section in PP -->
+		<p/> The attacker is expected to engage in the following general classes of attack:
 		<ul>
 			<li> Network eavesdropping, in which an attacker may monitor and gain access to data
-				exchanged between the SSH Clients and other endpoints. </li>
-			<li> Network attack, in which an attacker may initiate malicious communications with an SSH Client
-				or alter communications between the SSH Client and other endpoints. </li>
+				exchanged between the SSH Client and SSH Server. </li>
+			<li> Network attack, in which an attacker may initiate malicious communications with an 
+				SSH Client or Server or alter communications between the SSH Client and Server. </li>
 			<li> Local attack, in which an attacker has gained the ability to execute code on the
 				system, which may be used to escalate privilege or access data without
 				authorization. </li>
@@ -100,7 +125,7 @@
         	they have an understanding of what is minimally required in breath.
         -->
 		<p> The following are the essential security requirements expected to be implemented by an
-			SSH Client within the established scope: 
+			SSH Client or Server within the established scope: 
 			<ul>
 				<li>SSH software shall implement the SSH protocol that complies with RFCs</li>
 				<li>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
@@ -121,32 +146,7 @@
 			its	intended environment that can be assumed to hold true. This 
 			will provide additional scope on the resulting PP.
 		-->
-		The following assumptions are made for the operating system product and its operational
-		environment: <ul>
-			<li>The underlying platform is physically protected, to a large extent. The hardware
-				that the OS manages is secured by defensive measures that make physical attacks
-				impractical for most attackers. At the same time, casual passersby might attempt to
-				trivially access the system. </li>
-			<li>The OS implements some security-relevant functionality that does not require
-				evaluation (e.g., network time synchronization, process scheduling, and virtual
-				memory management including process separation). </li>
-			<li>Depending on configuration and capability, the OS may or may not be: <ul>
-					<li>configuration-managed by the enterprise</li>
-					<li>bound to directory services to support multi-user login</li> These do not
-					fundamentally increase or decrease overall risk exposure, and represent
-					operational choices. </ul>
-			</li>
-			<li> The OS runs application software developed by a third-party. The applications are
-				not intentionally developed to be malicious, but can contain inadvertent coding
-				errors. These errors introduce risk that control of an application may be seized by
-				a malicious entity. The OS shall confine these applications within the originally
-				designated operating environment. </li>
-			<li>The platform is connected to a network. For purposes of sending/receiving data, to
-				include software updates, the platform is connected to other entities. Other
-				entities on the network are not inherently trustable. </li>
-			<li>Administrators are not malicious in nature.</li>
-			<li> Users are not malicious in nature. </li>
-		</ul>
+
 	</section>
 
 
@@ -165,20 +165,16 @@
 			(e.g., assessing anti-tamper measures). 
 		-->
 		The following list contains items that are explicitly out-of-scope for any evaluation
-		against the OS PP <ul>
+		against an SSH Client or Server <ul>
 			<li>Malicious, Highly-Privileged Administrators - Highly-privileged administrators
-				acting maliciously can disable most, if not all, security protections on the OS.
+				acting maliciously can disable most, if not all, security protections.
 				Additionally procedural controls that are out of scope of this document should be
 				considered to help highlight administrator accounts acting suspiciously.</li>
 			<li>Zero Days - The disclosure of recently published vulnerabilities (Zero Days) should
-				not be used as a reason to fail an OS undergoing evaluation.</li>
+				not be used as a reason to fail an SSH Client or Server undergoing evaluation.</li>
 			<li>Unofficial Versions - Non-vendor supplied install images often contain added
-				functionality and may weaken the normal operating functionality of the OS</li>
-			<li>Platform - The OS PP shall not address the hardware or firmware of the underlying
-				platform to include the boot sequence before control is handed off to the OS. That
-				the platform itself is virtual or physical is irrelevant to any evaluations. </li>
-			<li>Applications - The OS PP shall not address applications that are not delivered as
-				part of the OS installation process. </li>
+				functionality and may weaken the normal operating functionality of the 
+				SSH Client or Server.</li>
 		</ul>
 	</section>
 </ESR>
