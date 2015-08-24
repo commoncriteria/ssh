@@ -4,6 +4,8 @@ Extended Package for Secure Shell (SSH)
 Extended Package for Secure Shell (SSH)
 
 ## Links
+[Essential Security Requirements (ESR)](http://common-criteria.rhcloud.com/ssh/output/ssh-esr.html)
+
 [Extended Package for Secure Shell](http://common-criteria.rhcloud.com/ssh/output/ssh-release.html)
 
 ## Quickstart
