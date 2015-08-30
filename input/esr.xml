@@ -142,7 +142,7 @@
 			<ul>
 				<li>Provide strong authentication mechanisms.</li>
 				<ul>
-					<li>>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
+					<li>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
 				</ul>
 			</ul>
 		</p>
