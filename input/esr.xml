@@ -128,7 +128,6 @@
 			SSH Client or Server within the established scope: 
 			<ul>
 				<li>SSH software shall implement the SSH protocol that complies with RFCs</li>
-				<li>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
 				<li>SSH transport implementation uses the following encryption algorithms:
 					<ul>
 					  <li>aes128-cbc</li>
@@ -136,6 +135,15 @@
 					</ul>
 				</li>
 				<li>SSH connection be rekeyed after no more than 2^28packets have been transmitted</li>
+			</ul>
+			<ul>
+				<li>Provide a trusted update mechanism to update itself<./li>
+			</ul>
+			<ul>
+				<li>Provide strong authentication mechanisms.</li>
+				<ul>
+					<li>>Support authentication methods as described in RFC 4252: public key-based, password-based</li>
+				</ul>
 			</ul>
 		</p>
 	</section>
@@ -146,7 +154,9 @@
 			its	intended environment that can be assumed to hold true. This 
 			will provide additional scope on the resulting PP.
 		-->
-
+		The following assumptions are made for the SSH Client or Server product and its operational environment:
+	        <li>Administrators are not malicious in nature.</li>
+	        <li>Users are not malicious in nature.</li>
 	</section>
 
 
