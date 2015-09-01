@@ -8,6 +8,8 @@ Extended Package for Secure Shell (SSH)
 
 [Extended Package for Secure Shell](http://common-criteria.rhcloud.com/ssh/output/ssh-release.html)
 
+[Help working with Transforms Submodule](https://github.com/commoncriteria/transforms/wiki/Working-with-Transforms-as-a-Submodule)
+
 ## Quickstart
 To clone this project along with its _transforms_ submodule run:
 
