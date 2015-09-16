@@ -158,6 +158,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       </cclaim>
     </cclaims>
   </chapter>
+
   <chapter title="Security Problem Description" id="spd">
   This Extended Package does not repeat the threats, assumptions, and organizational security
   policies identified in any base PPs, though they all apply given the conformance and hence
@@ -165,7 +166,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <abbr linkend="EP" /> on it. Together the threats, assumptions and organizational security
   policies of the base PP and those defined in this 
   <abbr linkend="EP" /> describe those addressed by the product as the Target of
-  Evaluation.</chapter>
+  Evaluation.
+  </chapter>
+  
   <chapter title="Security Objectives" id="sobj">This Extended Package adds SFRs to objectives
   identified in the base PP.
   <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -174,7 +177,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <component-refer ref="fcs_ssh_ext.1" />
       </SO>
     </SOs>
-  </section></chapter>
+  </section>
+  </chapter>
+
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
   to be fulfilled by the product. Those requirements comprise functional components from Part 2 of 
   <cite linkend="bibCC" />. The following notations are used: 
@@ -196,7 +201,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
     <f-component id="fcs_ssh_ext.1" name="SSH Protocol" status="threshold">
-	    <f-element id="fcs_ssh_ext.1.1">
+	<f-element id="fcs_ssh_ext.1.1">
         <title>The SSH software shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
         4254 and 
         <selectables>
@@ -218,9 +223,13 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         implementation must include support, not that the algorithms must be enabled for use.
         Ensuring that algorithms indicated as "REQUIRED" but not listed in the later elements of
         this component are implemented is out of scope of the assurance activity for this
-        requirement.</note>
+        requirement.
+	</note>
+        <aactivity>The evaluator will ensure that the selections indicated in the ST are 
+	consistent with selections in the dependent components.
+        </aactivity>
       </f-element>
-	  </f-component>
+      </f-component>
 
       <f-component id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
 
