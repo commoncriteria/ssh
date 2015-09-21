@@ -39,14 +39,21 @@
 		products. The resulting EP will also include objective and repeatable evaluation activities, 
 		so that evaluations can be executed in a timely manner.
 		<br/>
-		With regard to evaluation scope, the SSH Client or Server itself is composed of the software 
-		that is delivered to the end user in the SSH product. This typically includes
-		a user mode application, covered by the Application Software Protection Profile and this
-		SSH Extended Package. An SSH Client or Server could also be delivered as part of 
-		an Operating System which could include user mode or kernel mode components. In this 
-		case the SSH Client or Server would be covered by either the General Purpose Operating 
-		System Protection Profile or the Mobile Device Fundamentals Protection Profile 
-		and this SSH Extended Package.
+		With regard to evaluation scope, the SSH Client or Server is composed of the software 
+		that is delivered to the end user. 
+		This Extended Package is envisioned for combination with base PPs in the following ways:
+		<ul>
+		<li>A standalone SSH product would be covered by this EP as an
+		extension of the Application Software Protection Profile.
+		</li>
+		<li>
+		SSH Client or Server software included as part of an Operating
+		System or Mobile Device would be covered as an extension of the
+		General Purpose Operating System PP or Mobile
+		Device Fundamentals PP, respectively. 
+		</li>
+		</ul>
+
 		
 	</section>
 
@@ -60,12 +67,11 @@
 			considered in the drafting of the Essential Security Requirements 
 			(ESR) and for the TC to consider when writing the PP.
 		-->
-		<p> SSH is a network protocol provided by an application or an Operating System 
-			to enable secure communications for management of <ul>
-				<li>End user systems such as a desktop or laptop</li>
-				<li>Server systems, which run on physical or virtual hardware</li>
-				<li>Hardware devices, such as routers and switches</li>
-			</ul>
+		<p> SSH enables encrypted network communications for activities such as 
+		<ul>
+				<li>remote, interactive system access</li>
+				<li>remote systems management (interactive or through management system)</li>
+		</ul>
 		</p>
 	</section>
 
@@ -82,8 +88,6 @@
 		<p>
 			<ul>
 				<li>Sensitive data transmited over the network.</li>
-				<li>Sensitive data that is necessary to store in non-volatile memory.</li>
-				<li>The configuration of the SSH client itself.</li>
 			</ul>
 		</p>
 	</section>
