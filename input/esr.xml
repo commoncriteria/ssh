@@ -43,12 +43,12 @@
 		that is delivered to the end user. 
 		This Extended Package is envisioned for combination with base PPs in the following ways:
 		<ul>
-		<li>A standalone SSH product would be covered by this EP as an
-		extension of the Application Software Protection Profile.
+		<li>A standalone SSH product would be covered by this EP
+		extending the Application Software Protection Profile.
 		</li>
 		<li>
 		SSH Client or Server software included as part of an Operating
-		System or Mobile Device would be covered as an extension of the
+		System or Mobile Device would be covered by this EP extending the
 		General Purpose Operating System PP or Mobile
 		Device Fundamentals PP, respectively. 
 		</li>
@@ -93,21 +93,22 @@
 	</section>
 
 	<section title="Attacker access" id="attackeraccess"> The following assumptions are made about
-		attackers' ability to develop attacks: <ul>
-			<li> An attacker has an arbitrary amount of time to analyze the behavior of SSH, its
-				interaction with its platform, and the data it transmits over the network. </li>
-			<li> An attacker is able to acquire their own copy of the target software and study its
-				behavior on a platform that they control. </li>
+		attackers' ability to develop attacks: 
+		<ul>
+			<li> An attacker has an arbitrary amount of time to
+			analyze the behavior of SSH client or server software, including
+			the data it transmits over the network. 
+			</li>
 		</ul>
 		<p/> The attacker is expected to engage in the following general classes of attack:
 		<ul>
 			<li> Network eavesdropping, in which an attacker may monitor and gain access to data
 				exchanged between the SSH Client and SSH Server. </li>
-			<li> Network attack, in which an attacker may initiate malicious communications with an 
-				SSH Client or Server or alter communications between the SSH Client and Server. </li>
-			<li> Local attack, in which an attacker has gained the ability to execute code on the
-				system, which may be used to escalate privilege or access data without
-				authorization. </li>
+			<li> Network attack, in which an attacker may initiate
+				malicious communications with an SSH Client or Server
+				or alter communications between the SSH Client and
+				Server.
+			</li>
 		</ul>
 	</section>
 
