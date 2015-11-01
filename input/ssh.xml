@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="..\transforms\pp2html.xsl"?>
 <PP xmlns="http://common-criteria.rhcloud.com/ns/cc" name="Secure Shell"
 xmlns:htm="http://www.w3.org/1999/xhtml">
@@ -7,7 +7,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-8-25</PPPubDate>
+      <PPPubDate>2015-11-01</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -27,7 +27,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2015-09-14</date>
+      <date>2015-11-01</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
@@ -483,8 +483,19 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <f-element id="fcs_sshs_ext.1.3" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH server shall ensure that the SSH transport implementation uses the following
-        encryption algorithms and rejects all other encryption algorithms: 
-        <assignable>encryption algorithms</assignable>.</title>
+          encryption algorithms and rejects all other encryption algorithms: aes128-cbc,
+          aes256-cbc, <selectables>
+            <selectable>AEAD_AES_128_GCM</selectable>
+            <selectable>AEAD_AES_256_GCM</selectable>
+            <selectable>no other algorithms</selectable>
+          </selectables>
+        .</title>
+        <note role="application">
+          RFC 5647 specifies the use of the AEAD_AES_128_GCM and AEAD_AES_256_GCM
+          algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
+          AEAD_AES_256_GCM can only be chosen as encryption algorithms when the same
+          algorithm is being used as the MAC algorithm.
+        </note>
         <aactivity>The evaluator will check the description of the implementation of this protocol
         in the TSS to ensure that optional characteristics are specified, and the encryption
         algorithms supported are specified as well. The evaluator will check the TSS to ensure that
@@ -507,8 +518,25 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <f-element id="fcs_sshs_ext.1.4" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH server shall ensure that the SSH transport implementation uses 
-        <assignable>list of public key algorithms</assignable>as its public key algorithm(s) and
-        rejects all other public key algorithms.</title>
+          <selectables>
+            <selectable>ssh-rsa</selectable>
+            <selectable>ecdsa-sha2-nistp256</selectable>
+          </selectables>
+           and 
+          <selectables>
+            <selectable>ecdsa-sha2-nistp384</selectable>
+            <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
+            <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
+            <selectable>no other public key algorithms</selectable>
+          </selectables>
+        as its public key algorithm(s) and
+        rejects all other public key algorithms.
+        </title>
+        <note role="application">
+          Implementations that select only ssh-rsa will not achieve the 112-bit security strength in the
+          digital signature generation for SSH authentication as is recommended in NIST SP 800-
+          131A. Future versions of this profile may remove ssh-rsa as a selection.
+        </note>
         <aactivity>The evaluator will check the description of the implementation of this protocol
         in the TSS to ensure that optional characteristics are specified, and the public key
         algorithms supported are specified as well. The evaluator will check the TSS to ensure that
@@ -532,8 +560,27 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <f-element id="fcs_sshs_ext.1.5" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH server shall ensure that the SSH transport implementation uses 
-        <assignable>list of MAC algorithms</assignable>as its MAC algorithm(s) and rejects all
+        <selectables>
+          <selectable>hmac-sha1</selectable>
+          <selectable>hmac-sha1-96</selectable>
+          <selectable>hmac-sha2-256</selectable>
+          <selectable>hmac-sha2-512</selectable>
+        </selectables>
+          and
+        <selectables>
+          <selectable>AEAD_AES_128_GCM</selectable>
+          <selectable>AEAD_AES_256_GCM</selectable>
+          <selectable>no other MAC algorithms</selectable>
+        </selectables>
+        as its MAC algorithm(s) and rejects all
         other MAC algorithm(s).</title>
+        <note role="application">
+          RFC 5647 specifies the use of the AEAD_AES_128_GCM and AEAD_AES_256_GCM
+          algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
+          AEAD_AES_256_GCM can only be chosen as MAC algorithms when the same algorithm is
+          being used as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms
+          in SSH.
+        </note>
         <aactivity>The evaluator will check the TSS to ensure that it lists the supported data
         integrity algorithms, and that that list corresponds to the list in this component. 
         <br />The evaluator will also check the guidance documentation to ensure that it contains
@@ -557,7 +604,17 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <f-element id="fcs_sshs_ext.1.6" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH server shall ensure that 
-        <assignable>list of key exchange methods</assignable>are the only allowed key exchange
+        <selectables>
+          <selectable>diffie-hellman-group14-sha1</selectable>
+          <selectable>ecdh-sha2-nistp256</selectable>
+        </selectables>
+          and
+        <selectables>
+          <selectable>ecdh-sha2-nistp384</selectable>
+          <selectable>ecdh-sha2-nistp521</selectable>
+          <selectable>no other methods</selectable>
+        </selectables>
+        are the only allowed key exchange
         methods used for the SSH protocol.</title>
         <aactivity>The evaluator will check the TSS to ensure that it lists the supported key
         exchange algorithms, and that that list corresponds to the list in this component. 

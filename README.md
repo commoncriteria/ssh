@@ -3,12 +3,14 @@ Extended Package for Secure Shell (SSH)
 
 Extended Package for Secure Shell (SSH)
 
-## Links
+## Working Draft
 [Essential Security Requirements (ESR)](http://common-criteria.rhcloud.com/ssh/output/ssh-esr.html)
 
 [Extended Package for Secure Shell](http://common-criteria.rhcloud.com/ssh/output/ssh-release.html)
 
-[Help working with Transforms Submodule](https://github.com/commoncriteria/transforms/wiki/Working-with-Transforms-as-a-Submodule)
+## Release Version
+
+## Change Log
 
 ## Quickstart
 To clone this project along with its _transforms_ submodule run:
@@ -22,3 +24,5 @@ To pull updates from the upstream _transforms_ submodule and commit them run:
  git add transforms
  git commit
 ````
+
+[Help working with Transforms Submodule](https://github.com/commoncriteria/transforms/wiki/Working-with-Transforms-as-a-Submodule)
