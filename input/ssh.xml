@@ -7,7 +7,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-11-01</PPPubDate>
+      <PPPubDate>2015-11-09</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -27,7 +27,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2015-11-01</date>
+      <date>2015-11-09</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
