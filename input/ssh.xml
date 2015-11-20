@@ -7,7 +7,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-11-09</PPPubDate>
+      <PPPubDate>2015-11-20</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -27,7 +27,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2015-11-09</date>
+      <date>2015-11-20</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
@@ -84,7 +84,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
             <abbr title="TOE Summary Specification">TSS</abbr>
           </term>
           <description>A description of how a 
-          <abbr linkend="TOE" />satisfies the SFRs in a 
+          <abbr linkend="TOE" /> satisfies the SFRs in a 
           <abbr linkend="ST" />.</description>
         </entry>
         <entry>
@@ -145,7 +145,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         this 
         <abbr linkend="EP" />, the 
         <abbr linkend="ST" /> must include all components in this 
-        <abbr linkend="EP" /> and the associated App PP that are: 
+        <abbr linkend="EP" /> and the associated base PP that are: 
         <ul>
           <li>unconditional (which are always required)</li>
           <li>selection-based (which are required when certain selections are chosen in the
@@ -174,6 +174,10 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
     <SOs>
       <SO id="O.PROTECTED_COMMS">
+        <description>To address both network eavesdropping and network attack threats concerning 
+          transmission of Enterprise and user data between the TOE and remote 
+          network entities.
+        </description>
         <component-refer ref="fcs_ssh_ext.1" />
       </SO>
     </SOs>
@@ -704,6 +708,22 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           2012.</li>
         </ul></description>
       </entry>
+      <entry id="bibGPOS">
+        <tag>GPOSPP</tag>
+        <description>
+          <a href="https://www.niap-ccevs.org/pp/PP_OS_v4.0/">Protection Profile for General 
+            Purpose Operating Systems
+            </a>
+        </description>
+      </entry>
+      <entry id="bibMDF">
+        <tag>MDFPP</tag>
+        <description>
+          <a href="https://www.niap-ccevs.org/pp/PP_MD_v2.0/">Protection Profile for Mobile 
+            Device Fundamentals
+          </a>
+        </description>
+      </entry>
       <entry id="bibAppPP">
         <tag>AppPP</tag>
         <description>
@@ -724,36 +744,12 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <description>Cipher Block Chaining</description>
       </entry>
       <entry>
-        <term>CMS</term>
-        <description>Cryptographic Message Syntax</description>
-      </entry>
-      <entry>
-        <term>CRL</term>
-        <description>Certificate Revocation List</description>
-      </entry>
-      <entry>
-        <term>CSP</term>
-        <description>Critical Security Parameter</description>
-      </entry>
-      <entry>
-        <term>DRBG</term>
-        <description>Deterministic Random Bit Generator</description>
-      </entry>
-      <entry>
         <term>ECDSA</term>
         <description>Elliptic Curve Digital Signature Algorithm</description>
       </entry>
       <entry>
-        <term>HTML</term>
-        <description>HyperText Markup Language</description>
-      </entry>
-      <entry>
-        <term>HTTP</term>
-        <description>HyperText Transfer Protocol</description>
-      </entry>
-      <entry>
-        <term>HTTPS</term>
-        <description>HyperText Transfer Protocol Secure</description>
+        <term>GCM</term>
+        <description>Galois/Counter Mode</description>
       </entry>
       <entry>
         <term>IETF</term>
@@ -764,8 +760,8 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <description>Initialization Vector</description>
       </entry>
       <entry>
-        <term>MTA</term>
-        <description>Mail Transfer Agent</description>
+        <term>MAC</term>
+        <description>Message Authentication Code</description>
       </entry>
       <entry>
         <term>NIST</term>
@@ -774,15 +770,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <entry>
         <term>PBKDF</term>
         <description>Password-Based Key Derivation Function</description>
-      </entry>
-      <entry>
-        <term>PDF</term>
-        <description>Portable Document Format</description>
-      </entry>
-      <entry>
-        <term>RBG</term>
-        <description>Random Bit Generator</description>
-      </entry>
+      </entry>     
       <entry>
         <term>RFC</term>
         <description>Request for Comment (IETF)</description>
@@ -792,9 +780,10 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <description>Rivest Shamir Adelman</description>
       </entry>
       <entry>
-        <term>TLS</term>
-        <description>Transport Layer Security</description>
+        <term>SSH</term>
+        <description>Secure Shell</description>
       </entry>
+
     </acronyms>
   </appendix>
 </PP>
