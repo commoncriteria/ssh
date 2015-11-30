@@ -415,39 +415,41 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           </testlist>
         </aactivity>
       </f-element>
+      <f-element id="fcs_sshc_ext.1.8" status="sel-based">
+          <selection-depends req="fcs_ssh_ext.1.1"/>
+          <title>The SSH client shall ensure that the SSH client authenticates the identity of the SSH server
+            using a local database associating each host name with its corresponding public key or 
+            <selectables>
+              <selectable>a list of trusted certification authorities</selectable>
+              <selectable>no other methods</selectable>
+            </selectables>as described in RFC 4251 section 4.1.</title>
+          <note role="application">The list of trusted certification authorities can only be selected
+            if x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected in 
+            <linkref linkend="FCS_SSHC_EXT.1.4" />.</note>
+          <aactivity>
+            <testlist>
+              <test>The evaluator will delete all entries in the TOE’s list of recognized SSH server
+                host keys and, if selected, all entries in the TOE’s list of trusted certification
+                authorities. The evaluator will initiate a connection from the TOE to an SSH server.
+                The evaluator shall ensure that the TOE either rejects the connection or displays the
+                SSH server’s public key (either the key bytes themselves or a hash of the key using any
+                allowed hash algorithm) and prompts the user to accept or deny the key before
+                continuing the connection.</test>
+              <test>The evaluator will add an entry associating a host name with a public key into
+                the TOE’s local database. The evaluator will replace, on the corresponding SSH server,
+                the server’s host key with a different host key. The evaluator will initiate a
+                connection from the TOE to the SSH server using password-based authentication, shall
+                ensure that the TOE rejects the connection, and shall ensure that the password was not
+                transmitted to the SSH server (for example, by instrumenting the SSH server with a
+                debugging capability to output received passwords).</test>
+            </testlist>
+          </aactivity>
+       </f-element>
       </f-component>
 
-      <f-component id="fcs_sshcr_ext.1" name="SSH Client Recognition of Servers" status="optional">
-      <f-element id="fcs_sshcr_ext.1.1" status="optional">
-        <title>The SSH client shall ensure that the SSH client authenticates the identity of the SSH server
-        using a local database associating each host name with its corresponding public key or 
-        <selectables>
-          <selectable>a list of trusted certification authorities</selectable>
-          <selectable>no other methods</selectable>
-        </selectables>as described in RFC 4251 section 4.1.</title>
-        <note role="application">The list of trusted certification authorities can only be selected
-        if x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected in 
-        <linkref linkend="FCS_SSHC_EXT.1.5" />.</note>
-        <aactivity>
-          <testlist>
-            <test>The evaluator will delete all entries in the TOE’s list of recognized SSH server
-            host keys and, if selected, all entries in the TOE’s list of trusted certification
-            authorities. The evaluator will initiate a connection from the TOE to an SSH server.
-            The evaluator shall ensure that the TOE either rejects the connection or displays the
-            SSH server’s public key (either the key bytes themselves or a hash of the key using any
-            allowed hash algorithm) and prompts the user to accept or deny the key before
-            continuing the connection.</test>
-            <test>The evaluator will add an entry associating a host name with a public key into
-            the TOE’s local database. The evaluator will replace, on the corresponding SSH server,
-            the server’s host key with a different host key. The evaluator will initiate a
-            connection from the TOE to the SSH server using password-based authentication, shall
-            ensure that the TOE rejects the connection, and shall ensure that the password was not
-            transmitted to the SSH server (for example, by instrumenting the SSH server with a
-            debugging capability to output received passwords).</test>
-          </testlist>
-        </aactivity>
-      </f-element>
-    </f-component>
+
+
+    
 
     <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
       <f-element id="fcs_sshs_ext.1.1" status="sel-based">
