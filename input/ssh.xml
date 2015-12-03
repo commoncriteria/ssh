@@ -325,7 +325,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         recommended in NIST SP 800-131A. Future versions of this document may remove ssh-rsa as a
         selection. If x509v3-ecdsasha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected, then
         the list of trusted certification authorities must be selected in 
-        <linkref linkend="FCS_SSHCR_EXT.1" />.</note>
+        <linkref linkend="FCS_SSHC_EXT.1.8" />.</note>
         <aactivity>The evaluator will check the description of the implementation of this protocol
         in the TSS to ensure that optional characteristics are specified, and the public key
         algorithms supported are specified as well. The evaluator will check the TSS to ensure that
