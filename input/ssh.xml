@@ -326,11 +326,11 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <note role="application">Implementations that select only ssh-rsa will not achieve the
         112-bit security strength in the digital signature generation for SSH authentication as is
         recommended in NIST SP 800-131A. Future versions of this document may remove ssh-rsa as a
-        selection. If x509v3-ecdsasha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected, then
+        selection. If x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected, then
         the list of trusted certification authorities must be selected in 
         <linkref linkend="FCS_SSHC_EXT.1.8" />.
         <br/>
-        The SFR's for cryptographic key generation and certificate validation are inherited
+        The SFRs for cryptographic key generation and certificate validation are inherited
         from the base PP.
         </note>
         <aactivity>The evaluator will check the description of the implementation of this protocol
@@ -374,7 +374,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms in
         SSH.
         <br/>
-        The SFR's for cryptographic operations, encryption and hashing, are inherited from 
+        The SFRs for cryptographic operations, encryption and hashing, are inherited from 
         the base PP.
         </note>
         <aactivity>The evaluator will check the TSS to ensure that it lists the supported data
@@ -577,7 +577,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           digital signature generation for SSH authentication as is recommended in NIST SP 800-131A. 
           Future versions of this profile may remove ssh-rsa as a selection.
           <br/>
-          The SFR's for cryptographic key generation and certificate validation are inherited
+          The SFRs for cryptographic key generation and certificate validation are inherited
           from the base PP.
         </note>
         <aactivity>The evaluator will check the description of the implementation of this protocol
@@ -624,7 +624,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
           being used as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms
           in SSH.
           <br/>
-          The SFR's for cryptographic operations, encryption and hashing, are inherited from 
+          The SFRs for cryptographic operations, encryption and hashing, are inherited from 
           the base PP.
         </note>
         <aactivity>The evaluator will check the TSS to ensure that it lists the supported data
