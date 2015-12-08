@@ -244,7 +244,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
         public key algorithms that are acceptable for use for authentication, that this list
         conforms to 
-        <linkref linkend="FCS_SSHC_EXT.1.5" />, and ensure that password-based authentication
+        <linkref linkend="FCS_SSHC_EXT.1.4" />, and ensure that password-based authentication
         methods are also allowed. 
         <br />
         <testlist>
