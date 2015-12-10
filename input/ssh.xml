@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="..\transforms\pp2html.xsl"?>
 <PP xmlns="http://common-criteria.rhcloud.com/ns/cc" name="Secure Shell"
 xmlns:htm="http://www.w3.org/1999/xhtml">
@@ -194,7 +194,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
     a requirement.</li>
     <li>
     <b>Assignment</b> operation (denoted by 
-    <i>italicized text</i>): is used to assign a specific value to an unspecified parameter, such
+    <span class="assignable-content">italicized text</span>): is used to assign a specific value to an unspecified parameter, such
     as the length of a password. Showing the value in square brackets indicates assignment.</li>
     <li>
     <b>Iteration</b> operation: are identified with a number inside parentheses (e.g. "(1)").</li>
