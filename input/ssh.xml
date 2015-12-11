@@ -7,7 +7,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-11-20</PPPubDate>
+      <PPPubDate>2015-12-11</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -27,7 +27,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2015-11-20</date>
+      <date>2015-12-11</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
@@ -240,7 +240,12 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <f-element id="fcs_sshc_ext.1.1" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH client shall ensure that the SSH protocol implementation supports the following
-        authentication methods as described in RFC 4252: public key-based, password-based.</title>
+        authentication methods as described in RFC 4252: public key-based, and
+          <selectables>
+            <selectable>password-based</selectable>
+            <selectable>none</selectable>
+          </selectables>.
+        </title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
         public key algorithms that are acceptable for use for authentication, that this list
         conforms to 
@@ -467,15 +472,16 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
        </f-element>
       </f-component>
 
-
-
-    
-
     <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
       <f-element id="fcs_sshs_ext.1.1" status="sel-based">
         <selection-depends req="fcs_ssh_ext.1.1"/>
         <title>The SSH server shall ensure that the SSH protocol implementation supports the following
-        authentication methods as described in RFC 4252: public key-based, password-based.</title>
+        authentication methods as described in RFC 4252: public key-based, and
+          <selectables>
+            <selectable>password-based</selectable>
+            <selectable>none</selectable>
+          </selectables>.
+        </title>
         <aactivity>The evaluator will check to ensure that the TSS contains a description of the
         public key algorithms that are acceptable for use for authentication, that this list
         conforms to 
