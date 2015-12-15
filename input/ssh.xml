@@ -228,9 +228,9 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
         <br/>
         RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED". This means that from the 
         IETF's perspective the implementation must include support, not that the algorithms must 
-        be enabled for use. Ensuring that algorithms indicated as "REQUIRED" but not listed 
-        in later elements of this Extended Package are implemented is out of scope for the assurance activity 
-        for this requirement.
+        be enabled for use. For the purposes of this assurance activity and this Extended Package 
+        overall, it is not necessary to ensure that algorithms listed as “REQUIRED” by the RFC but 
+        not listed in later elements of this Extended Package are actually implemented.
         <br/>
         If client is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHC_EXT.1" />. 
         If server is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
