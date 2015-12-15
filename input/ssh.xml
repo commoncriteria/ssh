@@ -7,7 +7,7 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2015-12-11</PPPubDate>
+      <PPPubDate>2015-12-15</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -27,14 +27,14 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2015-12-11</date>
+      <date>2015-12-15</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview">Secure Shell (SSH) is a
     protocol for secure remote login and other secure network services over
-    an insecure network. SSH software can act as a client, server, or both.</section>
+    an untrusted network. SSH software can act as a client, server, or both.</section>
     <section id="glossary" title="Terms">The following sections provide both Common Criteria and
     technology terms used in this Extended Package. 
     <subsection title="Common Criteria Terms" id="ccterms">
@@ -221,13 +221,19 @@ xmlns:htm="http://www.w3.org/1999/xhtml">
 		</selectables>
 		</title>
         <note role="application">The ST author selects which of the additional RFCs to which
-        conformance is being claimed. Note that these need to be consistent with selections in
-        later elements of this component (e.g., cryptographic algorithms permitted). RFC 4253
-        indicates that certain cryptographic algorithms are "REQUIRED". This means that the
-        implementation must include support, not that the algorithms must be enabled for use.
-        Ensuring that algorithms indicated as "REQUIRED" but not listed in the later elements of
-        this component are implemented is out of scope of the assurance activity for this
-        requirement.
+        conformance is being claimed. An SSH product can implement additional RFCs, but only those
+        listed in the selection can be claimed as conformant under common criteria. 
+        The RFC selections for this requirement need to be consistent with selections in
+        later elements of this Extended Package (e.g., cryptographic algorithms permitted). 
+        <br/>
+        RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED". This means that from the 
+        IETF's perspective the implementation must include support, not that the algorithms must 
+        be enabled for use. Ensuring that algorithms indicated as "REQUIRED" but not listed 
+        in later elements of this Extended Package is out of scope for the assurance activity 
+        for this requirement.
+        <br/>
+        If client is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHC_EXT.1" />. 
+        If server is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
 	</note>
         <aactivity>The evaluator will ensure that the selections indicated in the ST are 
 	consistent with selections in the dependent components.
