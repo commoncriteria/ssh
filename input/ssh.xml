@@ -433,7 +433,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <title>The SSH server shall ensure that the SSH connection be rekeyed after 
           <selectables>
             <selectable>no more than 2 <h:sup>28</h:sup> packets have been transmitted</selectable>
-            <selectable>no more than 1 Gigebyte of data has been transmitted</selectable>
+            <selectable>no more than 1 Gigabyte of data has been transmitted</selectable>
             <selectable>no more than 1 hour</selectable>
           </selectables>
           using that key.</title>
@@ -688,7 +688,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <title>The SSH server shall ensure that the SSH connection be rekeyed after 
           <selectables>
             <selectable>no more than 2 <h:sup>28</h:sup> packets have been transmitted</selectable>
-            <selectable>no more than 1 Gigebyte of data has been transmitted</selectable>
+            <selectable>no more than 1 Gigabyte of data has been transmitted</selectable>
             <selectable>no more than 1 hour</selectable>
           </selectables>
          using that key.</title>
