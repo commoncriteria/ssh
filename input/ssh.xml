@@ -8,7 +8,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2016-01-15</PPPubDate>
+      <PPPubDate>2016-02-19</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -28,7 +28,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
-      <date>2016-01-15</date>
+      <date>2016-02-19</date>
       <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
     </entry>
   </RevisionHistory>
@@ -170,6 +170,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   Evaluation.
   </chapter>
   
+  <!--  
   <chapter title="Security Objectives" id="sobj">This Extended Package adds SFRs to objectives
   identified in the base PP.
   <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
@@ -184,7 +185,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     </SOs>
   </section>
   </chapter>
-
+  -->
+  
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
   to be fulfilled by the product. Those requirements comprise functional components from Part 2 of 
   <cite linkend="bibCC" />. The following notations are used: 
@@ -205,6 +207,116 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
+    <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)" status="threshold">
+      <f-element id="fcs_cop.1.1(1)">
+        <title>The SSH software shall perform encryption/decryption services for data in accordance
+          with a specified cryptographic algorithm AES-CTR (as defined in NIST SP 800-38A)
+          mode and cryptographic key sizes
+          <selectables>
+            <selectable>128-bit</selectable>
+            <selectable>256-bit</selectable>
+          </selectables>.
+        </title>
+        <note role="application">If this EP is extending the Protection Profile for Application Software, 
+          it may not be necessary to include the FCS claims (in the base PP) since the SSH application 
+          could rely on the platform for this functionality.  If the SSH software does provide its own crypto 
+          the FCS claims will need to reflect that in the FCS selections from the base PP.
+        </note>
+        <aactivity>
+          The evaluator shell review the TSF of the base PP to verify consistency with the functionality that
+          was claimed by the base PP to ensure that applicable dependencies are met.
+          <h:br />
+          AES-CTR Tests:
+          <h:br />
+          The evaluator shall verify that the TSS describes the counter mechanism including 
+          rationale that the counter values provided are unique.  
+          <testlist>
+            <test>
+              Known Answer Tests (KATs)
+              <h:br />
+              There are four Known Answer Tests (KATs) described below.  For all KATs, the plaintext,
+              IV, and ciphertext values shall be 128-bit blocks.  The results from each test may
+              either be obtained by the validator directly or by supplying the inputs to the implementer
+              and receiving the results in response.  To determine correctness, the evaluator shall
+              compare the resulting values to those obtained by submitting the same inputs to a known
+              good implementation.
+              <h:br />
+              To test the encrypt functionality, the evaluator shall supply a set of 10 plaintext 
+              values and obtain the ciphertext value that results from encryption of the given plaintext
+              using a key value of all zeros and an IV of all zeros.  Five plaintext values shall be encrypted
+              with a 128-bit all zeros key, and the other five shall be encrypted with a 256-bit all zeros key. 
+              To test the decrypt functionality, the evaluator shall perform the same 
+              test as for encrypt, using 10 ciphertext values as input.
+              <h:br />
+              To test the encrypt functionality, the evaluator shall supply a set of 10 key values
+              and obtain the ciphertext value that results from encryption of an all zeros plaintext
+              using the given key value and an IV of all zeros.  Five of the key values shall be 128-bit
+              keys, and the other five shall be 256-bit keys. To test the decrypt functionality, the
+              evaluator shall perform the same test as for encrypt, using an all zero ciphertext
+              value as input.
+              <h:br />
+              To test the encrypt functionality, the evaluator shall supply the two sets of key values
+              described below and obtain the ciphertext values that result from AES encryption of an
+              all zeros plaintext using the given key values an an IV of all zeros.  The first set of
+              keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.  Key_i in
+              each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros,
+              for i in [1, N]. To test the decrypt functionality, the evaluator shall supply the two
+              sets of key and ciphertext value pairs described below and obtain the plaintext value
+              that results from decryption of the given ciphertext using the given key values and an
+              IV of all zeros.  The first set of key/ciphertext pairs shall have 128 128-bit
+              key/ciphertext pairs, and the second set of key/ciphertext pairs shall have 256 256-bit
+              pairs. Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i
+              bits be zeros for i in [1, N].  The ciphertext value in each pair shall be the value 
+              that results in an all zeros plaintext when decrypted with its corresponding key.
+              <h:br />
+              To test the encrypt functionality, the evaluator shall supply the set of
+              128 plaintext values described below and obtain the two ciphertext values that
+              result from encryption of the given plaintext using a 128-bit key value of all
+              zeros and using a 256 bit key value of all zeros, respectively, and an IV of all
+              zeros. Plaintext value i in each set shall have the leftmost bits be ones and
+              the rightmost 128-i bits be zeros, for i in [1, 128].  To test the decrypt functionality,
+              the evaluator shall perform the same test as for encrypt, using ciphertext
+              values of the same form as the plaintext in the encrypt test as input.
+            </test>
+            <test>
+              Multi-Block Message Test
+              <h:br />
+              The evaluator shall test the encrypt functionality by encrypting an i-block 
+              message where 1 less-than i less-than-or-equal to 10. For each i the evaluator 
+              shall choose a key, IV, and plaintext message of length i blocks and encrypt
+              the message, using the mode to be tested, with the chosen key. The ciphertext
+              shall be compared to the result of encrypting the same plaintext message with
+              the same key and IV using a known good implementation. The evaluator shall also 
+              test the decrypt functionality by decrypting an i-block message where 1 less-than
+              i less-than-or-equal to 10. For each i the evaluator shall choose a key and
+              a ciphertext message of length i blocks and decrypt the message, using the mode 
+              to be tested, with the chosen key. The plaintext shall be compared to the result
+              of decrypting the same ciphertext message with the same key using a known good implementation.
+            </test>
+            <test>
+              Monte-Carlo Test
+              <h:br />
+              For AES-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption 
+              engine of the counter mode implementation. There is no need to test the decryption engine.
+              <h:br />
+              The evaluator shall test the encrypt functionality using 200 plaintext/key pairs. 
+              100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys.  
+              The plaintext values shall be 128-bit blocks.  For each pair, 1000 iterations shall be run as follows:
+              <h:br />
+              For AES-ECB mode
+              # Input: PT, Key
+              for i = 1 to 1000:
+              CT[i] = AES-ECB-Encrypt(Key, PT)
+              PT = CT[i]
+              <h:br />
+              The ciphertext computed in the 1000th iteration is the result for that 
+              trial.  This result shall be compared to the result of running 1000 
+              iterations with the same values using a known good implementation.  
+            </test>
+          </testlist>
+        </aactivity>
+      </f-element>
+    </f-component>
     <f-component id="fcs_ssh_ext.1" name="SSH Protocol" status="threshold">
 	<f-element id="fcs_ssh_ext.1.1">
         <title>The SSH software shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
