@@ -226,10 +226,12 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           The evaluator shell review the TSF of the base PP to verify consistency with the functionality that
           was claimed by the base PP to ensure that applicable dependencies are met.
           <h:br />
-          AES-CTR Tests:
-          <h:br />
+         
           The evaluator shall verify that the TSS describes the counter mechanism including 
-          rationale that the counter values provided are unique.  
+          rationale that the counter values provided are unique. 
+          <h:br />
+          
+          AES-CTR Tests:
           <testlist>
             <test>
               Known Answer Tests (KATs)
@@ -240,6 +242,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               and receiving the results in response.  To determine correctness, the evaluator shall
               compare the resulting values to those obtained by submitting the same inputs to a known
               good implementation.
+              
               <h:br />
               To test the encrypt functionality, the evaluator shall supply a set of 10 plaintext 
               values and obtain the ciphertext value that results from encryption of the given plaintext
