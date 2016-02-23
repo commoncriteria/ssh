@@ -230,7 +230,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           The evaluator shall verify that the TSS describes the counter mechanism including 
           rationale that the counter values provided are unique. 
           <h:br />
-          
+          <h:br />
           AES-CTR Tests:
           <testlist>
             <test>
@@ -244,6 +244,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               good implementation.
               
               <h:br />
+              <h:br />
               To test the encrypt functionality, the evaluator shall supply a set of 10 plaintext 
               values and obtain the ciphertext value that results from encryption of the given plaintext
               using a key value of all zeros and an IV of all zeros.  Five plaintext values shall be encrypted
@@ -251,12 +252,14 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               To test the decrypt functionality, the evaluator shall perform the same 
               test as for encrypt, using 10 ciphertext values as input.
               <h:br />
+              <h:br />
               To test the encrypt functionality, the evaluator shall supply a set of 10 key values
               and obtain the ciphertext value that results from encryption of an all zeros plaintext
               using the given key value and an IV of all zeros.  Five of the key values shall be 128-bit
               keys, and the other five shall be 256-bit keys. To test the decrypt functionality, the
               evaluator shall perform the same test as for encrypt, using an all zero ciphertext
               value as input.
+              <h:br />
               <h:br />
               To test the encrypt functionality, the evaluator shall supply the two sets of key values
               described below and obtain the ciphertext values that result from AES encryption of an
@@ -271,6 +274,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               pairs. Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i
               bits be zeros for i in [1, N].  The ciphertext value in each pair shall be the value 
               that results in an all zeros plaintext when decrypted with its corresponding key.
+              <h:br />
               <h:br />
               To test the encrypt functionality, the evaluator shall supply the set of
               128 plaintext values described below and obtain the two ciphertext values that
@@ -302,15 +306,18 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               For AES-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption 
               engine of the counter mode implementation. There is no need to test the decryption engine.
               <h:br />
+              <h:br />
               The evaluator shall test the encrypt functionality using 200 plaintext/key pairs. 
               100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys.  
               The plaintext values shall be 128-bit blocks.  For each pair, 1000 iterations shall be run as follows:
               <h:br />
-              For AES-ECB mode
-              # Input: PT, Key
-              for i = 1 to 1000:
-              CT[i] = AES-ECB-Encrypt(Key, PT)
-              PT = CT[i]
+              <h:br />
+              For AES-ECB mode<h:br />
+              # Input: PT, Key<h:br />
+              for i = 1 to 1000:<h:br />
+              CT[i] = AES-ECB-Encrypt(Key, PT)<h:br />
+              PT = CT[i]<h:br />
+              <h:br />
               <h:br />
               The ciphertext computed in the 1000th iteration is the result for that 
               trial.  This result shall be compared to the result of running 1000 
