@@ -129,17 +129,17 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     requirements in accordance with the selections and/or assignments made, and any optional and/or
     objective components.
     <h:br />
-      This EP combind with the <cite linkend="AppPP" /> must include selection-based requirements in accordance with the
+      This EP combind with the <cite linkend="bibAppPP" /> must include selection-based requirements in accordance with the
     selections and/or assignments made, and any optional and/or objective components to include:
     FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.2.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
     FIA_X509_EXT.2.*.
     <h:br />
-      This EP combind with the <cite linkend="GPOSPP" /> must include selection-based requirements in accordance with the
+      This EP combind with the <cite linkend="bibGPOS" /> must include selection-based requirements in accordance with the
     selections and/or assignments made, and any optional and/or objective components to include:
     FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
     FIA_X509_EXT.2.*.  
     <h:br />
-      This EP combind with the <cite linkend="MDMPP" /> must include selection-based requirements in accordance with the
+      This EP combind with the <cite linkend="bibMDM" /> must include selection-based requirements in accordance with the
       selections and/or assignments made, and any optional and/or objective components to include:
       FCS_CKM.1.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
       FIA_X509_EXT.2.*.  
@@ -915,7 +915,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             </h:a>
         </description>
       </entry>
-      <entry id="bibMDF">
+      <entry id="bibMDM">
         <tag>MDMPP</tag>
         <description>
           <h:a href="https://www.niap-ccevs.org/pp/PP_MDM_V2.0/">Protection Profile for Mobile 
