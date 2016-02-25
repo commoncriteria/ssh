@@ -29,7 +29,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     <entry>
       <version>1.0</version>
       <date>2016-02-19</date>
-      <subject>Initial Release - EP for OS PP, MDF PP, App PP</subject>
+      <subject>Initial Release - EP for OS PP, MDM PP, App PP</subject>
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
@@ -110,7 +110,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <term>
             <abbr title="Secure Shell">SSH</abbr>
           </term>
-          <description>Cryptographic netwok protocol for initiating text-based shell sessions on remote systems.
+          <description>Cryptographic network protocol for initiating text-based shell sessions on remote systems.
           </description>
         </entry>
 		</glossary>
@@ -123,12 +123,28 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     <abbr linkend="EP" /> describes the extended security functionality of SSH in terms of
     
     <cite linkend="bibCC" />. This EP can extend the Protection Profiles for <h:i>Application Software</h:i>,
-    <h:i>General-Purpose Operating Systems</h:i>, or <h:i>Mobile Device Fundamentals</h:i>. It is
+    <h:i>General-Purpose Operating Systems</h:i>, or <h:i>Mobile Device Management</h:i>. It is
     expected that the content of this 
     <abbr linkend="EP" /> will be appropriately combined with the base PP to include selection-based
     requirements in accordance with the selections and/or assignments made, and any optional and/or
-    objective components. 
-      <h:br/>An ST must identify the applicable version of the base PP and this 
+    objective components.
+    <h:br />
+      This EP combind with the <cite linkend="AppPP" /> must include selection-based requirements in accordance with the
+    selections and/or assignments made, and any optional and/or objective components to include:
+    FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.2.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
+    FIA_X509_EXT.2.*.
+    <h:br />
+      This EP combind with the <cite linkend="GPOSPP" /> must include selection-based requirements in accordance with the
+    selections and/or assignments made, and any optional and/or objective components to include:
+    FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
+    FIA_X509_EXT.2.*.  
+    <h:br />
+      This EP combind with the <cite linkend="MDMPP" /> must include selection-based requirements in accordance with the
+      selections and/or assignments made, and any optional and/or objective components to include:
+      FCS_CKM.1.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
+      FIA_X509_EXT.2.*.  
+      <h:br />
+    An ST must identify the applicable version of the base PP and this 
     <abbr linkend="EP" /> in its conformance claims.</section>
   </chapter>
   <chapter title="Conformance Claims" id="conf">
@@ -316,8 +332,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               # Input: PT, Key<h:br />
               for i = 1 to 1000:<h:br />
               CT[i] = AES-ECB-Encrypt(Key, PT)<h:br />
-              PT = CT[i]<h:br />
-              <h:br />
+              PT = CT[i]
               <h:br />
               The ciphertext computed in the 1000th iteration is the result for that 
               trial.  This result shall be compared to the result of running 1000 
@@ -765,7 +780,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         algorithm is not allowed). 
         <h:br/>
         <testlist>
-          <test>Using an apropriately configured client, the evaluator will establish a SSH
+          <test>Using an appropriately configured client, the evaluator will establish a SSH
           connection using each of the integrity algorithms specified by the requirement. It is
           sufficient to observe (on the wire) the successful negotiation of the algorithm to
           satisfy the intent of the test.</test>
@@ -901,10 +916,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </description>
       </entry>
       <entry id="bibMDF">
-        <tag>MDFPP</tag>
+        <tag>MDMPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/pp/PP_MD_v2.0/">Protection Profile for Mobile 
-            Device Fundamentals
+          <h:a href="https://www.niap-ccevs.org/pp/PP_MDM_V2.0/">Protection Profile for Mobile 
+            Device Management
           </h:a>
         </description>
       </entry>
