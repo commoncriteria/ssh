@@ -366,9 +366,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <h:br/>
         RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED". This means that from the 
         IETF's perspective the implementation must include support, not that the algorithms must 
-        be enabled for use. Ensuring that algorithms indicated as "REQUIRED" but not listed 
-        in later elements of this Extended Package is out of scope for the assurance activity 
-        for this requirement.
+        be enabled for use. For the purposes of this assurance activity and this Extended Package
+        overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
+        but not listed in later elements of this Extended Package are actually implemented.
         <h:br/>
         If client is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHC_EXT.1" />. 
         If server is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
@@ -567,7 +567,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </testlist></aactivity>
       </f-element>
       <f-element id="fcs_sshc_ext.1.7">
-        <title>The SSH server shall ensure that the SSH connection be rekeyed after 
+        <title>The SSH client shall ensure that the SSH connection be rekeyed after 
           <selectables>
             <selectable>no more than 2 <h:sup>28</h:sup> packets have been transmitted</selectable>
             <selectable>no more than 1 Gigabyte of data has been transmitted</selectable>
