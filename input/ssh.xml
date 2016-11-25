@@ -6,9 +6,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <PPReference title="PP Reference" id="ID006">
     <ReferenceTable>
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
-      <PPVersion>1.0</PPVersion>
+      <PPVersion>1.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2016-02-19</PPPubDate>
+      <PPPubDate>2016-11-25</PPPubDate>
       <PPCertificationID>unassigned</PPCertificationID>
       <CCVersion>Version 3.1R4</CCVersion>
       <Keywords>SSH; secure shell</Keywords>
@@ -30,6 +30,13 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <version>1.0</version>
       <date>2016-02-19</date>
       <subject>Initial Release - EP for OS PP, MDM PP, App PP</subject>
+    </entry>
+  </RevisionHistory>
+  <RevisionHistory role="final">
+    <entry>
+      <version>1.1</version>
+      <date>2016-11-25</date>
+      <subject>Update for EP of VPP</subject>
     </entry>
   </RevisionHistory>
   <chapter title="Introduction" id="int">
@@ -123,26 +130,31 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     <abbr linkend="EP" /> describes the extended security functionality of SSH in terms of
     
     <cite linkend="bibCC" />. This EP can extend the Protection Profiles for <h:i>Application Software</h:i>,
-    <h:i>General-Purpose Operating Systems</h:i>, or <h:i>Mobile Device Management</h:i>. It is
+      <h:i>General-Purpose Operating Systems</h:i>, <h:i>Mobile Device Management</h:i>, or <h:i>Virtualization</h:i>. It is
     expected that the content of this 
     <abbr linkend="EP" /> will be appropriately combined with the base PP to include selection-based
     requirements in accordance with the selections and/or assignments made, and any optional and/or
     objective components.
     <h:br />
-      This EP combind with the <cite linkend="bibAppPP" /> must include selection-based requirements in accordance with the
+      This EP combined with the <cite linkend="bibAppPP" /> must include selection-based requirements in accordance with the
     selections and/or assignments made, and any optional and/or objective components to include:
     FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.2.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
     FIA_X509_EXT.2.*.
     <h:br />
-      This EP combind with the <cite linkend="bibGPOS" /> must include selection-based requirements in accordance with the
+      This EP combined with the <cite linkend="bibGPOS" /> must include selection-based requirements in accordance with the
     selections and/or assignments made, and any optional and/or objective components to include:
     FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
     FIA_X509_EXT.2.*.  
     <h:br />
-      This EP combind with the <cite linkend="bibMDM" /> must include selection-based requirements in accordance with the
+      This EP combined with the <cite linkend="bibMDM" /> must include selection-based requirements in accordance with the
       selections and/or assignments made, and any optional and/or objective components to include:
       FCS_CKM.1.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
       FIA_X509_EXT.2.*.  
+      <h:br />
+    <h:br />
+      This EP combined with the <cite linkend="bibVirt" /> must include selection-based requirements in accordance with the
+      selections and/or assignments made, and any optional and/or objective components to include:
+      FIA_X509_EXT.1.*, FIA_X509_EXT.2.*.  
       <h:br />
     An ST must identify the applicable version of the base PP and this 
     <abbr linkend="EP" /> in its conformance claims.</section>
@@ -223,7 +235,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
-    <f-component id="fcs_cop.1(1)" name="Cryptographic Operation - Encryption/Decryption (Refined)" status="threshold">
+    <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Encryption/Decryption (Refined)" status="threshold">
       <f-element id="fcs_cop.1.1(1)">
         <title>The SSH software shall perform encryption/decryption services for data in accordance
           with a specified cryptographic algorithm AES-CTR (as defined in NIST SP 800-38A)
@@ -233,9 +245,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             <selectable>256-bit</selectable>
           </selectables>.
         </title>
-        <note role="application">If this EP is extending the Protection Profile for Application Software, 
-          it may not be necessary to include the FCS claims (in the base PP) since the SSH application 
-          could rely on the platform for this functionality.  If the SSH software does provide its own crypto 
+        <note role="application">If the SSH software does provide its own crypto 
           the FCS claims will need to reflect that in the FCS selections from the base PP.
         </note>
         <aactivity>
@@ -910,7 +920,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibGPOS">
         <tag>GPOSPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/pp/PP_OS_v4.0/">Protection Profile for General 
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=400">Protection Profile for General 
             Purpose Operating Systems
             </h:a>
         </description>
@@ -918,7 +928,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibMDM">
         <tag>MDMPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/pp/PP_MDM_V2.0/">Protection Profile for Mobile 
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=359">Protection Profile for Mobile 
             Device Management
           </h:a>
         </description>
@@ -926,8 +936,15 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibAppPP">
         <tag>AppPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/pp/PP_APP_v1.1/">Protection Profile for Application
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=394">Protection Profile for Application
             Software</h:a>
+        </description>
+      </entry>
+      <entry id="bibVirt">
+        <tag>VirtPP</tag>
+        <description>
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=408">Protection Profile for 
+            Virtualization</h:a>
         </description>
       </entry>
     </bibliography>
