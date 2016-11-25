@@ -151,7 +151,6 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       FCS_CKM.1.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
       FIA_X509_EXT.2.*.  
       <h:br />
-    <h:br />
       This EP combined with the <cite linkend="bibVirt" /> must include selection-based requirements in accordance with the
       selections and/or assignments made, and any optional and/or objective components to include:
       FIA_X509_EXT.1.*, FIA_X509_EXT.2.*.  
