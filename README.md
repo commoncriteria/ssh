@@ -9,8 +9,7 @@ Extended Package for Secure Shell (SSH)
 [Extended Package for Secure Shell](http://common-criteria.rhcloud.com/ssh/output/ssh-release.html)
 
 ## Release Version
-
-## Change Log
+[Extended Package for Secure Shell (SSH)](https://www.niap-ccevs.org/Profile/Info.cfm?id=389)
 
 ## Quickstart
 To clone this project along with its _transforms_ submodule run:
