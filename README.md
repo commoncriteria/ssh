@@ -1,4 +1,4 @@
-Extended Package for Secure Shell (SSH)
+Extended Package for Secure Shell (SSH) [![Build Status](https://jenkins-criteria.rhcloud.com/buildStatus/icon?job=protection-profiles/ssh)](https://jenkins-criteria.rhcloud.com/job/protection-profiles/job/ssh/)
 ============
 
 Extended Package for Secure Shell (SSH)
