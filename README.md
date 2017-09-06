@@ -1,6 +1,6 @@
 Extended Package for Secure Shell (SSH) 
 ============
-[![Build Status](https://jenkins-criteria.rhcloud.com/buildStatus/icon?job=protection-profiles/ssh)](https://jenkins-criteria.rhcloud.com/job/protection-profiles/job/ssh/)
+[![Build Status](https://travis-ci.org/commoncriteria/ssh.svg?branch=master)](https://travis-ci.org/commoncriteria/ssh)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/ssh.svg?maxAge=2592000)](https://github.com/commoncriteria/ssh/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
