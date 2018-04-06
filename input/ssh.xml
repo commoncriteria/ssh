@@ -721,7 +721,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectables>
             <selectable>ecdsa-sha2-nistp384</selectable>
             <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
-            <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
+            <selectable>x509v3-ecdsa-sha2-nistp384</selectable>
             <selectable>no other public key algorithms</selectable>
           </selectables>
         as its public key algorithm(s) and
