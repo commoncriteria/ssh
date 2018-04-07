@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="..\transforms\pp2html.xsl"?>
-<?xml-model href="https://github.com/commoncriteria/transforms/raw/master/schemas/CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<PP xmlns="http://common-criteria.rhcloud.com/ns/cc" name="Secure Shell"
+<?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
+
+<PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
 xmlns:h="http://www.w3.org/1999/xhtml">
   <PPReference title="PP Reference" id="ID006">
     <ReferenceTable>
@@ -18,34 +18,32 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       </entry>
     </ReferenceTable>
   </PPReference>
-  <RevisionHistory role="draft">
+  
+  <RevisionHistory>
     <entry>
-      <version>v .9</version>
+      <version>0.9</version>
       <date>2015-08-19</date>
       <subject>First Draft - Extended Package for Secure Shell</subject>
     </entry>
-  </RevisionHistory>
-  <RevisionHistory role="final">
     <entry>
       <version>1.0</version>
       <date>2016-02-19</date>
       <subject>Initial Release - EP for OS PP, MDM PP, App PP</subject>
     </entry>
-  </RevisionHistory>
-  <RevisionHistory role="final">
     <entry>
       <version>1.1</version>
       <date>2016-11-25</date>
       <subject>Update for EP of VPP</subject>
     </entry>
   </RevisionHistory>
+  
   <chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview">Secure Shell (SSH) is a
     protocol for secure remote login and other secure network services over
     an untrusted network. SSH software can act as a client, server, or both.</section>
+   
     <section id="glossary" title="Terms">The following sections provide both Common Criteria and
     technology terms used in this Extended Package. 
-    <subsection title="Common Criteria Terms" id="ccterms">
       <glossary>
         <entry>
           <term>
@@ -109,10 +107,6 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <description>A requirement to assure the security of the 
           <abbr linkend="TOE" />.</description>
         </entry>
-      </glossary>
-    </subsection>
-    <subsection id="techterms" title="Technology Terms">
-      <glossary>
         <entry>
           <term>
             <abbr title="Secure Shell">SSH</abbr>
@@ -120,9 +114,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <description>Cryptographic network protocol for initiating text-based shell sessions on remote systems.
           </description>
         </entry>
-		</glossary>
-    </subsection>
-	</section>
+      </glossary>
+    </section>
+    
     <section title="Compliant Targets of Evaluation" id="TOEdescription">The Target of Evaluation
     (TOE) in this 
     <abbr linkend="EP" /> is a product which acts as an SSH client or server, or both. 
@@ -158,6 +152,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     An ST must identify the applicable version of the base PP and this 
     <abbr linkend="EP" /> in its conformance claims.</section>
   </chapter>
+  
   <chapter title="Conformance Claims" id="conf">
     <cclaims>
       <cclaim id="Conformance Statement">
@@ -174,11 +169,11 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <abbr linkend="EP" />, the 
         <abbr linkend="ST" /> must include all components in this 
         <abbr linkend="EP" /> and the associated base PP that are: 
-        <ul>
-          <li>unconditional (which are always required)</li>
-          <li>selection-based (which are required when certain selections are chosen in the
-          unconditional requirements)</li>
-        </ul>and may include optional and/or objective components that are desirable but not
+        <h:ul>
+          <h:li>unconditional (which are always required)</h:li>
+          <h:li>selection-based (which are required when certain selections are chosen in the
+          unconditional requirements)</h:li>
+        </h:ul>and may include optional and/or objective components that are desirable but not
         required for conformance. 
           <h:br/>In accordance with CC Part 1, dependencies are not included when they are addressed
         by other SFRs. The assurance activities provide adequate proof that any dependencies are
@@ -217,24 +212,27 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
   to be fulfilled by the product. Those requirements comprise functional components from Part 2 of 
   <cite linkend="bibCC" />. The following notations are used: 
-  <ul>
-    <li>
-    <b>Selection</b> (denoted by 
-    <h:i>italicized text</h:i>): is used to select one or more options provided by the [CC] in stating
-    a requirement.</li>
-    <li>
-    <b>Assignment</b> operation (denoted by 
-    <h:span class="assignable-content">italicized text</h:span>): is used to assign a specific value to an unspecified parameter, such
-    as the length of a password. Showing the value in square brackets indicates assignment.</li>
-    <li>
-    <b>Iteration</b> operation: are identified with a number inside parentheses (e.g. "(1)").</li>
-  </ul>
+    <h:ul>
+      <h:li>
+        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): is used to add details to a
+        requirement, and thus further restricts a requirement.</h:li>
+      <h:li>
+        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
+        provided by the [CC] in stating a requirement.</h:li>
+      <h:li>
+        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): is used to assign a
+        specific value to an unspecified parameter, such as the length of a password. Showing the
+        value in square brackets indicates assignment.</h:li>
+      <h:li>
+        <h:b>Iteration</h:b> operation: are identified with a number inside parentheses (e.g.
+        "(1)")</h:li>
+    </h:ul>
   <section title="Security Functional Requirements" id="sfr">The Security Functional Requirements
   included in this section are derived from Part 2 of the Common Criteria for Information
   Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
-    <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Encryption/Decryption (Refined)" status="threshold">
+    <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Encryption/Decryption (Refined)">
       <f-element id="fcs_cop.1.1(1)">
         <title>The SSH software shall perform encryption/decryption services for data in accordance
           with a specified cryptographic algorithm AES-CTR (as defined in NIST SP 800-38A)
@@ -351,7 +349,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </aactivity>
       </f-element>
     </f-component>
-    <f-component id="fcs_ssh_ext.1" name="SSH Protocol" status="threshold">
+    <f-component id="fcs_ssh_ext.1" name="SSH Protocol">
 	<f-element id="fcs_ssh_ext.1.1">
         <title>The SSH software shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
         4254 and 
@@ -389,7 +387,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       </f-component>
 
       <f-component id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-      <selection-depends req="fcs_ssh_ext.1.1"/>
+      <selection-depends req="fcs_ssh_ext.1.1" ids="client"/>
         
       <f-element id="fcs_sshc_ext.1.1">
         <title>The SSH client shall ensure that the SSH protocol implementation supports the following
@@ -624,7 +622,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       </f-component>
 
     <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
-      <selection-depends req="fcs_ssh_ext.1.1"/>
+      <selection-depends req="fcs_ssh_ext.1.1" ids="server"/>
       
       <f-element id="fcs_sshs_ext.1.1"> 
         <title>The SSH server shall ensure that the SSH protocol implementation supports the following
@@ -900,21 +898,17 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     <bibliography>
       <entry id="bibCC">
         <tag>CC</tag>
-        <description>Common Criteria for Information Technology Security Evaluation - 
-        <ul>
-          <li>
-          <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R4.pdf">Part 1:
-            Introduction and General Model</h:a>, CCMB-2012-09-001, Version 3.1 Revision 4, September
-          2012.</li>
-          <li>
-          <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R4.pdf">Part 2:
-            Security Functional Components</h:a>, CCMB-2012-09-002, Version 3.1 Revision 4, September
-          2012.</li>
-          <li>
-          <h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R4.pdf">Part 3:
-            Security Assurance Components</h:a>, CCMB-2012-09-003, Version 3.1 Revision 4, September
-          2012.</li>
-        </ul></description>
+        <description>Common Criteria for Information Technology Security Evaluation - <h:ul>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R4.pdf">Part
+            1: Introduction and General Model</h:a>, CCMB-2012-09-001, Version 3.1 Revision 4,
+            September 2012.</h:li>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R4.pdf">Part
+            2: Security Functional Components</h:a>, CCMB-2012-09-002, Version 3.1 Revision 4,
+            September 2012.</h:li>
+          <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R4.pdf">Part
+            3: Security Assurance Components</h:a>, CCMB-2012-09-003, Version 3.1 Revision 4,
+            September 2012.</h:li>
+        </h:ul></description>
       </entry>
       <entry id="bibGPOS">
         <tag>GPOSPP</tag>
@@ -945,9 +939,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=408">Protection Profile for 
             Virtualization</h:a>
         </description>
-      </entry>
+      </entry>   
     </bibliography>
   </appendix>
+  
   <appendix title="Acronyms" id="acronyms">
     <acronyms>
       <entry>
