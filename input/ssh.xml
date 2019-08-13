@@ -3,6 +3,8 @@
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
 xmlns:h="http://www.w3.org/1999/xhtml">
+
+<!--
   <PPReference title="PP Reference" id="ID006">
     <ReferenceTable>
       <PPTitle>Extended Package for Secure Shell (SSH)</PPTitle>
@@ -18,179 +20,222 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       </entry>
     </ReferenceTable>
   </PPReference>
+-->
+
+  <PPReference title="PP Reference" id="ID006">
+    <ReferenceTable>
+      <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
+      <PPVersion>1.0</PPVersion>
+      <PPAuthor>National Information Assurance Partnership</PPAuthor>
+      <PPPubDate>2019-08-21</PPPubDate>
+      <Keywords>SSH; secure shell</Keywords>
+      <entry>
+        <name>Registration</name>
+        <description>National Information Assurance Partnership</description>
+      </entry>
+    </ReferenceTable>
+  </PPReference>
   
   <RevisionHistory>
     <entry>
-      <version>0.9</version>
-      <date>2015-08-19</date>
-      <subject>First Draft - Extended Package for Secure Shell</subject>
-    </entry>
-    <entry>
       <version>1.0</version>
-      <date>2016-02-19</date>
-      <subject>Initial Release - EP for OS PP, MDM PP, App PP</subject>
-    </entry>
-    <entry>
-      <version>1.1</version>
-      <date>2016-11-25</date>
-      <subject>Update for EP of VPP</subject>
+      <date>2019-08-21</date>
+      <subject>First Draft - Functional Package for Secure Shell</subject>
     </entry>
   </RevisionHistory>
   
   <chapter title="Introduction" id="int">
     <section title="Overview" id="ppoverview">Secure Shell (SSH) is a
     protocol for secure remote login and other secure network services over
-    an untrusted network. SSH software can act as a client, server, or both.</section>
-   
-    <section id="glossary" title="Terms">The following sections provide both Common Criteria and
-    technology terms used in this Extended Package. 
-      <glossary>
-        <entry>
-          <term>
-            <abbr title="Common Criteria">CC</abbr>
-          </term>
-          <description>Common Criteria for Information Technology Security
-          Evaluation.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Extended Package">EP</abbr>
-          </term>
-          <description>An implementation-independent set of security requirements for a category of
-          products, which extends those in a Protection Profile.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Protection Profile">PP</abbr>
-          </term>
-          <description>An implementation-independent set of security requirements for a category of
-          products.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Security Target">ST</abbr>
-          </term>
-          <description>A set of implementation-dependent security requirements for a specific
-          product.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Target of Evaluation">TOE</abbr>
-          </term>
-          <description>The product under evaluation.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="TOE Security Functionality">TSF</abbr>
-          </term>
-          <description>The security functionality of the product under evaluation.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="TOE Summary Specification">TSS</abbr>
-          </term>
-          <description>A description of how a 
-          <abbr linkend="TOE" /> satisfies the SFRs in a 
-          <abbr linkend="ST" />.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Security Functional Requirement">SFR</abbr>
-          </term>
-          <description>A requirement for security enforcement by the 
-          <abbr linkend="TOE" />.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Security Assurance Requirement">SAR</abbr>
-          </term>
-          <description>A requirement to assure the security of the 
-          <abbr linkend="TOE" />.</description>
-        </entry>
-        <entry>
-          <term>
-            <abbr title="Secure Shell">SSH</abbr>
-          </term>
-          <description>Cryptographic network protocol for initiating text-based shell sessions on remote systems.
-          </description>
-        </entry>
-      </glossary>
+    an untrusted network. SSH software can act as a client, server, or both.
+      <h:p/>
+      This "Functional Package for Secure Shell" (short name "SSH-PKG")
+      defines functional requirements for the implementation of the SSH protocol. The requirements are
+      intended to improve the security of products by enabling their evaluation.</section>
+
+
+    <section title="Terms" id="glossary">
+      <subsection title="Common Criteria Terms"
+        id="ccterms">
+        <glossary>
+          <entry>
+            <term><abbr title="Common Criteria">CC</abbr></term>
+            <description>Common Criteria for Information Technology Security
+              Evaluation.</description>
+          </entry>
+          <entry>
+            <term><abbr title="Package">Package</abbr></term>
+            <description>A named set of security requirements.  A package is either a functional
+              package containing only SFRs, or an assurance package containing only SARs.  Packages
+              can be used in the construction of larger packages, PPs, and STs.
+            </description>
+          </entry>
+          <entry>
+            <term><abbr title="Protection Profile">PP</abbr></term>
+            <description>An implementation-independent set of security requirements for a category
+              of products.</description>
+          </entry>
+          <entry>
+            <term><abbr title="Protection Profile Module">PP-Module</abbr></term>
+            <description>An extension of the security requirements in a
+              Protection Profile which introduces new elements to the base PP
+              and may also refine or interpret some of the elements in the base PP.
+            </description>
+          </entry>
+          <entry>
+            <term><abbr title="Security Target">ST</abbr></term>
+            <description>A set of implementation-dependent security requirements for a specific
+              product.</description>
+          </entry>
+          <entry>
+            <term><abbr title="Target of Evaluation">TOE</abbr></term>
+            <description>
+              The product under evaluation.
+            </description>
+          </entry>
+          <entry>
+            <term><abbr title="TOE Security Functionality">TSF</abbr></term>
+            <description>The security functionality of the product under evaluation.</description>
+          </entry>
+          <entry>
+            <term><abbr title="TOE Summary Specification">TSS</abbr></term>
+            <description>A description of how a <abbr linkend="TOE"/> satisfies the SFRs in a <abbr
+              linkend="ST"/>. </description>
+          </entry>
+          <entry>
+            <term><abbr title="Security Functional Requirement">SFR</abbr></term>
+            <description>A requirement for security enforcement by the <abbr linkend="TOE"/>.
+            </description>
+          </entry>
+        </glossary>
+      </subsection>
+      <subsection title="Technology Terms" id="techterms">
+        <glossary>
+          <entry>
+            <term>
+              <abbr title="Secure Shell">SSH</abbr>
+            </term>
+            <description>Cryptographic network protocol for initiating text-based shell sessions on remote systems.
+            </description>
+          </entry>
+        </glossary>
+      </subsection>
+    </section>
+    
+    <section title="Format of this Document" id="docformat">
+      <secref linkend="req"/> contains baseline requirements
+      which must be implemented in the product and included in any PP/PP-Module/ST
+      that claims conformance to this Package.
+      There are three other types of requirements that can be included in a PP/PP-Module/ST
+      claiming conformance to this Package:
+      <h:ul>
+        <h:li>
+          <appref linkend="optional"/> contains requirements that may optionally be included
+          in the PP/PP-Module/ST, but inclusion is at the discretion of the PP/PP-Module/ST
+          author.  For requirements that have selections, if the PP/PP-Module allows the selection (or the ST
+          selects particular selections), then there are additional requirements based on these
+          selections contained in this appendix that will need to be included in the PP/PP-Module/ST.
+        </h:li>
+        <h:li>
+          <appref linkend="sel-based"/> contains requirements based on selections
+          in the requirements in <secref linkend="req"/> or the PP/PP-Module/ST: if certain selections are
+          made, then the corresponding requirements in that appendix must be included.
+        </h:li>
+        <h:li>
+          <appref linkend="objective"/> contains requirements that will
+          be included in the baseline requirements in future versions of this package. Earlier adoption by vendors is
+          encouraged. Otherwise, these are treated the same as Optional Requirements.
+        </h:li>
+      </h:ul>
     </section>
     
     <section title="Compliant Targets of Evaluation" id="TOEdescription">The Target of Evaluation
-    (TOE) in this 
-    <abbr linkend="EP" /> is a product which acts as an SSH client or server, or both. 
-    <h:br/>This 
-    <abbr linkend="EP" /> describes the extended security functionality of SSH in terms of
-    
-    <cite linkend="bibCC" />. This EP can extend the Protection Profiles for <h:i>Application Software</h:i>,
-      <h:i>General-Purpose Operating Systems</h:i>, <h:i>Mobile Device Management</h:i>, or <h:i>Virtualization</h:i>. It is
-    expected that the content of this 
-    <abbr linkend="EP" /> will be appropriately combined with the base PP to include selection-based
-    requirements in accordance with the selections and/or assignments made, and any optional and/or
-    objective components.
-    <h:br />
-      This EP combined with the <cite linkend="bibAppPP" /> must include selection-based requirements in accordance with the
-    selections and/or assignments made, and any optional and/or objective components to include:
-    FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.2.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
-    FIA_X509_EXT.2.*.
-    <h:br />
-      This EP combined with the <cite linkend="bibGPOS" /> must include selection-based requirements in accordance with the
-    selections and/or assignments made, and any optional and/or objective components to include:
-    FCS_CKM.2.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
-    FIA_X509_EXT.2.*.  
-    <h:br />
-      This EP combined with the <cite linkend="bibMDM" /> must include selection-based requirements in accordance with the
-      selections and/or assignments made, and any optional and/or objective components to include:
-      FCS_CKM.1.1, FCS_COP.1.1(*), FCS_RBG_EXT.1.*, FCS_TLSC_EXT.1.*, FIA_X509_EXT.1.*,
-      FIA_X509_EXT.2.*.  
-      <h:br />
-      This EP combined with the <cite linkend="bibVirt" /> must include selection-based requirements in accordance with the
-      selections and/or assignments made, and any optional and/or objective components to include:
-      FIA_X509_EXT.1.*, FIA_X509_EXT.2.*.  
-      <h:br />
-    An ST must identify the applicable version of the base PP and this 
-    <abbr linkend="EP" /> in its conformance claims.</section>
+    (TOE) in this Package is a product which acts as an SSH client or server, or both. This Package. describes the extended security functionality of SSH in terms of 
+     <cite linkend="bibCC" />. 
+      <h:br/>
+     The contents of this Package must be appropriately combined with a PP or PP-Module. When this Package is instantiated by a PP or PP-Module, the Package must include 
+     selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module. These may be expanded by the ST author.
+     <h:br/>
+     The PP or PP-Module which instantiates this Package must typicalyl include the following components in order to satisfy dependencies of this Package. 
+     It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied.
+     
+      <h:br/>
+      <componentsneeded>
+        <componentneeded>
+          <componentid>FCS_CKM.1</componentid>
+          <notes>To support key generation for SSH, the PP or PP-Module must
+            include FCS_CKM.1 and specify the corresponding algorithm.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FCS_CKM.2</componentid>
+          <notes>To support key establishment for SSH, the PP or PP-Module must
+            include FCS_CKM.2 and specify the corresponding algorithm.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FCS_COP.1</componentid>
+          <notes>
+            To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed) to specify AES with corresponding 
+            key sizes and modes, digital signature generation and verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message 
+            authentication function.
+          </notes>
+        </componentneeded>
+        <!-- The components in the PP or PP-Module that need this SFR should require it;
+      it is not _directly_ depended upon by this Package.-->
+        <componentneeded>
+          <componentid>FCS_RBG_EXT.1</componentid>
+          <notes>To support random bit generation needed for SSH key generation,
+            the PP or PP-Module must include a requirement that specifies the TOE's ability to invoke or provide random bit generation services, commonly identified as 
+            FCS_RBG_EXT.1.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FIA_X509_EXT.1</componentid>
+          <notes>
+            To support establishment of SSH communications using a public key algorithm that includes X.509, 
+            the PP or PP-Module must include FIA_X509_EXT.1. Note however that support for X.509 is selectable and not mandatory.
+          </notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FIA_X509_EXT.2</componentid>
+          <notes>
+            To support establishment of SSH communications using a public key algorithm that includes X.509, 
+            the PP or PP-Module must include FIA_X509_EXT.2. Note however that support for X.509 is selectable and not mandatory.
+          </notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FPT_STM.1</componentid>
+          <notes>
+            To support establishment of SSH communications using a public key algorithm that includes X.509, 
+            the PP or PP-Module must include FPT_STM.1 or some other requirement that ensures reliable system time.  
+            Note however that support for time-based rekey thresholds is selectable and not mandatory. Also note that the PP or PP-Module may rely on an external time source 
+            in its Operational Environment; it is not required that this functionality be implemented specifically by the TOE as long as reliable time service is available for 
+            the TSF to use.
+          </notes>
+        </componentneeded>
+      </componentsneeded>
+      <h:p/>
+      An ST must identify the applicable version of the <abbr linkend="PP"/> or
+      <abbr linkend="PP-Module"/> and this
+      Package in its conformance claims.
+    </section>
   </chapter>
   
   <chapter title="Conformance Claims" id="conf">
     <cclaims>
       <cclaim id="Conformance Statement">
-        <description>This 
-        <abbr linkend="EP" /> serves to extend the PP baselines with additional SFRs and associated
-        Assurance Activities specific to SSH clients and servers. Assurance Activities are the
-        actions that the evaluator performs in order to determine an SSH client or server's
-        compliance to the SFRs.
-          <h:br/>This 
-        <abbr linkend="EP" /> conforms to Common Criteria 
-        <cite linkend="bibCC" /> for Information Technology Security Evaluation, Version 3.1,
-        Revision 4. It is CC Part 2 extended and CC Part 3 conformant. In order to be conformant to
-        this 
-        <abbr linkend="EP" />, the 
-        <abbr linkend="ST" /> must include all components in this 
-        <abbr linkend="EP" /> and the associated base PP that are: 
-        <h:ul>
-          <h:li>unconditional (which are always required)</h:li>
-          <h:li>selection-based (which are required when certain selections are chosen in the
-          unconditional requirements)</h:li>
-        </h:ul>and may include optional and/or objective components that are desirable but not
-        required for conformance. 
-          <h:br/>In accordance with CC Part 1, dependencies are not included when they are addressed
-        by other SFRs. The assurance activities provide adequate proof that any dependencies are
-        also satisfied.</description>
+        <description>This Package serves to provide Protection Profiles and PP-Modules with additional 
+          SFRs and associated Evaluation Activities specific to SSH clients and servers.  
+          <h:p/>
+          This Package conforms to Common Criteria
+          <cite linkend="bibCC" /> for Information Technology Security Evaluation, Version 3.1,
+          Revision 5. It is CC Part 2 extended.
+          <h:p/>
+          In accordance with CC Part 1, dependencies are not included when they are addressed
+          by other SFRs. The evaluation activities provide adequate proof that any dependencies are
+          also satisfied.</description>
       </cclaim>
     </cclaims>
   </chapter>
 
-  <chapter title="Security Problem Description" id="spd">
-  This Extended Package does not repeat the threats, assumptions, and organizational security
-  policies identified in any base PPs, though they all apply given the conformance and hence
-  dependence of this 
-  <abbr linkend="EP" /> on it. Together the threats, assumptions and organizational security
-  policies of the base PP and those defined in this 
-  <abbr linkend="EP" /> describe those addressed by the product as the Target of
-  Evaluation.
-  </chapter>
   
   <!--  
   <chapter title="Security Objectives" id="sobj">This Extended Package adds SFRs to objectives
@@ -224,67 +269,71 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         specific value to an unspecified parameter, such as the length of a password. Showing the
         value in square brackets indicates assignment.</h:li>
       <h:li>
-        <h:b>Iteration</h:b> operation: are identified with a number inside parentheses (e.g.
-        "(1)")</h:li>
+        <h:b>Iteration</h:b> operation: are identified with a a slash followed by a unique text string (e.g.
+        "/SSH")</h:li>
     </h:ul>
   <section title="Security Functional Requirements" id="sfr">The Security Functional Requirements
   included in this section are derived from Part 2 of the Common Criteria for Information
-  Technology Security Evaluation, Version 3.1, Revision 4, with additional extended functional
+  Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
-    <f-component id="fcs_cop.1(2)" name="Cryptographic Operation - Encryption/Decryption (Refined)">
-      <f-element id="fcs_cop.1.1(1)">
-        <title>The SSH software shall perform encryption/decryption services for data in accordance
-          with a specified cryptographic algorithm AES-CTR (as defined in NIST SP 800-38A)
-          mode and cryptographic key sizes
+    <f-component id="fcs_cop.1/SSH" name="Cryptographic Operation - Encryption/Decryption (AES-CTR for SSH)">
+      <f-element id="fcs_cop.1.1/SSH">
+        <title>The <h:b>SSH software shall <selectables>
+          <selectable>perform</selectable>
+          <selectable>invoke-platform-provided</selectable>
+        </selectables></h:b> [<h:i>encryption/decryption services for data</h:i>] in accordance
+          with a specified cryptographic algorithm [<h:i>AES-CTR (as defined in NIST SP 800-38A)
+            mode</h:i>] and cryptographic key sizes
           <selectables>
             <selectable>128-bit</selectable>
             <selectable>256-bit</selectable>
           </selectables>.
         </title>
-        <note role="application">If the SSH software does provide its own crypto 
-          the FCS claims will need to reflect that in the FCS selections from the base PP.
+        <note role="application">If this package is used for a TOE that conforms to a PP that permits a conformant TOE to be implemented as software/firmware running on a general-purpose computer 
+          (such as a TOE that conforms to the Protection Profile for Application Software), 
+          it may not be necessary to include the FCS claims of that PP since the SSH application could rely on the platform for this functionality. 
+          If the SSH software does provide its own cryptography, the Security Target should indicate which cryptographic SFRs in the claimed PP are used to implement SSH functionality.
         </note>
         <aactivity>
-          The evaluator shell review the TSF of the base PP to verify consistency with the functionality that
-          was claimed by the base PP to ensure that applicable dependencies are met.
-          <h:br />
-         
-          The evaluator shall verify that the TSS describes the counter mechanism including 
-          rationale that the counter values provided are unique. 
-          <h:br />
-          <h:br />
+          <TSS>
+          The evaluator shall examine the TSS to verify that it describes whether the TSF or TOE platform is responsible for the implementation of  
+          the cryptographic functionality needed to support SSH communications.
+          <h:p/>
+          If "perform" is selected, the evaluator shall verify that the TSS describes the counter mechanism including rationale that the counter values provided are unique.
+          </TSS>
+          <Guidance>
+          There are no guidance evaluation activities for this component.
+          </Guidance>
+          <Tests>
+          The evaluator shall perform the following AES-CTR tests:
           AES-CTR Tests:
           <testlist>
             <test>
               Known Answer Tests (KATs)
-              <h:br />
+              <h:p/>
               There are four Known Answer Tests (KATs) described below.  For all KATs, the plaintext,
               IV, and ciphertext values shall be 128-bit blocks.  The results from each test may
               either be obtained by the validator directly or by supplying the inputs to the implementer
               and receiving the results in response.  To determine correctness, the evaluator shall
               compare the resulting values to those obtained by submitting the same inputs to a known
               good implementation.
-              
-              <h:br />
-              <h:br />
-              To test the encrypt functionality, the evaluator shall supply a set of 10 plaintext 
+              <h:p/>
+              <h:b>Test 1a:</h:b> To test the encrypt functionality, the evaluator shall supply a set of 10 plaintext 
               values and obtain the ciphertext value that results from encryption of the given plaintext
               using a key value of all zeros and an IV of all zeros.  Five plaintext values shall be encrypted
               with a 128-bit all zeros key, and the other five shall be encrypted with a 256-bit all zeros key. 
               To test the decrypt functionality, the evaluator shall perform the same 
               test as for encrypt, using 10 ciphertext values as input.
-              <h:br />
-              <h:br />
-              To test the encrypt functionality, the evaluator shall supply a set of 10 key values
+              <h:p/>
+              <h:b>Test 1b:</h:b> To test the encrypt functionality, the evaluator shall supply a set of 10 key values
               and obtain the ciphertext value that results from encryption of an all zeros plaintext
               using the given key value and an IV of all zeros.  Five of the key values shall be 128-bit
               keys, and the other five shall be 256-bit keys. To test the decrypt functionality, the
               evaluator shall perform the same test as for encrypt, using an all zero ciphertext
               value as input.
-              <h:br />
-              <h:br />
-              To test the encrypt functionality, the evaluator shall supply the two sets of key values
+              <h:p/>
+              <h:b>Test 1c:</h:b> To test the encrypt functionality, the evaluator shall supply the two sets of key values
               described below and obtain the ciphertext values that result from AES encryption of an
               all zeros plaintext using the given key values an an IV of all zeros.  The first set of
               keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.  Key_i in
@@ -297,9 +346,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               pairs. Key_i in each set shall have the leftmost i bits be ones and the rightmost N-i
               bits be zeros for i in [1, N].  The ciphertext value in each pair shall be the value 
               that results in an all zeros plaintext when decrypted with its corresponding key.
-              <h:br />
-              <h:br />
-              To test the encrypt functionality, the evaluator shall supply the set of
+              <h:p/>
+              <h:b>Test 1d:</h:b> To test the encrypt functionality, the evaluator shall supply the set of
               128 plaintext values described below and obtain the two ciphertext values that
               result from encryption of the given plaintext using a 128-bit key value of all
               zeros and using a 256 bit key value of all zeros, respectively, and an IV of all
@@ -307,10 +355,11 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               the rightmost 128-i bits be zeros, for i in [1, 128].  To test the decrypt functionality,
               the evaluator shall perform the same test as for encrypt, using ciphertext
               values of the same form as the plaintext in the encrypt test as input.
+              <h:p/>
             </test>
             <test>
               Multi-Block Message Test
-              <h:br />
+              <h:p/>
               The evaluator shall test the encrypt functionality by encrypting an i-block 
               message where 1 less-than i less-than-or-equal to 10. For each i the evaluator 
               shall choose a key, IV, and plaintext message of length i blocks and encrypt
@@ -322,30 +371,30 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               a ciphertext message of length i blocks and decrypt the message, using the mode 
               to be tested, with the chosen key. The plaintext shall be compared to the result
               of decrypting the same ciphertext message with the same key using a known good implementation.
+              <h:p/>
             </test>
             <test>
               Monte-Carlo Test
-              <h:br />
+              <h:p/>
               For AES-CTR mode perform the Monte Carlo Test for ECB Mode on the encryption 
               engine of the counter mode implementation. There is no need to test the decryption engine.
-              <h:br />
-              <h:br />
+              <h:p/>
               The evaluator shall test the encrypt functionality using 200 plaintext/key pairs. 
               100 of these shall use 128 bit keys, and 100 of these shall use 256 bit keys.  
               The plaintext values shall be 128-bit blocks.  For each pair, 1000 iterations shall be run as follows:
-              <h:br />
-              <h:br />
+              <h:p/>
               For AES-ECB mode<h:br />
               # Input: PT, Key<h:br />
               for i = 1 to 1000:<h:br />
               CT[i] = AES-ECB-Encrypt(Key, PT)<h:br />
               PT = CT[i]
-              <h:br />
+              <h:p/>
               The ciphertext computed in the 1000th iteration is the result for that 
               trial.  This result shall be compared to the result of running 1000 
               iterations with the same values using a known good implementation.  
             </test>
           </testlist>
+            </Tests>
         </aactivity>
       </f-element>
     </f-component>
@@ -474,7 +523,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>x509v3-ecdsa-sha2-nistp256</selectable>
           <selectable>x509v3-ecdsa-sha2-nistp384</selectable>
           <selectable>no other public key algorithms</selectable>
-        </selectables>as its public key algorithm(s) and rejects all other public key
+        </selectables> as its public key algorithm(s) and rejects all other public key
         algorithms.</title>
         <note role="application">Implementations that select only ssh-rsa will not achieve the
         112-bit security strength in the digital signature generation for SSH authentication as is
@@ -518,7 +567,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>AEAD_AES_128_GCM</selectable>
           <selectable>AEAD_AES_256_GCM</selectable>
           <selectable>no other MAC algorithms</selectable>
-        </selectables>as its data integrity MAC algorithm(s) and rejects all other MAC
+        </selectables> as its data integrity MAC algorithm(s) and rejects all other MAC
         algorithm(s).</title>
         <note role="application">RFC 5647 specifies the use of the AEAD_AES_128_GCM and
         AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
