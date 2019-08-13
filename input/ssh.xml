@@ -152,14 +152,13 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     <section title="Compliant Targets of Evaluation" id="TOEdescription">The Target of Evaluation
     (TOE) in this Package is a product which acts as an SSH client or server, or both. This Package. describes the extended security functionality of SSH in terms of 
      <cite linkend="bibCC" />. 
-      <h:br/>
+      <h:p/>
      The contents of this Package must be appropriately combined with a PP or PP-Module. When this Package is instantiated by a PP or PP-Module, the Package must include 
      selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module. These may be expanded by the ST author.
-     <h:br/>
-     The PP or PP-Module which instantiates this Package must typicalyl include the following components in order to satisfy dependencies of this Package. 
+      <h:p/>
+     The PP or PP-Module which instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
      It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied.
-     
-      <h:br/>
+      <h:p/>
       <componentsneeded>
         <componentneeded>
           <componentid>FCS_CKM.1</componentid>
@@ -277,7 +276,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
   components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
-    <f-component id="fcs_cop.1/SSH" name="Cryptographic Operation - Encryption/Decryption (AES-CTR for SSH)">
+    <f-component id="fcs_cop.1/SSH" name="Cryptographic Operation (AES-CTR Encryption/Decryption for SSH)">
       <f-element id="fcs_cop.1.1/SSH">
         <title>The <h:b>SSH software shall <selectables>
           <selectable>perform</selectable>
@@ -306,8 +305,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           There are no guidance evaluation activities for this component.
           </Guidance>
           <Tests>
-          The evaluator shall perform the following AES-CTR tests:
-          AES-CTR Tests:
+          If "implement" is selected, the evaluator shall perform the following tests:
           <testlist>
             <test>
               Known Answer Tests (KATs)
@@ -394,6 +392,18 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               iterations with the same values using a known good implementation.  
             </test>
           </testlist>
+            If "invoke platform-provided" is selected, the evaluator confirms that SSH connections are only successful if appropriate algorithms and appropriate key sizes are configured. To do this, the evaluator shall perform the following tests:
+            If "implement" is selected, the evaluator shall perform the following tests:
+            <testlist>
+              <test>
+                [Conditional: TOE is an SSH server] The evaluator shall configure an SSH client to connect with an invalid cryptographic algorithm and key size for each listening SSH socket connection on the TOE.  
+                The evaluator initiates SSH client connections to each listening SSH socket connection on the TOE and observes that the connection fails in each attempt.
+              </test>
+            <test>
+              [Conditional: TOE is an SSH client] The evaluator shall configure a listening SSH socket on a remote SSH server that accepts only invalid cryptographic algorithms and keys. 
+              The evaluator uses the TOE to attempt an SSH connection to this server and observes that the connection fails.  
+            </test>
+            </testlist>
             </Tests>
         </aactivity>
       </f-element>
