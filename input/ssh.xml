@@ -305,7 +305,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           There are no guidance evaluation activities for this component.
           </Guidance>
           <Tests>
-          If "implement" is selected, the evaluator shall perform the following tests:
+          If "perform" is selected, the evaluator shall perform the following tests:
           <testlist>
             <test>
               Known Answer Tests (KATs)
