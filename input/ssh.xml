@@ -441,7 +441,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         If server is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
 	</note>
         <aactivity>
-          <TSS>The evaluator will ensure that the selections indicated in the ST are 
+          <TSS>The evaluator shall ensure that the selections indicated in the ST are 
 	consistent with selections in the dependent components.
           </TSS>
           <Guidance>
@@ -467,11 +467,11 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </title>
         <aactivity>
         <TSS>
-        The evaluator will check to ensure that the TSS contains a description of the
+        The evaluator shall check to ensure that the TSS contains a description of the
         public key algorithms that are acceptable for use for authentication, that this list
         conforms to 
           <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
-          methods are also allowed, if selected. 
+          methods are described, if supported.
         </TSS>
           <Guidance>
             If the SSH client supports password-based authentication, the evaluator shall examine the guidance to determine that it includes instructions on how to configure whether the TSF uses password-based or public key-based authentication.
@@ -542,7 +542,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
           successful negotiation of the algorithm to satisfy the intent of the test.</test>
           <test>The evaluator shall configure an SSH server to only allow the 3des-cbc encryption
-          algorithm and no other encryption algorithms. The evaluator will attempt to establish an
+          algorithm and no other encryption algorithms. The evaluator shall attempt to establish an
           SSH connection from the TOE to the SSH server and observe that the connection is
           rejected.</test>
         </testlist>
@@ -553,6 +553,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <title>The SSH client shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>ssh-rsa</selectable>
+          <selectable>rsa-sha2-256</selectable>
+          <selectable>rsa-sha2-512</selectable>
           <selectable>ecdsa-sha2-nistp256</selectable>
         </selectables> and 
         <selectables>
@@ -565,9 +567,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <note role="application">Implementations that select only ssh-rsa will not achieve the
         112-bit security strength in the digital signature generation for SSH authentication as is
         recommended in NIST SP 800-131A. Future versions of this document may remove ssh-rsa as a
-        selection. If x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 are selected, then
+        selection. If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
         the list of trusted certification authorities must be selected in 
-        <linkref linkend="FCS_SSHC_EXT.1.8" />.
+        <linkref linkend="FCS_SSHC_EXT.1.8" />. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
         <h:p/>
         The SFRs for cryptographic key generation and certificate validation are inherited
         from the PP or PP-Module that includes this package.
@@ -591,7 +593,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           sufficient to observe (on the wire) the successful negotiation of the algorithm to
           satisfy the intent of the test.</test>
           <test>The evaluator shall configure an SSH server to only allow the ssh-dsa public key
-          algorithm and no other public key algorithms. The evaluator will attempt to establish an
+          algorithm and no other public key algorithms. The evaluator shall attempt to establish an
           SSH connection from the TOE to the SSH server and observe that the connection is
           rejected.</test>
         </testlist>
@@ -637,10 +639,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
           successful negotiation of the algorithm to satisfy the intent of the test.</test>
           <test>The evaluator shall configure an SSH server to only allow the “none” MAC algorithm.
-          The evaluator will attempt to connect from the TOE to the SSH server and observe that the
+          The evaluator shall attempt to connect from the TOE to the SSH server and observe that the
           attempt fails.</test>
           <test>The evaluator shall configure an SSH server to only allow the hmac- md5 MAC
-          algorithm. The evaluator will attempt to connect from the TOE to the SSH server and
+          algorithm. The evaluator shall attempt to connect from the TOE to the SSH server and
           observe that the attempt fails.</test>
         </testlist>
           </Tests>
@@ -696,10 +698,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <Tests>
             The evaluator shall perform the following test for each rekeying method specified in the ST:
           <testlist>
-            <test>The evaluator shall configure an SSH server to create a log entry when a rekey
-              occurs. The evaluator shall then connect to an SSH server with the TOE and cause a rekey to
-              occur according to the selection(s) in the ST. The evaluator shall
-            subsequently review the audit log to ensure that a rekey occurred.</test>
+            <test>The evaluator shall configure the TOE to create a log entry when a rekey occurs. The evaluator shall then use the TOE to connect to an SSH server and cause a rekey to occur according to the selection(s) in the ST.
+            The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done, e.g., by checking that a corresponding audit event has been generated by the TOE or by the SSH server, if
+            either supports auditing of rekey events.
+            </test>
           </testlist>
           </Tests>
         </aactivity>
@@ -760,7 +762,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         public key algorithms that are acceptable for use for authentication, that this list
         conforms to 
         <linkref linkend="FCS_SSHS_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
-        methods are also allowed, if selected. 
+        methods are described, if supported.
           </TSS>
           <Guidance>
             If the SSH server supports password-based authentication, the evaluator shall examine the guidance to determine that it includes instructions on how to configure whether the TSF uses password-based or public key-based authentication.
@@ -798,10 +800,22 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         caveat that the packets should be of “reasonable length” or dropped. The assignment should
         be filled in by the ST author with the maximum packet size accepted, thus defining
         “reasonable length” for the TOE.</note>
-        <aactivity>The evaluator will check that the TSS describes how “large packets” in terms of
-        RFC 4253 are detected and handled. 
-        <h:br />The evaluator will demonstrate that if the TOE receives a packet larger than that
-        specified in this component, that packet is dropped.</aactivity>
+        <aactivity>
+          <TSS>The evaluator shall check that the TSS describes how “large packets” in terms of
+        RFC 4253 are detected and handled.
+          </TSS>
+          <Guidance>
+            There are no guidance evaluation activities for this element.
+          </Guidance>
+          <Tests>
+        <testlist>
+          <test>
+        The evaluator shall demonstrate that if the TOE receives a packet larger than that
+        specified in this component, that packet is dropped.
+          </test>
+        </testlist>
+          </Tests>
+        </aactivity>
       </f-element>
       <f-element id="fcs_sshs_ext.1.3">
         <title>The SSH server shall ensure that the SSH transport implementation uses the following
@@ -822,17 +836,16 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </note>
         <aactivity>
           <TSS>
-          The evaluator will check the description of the implementation of this protocol
+          The evaluator shall check the description of the implementation of this protocol
         in the TSS to ensure that optional characteristics are specified, and the encryption
-        algorithms supported are specified as well. The evaluator will check the TSS to ensure that
+        algorithms supported are specified as well. The evaluator shall also check the TSS to ensure that
         the encryption algorithms specified are identical to those listed for this element. 
-        <h:br />The evaluator will also check the guidance documentation to ensure that it contains
-        instructions on configuring the TOE so that SSH conforms to the description in the TSS (for
-        instance, the set of algorithms advertised by the TOE may have to be restricted to meet the
-        requirements). 
           </TSS>
           <Guidance>
-            There are no guidance evaluation activities for this element.
+            The evaluator shall check the guidance documentation to ensure that it contains
+            instructions on configuring the TOE so that SSH conforms to the description in the TSS (for
+            instance, the set of algorithms advertised by the TOE may have to be restricted to meet the
+            requirements). 
           </Guidance>
         <Tests>
         <testlist>
@@ -840,7 +853,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
           successful negotiation of the algorithm to satisfy the intent of the test.</test>
           <test>The evaluator shall configure an SSH client to only propose the 3des-cbc encryption
-          algorithm and no other encryption algorithms. The evaluator will attempt to establish an
+          algorithm and no other encryption algorithms. The evaluator shall attempt to establish an
           SSH connection from this client to the TOE server and observe that the connection is
           rejected.</test>
         </testlist>
@@ -851,6 +864,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <title>The SSH server shall ensure that the SSH transport implementation uses 
           <selectables>
             <selectable>ssh-rsa</selectable>
+            <selectable>rsa-sha2-256</selectable>
+            <selectable>rsa-sha2-512</selectable>
             <selectable>ecdsa-sha2-nistp256</selectable>
           </selectables>
            and 
@@ -866,7 +881,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <note role="application">
           Implementations that select only ssh-rsa will not achieve the 112-bit security strength in the
           digital signature generation for SSH authentication as is recommended in NIST SP 800-131A. 
-          Future versions of this profile may remove ssh-rsa as a selection.
+          Future versions of this profile may remove ssh-rsa as a selection. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
           <h:p/>
           The SFRs for cryptographic key generation and certificate validation are inherited
           from the PP or PP-Module that includes this package.
@@ -938,10 +953,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           sufficient to observe (on the wire) the successful negotiation of the algorithm to
           satisfy the intent of the test.</test>
           <test>The evaluator shall configure an SSH client to only propose the “none” MAC
-          algorithm. Using this client, the evaluator will attempt to connect to the TOE and
+          algorithm. Using this client, the evaluator shall attempt to connect to the TOE and
           observe that the attempt fails.</test>
           <test>The evaluator shall configure an SSH client to only propose the hmac-md5 MAC
-          algorithm. Using this client, the evaluator will attempt to connect to the TOE and
+          algorithm. Using this client, the evaluator shall attempt to connect to the TOE and
           observe that the attempt fails.</test>
         </testlist>
           </Tests>
@@ -995,15 +1010,14 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             There are no TSS evaluation activities for this element.
           </TSS>
           <Guidance>
-            The evaluator shall examine the operational guidance to verify that it describes any TOE or environmental configuration that is needed for the TSF to log when an SSH rekey occurs.
+            If the TOE has the ability to generate a log when an SSH rekey occurs, the evaluator shall examine the operational guidance to verify that it describes any configuration that is needed for this to be performed.
           </Guidance>
           <Tests>
             The evaluator shall perform the following test for each rekeying method specified in the ST:
           <testlist>
-            <test>The evaluator shall configure the TOE to create a log entry when a rekey occurs.
-            The evaluator shall use an SSH client to connect to the TOE and cause a rekey to 
-            occur according to the selection(s) in the ST. The evaluator shall 
-            subsequently review the audit log to ensure that a rekey occurred.</test>
+            <test>The evaluator shall configure the TOE to create a log entry when a rekey occurs. The evaluator shall then connect to the TOE using an SSH client and cause a rekey to occur according to the selection(s) in the ST.
+              The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done, e.g., by checking that a corresponding audit event has been generated by the TOE or by the SSH client, if
+              either supports auditing of rekey events.</test>
           </testlist>
           </Tests>
         </aactivity>
