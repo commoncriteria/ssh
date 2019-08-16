@@ -417,6 +417,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>5656</selectable>
           <selectable>6187</selectable>
           <selectable>6668</selectable>
+          <selectable>8332</selectable>
           <selectable>no other RFCs</selectable>
         </selectables> as a 
 		<selectables>
@@ -428,14 +429,25 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         conformance is being claimed. An SSH product can implement additional RFCs, but only those
         listed in the selection can be claimed as conformant under common criteria. 
         The RFC selections for this requirement need to be consistent with selections in
-        later elements of this Extended Package (e.g., cryptographic algorithms permitted). 
+        later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
         <h:p/>
         RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED". This means that from the 
         IETF's perspective the implementation must include support, not that the algorithms must 
-        be enabled for use. For the purposes of this assurance activity and this Extended Package
+        be enabled for use. For the purposes of this assurance activity and this Functional Package
         overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
-        but not listed in later elements of this Extended Package are actually implemented.
+        but not listed in later elements of this Functional Package are actually implemented.
         <h:p/>
+         RFC 5647 applies when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as an encryption algorithm in FCS_SSHC_EXT.1.3 or FCS_SSHS_EXT.1.3 and as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5. 
+          <h:p/>
+          RFC 5656 applies when ecdsa-sha2-nistp256 or ecdsa-sha2-nistp384 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or ecdh-sha2-nistp521 is selected as a key exchange 
+          algorithm in FCS_SSHC_EXT.1.6 or FCS_SSHS_EXT.1.6.
+          <h:p/>
+          RFC 6187 applies when x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
+          <h:p/>
+          RFC 6668 applies when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5
+          <h:p/>
+          RFC 8332 applies when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
+          <h:p/>
         If client is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHC_EXT.1" />.
         <h:p/>
         If server is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
@@ -566,8 +578,13 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         algorithms.</title>
         <note role="application">Implementations that select only ssh-rsa will not achieve the
         112-bit security strength in the digital signature generation for SSH authentication as is
-        recommended in NIST SP 800-131A. Future versions of this document may remove ssh-rsa as a
-        selection. If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
+        recommended in NIST SP 800-131A. 
+        
+        <!-- SME: should this statement be kept as-is, withdrawn, or incorporated into the SFR? -->
+        Future versions of this document may remove ssh-rsa as a
+        selection. 
+        
+        If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
         the list of trusted certification authorities must be selected in 
         <linkref linkend="FCS_SSHC_EXT.1.8" />. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
         <h:p/>
@@ -881,7 +898,12 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <note role="application">
           Implementations that select only ssh-rsa will not achieve the 112-bit security strength in the
           digital signature generation for SSH authentication as is recommended in NIST SP 800-131A. 
-          Future versions of this profile may remove ssh-rsa as a selection. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
+          
+          <!-- SME: should this statement be kept as-is, withdrawn, or incorporated into the SFR? -->
+          Future versions of this document may remove ssh-rsa as a
+          selection.  
+          
+          RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
           <h:p/>
           The SFRs for cryptographic key generation and certificate validation are inherited
           from the PP or PP-Module that includes this package.
