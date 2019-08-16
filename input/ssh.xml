@@ -444,7 +444,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <h:p/>
           RFC 6187 applies when x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
           <h:p/>
-          RFC 6668 applies when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5
+          RFC 6668 applies when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5.
           <h:p/>
           RFC 8332 applies when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
           <h:p/>
