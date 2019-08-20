@@ -65,9 +65,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </entry>
           <entry>
             <term><abbr title="Package">Package</abbr></term>
-            <description>A named set of security requirements.  A package is either a functional
-              package containing only SFRs, or an assurance package containing only SARs.  Packages
-              can be used in the construction of larger packages, PPs, and STs.
+            <description>A named set of security requirements.  A Package is either a Functional
+              Package containing only Security Functional Requirements (SFRs), or an Assurance Package containing only Security Assurance Requirements (SARs).  Packages
+              can be used in the construction of larger Packages, Protection Profiles (PPs), and Security Targets (STs).
             </description>
           </entry>
           <entry>
@@ -78,7 +78,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <entry>
             <term><abbr title="Protection Profile Module">PP-Module</abbr></term>
             <description>An extension of the security requirements in a
-              Protection Profile which introduces new elements to the Base-PP
+              PP that introduces new elements to the Base-PP
               and may also refine or interpret some of the elements in the Base-PP.
             </description>
           </entry>
@@ -124,27 +124,27 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     
     <section title="Format of this Document" id="docformat">
       <secref linkend="req"/> contains baseline requirements
-      which must be implemented in the product and included in any PP/PP-Module/ST
+      that must be implemented in the product and included in any PP/PP-Module/ST
       that claims conformance to this Package.
       There are three other types of requirements that can be included in a PP/PP-Module/ST
       claiming conformance to this Package:
       <h:ul>
         <h:li>
           <appref linkend="optional"/> contains requirements that may optionally be included
-          in the PP/PP-Module/ST, but inclusion is at the discretion of the PP/PP-Module/ST
-          author.  For requirements that have selections, if the PP/PP-Module allows the selection (or the ST
-          selects particular selections), then there are additional requirements based on these
-          selections contained in this appendix that will need to be included in the PP/PP-Module/ST.
+          in the PP, PP-Module, or ST, but inclusion is at the discretion of the 
+          author.  For requirements with selections, if the PP or PP-Module allows the selection (or the ST
+          chooses particular selections), then there are additional requirements based on these
+          selections contained in this appendix that will need to be included in the PP, PP-Module, or ST.
         </h:li>
         <h:li>
           <appref linkend="sel-based"/> contains requirements based on selections
-          in the requirements in <secref linkend="req"/> or the PP/PP-Module/ST: if certain selections are
-          made, then the corresponding requirements in that appendix must be included.
+          in the requirements specified in <secref linkend="req"/>: if certain selections are
+          made, then the corresponding requirements in this appendix must be included.
         </h:li>
         <h:li>
           <appref linkend="objective"/> contains requirements that will
-          be included in the baseline requirements in future versions of this package. Earlier adoption by vendors is
-          encouraged. Otherwise, these are treated the same as Optional Requirements.
+          be included in the baseline requirements in future versions of this Package. Earlier adoption by vendors is
+          encouraged. Otherwise, these are treated the same as optional requirements.
         </h:li>
       </h:ul>
     </section>
@@ -153,8 +153,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     (TOE) in this Package is a product which acts as an SSH client or server, or both. This Package. describes the extended security functionality of SSH in terms of 
      <cite linkend="bibCC" />. 
       <h:p/>
-     The contents of this Package must be appropriately combined with a PP or PP-Module. When this Package is instantiated by a PP or PP-Module, the Package must include 
-     selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module. These may be expanded by the ST author.
+     The contents of this Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
+     selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
       <h:p/>
      The PP or PP-Module which instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
      It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied.
@@ -221,7 +221,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <chapter title="Conformance Claims" id="conf">
     <cclaims>
       <cclaim id="Conformance Statement">
-        <description>This Package serves to provide Protection Profiles and PP-Modules with additional 
+        <description>This Package serves to provide PPs and PP-Modules with additional 
           SFRs and associated Evaluation Activities specific to SSH clients and servers.  
           <h:p/>
           This Package conforms to Common Criteria
@@ -258,20 +258,20 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <cite linkend="bibCC" />. The following notations are used: 
     <h:ul>
       <h:li>
-        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): is used to add details to a
+        <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): Used to add details to a
         requirement, and thus further restricts a requirement.</h:li>
       <h:li>
-        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): is used to select one or more options
+        <h:b>Selection</h:b> (denoted by <h:i>italicized text</h:i>): Used to select one or more options
         provided by the [CC] in stating a requirement.</h:li>
       <h:li>
-        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): is used to assign a
+        <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): Used to assign a
         specific value to an unspecified parameter, such as the length of a password. Showing the
         value in square brackets indicates assignment.</h:li>
       <h:li>
-        <h:b>Iteration</h:b> operation: are identified with a a slash followed by a unique text string (e.g.
+        <h:b>Iteration</h:b> operation: Identified with a a slash followed by a unique text string (e.g.
         "/SSH").</h:li>
     </h:ul>
-  <section title="Security Functional Requirements" id="sfr">The Security Functional Requirements
+  <section title="Security Functional Requirements" id="sfr">The SFRs
   included in this section are derived from Part 2 of the Common Criteria for Information
   Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
   components. 
@@ -289,10 +289,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             <selectable>256-bit</selectable>
           </selectables>.
         </title>
-        <note role="application">If this package is used for a TOE that conforms to a PP that permits a conformant TOE to be implemented as software/firmware running on a general-purpose computer 
-          (such as a TOE that conforms to the Protection Profile for Application Software), 
-          it may not be necessary to include the FCS claims of that PP since the SSH application could rely on the platform for this functionality. 
-          If the SSH software does provide its own cryptography, the Security Target should indicate which cryptographic SFRs in the claimed PP are used to implement SSH functionality.
+        <note role="application">This Package may be used for a TOE that conforms to a PP that permits the TOE's use of platform cryptography (such as the Protection Profile for Application Software). In this case, the TOE may rely on its platform 
+          to provide the cryptographic functionality used to support the TOE's SSH function. If the SSH software does provide its own cryptography, the ST should indicate which cryptographic SFRs from its claimed PP are used to implement SSH functionality.
         </note>
         <aactivity>
           <TSS>
@@ -311,7 +309,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               Known Answer Tests (KATs)
               <h:p/>
               There are four Known Answer Tests (KATs) described below.  For all KATs, the plaintext,
-              IV, and ciphertext values shall be 128-bit blocks.  The results from each test may
+              initialization vector (IV), and ciphertext values shall be 128-bit blocks.  The results from each test may
               either be obtained by the validator directly or by supplying the inputs to the implementer
               and receiving the results in response.  To determine correctness, the evaluator shall
               compare the resulting values to those obtained by submitting the same inputs to a known
@@ -427,12 +425,12 @@ xmlns:h="http://www.w3.org/1999/xhtml">
 		</title>
         <note role="application">The ST author selects which of the additional RFCs to which
         conformance is being claimed. An SSH product can implement additional RFCs, but only those
-        listed in the selection can be claimed as conformant under common criteria. 
+        listed in the selection can be claimed as conformant under CC. 
         The RFC selections for this requirement need to be consistent with selections in
         later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
         <h:p/>
-        RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED". This means that from the 
-        IETF's perspective the implementation must include support, not that the algorithms must 
+        RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
+        nternet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
         be enabled for use. For the purposes of this assurance activity and this Functional Package
         overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
         but not listed in later elements of this Functional Package are actually implemented.
@@ -480,7 +478,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <aactivity>
         <TSS>
         The evaluator shall check to ensure that the TSS contains a description of the
-        public key algorithms that are acceptable for use for authentication, that this list
+        public key algorithms that are acceptable for use for authentication, and that this list
         conforms to 
           <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
           methods are described, if supported.
@@ -515,7 +513,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             The evaluator shall check that the TSS describes how “large packets” in terms of RFC 4253 are detected and handled.
           </TSS>
         <Tests>The evaluator shall demonstrate that if the TOE receives a packet larger than that
-        specified in this component, that packet is dropped.
+        specified in this component, the packet is dropped.
         </Tests>
         </aactivity>
       </f-element>
@@ -552,7 +550,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <testlist>
           <test>The evaluator shall establish an SSH connection using each of the encryption
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
-          successful negotiation of the algorithm to satisfy the intent of the test.</test>
+          successful negotiation of the algorithm to satisfy the intent of this test.</test>
           <test>The evaluator shall configure an SSH server to only allow the 3des-cbc encryption
           algorithm and no other encryption algorithms. The evaluator shall attempt to establish an
           SSH connection from the TOE to the SSH server and observe that the connection is
@@ -589,7 +587,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <linkref linkend="FCS_SSHC_EXT.1.8" />. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
         <h:p/>
         The SFRs for cryptographic key generation and certificate validation are inherited
-        from the PP or PP-Module that includes this package.
+        from the PP or PP-Module that includes this Package.
         </note>
         <aactivity>
           <TSS>
@@ -638,7 +636,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         SSH.
         <h:p/>
         The SFRs for cryptographic operations, encryption, and hashing are inherited from  
-        the PP or PP-Module that includes this package
+        the PP or PP-Module that includes this Package.
         </note>
         <aactivity>
           <TSS>
@@ -654,7 +652,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <testlist>
           <test>The evaluator shall establish a SSH connection using each of the integrity
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
-          successful negotiation of the algorithm to satisfy the intent of the test.</test>
+          successful negotiation of the algorithm to satisfy the intent of this test.</test>
           <test>The evaluator shall configure an SSH server to only allow the “none” MAC algorithm.
           The evaluator shall attempt to connect from the TOE to the SSH server and observe that the
           attempt fails.</test>
@@ -716,7 +714,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             The evaluator shall perform the following test for each rekeying method specified in the ST:
           <testlist>
             <test>The evaluator shall configure the TOE to create a log entry when a rekey occurs. The evaluator shall then use the TOE to connect to an SSH server and cause a rekey to occur according to the selection(s) in the ST.
-            The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done, e.g., by checking that a corresponding audit event has been generated by the TOE or by the SSH server, if
+            The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done by, for example, checking that a corresponding audit event has been generated by the TOE or by the SSH server, if
             either supports auditing of rekey events.
             </test>
           </testlist>
@@ -776,7 +774,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <aactivity>
           <TSS>
           The evaluator shall check to ensure that the TSS contains a description of the
-        public key algorithms that are acceptable for use for authentication, that this list
+        public key algorithms that are acceptable for use for authentication, and that this list
         conforms to 
         <linkref linkend="FCS_SSHS_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
         methods are described, if supported.
@@ -828,7 +826,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <testlist>
           <test>
         The evaluator shall demonstrate that if the TOE receives a packet larger than that
-        specified in this component, that packet is dropped.
+        specified in this component, the packet is dropped.
           </test>
         </testlist>
           </Tests>
@@ -868,7 +866,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <testlist>
           <test>The evaluator shall initiate an SSH connection using each of the encryption
           algorithms specified by the requirement. It is sufficient to observe (on the wire) the
-          successful negotiation of the algorithm to satisfy the intent of the test.</test>
+          successful negotiation of the algorithm to satisfy the intent of this test.</test>
           <test>The evaluator shall configure an SSH client to only propose the 3des-cbc encryption
           algorithm and no other encryption algorithms. The evaluator shall attempt to establish an
           SSH connection from this client to the TOE server and observe that the connection is
@@ -906,7 +904,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
           <h:p/>
           The SFRs for cryptographic key generation and certificate validation are inherited
-          from the PP or PP-Module that includes this package.
+          from the PP or PP-Module that includes this Package.
         </note>
         <aactivity>
           <TSS>The evaluator shall check the description of the implementation of this protocol
@@ -924,7 +922,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <test>Using an appropriately configured client, the evaluator shall establish an SSH
           connection using each of the public key algorithms specified by the requirement to
           authenticate to the TOE. It is sufficient to observe (on the wire) the successful negotiation of the
-          algorithm to satisfy the intent of the test.</test>
+          algorithm to satisfy the intent of this test.</test>
           <test>The evaluator shall configure an SSH client to propose only the ssh-dsa public key
           algorithm and no other public key algorithms. Using this client, the evaluator shall
           attempt to establish an SSH connection to the TOE and observe that the connection is
@@ -956,7 +954,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           being used as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms
           in SSH.
           <h:p/>
-          The SFRs for cryptographic operations, encryption and hashing, are inherited from the PP or PP-Module that includes this package.
+          The SFRs for cryptographic operations, encryption and hashing, are inherited from the PP or PP-Module that includes this Package.
         </note>
         <aactivity>
           <TSS>
@@ -1038,7 +1036,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
             The evaluator shall perform the following test for each rekeying method specified in the ST:
           <testlist>
             <test>The evaluator shall configure the TOE to create a log entry when a rekey occurs. The evaluator shall then connect to the TOE using an SSH client and cause a rekey to occur according to the selection(s) in the ST.
-              The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done, e.g., by checking that a corresponding audit event has been generated by the TOE or by the SSH client, if
+              The evaluator shall subsequently use available methods and tools to verify that rekeying occurs. This could be done by, for example, checking that a corresponding audit event has been generated by the TOE or by the SSH client, if
               either supports auditing of rekey events.</test>
           </testlist>
           </Tests>
@@ -1080,7 +1078,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   </appendix>
   
   <appendix title="Selection-Based Requirements" id="sel-based">As indicated in the introduction to this Package, 
-    this appendix lists requirements that are activated based on selections made in the PP/PP-Module/ST or in other portions of this Package itself.
+    this appendix lists requirements that are activated based on selections made in the PP, PP-Module, or ST, or in other portions of this Package itself.
 </appendix>
   
  <!-- <appendix title="Objective Requirements" id="objective">This Annex includes requirements that
@@ -1161,6 +1159,18 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <description>Cipher Block Chaining</description>
       </entry>
       <entry>
+        <term>CC</term>
+        <description>Common Criteria</description>
+      </entry>
+      <entry>
+        <term>CTR</term>
+        <description>Counter (AES mode)</description>
+      </entry>
+      <entry>
+        <term>ECB</term>
+        <description>Electronic Codebook</description>
+      </entry>
+      <entry>
         <term>ECDSA</term>
         <description>Elliptic Curve Digital Signature Algorithm</description>
       </entry>
@@ -1185,8 +1195,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <description>National Institute of Standards and Technology</description>
       </entry>
       <entry>
-        <term>PBKDF</term>
-        <description>Password-Based Key Derivation Function</description>
+        <term>PP</term>
+        <description>Protection Profile</description>
       </entry>     
       <entry>
         <term>RFC</term>
@@ -1197,8 +1207,32 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <description>Rivest Shamir Adelman</description>
       </entry>
       <entry>
+        <term>SAR</term>
+        <description>Security Assurance Requirement</description>
+      </entry>
+      <entry>
+        <term>SFR</term>
+        <description>Security Functional Requirement</description>
+      </entry>
+      <entry>
         <term>SSH</term>
         <description>Secure Shell</description>
+      </entry>
+      <entry>
+        <term>ST</term>
+        <description>Security Target</description>
+      </entry>
+      <entry>
+        <term>TOE</term>
+        <description>Target of Evaluation</description>
+      </entry>
+      <entry>
+        <term>TSF</term>
+        <description>TOE Security Functionality</description>
+      </entry>
+      <entry>
+        <term>TSS</term>
+        <description>TOE Summary Specification</description>
       </entry>
 
     </acronyms>
