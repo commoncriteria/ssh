@@ -110,6 +110,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </glossary>
       </subsection>
       <subsection title="Technology Terms" id="techterms">
+        
+        <!-- SME: this table is not rendering the same way as the one above, they should look the same and it's not clear why they don't -->
         <glossary>
           <entry>
             <term>
@@ -123,6 +125,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     </section>
     
     <section title="Format of this Document" id="docformat">
+      <!-- SME: all instances of secref linkend are only displaying the section number (e.g. "Section 3.") instead of the full title (e.g. "Section 3 Security Requirements"). The TLS Package does the latter and we expect the same
+        should be happening here -->
       <secref linkend="req"/> contains baseline requirements
       that must be implemented in the product and included in any PP, PP-Module, or ST
       that claims conformance to this Package.
@@ -130,6 +134,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       claiming conformance to this Package:
       <h:ul>
         <h:li>
+          <!-- SME: the appref linkend tags have the same issue as the secref linkend tags mentioned above -->
           <appref linkend="optional"/> contains requirements that may optionally be included
           in the PP, PP-Module, or ST, but inclusion is at the discretion of the 
           author.  For requirements with selections, if the PP or PP-Module allows the selection (or the ST
@@ -159,6 +164,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
      The PP or PP-Module that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
      It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its Operational Environment.
       <h:p/>
+      <!-- SME: this table is not display properly (see its counterpart in the TLS Package for an example of what we were expecting -->
       <componentsneeded>
         <componentneeded>
           <componentid>FCS_CKM.1</componentid>
@@ -218,6 +224,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   
   <chapter title="Conformance Claims" id="conf">
     <cclaims>
+      <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that package, the actual text "Conformance Statement" doesn't get displayed, which is what
+      we would expect should be happening here as well (it shows up right underneath the "Conformance Claimes" section header so it is redundant to display both the title and the almost-identical subtitle -->
       <cclaim id="Conformance Statement">
         <description>This Package serves to provide PPs and PP-Modules with additional 
           SFRs and associated Evaluation Activities specific to SSH clients and servers.  
@@ -265,7 +273,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <h:b>Assignment</h:b> operation (denoted by <h:span class="assignable-content">italicized text</h:span>): Used to assign a
         specific value to an unspecified parameter, such as the length of a password. Assignments are also enclosed in square brackets.</h:li>
       <h:li>
-        <h:b>Iteration</h:b> operation: Identified with a a slash followed by a unique text string (e.g.
+        <h:b>Iteration</h:b> operation: Identified with a slash followed by a unique text string (e.g.
         "/SSH").</h:li>
     </h:ul>
   <section title="Security Functional Requirements" id="sfr">The SFRs
@@ -280,15 +288,15 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>invoke-platform-provided</selectable>
         </selectables></h:b> [<h:i>encryption/decryption services for data</h:i>] in accordance
           with a specified cryptographic algorithm [<h:i>AES-CTR (as defined in NIST SP 800-38A)
-            mode</h:i>] and cryptographic key sizes
-          <selectables>
-            <selectable>128-bit</selectable>
-            <selectable>256-bit</selectable>
-          </selectables>.
+            mode</h:i>] and cryptographic key sizes [<h:i>128-bit, 256-bit</h:i>]
         </title>
+        <!-- SME: note that the key size here was previously a selection but FCS_SSHC_EXT.1.3 and FCS_SSHS_EXT.1.3 both mandate support for both aes128-ctr and aes256-ctr so there is no situation where a TOE could legitimately
+        only claim one of these --> 
+        
         <note role="application">This Package may be used for a TOE that conforms to a PP that permits the TOE's use of platform cryptography (such as the Protection Profile for Application Software). In this case, the TOE may rely on its platform 
           to provide the cryptographic functionality used to support the TOE's SSH function. If the SSH software does provide its own cryptography, the ST should indicate which cryptographic SFRs from its claimed PP are used to implement SSH functionality.
         </note>
+        <!-- SME: for all cases where we used the TSS/Guidance/Tests tags under aactivity, those headings are not showing up in the evaluation activities, as they do with the TLS Package -->
         <aactivity>
           <TSS>
           The evaluator shall examine the TSS to verify that it describes whether the TSF or TOE platform is responsible for the implementation of  
@@ -328,7 +336,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               <h:p/>
               <h:b>Test 1c:</h:b> To test the encrypt functionality, the evaluator shall supply the two sets of key values
               described below and obtain the ciphertext values that result from AES encryption of an
-              all zeros plaintext using the given key values an an IV of all zeros.  The first set of
+              all zeros plaintext using the given key values and an IV of all zeros.  The first set of
               keys shall have 128 128-bit keys, and the second shall have 256 256-bit keys.  Key_i in
               each set shall have the leftmost i bits be ones and the rightmost N-i bits be zeros,
               for i in [1, N]. To test the decrypt functionality, the evaluator shall supply the two
@@ -426,7 +434,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
         <h:p/>
         RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
-        nternet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
+        Internet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
         be enabled for use. For the purposes of this SFR's evaluation activity and this Functional Package
         overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
         but not listed in later elements of this Functional Package are actually implemented.
@@ -565,6 +573,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
+        
+        <!-- SME: the NDcPP also defines aes128-gcm@openssh.com and aes256-gcm@openssh.com for FCS_SSHC_EXT.1.4 and FCS_SSHS_EXT.1.4. Should those be added to this Package as well? If so, the selection "implicit" must also be added
+        to FCS_SSHC_EXT.1.6 and FCS_SSHS_EXT.1.6 -->
       <f-element id="fcs_sshc_ext.1.4">
         <title>The SSH client shall ensure that the SSH transport implementation uses 
         <selectables>
@@ -1136,7 +1147,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibGPOS">
         <tag>GPOSPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=442">Protection Profile for General 
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=442">Protection Profile for General 
             Purpose Operating Systems
             </h:a>
         </description>
@@ -1144,7 +1155,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibMDM">
         <tag>MDMPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=428">Protection Profile for Mobile 
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=428">Protection Profile for Mobile 
             Device Management
           </h:a>
         </description>
@@ -1152,7 +1163,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
       <entry id="bibAppPP">
         <tag>AppPP</tag>
         <description>
-          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?PPID=429">Protection Profile for Application
+          <h:a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=429">Protection Profile for Application
             Software</h:a>
         </description>
       </entry>
