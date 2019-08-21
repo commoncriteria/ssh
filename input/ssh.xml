@@ -288,7 +288,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>invoke-platform-provided</selectable>
         </selectables></h:b> [<h:i>encryption/decryption services for data</h:i>] in accordance
           with a specified cryptographic algorithm [<h:i>AES-CTR (as defined in NIST SP 800-38A)
-            mode</h:i>] and cryptographic key sizes [<h:i>128-bit, 256-bit</h:i>]
+            mode</h:i>] and cryptographic key sizes [<h:i>128-bit, 256-bit</h:i>].
         </title>
         <!-- SME: note that the key size here was previously a selection but FCS_SSHC_EXT.1.3 and FCS_SSHS_EXT.1.3 both mandate support for both aes128-ctr and aes256-ctr so there is no situation where a TOE could legitimately
         only claim one of these --> 
