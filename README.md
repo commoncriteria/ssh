@@ -1,19 +1,19 @@
-Extended Package for Secure Shell (SSH) 
+Functional Package for Secure Shell (SSH) 
 ============
 [![Build Status](https://travis-ci.com/commoncriteria/ssh.svg?branch=master)](https://travis-ci.com/commoncriteria/ssh)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/ssh.svg?maxAge=2592000)](https://github.com/commoncriteria/ssh/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
-This repository hosts the draft version of the Extended Package for Secure Shell (SSH) based on the 
+This repository hosts the draft version of the Functional Package for Secure Shell (SSH) based on the 
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/ssh/ssh-esr.html) for this technology class of 
 products. This repository is used to facilitate collaboration and development on the draft document. 
 See the [release](#Release-Version) section if you are looking for the officially released version for evaluations. 
-A list of products that have passed evaluation against this Protection Profile can be found [here](https://www.niap-ccevs.org/Profile/Info.cfm?id=389).
+A list of products that have passed evaluation against this Package can be found [here](https://www.niap-ccevs.org/Profile/Info.cfm?id=389).
 
 ## Draft Version
 
-* [Extended Package for Secure Shell](https://commoncriteria.github.io/pp/ssh/ssh-release.html) (html)
-* [Extended Package for Secure Shell](https://commoncriteria.github.io/pp/ssh/ssh-release.pdf) (pdf)
+* [Functional Package for Secure Shell](https://commoncriteria.github.io/pp/ssh/ssh-release.html) (html)
+* [Functional Package for Secure Shell](https://commoncriteria.github.io/pp/ssh/ssh-release.pdf) (pdf)
 
 ## Release Version
 [Extended Package for Secure Shell (SSH) v1.0](https://www.niap-ccevs.org/Profile/Info.cfm?id=389)
