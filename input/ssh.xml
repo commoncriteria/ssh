@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
-<PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
-xmlns:h="http://www.w3.org/1999/xhtml">
+<PP xmlns="https://niap-ccevs.org/cc/v1" name="SSH"
+xmlns:h="http://www.w3.org/1999/xhtml" type="package">
 
 <!--
   <PPReference title="PP Reference" id="ID006">
@@ -22,94 +22,38 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   </PPReference>
 -->
 
-  <PPReference title="PP Reference" id="ID006">
+  <PPReference>
     <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2019-08-21</PPPubDate>
+      <PPPubDate>2020-12-14</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
-      <entry>
-        <name>Registration</name>
-        <description>National Information Assurance Partnership</description>
-      </entry>
     </ReferenceTable>
   </PPReference>
   
   <RevisionHistory>
     <entry>
       <version>1.0</version>
-      <date>2019-08-21</date>
-      <subject>First Draft - Functional Package for Secure Shell</subject>
+      <date>2020-12-14</date>
+      <subject>First publication</subject>
     </entry>
   </RevisionHistory>
   
-  <chapter title="Introduction" id="int">
-    <section title="Overview" id="ppoverview">Secure Shell (SSH) is a
-    protocol for secure remote login and other secure network services over
-    an untrusted network. SSH software can act as a client, server, or both.
-      <h:p/>
-      This "Functional Package for Secure Shell" (short name "SSH-PKG")
-      defines functional requirements for the implementation of the SSH protocol. The requirements are
-      intended to improve the security of products by enabling their evaluation.</section>
+<chapter title="Introduction" id="int">
+  <section title="Overview" id="ppoverview">
+	    Secure Shell (SSH) is a protocol for secure remote login and other secure network services over
+	    an untrusted network. SSH software can act as a client, server, or both.
+      	<h:p/>
+	  This <h:i>Functional Package for Secure Shell</h:i> (short name "SSH-PKG")
+      	defines functional requirements for the implementation of the SSH protocol. The requirements are
+      	intended to improve the security of products by enabling their evaluation.
+   </section>
 
-
-    <section title="Terms" id="glossary">
-      <subsection title="Common Criteria Terms"
-        id="ccterms">
-        <glossary>
-          <entry>
-            <term><abbr title="Common Criteria">CC</abbr></term>
-            <description>Common Criteria for Information Technology Security
-              Evaluation.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Package">Package</abbr></term>
-            <description>A named set of security requirements.  A Package is either a Functional
-              Package containing only Security Functional Requirements (SFRs), or an Assurance Package containing only Security Assurance Requirements (SARs).  Packages
-              can be used in the construction of larger Packages, Protection Profiles (PPs), and Security Targets (STs).
-            </description>
-          </entry>
-          <entry>
-            <term><abbr title="Protection Profile">PP</abbr></term>
-            <description>An implementation-independent set of security requirements for a category
-              of products.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Protection Profile Module">PP-Module</abbr></term>
-            <description>An extension of the security requirements in a
-              PP that introduces new elements to the Base-PP
-              and may also refine or interpret some of the elements in the Base-PP.
-            </description>
-          </entry>
-          <entry>
-            <term><abbr title="Security Target">ST</abbr></term>
-            <description>A set of implementation-dependent security requirements for a specific
-              product.</description>
-          </entry>
-          <entry>
-            <term><abbr title="Target of Evaluation">TOE</abbr></term>
-            <description>
-              The product under evaluation.
-            </description>
-          </entry>
-          <entry>
-            <term><abbr title="TOE Security Functionality">TSF</abbr></term>
-            <description>The security functionality of the product under evaluation.</description>
-          </entry>
-          <entry>
-            <term><abbr title="TOE Summary Specification">TSS</abbr></term>
-            <description>A description of how a <abbr linkend="TOE"/> satisfies the SFRs in a <abbr
-              linkend="ST"/>. </description>
-          </entry>
-          <entry>
-            <term><abbr title="Security Functional Requirement">SFR</abbr></term>
-            <description>A requirement for security enforcement by the <abbr linkend="TOE"/>.
-            </description>
-          </entry>
-        </glossary>
-      </subsection>
-      <subsection title="Technology Terms" id="techterms">
+   <tech-terms>
+	   <term abbr="SSH" full="Secure Shell">Cryptographic network protocol for initiating text-based shell sessions
+		   on remote systems.</term>
+   </tech-terms>		   
         
         <!-- SME: this table is not rendering the same way as the one above, they should look the same and it's not clear why they don't -->
         <glossary>
@@ -123,46 +67,17 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </glossary>
       </subsection>
     </section>
-    
-    <section title="Format of this Document" id="docformat">
-      <!-- SME: all instances of secref linkend are only displaying the section number (e.g. "Section 3.") instead of the full title (e.g. "Section 3 Security Requirements"). The TLS Package does the latter and we expect the same
-        should be happening here -->
-      <secref linkend="req"/> contains baseline requirements
-      that must be implemented in the product and included in any PP, PP-Module, or ST
-      that claims conformance to this Package.
-      There are three other types of requirements that can be included in a PP, PP-Module, or ST
-      claiming conformance to this Package:
-      <h:ul>
-        <h:li>
-          <!-- SME: the appref linkend tags have the same issue as the secref linkend tags mentioned above -->
-          <appref linkend="optional"/> contains requirements that may optionally be included
-          in the PP, PP-Module, or ST, but inclusion is at the discretion of the 
-          author.  For requirements with selections, if the PP or PP-Module allows the selection (or the ST
-          chooses particular selections), then there are additional requirements based on these
-          selections contained in this appendix that will need to be included in the PP, PP-Module, or ST.
-        </h:li>
-        <h:li>
-          <appref linkend="sel-based"/> contains requirements based on selections
-          in the requirements specified in <secref linkend="req"/>: if certain selections are
-          made, then the corresponding requirements in this appendix must be included.
-        </h:li>
-        <h:li>
-          <appref linkend="objective"/> contains requirements that will
-          be included in the baseline requirements in future versions of this Package. Earlier adoption by vendors is
-          encouraged. Otherwise, these are treated the same as optional requirements.
-        </h:li>
-      </h:ul>
-    </section>
-    
-    <section title="Compliant Targets of Evaluation" id="TOEdescription">The Target of Evaluation
-    (TOE) in this Package is a product which acts as an SSH client, SSH server, or both. This Package describes the extended security functionality of SSH in terms of 
-     <cite linkend="bibCC" />. 
+       
+    <section id="TOEdescription" title="Compliant Targets of Evaluation">
+	    The Target of Evaluation (TOE) in this Functional Package is a product which acts as an SSH client, SSH 
+	    server, or both. This FP describes the extended security functionality of SSH in terms of 
+     	    <cite linkend="bibCC" />. 
+      		<h:p/>
+     	The contents of this Functional Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
+     	selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
       <h:p/>
-     The contents of this Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
-     selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
-      <h:p/>
-     The PP or PP-Module that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
-     It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its Operational Environment.
+        The PP or PP-Module that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
+        It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its Operational Environment.
       <h:p/>
       <!-- SME: this table is not display properly (see its counterpart in the TLS Package for an example of what we were expecting -->
       <componentsneeded>
@@ -179,9 +94,9 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <componentneeded>
           <componentid>FCS_COP.1</componentid>
           <notes>
-            To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed) to specify AES with corresponding 
-            key sizes and modes, digital signature generation and verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message 
-            authentication function.
+            To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed)
+		  to specify AES with corresponding key sizes and modes, digital signature generation and verification function 
+		  (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message authentication function.
           </notes>
         </componentneeded>
         <!-- The components in the PP or PP-Module that need this SFR should require it;
@@ -224,15 +139,18 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   
   <chapter title="Conformance Claims" id="conf">
     <cclaims>
-      <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that package, the actual text "Conformance Statement" doesn't get displayed, which is what
-      we would expect should be happening here as well (it shows up right underneath the "Conformance Claimes" section header so it is redundant to display both the title and the almost-identical subtitle -->
+      <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that 
+	package, the actual text "Conformance Statement" doesn't get displayed, which is what
+      	we would expect should be happening here as well (it shows up right underneath the 
+	"Conformance Claimes" section header so it is redundant to display both the title and the
+ 	almost-identical subtitle -->
       <cclaim id="Conformance Statement">
-        <description>This Package serves to provide PPs and PP-Modules with additional 
+        <description>This Package serves to provide Protection Profiles with additional 
           SFRs and associated Evaluation Activities specific to SSH clients and servers.  
           <h:p/>
           This Package conforms to Common Criteria
           <cite linkend="bibCC" /> for Information Technology Security Evaluation, Version 3.1,
-          Revision 5. It is CC Part 2 extended.
+          Revision 5. It is CC Part 2 extended conformant.
           <h:p/>
           In accordance with CC Part 1, dependencies are not included when they are addressed
           by other SFRs. The evaluation activities provide adequate proof that any dependencies are
@@ -241,24 +159,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     </cclaims>
   </chapter>
 
-  
-  <!--  
-  <chapter title="Security Objectives" id="sobj">This Extended Package adds SFRs to objectives
-  identified in the base PP.
-  <section title="Security Objectives for the TOE" id="SecurityObjectivesTOE">
-    <SOs>
-      <SO id="O.PROTECTED_COMMS">
-        <description>To address both network eavesdropping and network attack threats concerning 
-          transmission of Enterprise and user data between the TOE and remote 
-          network entities.
-        </description>
-        <component-refer ref="fcs_ssh_ext.1" />
-      </SO>
-    </SOs>
-  </section>
-  </chapter>
-  -->
-  
+ 
   <chapter title="Security Requirements" id="req">This chapter describes the security requirements
   to be fulfilled by the product. Those requirements comprise functional components from Part 2 of 
   <cite linkend="bibCC" />. The following notations are used: 
@@ -276,11 +177,19 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <h:b>Iteration</h:b> operation: Identified with a slash followed by a unique text string (e.g.
         "/SSH").</h:li>
     </h:ul>
-  <section title="Security Functional Requirements" id="sfr">The SFRs
-  included in this section are derived from Part 2 of the Common Criteria for Information
-  Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
-  components. 
+	  
+  <section title="Security Functional Requirements" id="sfr">
+	  The SFRs included in this section are derived from Part 2 of the Common Criteria for Information
+  	Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
+  	components. 
   <subsection title="Cryptographic Support (FCS)" id="fcs">
+<!-- 
+	I don't understand why AES-CTR seems to be required here. According to the RFC, the only required
+	crypto-algorithm is 3DES-CBC--and we're certainly not supporting that.
+
+	Anyway, this FP can include only SSH  
+-->
+<!--
     <f-component id="fcs_cop.1/SSH" name="Cryptographic Operation (AES-CTR Encryption/Decryption for SSH)">
       <f-element id="fcs_cop.1.1/SSH">
         <title>The <h:b>SSH software shall <selectables>
@@ -290,13 +199,20 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           with a specified cryptographic algorithm [<h:i>AES-CTR (as defined in NIST SP 800-38A)
             mode</h:i>] and cryptographic key sizes [<h:i>128-bit, 256-bit</h:i>].
         </title>
-        <!-- SME: note that the key size here was previously a selection but FCS_SSHC_EXT.1.3 and FCS_SSHS_EXT.1.3 both mandate support for both aes128-ctr and aes256-ctr so there is no situation where a TOE could legitimately
+-->
+        <!-- SME: note that the key size here was previously a selection but FCS_SSHC_EXT.1.3 and FCS_SSHS_EXT.1.3 both mandate support
+ 	for both aes128-ctr and aes256-ctr so there is no situation where a TOE could legitimately
         only claim one of these --> 
-        
-        <note role="application">This Package may be used for a TOE that conforms to a PP that permits the TOE's use of platform cryptography (such as the Protection Profile for Application Software). In this case, the TOE may rely on its platform 
-          to provide the cryptographic functionality used to support the TOE's SSH function. If the SSH software does provide its own cryptography, the ST should indicate which cryptographic SFRs from its claimed PP are used to implement SSH functionality.
+<!--         
+        <note role="application">This Package may be used for a TOE that conforms to a PP that permits the TOE's use of platform
+		cryptography (such as the Protection Profile for Application Software). In this case, the TOE may rely on its 
+		platform to provide the cryptographic functionality used to support the TOE's SSH function. If the SSH software does 
+		provide its own cryptography, the ST should indicate which cryptographic SFRs from its claimed PP are used to implement
+		SSH functionality.
         </note>
+-->
         <!-- SME: for all cases where we used the TSS/Guidance/Tests tags under aactivity, those headings are not showing up in the evaluation activities, as they do with the TLS Package -->
+<!--	
         <aactivity>
           <TSS>
           The evaluator shall examine the TSS to verify that it describes whether the TSF or TOE platform is responsible for the implementation of  
@@ -410,8 +326,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </aactivity>
       </f-element>
     </f-component>
-    <f-component id="fcs_ssh_ext.1" name="SSH Protocol">
-	<f-element id="fcs_ssh_ext.1.1">
+-->
+	
+    <f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
+	<f-element id="fcs-ssh-ext-1e1">
         <title>The SSH software shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
         4254 and 
         <selectables>
@@ -423,55 +341,65 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           <selectable>no other RFCs</selectable>
         </selectables> as a 
 		<selectables>
-		  <selectable>client</selectable>
-		  <selectable>server</selectable>
+		  <selectable id="ssh-client">client</selectable>
+		  <selectable id="ssh-server">server</selectable>
 		</selectables>.
 		</title>
-        <note role="application">The ST author selects which of the additional RFCs to which
-        conformance is being claimed. An SSH product can implement additional RFCs, but only those
-        listed in the selection can be claimed as conformant under CC. 
-        The RFC selections for this requirement need to be consistent with selections in
-        later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
+        <note role="application">
+		The ST author selects which of the additional RFCs to which
+        	conformance is being claimed. An SSH product can implement additional RFCs, but only those
+        	listed in the selection can be claimed as conformant under CC. 
+        	The RFC selections for this requirement need to be consistent with selections in
+        	later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
         <h:p/>
-        RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
-        Internet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
-        be enabled for use. For the purposes of this SFR's evaluation activity and this Functional Package
-        overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
-        but not listed in later elements of this Functional Package are actually implemented.
+        	RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
+        	Internet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
+        	be enabled for use. For the purposes of this SFR's evaluation activity and this Functional Package
+        	overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
+        	but not listed in later elements of this Functional Package are actually implemented.
         <h:p/>
-         RFC 5647 applies when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as an encryption algorithm in FCS_SSHC_EXT.1.3 or FCS_SSHS_EXT.1.3 and as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5. 
+         	RFC 5647 applies when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as an encryption algorithm in
+		FCS_SSHC_EXT.1.3 or FCS_SSHS_EXT.1.3 and as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5. 
           <h:p/>
-          RFC 5656 applies when ecdsa-sha2-nistp256 or ecdsa-sha2-nistp384 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or ecdh-sha2-nistp521 is selected as a key exchange 
-          algorithm in FCS_SSHC_EXT.1.6 or FCS_SSHS_EXT.1.6.
+          	RFC 5656 applies when ecdsa-sha2-nistp256 or ecdsa-sha2-nistp384 is selected as a public key algorithm
+		in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or 
+		ecdh-sha2-nistp521 is selected as a key exchange algorithm in FCS_SSHC_EXT.1.6 or FCS_SSHS_EXT.1.6.
           <h:p/>
-          RFC 6187 applies when x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
+          	RFC 6187 applies when x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 is selected as a public key 
+		algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
           <h:p/>
-          RFC 6668 applies when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5.
+          	RFC 6668 applies when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or
+		FCS_SSHS_EXT.1.5.
           <h:p/>
-          RFC 8332 applies when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
+          	RFC 8332 applies when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in
+		FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
           <h:p/>
-        If "client" is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHC_EXT.1" />.
+        	If "client" is selected, then the ST must include the requirements from
+		<linkref linkend="FCS_SSHC_EXT.1" />.
         <h:p/>
-        If "server" is selected, then the ST must include the requirements from <linkref linkend="FCS_SSHS_EXT.1" />.
+        	If "server" is selected, then the ST must include the requirements from 
+		<linkref linkend="FCS_SSHS_EXT.1" />.
 	</note>
         <aactivity>
-          <TSS>The evaluator shall ensure that the selections indicated in the ST are 
-	consistent with selections in the dependent components.
+          <TSS>
+		The evaluator shall ensure that the selections indicated in the ST are 
+		consistent with selections in the dependent components.
           </TSS>
           <Guidance>
-            There are no guidance evaluation activities for this component.
+          	There are no guidance evaluation activities for this component.
           </Guidance>
           <Tests>
-            There are no test evaluation activities for this component.
+          	There are no test evaluation activities for this component.
           </Tests>
         </aactivity>
       </f-element>
+	<audit-event />
       </f-component>
 
-      <f-component id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-      <selection-depends req="fcs_ssh_ext.1.1" ids="client"/>
-        
-      <f-element id="fcs_sshc_ext.1.1">
+      <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
+      <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-client"/>
+       
+      <f-element id="fcs-sshc-ext-1e1">
         <title>The SSH client shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based and
           <selectables>
@@ -481,14 +409,15 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </title>
         <aactivity>
         <TSS>
-        The evaluator shall check to ensure that the TSS contains a description of the
-        public key algorithms that are acceptable for use for authentication and that this list
-        conforms to 
-          <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
-          methods are described, if supported.
+	        The evaluator shall check to ensure that the TSS contains a description of the
+        	public key algorithms that are acceptable for use for authentication and that this list
+        	conforms to <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that 
+		password-based authentication methods are described, if supported.
         </TSS>
           <Guidance>
-            If the SSH client supports password-based authentication, the evaluator shall examine the guidance to determine that it includes instructions on how to configure whether the TSF uses password-based or public key-based authentication.
+            If the SSH client supports password-based authentication, the evaluator shall examine the guidance to determine
+		  that it includes instructions on how to configure whether the TSF uses password-based or public key-based
+		  authentication.
           </Guidance>
           <Tests>
         <testlist>
@@ -504,14 +433,16 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.2">
+      <f-element id="fcs-sshc-ext-1e2">
         <title>The SSH client shall ensure that, as described in RFC 4253, packets greater than 
         <assignable>number of bytes</assignable> bytes in an SSH transport connection are
         dropped.</title>
-        <note role="application">RFC 4253 provides for the acceptance of “large packets” with the
-        caveat that the packets should be of “reasonable length” or dropped. The assignment should
-        be filled in by the ST author with the maximum packet size accepted, thus defining
-        “reasonable length” for the TOE.</note>
+        <note role="application">
+		RFC 4253 provides for the acceptance of “large packets” with the
+        	caveat that the packets should be of “reasonable length” or dropped. The assignment should
+        	be filled in by the ST author with the maximum packet size accepted, thus defining
+        	“reasonable length” for the TOE.
+	      </note>
         <aactivity>
           <TSS>
             The evaluator shall check that the TSS describes how “large packets” in terms of RFC 4253 are detected and handled.
@@ -530,7 +461,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.3">
+      <f-element id="fcs-sshc-ext-1e3">
         <title>The SSH client shall ensure that the SSH transport implementation uses the following
         encryption algorithms and rejects all other encryption algorithms: aes128-ctr, aes256-ctr, 
         <selectables>
@@ -574,9 +505,10 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </aactivity>
       </f-element>
         
-        <!-- SME: the NDcPP also defines aes128-gcm@openssh.com and aes256-gcm@openssh.com for FCS_SSHC_EXT.1.4 and FCS_SSHS_EXT.1.4. Should those be added to this Package as well? If so, the selection "implicit" must also be added
-        to FCS_SSHC_EXT.1.6 and FCS_SSHS_EXT.1.6 -->
-      <f-element id="fcs_sshc_ext.1.4">
+        <!-- SME: the NDcPP also defines aes128-gcm@openssh.com and aes256-gcm@openssh.com for FCS_SSHC_EXT.1.4 and 
+	FCS_SSHS_EXT.1.4. Should those be added to this Package as well? If so, the selection "implicit" must also be
+ 	added to FCS_SSHC_EXT.1.6 and FCS_SSHS_EXT.1.6 -->
+      <f-element id="fcs-sshc-ext-1e4">
         <title>The SSH client shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>ssh-rsa</selectable>
@@ -633,7 +565,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.5">
+      <f-element id="fcs-sshc-ext-1e5">
         <title>The SSH client shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>hmac-sha1</selectable>
@@ -682,7 +614,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.6">
+      <f-element id="fcs-sshc-ext-1e6">
         <title>The SSH client shall ensure that 
           <selectables>
             <selectable>diffie-hellman-group14-sha1</selectable>
@@ -715,7 +647,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.7">
+      <f-element id="fcs-sshc-ext-1e7">
         <title>The SSH client shall ensure that the SSH connection be rekeyed after 
           <selectables>
             <selectable>no more than 2<h:sup>28</h:sup> packets have been transmitted</selectable>
@@ -742,7 +674,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshc_ext.1.8">
+      <f-element id="fcs-sshc-ext-1e8">
           <title>The SSH client shall ensure that the SSH client authenticates the identity of the SSH server
             using a local database associating each host name with its corresponding public key or 
             <selectables>
@@ -780,12 +712,13 @@ xmlns:h="http://www.w3.org/1999/xhtml">
               </Tests>
           </aactivity>
        </f-element>
+       <audit-event />
       </f-component>
 
-    <f-component id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
-      <selection-depends req="fcs_ssh_ext.1.1" ids="server"/>
+    <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
+      <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-server"/>
       
-      <f-element id="fcs_sshs_ext.1.1"> 
+      <f-element id="fcs-sshs-ext-1e1"> 
         <title>The SSH server shall ensure that the SSH protocol implementation supports the following
         authentication methods as described in RFC 4252: public key-based and
           <selectables>
@@ -830,7 +763,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.2">
+      <f-element id="fcs-sshs-ext-1e2">
         <title>The SSH server shall ensure that, as described in RFC 4253, packets greater than 
         <assignable>number of bytes</assignable> bytes in an SSH transport connection are
         dropped.</title>
@@ -856,7 +789,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.3">
+      <f-element id="fcs-sshs-ext-1e3">
         <title>The SSH server shall ensure that the SSH transport implementation uses the following
           encryption algorithms and rejects all other encryption algorithms: aes128-ctr, 
           aes256-ctr, <selectables>
@@ -900,7 +833,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.4">
+      <f-element id="fcs-sshs-ext-1e4">
         <title>The SSH server shall ensure that the SSH transport implementation uses 
           <selectables>
             <selectable>ssh-rsa</selectable>
@@ -958,7 +891,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.5">
+      <f-element id="fcs-sshs-ext-1e5">
         <title>The SSH server shall ensure that the SSH transport implementation uses 
         <selectables>
           <selectable>hmac-sha1</selectable>
@@ -1010,7 +943,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.6">
+      <f-element id="fcs-sshs-ext-1e6">
         <title>The SSH server shall ensure that 
         <selectables>
           <selectable>diffie-hellman-group14-sha1</selectable>
@@ -1046,7 +979,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
-      <f-element id="fcs_sshs_ext.1.7">
+      <f-element id="fcs-sshs-ext-1e7">
         <title>The SSH server shall ensure that the SSH connection be rekeyed after 
           <selectables>
             <selectable>no more than 2<h:sup>28</h:sup> packets have been transmitted</selectable>
@@ -1071,6 +1004,7 @@ xmlns:h="http://www.w3.org/1999/xhtml">
           </Tests>
         </aactivity>
       </f-element>
+	<audit-event/>
     </f-component>
   </subsection></section></chapter>
   
@@ -1102,6 +1036,26 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <h:br />None exists presently.
   </appendix> -->
   
+    <appendix id="appendix-optional-plus" title="Optional Requirements">  
+
+    <!-- Contents of the appendix are totally generated by "optional-appendix" xsl template. 
+         Includes boilerplate, headers, audit table. So the below is not needed. But there is is. -->
+    <!--    <audit-table table="optional">
+	  Auditable events for Optional SFRs:<h:br/><h:br/>
+	</audit-table>  -->
+    </appendix> 
+
+    <!-- Appendix B: Selection-Based -->
+    <appendix id="appendix-sel-based" title="Selection-Based Requirements"> 
+       
+    <!-- Contents of the appendix are totally generated by "optional-appendix" xsl template. 
+         Includes boilerplate, headers, audit table. So the below is not needed. But there is is. -->
+    <!--    <audit-table table="sel-based">
+	  Auditable events for Selecton-based Requirements:	
+	</audit-table>   -->
+    </appendix> 
+	
+<!--
   <appendix title="Optional Requirements" id="optional">
     There are currently no Optional Requirements in this Package.
   </appendix>
@@ -1109,7 +1063,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <appendix title="Selection-Based Requirements" id="sel-based">As indicated in the introduction to this Package, 
     this appendix lists requirements that are activated based on selections made in the PP, PP-Module, or ST, or in other portions of this Package itself.
 </appendix>
-  
+-->
+
  <!-- <appendix title="Objective Requirements" id="objective">This Annex includes requirements that
   specify security functionality which also addresses threats. The requirements are not currently
   mandated in the body of this 
@@ -1119,14 +1074,14 @@ xmlns:h="http://www.w3.org/1999/xhtml">
   <abbr linkend="EP" />, and it is expected that they be included as soon as possible.
   <h:br/>None exists presently.</appendix> -->
   
-  
+<!--  
   <appendix title="Objective Requirements" id="objective">This appendix includes requirements that
     specify security functionality which also addresses threats. The requirements are not currently
     mandated in the body of this Package as they describe security functionality not yet widely-available
     in commercial technology. However, these requirements may be included in the ST such that the
     product is still conformant to this Package, and it is expected that they be included as soon as
     possible. </appendix>
-  
+-->
   
   <appendix id="biblio" title="References">
     <bibliography>
@@ -1177,6 +1132,11 @@ xmlns:h="http://www.w3.org/1999/xhtml">
     </bibliography>
   </appendix>
   
+  <appendix id="acro" title="Acronyms">
+      <acronyms/>
+  </appendix>
+
+<!--
   <appendix title="Acronyms" id="acronyms">
     <acronyms>
       <entry>
@@ -1263,7 +1223,8 @@ xmlns:h="http://www.w3.org/1999/xhtml">
         <term>TSS</term>
         <description>TOE Summary Specification</description>
       </entry>
-
     </acronyms>
   </appendix>
+-->
+
 </PP>
