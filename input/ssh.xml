@@ -40,10 +40,12 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
     </entry>
   </RevisionHistory>
   
+<!-- 			-->
 <!-- Introduction    	-->
 <!-- 			-->
 <chapter title="Introduction" id="int">
 	
+<!-- 			-->
 <!-- Overview		-->
 <!--			-->
   <section title="Overview" id="ppoverview">
@@ -55,6 +57,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
       	intended to improve the security of products by enabling their evaluation.
    </section>
 
+<!-- 			-->
 <!-- Tech terms		-->
 <!--			-->
    <tech-terms>
@@ -62,19 +65,11 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 		   on remote systems.</term>
    </tech-terms>
 	
+<!-- 			-->
 <!-- CC Terms 		-->
 <!--			-->
-        <!-- SME: this table is not rendering the same way as the one above, they should look the same and it's not clear why they don't -->
-        <glossary>
-          <entry>
-            <term>
-              <abbr title="Secure Shell">SSH</abbr>
-            </term>
-            <description>Cryptographic network protocol for initiating text-based shell sessions on remote systems.
-            </description>
-          </entry>
-        </glossary>
        
+<!-- 			-->
 <!-- Compliant Targets of Evaluation	-->
 <!--					-->
     <section id="TOEdescription" title="Compliant Targets of Evaluation">
@@ -146,7 +141,10 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
     </section>
   </chapter>
   
-  <chapter title="Conformance Claims" id="conf">
+<!-- 			-->
+<!-- Conformance Claims	-->
+<!--			-->
+  <chapter title="Conformance Claims" id="cclaims">
     <cclaims>
       <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that 
 	package, the actual text "Conformance Statement" doesn't get displayed, which is what
@@ -168,10 +166,12 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
     </cclaims>
   </chapter>
 
- 
-  <chapter title="Security Requirements" id="req">This chapter describes the security requirements
-  to be fulfilled by the product. Those requirements comprise functional components from Part 2 of 
-  <cite linkend="bibCC" />. The following notations are used: 
+<!-- 				-->
+<!-- Security Requirements 	-->
+<!--				-->
+<chapter title="Security Requirements" id="req">
+	This chapter describes the security requirements to be fulfilled by the product. Those requirements comprise
+	functional components from Part 2 of <cite linkend="bibCC" />. The following notations are used: 
     <h:ul>
       <h:li>
         <h:b>Refinement</h:b> operation (denoted by <h:b>bold text</h:b>): Used to add details to a
@@ -187,17 +187,25 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         "/SSH").</h:li>
     </h:ul>
 	  
-  <section title="Security Functional Requirements" id="sfr">
-	  The SFRs included in this section are derived from Part 2 of the Common Criteria for Information
+<!-- 			-->
+<!-- Security Functional Requirements 	-->
+<!--			-->
+  <section title="Security Functional Requirements" id="SFRs">
+	The SFRs included in this section are derived from Part 2 of the Common Criteria for Information
   	Technology Security Evaluation, Version 3.1, Revision 5, with additional extended functional
-  	components. 
-  <subsection title="Cryptographic Support (FCS)" id="fcs">
+  	components.
+	  
+<!-- 			-->
+<!-- FCS: Cryptgraphic Support	-->
+<!--			-->
+<subsection title="Cryptographic Support (FCS)" id="fcs">
 <!-- 
 	I don't understand why AES-CTR seems to be required here. According to the RFC, the only required
 	crypto-algorithm is 3DES-CBC -and we're certainly not supporting that.
 
-	Anyway, this FP can include only SSH  
+	Anyway, this FP can include only SSH SFRs, so I'm cutting it. 
 -->
+
 <!--
     <f-component id="fcs_cop.1/SSH" name="Cryptographic Operation (AES-CTR Encryption/Decryption for SSH)">
       <f-element id="fcs_cop.1.1/SSH">
@@ -336,7 +344,10 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
       </f-element>
     </f-component>
 -->
-	
+
+<!-- 			-->
+<!-- FCS_SSH_EXT.1	-->
+<!--			-->	
     <f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
 	<f-element id="fcs-ssh-ext-1e1">
         <title>The SSH software shall implement the SSH protocol that complies with RFCs 4251, 4252, 4253,
@@ -405,6 +416,9 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 	<audit-event />
       </f-component>
 
+<!-- 			-->
+<!-- FCS_SSHC_EXT.1	-->
+<!--			-->	
       <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
       <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-client"/>
        
@@ -724,6 +738,9 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
        <audit-event />
       </f-component>
 
+<!-- 			-->
+<!-- FCS_SSHS_EXT.1	-->
+<!--			-->	
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
       <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-server"/>
       
@@ -817,7 +834,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         </note>
         <aactivity>
           <TSS>
- The evaluator shall check the description of the implementation of this protocol
+ 	The evaluator shall check the description of the implementation of this protocol
         in the TSS to ensure that it specifies the supported encryption algorithms and any optional characteristics. 
         The evaluator shall also check the TSS to ensure that
         the encryption algorithms specified are identical to those listed for this element.
@@ -1141,7 +1158,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
     </bibliography>
   </appendix>
   
-  <appendix id="acro" title="Acronyms">
+  <appendix id="acronyms" title="Acronyms">
       <acronyms/>
   </appendix>
 
