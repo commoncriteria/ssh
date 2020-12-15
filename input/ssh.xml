@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="SSH"
-xmlns:h="http://www.w3.org/1999/xhtml" type="package">
+xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 
 <!--
   <PPReference title="PP Reference" id="ID006">
@@ -40,7 +40,12 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package">
     </entry>
   </RevisionHistory>
   
+<!-- Introduction    	-->
+<!-- 			-->
 <chapter title="Introduction" id="int">
+	
+<!-- Overview		-->
+<!--			-->
   <section title="Overview" id="ppoverview">
 	    Secure Shell (SSH) is a protocol for secure remote login and other secure network services over
 	    an untrusted network. SSH software can act as a client, server, or both.
@@ -50,11 +55,15 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package">
       	intended to improve the security of products by enabling their evaluation.
    </section>
 
+<!-- Tech terms		-->
+<!--			-->
    <tech-terms>
 	   <term abbr="SSH" full="Secure Shell">Cryptographic network protocol for initiating text-based shell sessions
 		   on remote systems.</term>
-   </tech-terms>		   
-        
+   </tech-terms>
+	
+<!-- CC Terms 		-->
+<!--			-->
         <!-- SME: this table is not rendering the same way as the one above, they should look the same and it's not clear why they don't -->
         <glossary>
           <entry>
@@ -68,6 +77,8 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package">
       </subsection>
     </section>
        
+<!-- Compliant Targets of Evaluation	-->
+<!--					-->
     <section id="TOEdescription" title="Compliant Targets of Evaluation">
 	    The Target of Evaluation (TOE) in this Functional Package is a product which acts as an SSH client, SSH 
 	    server, or both. This FP describes the extended security functionality of SSH in terms of 
