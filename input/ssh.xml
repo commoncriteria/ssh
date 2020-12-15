@@ -194,7 +194,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
   <subsection title="Cryptographic Support (FCS)" id="fcs">
 <!-- 
 	I don't understand why AES-CTR seems to be required here. According to the RFC, the only required
-	crypto-algorithm is 3DES-CBC--and we're certainly not supporting that.
+	crypto-algorithm is 3DES-CBC -and we're certainly not supporting that.
 
 	Anyway, this FP can include only SSH  
 -->
