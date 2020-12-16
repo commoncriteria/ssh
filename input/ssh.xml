@@ -171,7 +171,8 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 
 <!-- Audit table for mandatory requirements  -->
   <subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-	 Can I put text here?
+     The auditable events in <ctr-ref ref-id="atref-mandatory"/> and <ctr-ref ref-id="atref-sel-based"/> are included in a Security Target 
+	  if the base PP supports audit event reporting through FAU_GEN.1 and any other criteria in the base PP are met. 
      <audit-table table="mandatory">
 	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
      </audit-table>
