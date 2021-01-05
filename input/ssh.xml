@@ -37,7 +37,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
     <entry>
       <version>1.0</version>
       <date>2021-01-05</date>
-      <subject>First publication as a Functional Package</subject>
+      <subject>DRAFT: First publication as a Functional Package</subject>
     </entry>
   </RevisionHistory>
 	
@@ -110,7 +110,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
             To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed)
 		  to specify AES with corresponding key sizes and modes, digital signature generation and verification function 
 		  (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message authentication function.
-		  In particular, the PP or PP-Module must support AES-CTR as defined in NIST SP 800-38A with key sizes of 128 or 256 bits.
+		  In particular, the PP or PP-Module must support AES-CTR as defined in NIST SP 800-38A with key sizes of both 128 and 256 bits.
           </notes>
         </componentneeded>
         <!-- The components in the PP or PP-Module that need this SFR should require it;
@@ -188,7 +188,8 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 <!-- Audit table for mandatory requirements  -->
   <subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
      The auditable events in <ctr-ref ref-id="atref-mandatory"/> and <ctr-ref ref-id="atref-sel-based"/> are included in a Security Target 
-	  if the base PP supports audit event reporting through FAU_GEN.1 and any other criteria in the base PP are met. 
+	  if the incorporating PP or PP-Module supports audit event reporting through FAU_GEN.1 and any other criteria in the incorporating
+	  PP or PP-Module are met. <h:p/>
      <audit-table table="mandatory">
 	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
      </audit-table>
@@ -622,16 +623,16 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
        </f-element>
        <audit-event type="optional">
 		<audit-event-descr>Failure to establish a session</audit-event-descr>
-	       	<audit-event-info>Reason for failure</audit-event-info>
-	       	<audit-event-info>Non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Reason for failure.</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of attempted connection (IP Address).</audit-event-info>
        </audit-event>
        <audit-event type="optional">
 		<audit-event-descr>Establishment of a session</audit-event-descr>
-	       	<audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
        <audit-event type="optional">
 		<audit-event-descr>Termination of a session</audit-event-descr>
-	       	<audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
       </f-component>
 
@@ -946,16 +947,16 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
       </f-element>
        <audit-event type="optional">
 		<audit-event-descr>Failure to establish a session</audit-event-descr>
-	       	<audit-event-info>Reason for failure</audit-event-info>
-	       	<audit-event-info>Non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Reason for failure.</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of attempted connection (IP Address).</audit-event-info>
        </audit-event>
        <audit-event type="optional">
 		<audit-event-descr>Establishment of a session</audit-event-descr>
-	       	<audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
        <audit-event type="optional">
 		<audit-event-descr>Termination of a session</audit-event-descr>
-	       	<audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
     </f-component>
   </subsection>
