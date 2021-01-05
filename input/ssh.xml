@@ -17,8 +17,8 @@
 	- Incorporated TD0420
 	- Incorporated TD0446
 	- Added audit events covering those specified in NDcPP and a couple of the ESM PPs. These are presented as optional, and can be
-		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).
--->
+		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).   
+-->  
 
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
 xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
