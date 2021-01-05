@@ -719,7 +719,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           aes256-ctr, <selectables>
             <selectable id="sel-sshs-aes128-cbc">aes128-cbc</selectable>
             <selectable id="sel-sshs-aes256-cbc">aes256-cbc</selectable>
-            <selectable id="sel-sshs-aes256-gcm">AEAD_AES_128_GCM</selectable>
+            <selectable id="sel-sshs-aes128-gcm">AEAD_AES_128_GCM</selectable>
             <selectable id="sel-sshs-aes256-gcm">AEAD_AES_256_GCM</selectable>
             <selectable id="sel-sshs-aes128-gcm-openssl">aes128-gcm@openssh.com</selectable>	
             <selectable id="sel-sshs-aes256-gcm-openssl">aes256-gcm@openssh.com</selectable>	
