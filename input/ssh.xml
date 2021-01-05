@@ -5,6 +5,21 @@
 <?xml-model href="CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>    
 -->
 
+<!-- 
+	This update turns the SSH Extended Package into a Functional Package. 
+
+	Significant changes:
+
+	- Removed FCS_COP and required that the PP or PP-Module that includes the package support the required algorithms. This effectively 
+		eliminated the need for TD0240.
+	- Incorporated TD0331
+	- Incorporated TD0332
+	- Incorporated TD0420
+	- Incorporated TD0446
+	- Added audit events covering those specified in NDcPP and a couple of the ESM PPs. These are presented as optional, and can be
+		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).
+-->
+
 <PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
 xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 
@@ -21,7 +36,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
   <RevisionHistory>
     <entry>
       <version>1.0</version>
-      <date>2020-12-14</date>
+      <date>2021-01-05</date>
       <subject>First publication as a Functional Package</subject>
     </entry>
   </RevisionHistory>
@@ -31,13 +46,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
     	<audit-events-in-sfrs/>
     </pp-preferences>
-	
-<!--  Note: A couple ESM PPs an d NDcPP have defined audit events for SSH requirements. 
-	Those events are included in the Package, but shoudl be considered optional.
-	First, they need to be included (probably via selection) in the base PP. 
-	Second, they are optional as listed here.
--->	
-	
+
 	
 <!-- 			-->
 <!-- 1.0 Introduction   -->
@@ -297,7 +306,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 	        The evaluator shall check to ensure that the TSS contains a description of the
         	public key algorithms that are acceptable for use for authentication and that this list
         	conforms to <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that 
-		password-based authentication methods are described, if supported.
+		password-based authentication methods, if supported, are described.
         </TSS>
           <Guidance>
             If the SSH client supports password-based authentication, the evaluator shall examine the guidance to determine
@@ -310,7 +319,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           supports the use of that public key algorithm to authenticate a user connection to an SSH
           server. Any configuration activities required to support this test shall be performed
           according to instructions in the guidance documentation.</test>
-          <test>[Conditional: TOE supports password-based authentication] Using the guidance documentation, the evaluator 
+		<test>[<h:u>conditional</h:u>]: TOE supports password-based authentication] Using the guidance documentation, the evaluator 
 		  shall configure the TOE to perform password-based authentication to an SSH server, and demonstrate that
 		  a user can be successfully authenticated by the TOE to an SSH server using a password as an authenticator.
 		</test>
@@ -354,6 +363,8 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           <selectable id="sel-sshc-aes256-cbc">aes256-cbc</selectable>
           <selectable id="sel-sshc-aes128-gcm">AEAD_AES_128_GCM</selectable>
           <selectable id="sel-sshc-aes256-gcm">AEAD_AES_256_GCM</selectable>
+          <selectable id="sel-aes128-gcm-openssh">aes128@openssh.com</selectable>
+          <selectable id="sel-aes256-gcm-openssh">aes256@openssh.com</selectable>
           <selectable>no other algorithms</selectable>
         </selectables>.
         </title>
@@ -361,8 +372,12 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
         AEAD_AES_256_GCM can only be chosen as encryption algorithms when the same algorithm is
         being used as the MAC algorithm.
-        If AES-GCM is selected,
-        there should be corresponding FCS_COP entries in the ST.</note>
+        <h:p/>If AES-GCM is selected, there should be corresponding FCS_COP entries in the ST.
+	<h:p/>RFC 5647 applies only to the RFC-compliant implementation of GCM. A TOE that
+		implements only the “@openssh.com” variant of GCM should not select 5647-compliant 
+		algorithms in FCS_SSHC_EXT.1.1. aes*-gcm@openssh.com is specified in Section 1.6 of the 
+		OpenSSH Protocol Specification (https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31).      
+	</note>
         <aactivity>
           <TSS>
           The evaluator shall check the description of the implementation of this protocol
@@ -413,8 +428,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         recommended in NIST SP 800-131A. 
         
         <!-- SME: should this statement be kept as-is, withdrawn, or incorporated into the SFR? -->
-        Future versions of this document may remove ssh-rsa as a
-        selection. 
+        Future versions of this document may remove ssh-rsa as a selection. 
         
         If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
         the list of trusted certification authorities must be selected in 
@@ -461,6 +475,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         <selectables>
           <selectable id="sel-sshc-mac-aes128-gcm">AEAD_AES_128_GCM</selectable>
           <selectable id="sel-sshc-mac-aes256-gcm">AEAD_AES_256_GCM</selectable>
+          <selectable id="sel-sshc-implicit">implicit</selectable>		
           <selectable>no other MAC algorithms</selectable>
         </selectables> as its data integrity MAC algorithm(s) and rejects all other MAC
         algorithm(s).</title>
@@ -472,6 +487,11 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         <h:p/>
         The SFRs for cryptographic operations, encryption, and hashing are inherited from  
         the PP or PP-Module that includes this Package.
+	<h:p/>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected 
+		as an encryption algorithm. When aes*-gcm@openssh.com is negotiated as the encryption 
+		algorithm, the MAC algorithm field is ignored and GCM is implicitly used as the MAC. 
+		“implicit” is not an SSH algorithm identifier and will not be seen on the wire; 
+		however, the negotiated MAC might be decoded as “implicit”.
         </note>
         <aactivity>
           <TSS>
@@ -494,7 +514,9 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           attempt fails.</test>
           <test>The evaluator shall configure an SSH server to only allow the hmac-md5 MAC
           algorithm. The evaluator shall attempt to connect from the TOE to the SSH server and
-          observe that the attempt fails.</test>
+          observe that the attempt fails. To ensure the proposed MAC algorithm is used, the evaluator 
+		shall ensure a non-aes*- gcm@openssh.com encryption algorithm is negotiated while 
+		performing this test.</test>
         </testlist>
           </Tests>
         </aactivity>
@@ -633,7 +655,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         public key algorithms that are acceptable for use for authentication and that this list
         conforms to 
         <linkref linkend="FCS_SSHS_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
-        methods are described, if supported.
+        methods, if supported, are described.
           </TSS>
           <Guidance>
             If the SSH server supports password-based authentication, the evaluator shall examine the guidance to determine that it includes instructions on how to configure whether the TSF uses password-based or public key-based authentication.
@@ -652,11 +674,11 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           evaluator shall use an SSH client to attempt to connect to the TOE with the
           new key pair and demonstrate that authentication fails.
           </test>
-          <test>[Conditional: TOE supports password-based authentication] Using the guidance documentation, the evaluator shall configure the TOE to perform
+		<test>[<h:u>conditional</h:u>]: TOE supports password-based authentication] Using the guidance documentation, the evaluator shall configure the TOE to perform
           password-based authentication on a client and demonstrate that a user can be
           successfully authenticated by the TOE using a password as an authenticator.</test>
           <test>
-            [Conditional: TOE supports password-based authentication] The evaluator shall use an SSH client to enter an incorrect password to
+            [<h:u>conditional</h:u>]: TOE supports password-based authentication] The evaluator shall use an SSH client to enter an incorrect password to
             attempt to authenticate to the TOE and demonstrate that the authentication
             fails.
           </test>
@@ -698,6 +720,8 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
             <selectable id="sel-sshs-aes256-cbc">aes256-cbc</selectable>
             <selectable id="sel-sshs-aes256-gcm">AEAD_AES_128_GCM</selectable>
             <selectable id="sel-sshs-aes256-gcm">AEAD_AES_256_GCM</selectable>
+            <selectable id="sel-sshs-aes128-gcm-openssl">aes128-gcm@openssh.com</selectable>	
+            <selectable id="sel-sshs-aes256-gcm-openssl">aes256-gcm@openssh.com</selectable>	
             <selectable>no other algorithms</selectable>
           </selectables>.
         </title>
@@ -706,6 +730,10 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
           AEAD_AES_256_GCM can only be chosen as encryption algorithms when the same
           algorithm is being used as the MAC algorithm.
+	  <h:p/>RFC 5647 applies only to the RFC compliant implementation of GCM. A TOE that  
+		implements only the “@openssh.com” variant of GCM should not select 5647-compliant 
+		algorithms in FCS_SSHS_EXT.1.1. aes*-gcm@openssh.com is specified in Section 1.6 of the 
+		OpenSSH Protocol Specification (https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31).
         </note>
         <aactivity>
           <TSS>
@@ -757,8 +785,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           digital signature generation for SSH authentication as is recommended in NIST SP 800-131A. 
           
           <!-- SME: should this statement be kept as-is, withdrawn, or incorporated into the SFR? -->
-          Future versions of this document may remove ssh-rsa as a
-          selection.  
+          Future versions of this document may remove ssh-rsa as a selection.  
           
           RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
           <h:p/>
@@ -804,6 +831,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         <selectables>
           <selectable id="sel-sshs-mac-aes128-gcm">AEAD_AES_128_GCM</selectable>
           <selectable id="sel-sshs-mac-aes256-gcm">AEAD_AES_256_GCM</selectable>
+          <selectable id="sel-sshs-implicit">implicit</selectable>		
           <selectable>no other MAC algorithms</selectable>
         </selectables>
         as its MAC algorithm(s) and rejects all
@@ -816,6 +844,11 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           in SSH.
           <h:p/>
           The SFRs for cryptographic operations, encryption and hashing, are inherited from the PP or PP-Module that includes this Package.
+	  <h:p/>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected as an 
+		encryption algorithm. When aes*-gcm@openssh.com is negotiated as the encryption
+		algorithm, the MAC algorithm field is ignored and GCM is implicitly used as the MAC.
+		“implicit” is not an SSH algorithm identifier and will not be seen on the wire; however,
+		the negotiated MAC might be decoded as “implicit”.	
         </note>
         <aactivity>
           <TSS>
@@ -839,7 +872,10 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           observe that the attempt fails.</test>
           <test>The evaluator shall configure an SSH client to only propose the hmac-md5 MAC
           algorithm. Using this client, the evaluator shall attempt to connect to the TOE and
-          observe that the attempt fails.</test>
+          observe that the attempt fails. To ensure the proposed MAC algorithm is used, the
+		  evaluator shall ensure a non-aes*- gcm@openssh.com encryption algorithm is negotiated 
+		  while performing this test.
+		</test>
         </testlist>
           </Tests>
         </aactivity>
