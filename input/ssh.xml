@@ -28,7 +28,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2020-12-14</PPPubDate>
+      <PPPubDate>2020-01-05</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
