@@ -188,9 +188,11 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 
 <!-- Audit table for mandatory requirements  -->
   <subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
-     The auditable events specified in this Package are included in a Security Target 
-	  if the incorporating PP or PP-Module supports audit event reporting through FAU_GEN.1 and all other criteria in the incorporating
-	  PP or PP-Module are met. <h:p/>
+     <h:p>
+		 The auditable events specified in this Package are included in a Security Target 
+	     if the incorporating PP or PP-Module supports audit event reporting through FAU_GEN.1
+		 and all other criteria in the incorporating PP or PP-Module are met.
+	 </h:p>
      <audit-table table="mandatory">
 	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
      </audit-table>
