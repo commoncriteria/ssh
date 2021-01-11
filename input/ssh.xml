@@ -271,9 +271,9 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           	RFC 8332 must be selected when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in
 		FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
           <h:p/>
-        	If "client" is selected, then the ST must include <linkref linkend="FCS_SSHC_EXT.1" />.
+        	If "client" is selected, then the ST must include FCS_SSHC_EXT.1.
         <h:p/>
-        	If "server" is selected, then the ST must include <linkref linkend="FCS_SSHS_EXT.1" />.
+        	If "server" is selected, then the ST must include FCS_SSHS_EXT.1.
 	</note>
         <aactivity>
           <TSS>
@@ -309,7 +309,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         <TSS>
 	        The evaluator shall check to ensure that the TSS contains a description of the
         	public key algorithms that are acceptable for use for authentication and that this list
-        	conforms to <linkref linkend="FCS_SSHC_EXT.1.4" />. The evaluator shall also ensure that 
+        	conforms to FCS_SSHC_EXT.1.4. The evaluator shall also ensure that 
 		password-based authentication methods, if supported, are described.
         </TSS>
           <Guidance>
@@ -436,7 +436,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
         
         If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
         the list of trusted certification authorities must be selected in 
-        <linkref linkend="FCS_SSHC_EXT.1.8" />. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
+        FCS_SSHC_EXT.1.8. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
         <h:p/>
         The SFRs for cryptographic key generation and certificate validation are inherited
         from the PP or PP-Module that includes this Package.
@@ -595,7 +595,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
             </selectables> as described in RFC 4251 section 4.1.</title>
           <note role="application"> The selection for "a list of trusted certification authorities" can only be chosen
             if "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected in 
-            <linkref linkend="FCS_SSHC_EXT.1.4" />.</note>
+            FCS_SSHC_EXT.1.4.</note>
           <aactivity>
             <TSS>
               There are no TSS evaluation activities for this element.
@@ -658,7 +658,7 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           The evaluator shall check to ensure that the TSS contains a description of the
         public key algorithms that are acceptable for use for authentication and that this list
         conforms to 
-        <linkref linkend="FCS_SSHS_EXT.1.4" />. The evaluator shall also ensure that password-based authentication
+        FCS_SSHS_EXT.1.4. The evaluator shall also ensure that password-based authentication
         methods, if supported, are described.
           </TSS>
           <Guidance>
