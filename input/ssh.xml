@@ -151,7 +151,6 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
 <!-- 2.0 Conformance Claims	-->
 <!--			-->
   <chapter title="Conformance Claims" id="cclaims">
-    <cclaims>
       <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that 
 	package, the actual text "Conformance Statement" doesn't get displayed, which is what
       	we would expect should be happening here as well (it shows up right underneath the 
@@ -171,7 +170,9 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
           also satisfied.</description>
       </cclaim>
 -->
-    </cclaims>
+	  <!--    <cclaims>
+    
+    </cclaims> -->
   </chapter>
 
 <!-- 				-->
