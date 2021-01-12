@@ -20,8 +20,9 @@
 		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).   
 -->  
 
-<PP xmlns="https://niap-ccevs.org/cc/v1" name="Secure Shell"
-xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
+<package name="Secure Shell" 
+  xmlns="https://niap-ccevs.org/cc/v1"
+  xmlns:h="http://www.w3.org/1999/xhtml">
 
   <PPReference>
    <ReferenceTable>
@@ -42,10 +43,10 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
   </RevisionHistory>
 	
 <!-- PP-style preferences   -->
-    <pp-preferences>
+  <pp-preferences>
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
-    	<audit-events-in-sfrs/>
-    </pp-preferences>
+    <audit-events-in-sfrs/>
+  </pp-preferences>
 
 	
 <!-- 			-->
@@ -1053,4 +1054,4 @@ xmlns:h="http://www.w3.org/1999/xhtml" type="package" boilerplate="yes">
       <acronyms/>
   </appendix>
 
-</PP>
+</package>
