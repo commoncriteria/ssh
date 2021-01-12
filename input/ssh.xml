@@ -22,6 +22,7 @@
 
 <package name="Secure Shell" 
   xmlns="https://niap-ccevs.org/cc/v1"
+  xmlns:sec="https://niap-ccevs.org/cc/v1/section"
   xmlns:h="http://www.w3.org/1999/xhtml">
 
   <PPReference>
@@ -52,7 +53,7 @@
 <!-- 			-->
 <!-- 1.0 Introduction   -->
 <!-- 			-->
-<chapter title="Introduction" id="int">
+<sec:Introduction>
 	
 <!-- 			-->
 <!-- 1.1 Overview	-->
@@ -146,12 +147,12 @@
         </componentneeded>
       </componentsneeded>
     </section>
-  </chapter>
+  </sec:Introduction>
   
 <!-- 			-->
 <!-- 2.0 Conformance Claims	-->
 <!--			-->
-  <chapter title="Conformance Claims" id="cclaims">
+  <sec:Conformance_Claims>
       <!-- SME: the TLS package also uses the cclaim id="Conformance Statement" but in that 
 	package, the actual text "Conformance Statement" doesn't get displayed, which is what
       	we would expect should be happening here as well (it shows up right underneath the 
@@ -174,12 +175,12 @@
 	  <!--    <cclaims>
     
     </cclaims> -->
-  </chapter>
+  </sec:Conformance_Claims>
 
 <!-- 				-->
 <!-- 3.0 Security Requirements 	-->
 <!--				-->
-<chapter title="Security Requirements" id="req">
+<section title="Security Requirements" id="req">
    <!-- Boilerplate -->
 	
 <!-- 			-->
@@ -188,7 +189,7 @@
   <section title="Security Functional Requirements" id="SFRs">
 
 <!-- Audit table for mandatory requirements  -->
-  <subsection id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
+  <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
      <h:p>
 		 The auditable events specified in this Package are included in a Security Target 
 	     if the incorporating PP or PP-Module supports audit event reporting through FAU_GEN.1
@@ -197,12 +198,12 @@
      <audit-table table="mandatory">
 	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
      </audit-table>
-  </subsection>
+  </section>
 	  
 <!-- 			-->
 <!-- 3.1.1 FCS: Cryptgraphic Support	-->
 <!--			-->
-<subsection title="Cryptographic Support (FCS)" id="fcs">
+<section title="Cryptographic Support (FCS)" id="fcs">
 	
 <!-- 			-->
 <!-- FCS_SSH_EXT.1	-->
@@ -963,10 +964,10 @@
 	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
     </f-component>
-  </subsection>
+  </section>
 	</section>
 
-	</chapter>
+	</section>
   
 <!--                    -->
 <!-- Appendix A: Optional Requirements 	-->
