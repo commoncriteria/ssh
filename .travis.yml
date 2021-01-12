@@ -19,6 +19,7 @@ before_script:
 
 script:
   - make
+  - make little-diff
 # - DAISY_DIR=ExecuteDaisy  make diff
   - git clone https://github.com/commoncriteria/commoncriteria.github.io.git
   - git clone https://github.com/commoncriteria/ci-scripts.git
