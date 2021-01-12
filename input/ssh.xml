@@ -1002,13 +1002,13 @@ it is not _directly_ depended upon by this Package.-->
         <tag>CC</tag>
         <description>Common Criteria for Information Technology Security Evaluation - <h:ul>
           <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part
-            1: Introduction and General Model</h:a>, CCMB-2012-09-001, Version 3.1 Revision 5,
+            1: Introduction and General Model</h:a>, CCMB-2017-09-001, Version 3.1 Revision 5,
             April 2017.</h:li>
           <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part
-            2: Security Functional Components</h:a>, CCMB-2012-09-002, Version 3.1 Revision 5,
+            2: Security Functional Components</h:a>, CCMB-2017-09-002, Version 3.1 Revision 5,
             April 2017.</h:li>
           <h:li><h:a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part
-            3: Security Assurance Components</h:a>, CCMB-2012-09-003, Version 3.1 Revision 5,
+            3: Security Assurance Components</h:a>, CCMB-2017-09-003, Version 3.1 Revision 5,
             April 2017.</h:li>
         </h:ul></description>
       </entry>
