@@ -1,4 +1,5 @@
 # files not to track in git
+output/images/diff*.gif
 output/*.*
 *~
 input/*.html
