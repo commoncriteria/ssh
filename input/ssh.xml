@@ -59,12 +59,14 @@
 <!-- 1.1 Overview	-->
 <!--			-->
   <sec:Overview>
+        <h:p>
 	    Secure Shell (SSH) is a protocol for secure remote login and other secure network services over
 	    an untrusted network. SSH software can act as a client, server, or both.
-      	<h:p/>
+      	</h:p><h:p>
 	  This <h:i>Functional Package for Secure Shell</h:i> 
       	defines functional requirements for the implementation of the SSH protocol. The requirements are
-      	intended to improve the security of products by enabling their evaluation.
+      	intended to improve the security of products by enabling their evaluation. 
+        </h:p>
    </sec:Overview>
 
 <!-- 			-->
@@ -82,19 +84,20 @@
 <!-- 1.3 Compliant Targets of Evaluation	-->
 <!--			-->
     <sec:toes title="Compliant Targets of Evaluation">
+       <h:p>
 	    The Target of Evaluation (TOE) in this Functional Package is a product which acts as an SSH client, SSH 
 	    server, or both. This FP describes the extended security functionality of SSH in terms of 
      	    <cite linkend="bibCC" />. 
-      		<h:p/>
+      		</h:p><h:p>
      	The contents of this Functional Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
      	selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
-      <h:p/>
+      </h:p><h:p>
         The PP or PP-Module that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. 
         It is the responsibility of the PP or PP-Module author who instantiates this Package to ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its Operational Environment.
-      <h:p/>
+      </h:p><h:p>
       An ST must identify the applicable version of the PP or PP-Module and this
       Package in its conformance claims.
-
+</h:p>
       <componentsneeded>
         <componentneeded>
           <componentid>FCS_CKM.1</componentid>
@@ -162,11 +165,11 @@ it is not _directly_ depended upon by this Package.-->
       <cclaim id="Conformance Statement">
         <description>This Package serves to provide Protection Profiles with additional 
           SFRs and associated Evaluation Activities specific to SSH clients and servers.  
-          <h:p/>
+          </h:p><h:p>
           This Package conforms to Common Criteria
           <cite linkend="bibCC" /> for Information Technology Security Evaluation, Version 3.1,
           Revision 5. It is CC Part 2 extended conformant.
-          <h:p/>
+          </h:p><h:p>
           In accordance with CC Part 1, dependencies are not included when they are addressed
           by other SFRs. The evaluation activities provide adequate proof that any dependencies are
           also satisfied.</description>
@@ -242,39 +245,41 @@ it is not _directly_ depended upon by this Package.-->
 		</selectables>.
 		</title>
         <note role="application">
-		The ST author selects which of the additional RFCs to which
+		<h:p>
+                The ST author selects which of the additional RFCs to which
         	conformance is being claimed. An SSH product can implement additional RFCs, but only those
         	listed in the selection can be claimed as conformant under CC. 
         	The RFC selections for this requirement need to be consistent with selections in
         	later elements of this Functional Package (e.g., cryptographic algorithms permitted). 
-        <h:p/>
+        </h:p><h:p>
         	RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
         	Internet Engineering Task Force's (IETF's) perspective the implementation must include support, not that the algorithms must 
         	be enabled for use. For the purposes of this SFR's evaluation activity and this Functional Package
         	overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
         	but not listed in later elements of this Functional Package are actually implemented.
-        <h:p/>
+        </h:p><h:p>
 		<!-- This says it is only selected if GCM is used for encryption AND MAC. Shouldn't it be OR? -->
          	RFC 5647 must be selected when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as an encryption algorithm in
 		FCS_SSHC_EXT.1.3 or FCS_SSHS_EXT.1.3 and as a MAC algorithm in FCS_SSHC_EXT.1.5 or FCS_SSHS_EXT.1.5.
-          <h:p/>
+          </h:p><h:p>
           	RFC 5656 must be selected when ecdsa-sha2-nistp256 or ecdsa-sha2-nistp384 is selected as a public key algorithm
 		in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or 
 		ecdh-sha2-nistp521 is selected as a key exchange algorithm in FCS_SSHC_EXT.1.6 or FCS_SSHS_EXT.1.6.
-          <h:p/>
+          </h:p><h:p>
           	RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp256 or x509v3-ecdsa-sha2-nistp384 is selected as a public key 
 		algorithm in FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
-          <h:p/>
+          </h:p><h:p>
           	RFC 6668 must be selected when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSHC_EXT.1.5 or
 		FCS_SSHS_EXT.1.5.
-          <h:p/>
+          </h:p><h:p>
           	RFC 8332 must be selected when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in
 		FCS_SSHC_EXT.1.4 or FCS_SSHS_EXT.1.4.
-          <h:p/>
+          </h:p><h:p>
         	If "client" is selected, then the ST must include FCS_SSHC_EXT.1.
-        <h:p/>
+        </h:p><h:p>
         	If "server" is selected, then the ST must include FCS_SSHS_EXT.1.
-	</note>
+	</h:p>
+        </note>
         <aactivity>
           <TSS>
 		The evaluator shall ensure that the selections indicated in the ST are 
@@ -372,15 +377,18 @@ it is not _directly_ depended upon by this Package.-->
           <selectable>no other algorithms</selectable>
         </selectables>.
         </title>
-        <note role="application">RFC 5647 specifies the use of the AEAD_AES_128_GCM and
+        <note role="application">
+          <h:p>
+        RFC 5647 specifies the use of the AEAD_AES_128_GCM and
         AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
         AEAD_AES_256_GCM can only be chosen as encryption algorithms when the same algorithm is
         being used as the MAC algorithm.
-        <h:p/>If AES-GCM is selected, there should be corresponding FCS_COP entries in the ST.
-	<h:p/>RFC 5647 applies only to the RFC-compliant implementation of GCM. A TOE that
+        </h:p><h:p>If AES-GCM is selected, there should be corresponding FCS_COP entries in the ST.
+	</h:p><h:p>RFC 5647 applies only to the RFC-compliant implementation of GCM. A TOE that
 		implements only the “@openssh.com” variant of GCM should not select 5647-compliant 
 		algorithms in FCS_SSHC_EXT.1.1. aes*-gcm@openssh.com is specified in Section 1.6 of the 
-		OpenSSH Protocol Specification (https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31).      
+		OpenSSH Protocol Specification (https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31).
+        </h:p>
 	</note>
         <aactivity>
           <TSS>
@@ -427,7 +435,8 @@ it is not _directly_ depended upon by this Package.-->
           <selectable>no other public key algorithms</selectable>
         </selectables> as its public key algorithm(s) and rejects all other public key
         algorithms.</title>
-        <note role="application">Implementations that select only ssh-rsa will not achieve the
+        <note role="application">
+        <h:p>Implementations that select only ssh-rsa will not achieve the
         112-bit security strength in the digital signature generation for SSH authentication as is
         recommended in NIST SP 800-131A. 
         
@@ -437,9 +446,10 @@ it is not _directly_ depended upon by this Package.-->
         If "x509v3-ecdsa-sha2-nistp256" or "x509v3-ecdsa-sha2-nistp384" are selected, then
         the list of trusted certification authorities must be selected in 
         FCS_SSHC_EXT.1.8. RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
-        <h:p/>
+        </h:p><h:p>
         The SFRs for cryptographic key generation and certificate validation are inherited
         from the PP or PP-Module that includes this Package.
+        </h:p>
         </note>
         <aactivity>
           <TSS>
@@ -483,19 +493,22 @@ it is not _directly_ depended upon by this Package.-->
           <selectable>no other MAC algorithms</selectable>
         </selectables> as its data integrity MAC algorithm(s) and rejects all other MAC
         algorithm(s).</title>
-        <note role="application">RFC 5647 specifies the use of the AEAD_AES_128_GCM and
+        <note role="application">
+          <h:p>
+            RFC 5647 specifies the use of the AEAD_AES_128_GCM and
         AEAD_AES_256_GCM algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
         AEAD_AES_256_GCM can only be chosen as MAC algorithms when the same algorithm is being used
         as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms in
         SSH.
-        <h:p/>
+        </h:p><h:p>
         The SFRs for cryptographic operations, encryption, and hashing are inherited from  
         the PP or PP-Module that includes this Package.
-	<h:p/>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected 
+	</h:p><h:p>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected 
 		as an encryption algorithm. When aes*-gcm@openssh.com is negotiated as the encryption 
 		algorithm, the MAC algorithm field is ignored and GCM is implicitly used as the MAC. 
 		“implicit” is not an SSH algorithm identifier and will not be seen on the wire; 
 		however, the negotiated MAC might be decoded as “implicit”.
+        </h:p>
         </note>
         <aactivity>
           <TSS>
@@ -730,14 +743,16 @@ it is not _directly_ depended upon by this Package.-->
           </selectables>.
         </title>
         <note role="application">
+          <h:p>
           RFC 5647 specifies the use of the AEAD_AES_128_GCM and AEAD_AES_256_GCM
           algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
           AEAD_AES_256_GCM can only be chosen as encryption algorithms when the same
           algorithm is being used as the MAC algorithm.
-	  <h:p/>RFC 5647 applies only to the RFC compliant implementation of GCM. A TOE that  
+	  </h:p><h:p>RFC 5647 applies only to the RFC compliant implementation of GCM. A TOE that  
 		implements only the “@openssh.com” variant of GCM should not select 5647-compliant 
 		algorithms in FCS_SSHS_EXT.1.1. aes*-gcm@openssh.com is specified in Section 1.6 of the 
 		OpenSSH Protocol Specification (https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31).
+        </h:p>
         </note>
         <aactivity>
           <TSS>
@@ -785,6 +800,7 @@ it is not _directly_ depended upon by this Package.-->
         rejects all other public key algorithms.
         </title>
         <note role="application">
+          <h:p>
           Implementations that select only ssh-rsa will not achieve the 112-bit security strength in the
           digital signature generation for SSH authentication as is recommended in NIST SP 800-131A. 
           
@@ -792,9 +808,10 @@ it is not _directly_ depended upon by this Package.-->
           Future versions of this document may remove ssh-rsa as a selection.  
           
           RFC 8332 specifies the use of rsa-sha2-256 or rsa-sha2-512 in SSH.
-          <h:p/>
+          </h:p><h:p>
           The SFRs for cryptographic key generation and certificate validation are inherited
           from the PP or PP-Module that includes this Package.
+          </h:p>
         </note>
         <aactivity>
           <TSS>
@@ -841,18 +858,20 @@ it is not _directly_ depended upon by this Package.-->
         as its MAC algorithm(s) and rejects all
         other MAC algorithm(s).</title>
         <note role="application">
+          <h:p>
           RFC 5647 specifies the use of the AEAD_AES_128_GCM and AEAD_AES_256_GCM
           algorithms in SSH. As described in RFC 5647, AEAD_AES_128_GCM and
           AEAD_AES_256_GCM can only be chosen as MAC algorithms when the same algorithm is
           being used as the encryption algorithm. RFC 6668 specifies the use of the sha2 algorithms
           in SSH.
-          <h:p/>
+          </h:p><h:p>
           The SFRs for cryptographic operations, encryption and hashing, are inherited from the PP or PP-Module that includes this Package.
-	  <h:p/>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected as an 
+	  </h:p><h:p>The ST author selects “implicit” if and only if aes*-gcm@openssh.com is selected as an 
 		encryption algorithm. When aes*-gcm@openssh.com is negotiated as the encryption
 		algorithm, the MAC algorithm field is ignored and GCM is implicitly used as the MAC.
 		“implicit” is not an SSH algorithm identifier and will not be seen on the wire; however,
 		the negotiated MAC might be decoded as “implicit”.	
+           </h:p>
         </note>
         <aactivity>
           <TSS>
