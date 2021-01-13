@@ -87,7 +87,7 @@
        <h:p>
 	    The Target of Evaluation (TOE) in this Functional Package is a product which acts as an SSH client, SSH 
 	    server, or both. This FP describes the extended security functionality of SSH in terms of 
-     	    <cite linkend="bibCC" />. 
+     	    <citeCC/>. 
       		</h:p><h:p>
      	The contents of this Functional Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
      	selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
@@ -197,7 +197,7 @@ it is not _directly_ depended upon by this Package.-->
 		 and all other criteria in the incorporating PP or PP-Module are met.
 	 </h:p>
      <audit-table table="mandatory">
-	     <h:br/><h:b><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:b>
+       <h:div class="table-caption"><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:div>
      </audit-table>
   </section>
 	  
