@@ -6,9 +6,17 @@
 -->
 
 <!-- 
-	This update turns the SSH Extended Package into a Functional Package. 
+-->  
 
-	Significant changes:
+<package name="Secure Shell" 
+  xmlns="https://niap-ccevs.org/cc/v1"
+  xmlns:sec="https://niap-ccevs.org/cc/v1/section"
+  xmlns:h="http://www.w3.org/1999/xhtml">
+
+  <project-notes>
+   This update turns the SSH Extended Package into a Functional Package. 
+
+   Significant changes:
 
 	- Removed FCS_COP and required that the PP or PP-Module that includes the package support the required algorithms. This effectively 
 		eliminated the need for TD0240.
@@ -18,12 +26,7 @@
 	- Incorporated TD0446
 	- Added audit events covering those specified in NDcPP and a couple of the ESM PPs. These are presented as optional, and can be
 		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).   
--->  
-
-<package name="Secure Shell" 
-  xmlns="https://niap-ccevs.org/cc/v1"
-  xmlns:sec="https://niap-ccevs.org/cc/v1/section"
-  xmlns:h="http://www.w3.org/1999/xhtml">
+ </project-notes>
 
   <PPReference>
    <ReferenceTable>
@@ -190,7 +193,7 @@ it is not _directly_ depended upon by this Package.-->
   <sec:Security_Functional_Requirements>
 
 <!-- Audit table for mandatory requirements  -->
-  <section id="ss-audit-table" title="Auditable Events for Mandatory SFRs">
+  <sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
      <h:p>
 		 The auditable events specified in this Package are included in a Security Target 
 	     if the incorporating PP or PP-Module supports audit event reporting through FAU_GEN.1
@@ -199,12 +202,12 @@ it is not _directly_ depended upon by this Package.-->
      <audit-table table="mandatory">
        <h:div class="table-caption"><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:div>
      </audit-table>
-  </section>
+  </sec:ss-audit-table>
 	  
 <!-- 			-->
 <!-- 3.1.1 FCS: Cryptgraphic Support	-->
 <!--			-->
-<section title="Cryptographic Support (FCS)" id="fcs">
+<sec:cryptsup title="Cryptographic_Support_(FCS)">
 	
 <!-- 			-->
 <!-- FCS_SSH_EXT.1	-->
@@ -981,7 +984,7 @@ it is not _directly_ depended upon by this Package.-->
 	       	<audit-event-info>Non-TOE endpoint of connection (IP Address).</audit-event-info>
        </audit-event>
     </f-component>
-  </section>
+  </sec:cryptsup>
 
 	</sec:Security_Functional_Requirements>
   
