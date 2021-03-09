@@ -8,7 +8,7 @@
 <!-- 
 -->  
 
-<package name="Secure Shell" 
+<Package name="Secure Shell" 
   xmlns="https://niap-ccevs.org/cc/v1"
   xmlns:sec="https://niap-ccevs.org/cc/v1/section"
   xmlns:h="http://www.w3.org/1999/xhtml">
@@ -90,7 +90,7 @@
        <h:p>
 	    The Target of Evaluation (TOE) in this Functional Package is a product which acts as an SSH client, SSH 
 	    server, or both. This FP describes the extended security functionality of SSH in terms of 
-     	    <citeCC/>. 
+     	    <xref g="CC"/>. 
       		</h:p><h:p>
      	The contents of this Functional Package must be appropriately combined with a PP or PP-Module. When a PP or PP-Module instantiates this Package, the Package must include 
      	selection-based requirements in accordance with the selections or assignments indicated in the PP or PP-Module.
@@ -303,7 +303,7 @@ it is not _directly_ depended upon by this Package.-->
 <!-- FCS_SSHC_EXT.1	-->
 <!--			-->	
       <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-      <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-client"/>
+      <depends on="ssh-client"/>
        
       <f-element id="fcs-sshc-ext-1e1">
         <title>The SSH client shall ensure that the SSH protocol implementation supports the following
@@ -659,7 +659,7 @@ it is not _directly_ depended upon by this Package.-->
 <!-- FCS_SSHS_EXT.1	-->
 <!--			-->	
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
-      <selection-depends req="fcs-ssh-ext-1e1" ids="ssh-server"/>
+      <depends on="ssh-server"/>
       
       <f-element id="fcs-sshs-ext-1e1"> 
         <title>The SSH server shall ensure that the SSH protocol implementation supports the following
@@ -1060,4 +1060,4 @@ it is not _directly_ depended upon by this Package.-->
       <acronyms/>
   </appendix>
 
-</package>
+</Package>
