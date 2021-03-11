@@ -80,6 +80,11 @@
 <!-- 1.2.2 Technology Terms -->
 <!--			-->
    <tech-terms>
+	   <term full="connection">The SSH transport layer between a client and a server.  Within a connection there can
+			be multiple sessions. </term>
+	   <term full="rekey">Where the connection renegotiates the shared secret and each session subsequently derives a new 
+			encryption key.  </term>
+	   <term full="session">A discrete stream of data within a connection.  </term>
 	   <term abbr="SSH" full="Secure Shell">Cryptographic network protocol for initiating text-based shell sessions
 		   on remote systems.</term>
    </tech-terms>
@@ -309,7 +314,7 @@
 					<h:p>If "client" is selected, then the ST must include FCS_SSHC_EXT.1.</h:p>
 					<h:p>If "server" is selected, then the ST must include FCS_SSHS_EXT.1.</h:p>
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator shall ensure that the selections indicated in the ST are consistent with selections in this
 						and subsequent components. Otherwise, this SFR is evaluated by activities for other SFRs. 
@@ -351,7 +356,7 @@
 					deals with the options supported for user authentication. Peer authentication is covered in
 					FCS_SSHS_EXT.1.1 (for servers) and FCS_SSHC_EXT.1.1 (for clients).
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator shall check to ensure that the authentication methods listed in the TSS are identical to those
 						listed in this SFR component; and, ensure if password-based authentication methods have been selected in the ST 
@@ -423,7 +428,7 @@
 					size accepted, thus defining “reasonable length” for the TOE. <h:p/>
 					The upper bound on the packet size is driven by the size identified in FCS_SSH_EXT.1.8.
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator shall check that the TSS describes how “large packets” are detected and handled. 
 					</TSS>
@@ -463,7 +468,7 @@
 					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding MAC algorithm to be
 					selected in FCS_SSH_EXT.1.5.
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the encryption
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the encryption algorithms
@@ -520,7 +525,7 @@
 					ignored during negotiation and implicitly selects AES-GCM for the MAC. “implicit” is not an SSH identifier and
 					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit”.<h:p/>
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the hashing
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the hashing algorithms 
@@ -558,7 +563,7 @@
 						<selectable>curve448-sha512 (RFC 8731)</selectable> 
 					</selectables> and no other mechanisms.
 				</title>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the shared
 						secret establishment algorithms supported are specified. The evaluator will check the TSS to ensure that
@@ -596,7 +601,7 @@
 					RFC 5656 section 4 defines KDFs used in ECC key establishment schemes and should be selected when RFC 5656 or 
 					RFC 8731 key establishment schemes are selected.
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the KDFs supported 
 						are specified. The evaluator will check the TSS to ensure that the KDFs specified are identical to those listed 
@@ -630,7 +635,7 @@
 					cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit
 					testing of this (SSH rekeying based on data transfer threshold). See Evaluation Activities for details.<h:p/>
 				</note>
-				<aactivity>
+				<aactivity level="element">
 					<TSS>
 						The evaluator shall check the TSS to ensure that if the TOE enforces connection rekey or termination limits
 						lower than the maximum values that these lower limits are identified.  <h:p/>
