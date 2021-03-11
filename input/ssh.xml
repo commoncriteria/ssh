@@ -376,7 +376,7 @@
 												established. </h:li>
 											<h:li>Next the evaluator shall use the same X509 certificate as above but include a 
 												username not associated with the certificate. The evaluator shall verify that the
-												session does not establish.<h:li>
+												session does not establish.</h:li>
 											<h:li>Finally, the evaluator shall use the correct username (from step a above) but use 
 												a different X509 certificate which is not associated with the username. The evaluator
 												shall verify that the session does not establish. </h:li>
