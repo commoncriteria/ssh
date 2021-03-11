@@ -365,12 +365,12 @@
 					<Tests>
 						<testlist>
 							<test> [conditional] If the TOE is acting as SSH Server: <h:p/>
-								<h:ol a="a">
+								<h:ol type="a">
 									<h:li>The evaluator shall use a suitable SSH Client to connect to the TOE, enable debug messages
 										in the SSH Client, and examine the debug messages to determine that only the configured authentication
 										methods for the TOE were offered by the server. </h:li>
 									<h:li>[conditional] If the SSH server supports X509 based Client authentication options: 
-										<h:ol a="a">
+										<h:ol type="a">
 											<h:li>The evaluator shall initiate an SSH session from a client where the username is
 												associated with the X509 certificate. The evaluator shall verify the session is successfully
 												established. </h:li>
@@ -381,12 +381,12 @@
 												a different X509 certificate which is not associated with the username. The evaluator
 												shall verify that the session does not establish. </h:li>
 										</h:ol>
-									<h:li>
+									</h:li>
 								</h:ol>
 							</test>
 							<test>[conditional] If the TOE is acting as SSH Client, the evaluator shall test for a successful 
 								configuration setting of each authentication method as follows:
-								<h:ol a="a">
+								<h:ol type="a">
 									<h:li>The evaluator shall initiate a SSH session using the authentication method configured and
 										verify that the session is successfully established.</h:li>
 									<h:li>Next, the evaluator shall use bad authentication data (e.g. incorrectly generated 
@@ -397,7 +397,7 @@
 							<test>
 								[conditional] If the TOE is acting as SSH Client, the evaluator shall verify that the connection
 								fails upon configuration mismatch as follows: 
-								<h:ol a="a">
+								<h:ol type="a">
 									<h:li>The evaluator shall configure the Client with an authentication method not supported by
 										the Server.  </h:li>
 									<h:li>The evaluator shall verify that the connection fails. </h:li>
@@ -432,7 +432,7 @@
 							<test>The evaluator shall demonstrate that the TOE accepts the maximum allowed packet size.</test>
 							<test>This test is performed to verify that the TOE drops packets that are larger than size
 								specified in the component.
-								<h:ol a="a">
+								<h:ol type="a">
 									<h:li>The evaluator shall establish a successful SSH connection with the peer. </h:li> 	
 									<h:li>Next the evaluator shall craft a packet that is one byte larger than the maximum
 										size specified in this component and send it through the established SSH connection
@@ -636,7 +636,7 @@
 						lower than the maximum values that these lower limits are identified.  <h:p/>
 						In cases where hardware limitation will prevent reaching data transfer threshold in less than one hour, the
 						evaluator shall check the TSS to ensure it contains: 
-						<h:ol a="a">
+						<h:ol type="a">
 							<h:li>An argument describing this hardware-based limitation and </h:li>
 							<h:li>Identification of the hardware components that form the basis of such argument. </h:li>
 						</h:ol>
