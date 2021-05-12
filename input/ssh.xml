@@ -1018,7 +1018,6 @@ it is not _directly_ depended upon by this Package.-->
 <!-- Appendix C: References 	-->
 <!--                    -->
 	
-  <appendix id="biblio" title="References">
     <bibliography>
      <entry id="bibGPOS">
         <tag>GPOSPP</tag>
@@ -1051,13 +1050,4 @@ it is not _directly_ depended upon by this Package.-->
         </description>
       </entry>   
     </bibliography>
-  </appendix>
-
-<!--                    -->
-<!-- Appendix D: Acronyms	-->
-<!--                    -->
-  <appendix id="acronyms" title="Acronyms">
-      <acronyms/>
-  </appendix>
-
 </Package>
