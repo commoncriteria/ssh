@@ -842,8 +842,7 @@
 <!-- Appendix C: References 	-->
 <!--                    -->
 	
-<appendix id="biblio" title="References">
-    <bibliography>
+   <bibliography>
 		<entry id="bibGPOS">
 			<tag>GPOSPP</tag>
 			<description>
@@ -965,13 +964,4 @@
 			</description>
 		</entry>   
     </bibliography>
-</appendix>
-
-<!--                    -->
-<!-- Appendix D: Acronyms	-->
-<!--                    -->
-  <appendix id="acronyms" title="Acronyms">
-      <acronyms/>
-  </appendix>
-
 </Package>
