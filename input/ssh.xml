@@ -85,11 +85,11 @@
 <!-- 1.2.2 Technology Terms -->
 <!--			-->
    <tech-terms>
-	   <term full="connection">The SSH transport layer between a client and a server.  Within a connection there can
+	   <term full="Connection">The SSH transport layer between a client and a server.  Within a connection there can
 			be multiple sessions. </term>
-	   <term full="rekey">Where the connection renegotiates the shared secret and each session subsequently derives a new 
+	   <term full="Rekey">Where the connection renegotiates the shared secret and each session subsequently derives a new 
 			encryption key.  </term>
-	   <term full="session">A discrete stream of data within a connection.  </term>
+	   <term full="Session">A discrete stream of data within a connection.  </term>
 	   <term abbr="SSH" full="Secure Shell">Cryptographic network protocol for initiating text-based shell sessions
 		   on remote systems.</term>
    </tech-terms>
@@ -212,7 +212,7 @@
 	<!-- 			-->
 	<!-- 3.1.1 FCS: Cryptgraphic Support	-->
 	<!--			-->
-	<sec:cryptsup title="Cryptographic_Support_(FCS)">
+	<sec:cryptsup title="Cryptographic Support (FCS)">
 	
 	<!-- 			-->
 	<!-- FCS_SSH_EXT.1	-->
@@ -325,10 +325,10 @@
 				<aactivity level="element">
 					<TSS>
 						The evaluator shall ensure that the selections indicated in the ST are consistent with selections in this
-						and subsequent components. Otherwise, this SFR is evaluated by activities for other SFRs. 
+						and subsequent components. Otherwise, this SFR is evaluated by activities for other SFRs. <h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component. This SFR is evaluated by activities for other SFRs
+						There are no guidance evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p/>
 					</Guidance>
 					<Tests>
 						There are no test evaluation activities for this component. This SFR is evaluated by activities for other SFRs
@@ -369,11 +369,11 @@
 						The evaluator shall check to ensure that the authentication methods listed in the TSS are identical to those
 						listed in this SFR component; and, ensure if password-based authentication methods have been selected in the ST 
 						then these are also described; and, ensure that if keyboard-interactive is selected, it describes the
-						multifactor authentication mechanisms provided by the TOE.
+						multifactor authentication mechanisms provided by the TOE.<h:p/>
 					</TSS>	
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure the configuration options, if any, for
-						authentication mechanisms provided by the TOE are described.
+						authentication mechanisms provided by the TOE are described.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -438,7 +438,7 @@
 				</note>
 				<aactivity level="element">
 					<TSS>
-						The evaluator shall check that the TSS describes how “large packets” are detected and handled. 
+						The evaluator shall check that the TSS describes how “large packets” are detected and handled. <h:p/>
 					</TSS>
 					<Tests>
 						<testlist>
@@ -480,11 +480,11 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the encryption
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the encryption algorithms
-						specified are identical to those listed for this component.
+						specified are identical to those listed for this component.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the
-						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. 
+						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p/> 
 					</Guidance>
 					<Tests>
 						The evaluator shall perform the following tests.  <h:p/>
@@ -536,11 +536,11 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the hashing
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the hashing algorithms 
-						specified are identical to those listed for this component. 
+						specified are identical to those listed for this component. <h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
-						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. 
+						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -574,11 +574,11 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the shared
 						secret establishment algorithms supported are specified. The evaluator will check the TSS to ensure that
-						the shared secret establishment algorithms specified are identical to those listed for this component.
+						the shared secret establishment algorithms specified are identical to those listed for this component.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator 
-						on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. 
+						on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -612,7 +612,7 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the KDFs supported 
 						are specified. The evaluator will check the TSS to ensure that the KDFs specified are identical to those listed 
-						for this component.
+						for this component.<h:p/>
 					</TSS>
 				</aactivity>
 			</f-element>
@@ -653,12 +653,12 @@
 							<h:li>Identification of the hardware components that form the basis of such argument. </h:li>
 						</h:ol>
 						<h:b>For example</h:b>, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such
-						limitation, these subsystems shall be identified.
+						limitation, these subsystems shall be identified.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that if the connection rekey or termination 
 						limits are configurable, it contains instructions to the administrator on how to configure the relevant 
-						connection rekey or termination limits for the TOE. 
+						connection rekey or termination limits for the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						The test harness needs to be configured so that its connection rekey or termination limits are greater than
@@ -679,7 +679,7 @@
 			</f-element>
 			<audit-event type="optional">
 				<audit-event-descr>Failure to establish SSH connection</audit-event-descr>
-				<audit-event-info>Reason for failure.</audit-event-info>
+				<audit-event-info>Reason for failure.<h:p/></audit-event-info>
 				<audit-event-info type="optional">Non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
 			</audit-event>
 			<audit-event type="optional">
@@ -732,16 +732,16 @@
 			</note>
 			<aactivity>
 				<TSS>
-					No activities.
+					No activities.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
-					administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.
+					administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p/>
 				</Guidance>
 				<Tests>
 					The evaluator shall perform the following tests: 
 					<testlist>
-						<test> [conditional] If using a local database by associating each host name with its corresponding public 
+						<test>[conditional] If using a local database by associating each host name with its corresponding public 
 							key, the evaluator shall configure the TOE with only a single host name and corresponding public key in
 							the local database. The evaluator shall verify that the TOE can successfully connect to the host identified
 							by the host name.</test>
@@ -794,11 +794,11 @@
 			</note>
 			<aactivity>
 				<TSS>
-					No activites.
+					No activites.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator
-					on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. 
+					on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 				</Guidance>
 				<Tests>
 					The evaluator shall repeat Test 1 and Test 2 from FCS_SSH_EXT.1.4 for each of the authentication mechanisms 
