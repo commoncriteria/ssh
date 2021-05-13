@@ -32,9 +32,9 @@
   <PPReference>
    <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
-      <PPVersion>1.0-draft</PPVersion>
+      <PPVersion>1.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2021-03-11</PPPubDate>
+      <PPPubDate>2021-05-13</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -43,12 +43,12 @@
     <entry>
       <version>1.0 draft</version>
       <date>2021-01-05</date>
-      <subject>DRAFT: First draft as a Functional Package</subject>
+      <subject>First draft as a Functional Package</subject>
     </entry>
     <entry>
-      <version>1.0 draft</version>
+      <version>1.0a draft</version>
       <date>2021-03-11</date>
-      <subject>DRAFT: Incorporated CCUF CWG input.</subject>
+      <subject>Incorporated CCUF CWG input.</subject>
     </entry>
   </RevisionHistory>
 	
