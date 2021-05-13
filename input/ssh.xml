@@ -253,6 +253,7 @@
 						<selectable id="sel-rfc8268">8268</selectable>
 						<selectable id="sel-rfc8308">8308</selectable>
 						<selectable id="sel-rfc8332">8332</selectable>
+						<selectable id="sel-rfc8709">8709</selectable>
 						<selectable id="sel-rfc8731">8731</selectable>
 						<selectable>no other RFCs</selectable>
 					</selectables> and [<h:i>no other standard</h:i>].
@@ -270,6 +271,7 @@
 						<h:li>RFC 8268: Select for FFC DH groups with SHA-2  </h:li>
 						<h:li>RFC 8308: Select if RFC 8332 is selected </h:li>
 						<h:li>RFC 8332: Select if SHA-2 is available with ssh-rsa </h:li>
+						<h:li>RFC 8709: Select if ed25519 or ed448 is used as a public key algorithm </h:li>
 						<h:li>RFC 8731: Select if curve25519 or curve448 is used for key exchange </h:li> 
 					</h:ul>
 					<h:p>The ST author selects which of the additional RFCs to which
@@ -355,7 +357,7 @@
 								<selectable>x509v3-rsa2048-sha256  (RFC 6187)</selectable> 
 							</selectables>
 						</selectable>
-					</selectables>.
+					</selectables> and no other methods.
 				</title>
 				<note role="application">
 					Within SSH there are two types of authentication: user authentication and peer authentication. This SFR 
@@ -403,8 +405,8 @@
 									<h:li>Next, the evaluator shall use bad authentication data (e.g. incorrectly generated 
 										certificate or incorrect password) and ensure that the connection is rejected. </h:li>
 								</h:ol>
+							  Steps a-b shall be repeated for each independently configurable authentication method supported by the server. 
 							</test>
-							Steps a-c shall be repeated for each independently configurable authentication method supported by the server. 
 							<test>
 								[conditional] If the TOE is acting as SSH Client, the evaluator shall verify that the connection
 								fails upon configuration mismatch as follows: 
@@ -458,7 +460,7 @@
 			</f-element>
 			<f-element id="fcs-ssh-ext-1e4">
 				<title>
-					The TSF shall protect data in transit from unauthorised disclosure using: 
+					The TSF shall protect data in transit from unauthorised disclosure using the following mechanisms: 
 					<selectables linebreak="yes">
 						<selectable>aes128-ctr (RFC 4344)</selectable>  
 						<selectable>aes256-ctr (RFC 4344)</selectable>
@@ -468,7 +470,7 @@
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable> 
 						<selectable>aes128-gcm@openssh.com (RFC 5647)</selectable> 
 						<selectable>aes256-gcm@openssh.com (RFC 5647)</selectable>
-					</selectables>.
+					</selectables> and no other mechanisms.
 				</title>
 				<note role="application">
 					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding MAC algorithm to be
@@ -519,7 +521,7 @@
 						<selectable>AEAD_AES_128_GCM (RFC 5647)</selectable>
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable>
 						<selectable>implicit </selectable>
-					</selectables>.
+					</selectables> and no other mechanisms.
 				</title>
 				<note role="application">
 					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding encryption algorithm 
