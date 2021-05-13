@@ -331,7 +331,7 @@
 						There are no guidance evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p/>
 					</Guidance>
 					<Tests>
-						There are no test evaluation activities for this component. This SFR is evaluated by activities for other SFRs
+						There are no test evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -454,7 +454,7 @@
 										audit log for a dropped packet audit.</h:li>
 								</h:ol>
 							</test>
-						</testlist>
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -507,7 +507,7 @@
 								that the TOE terminates the connection.</test>
 							<test>The evaluator shall configure the remote endpoint to only allow a mechanism that is not included in 
 								the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.</test>
-						</testlist>
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -549,7 +549,7 @@
 							<test> The evaluator shall configure an SSH peer to allow only a hashing algorithm that is not included
 								in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that 
 								the connection is rejected.</test>
-						</testlist>
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -587,7 +587,7 @@
 							<test>The evaluator shall configure an SSH peer to allow only a key exchange method that is not included in the
 								ST selection. The evaluator shall attempt to establish an SSH connection and observe that the
 								connection is rejected.</test>
-						</testlist>
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -673,7 +673,7 @@
 								termination limit is met.  Observe that a connection rekey or termination is initiated. </test>
 							<test> Establish an SSH connection.  Send data to the TOE until the identified connection rekey limit or
 								termination is met.  Observe that a connection rekey or termination is initiated.</test>
-						</testlist>
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -759,7 +759,7 @@
 						<test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the 
 							TOE with only a single trusted certification authority that does not correspond to the host. The evaluator 
 							shall verify that the TOE fails to the host identified by the host name.</test>
-					</testlist>
+					</testlist><h:p/>
 				</Tests>
 			</aactivity>
 		</f-element>
@@ -804,7 +804,7 @@
 					The evaluator shall repeat Test 1 and Test 2 from FCS_SSH_EXT.1.4 for each of the authentication mechanisms 
 					supported by the TOE.  <h:p/>
 					Next the evaluator shall configure the remote peer to only allow an authentication mechanism that is not included 
-					in the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.
+					in the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.<h:p/>
 				</Tests>
 			</aactivity>
 		</f-element>
