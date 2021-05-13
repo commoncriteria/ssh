@@ -42,13 +42,8 @@
   <RevisionHistory>
     <entry>
       <version>1.0 draft</version>
-      <date>2021-01-05</date>
-      <subject>First draft as a Functional Package</subject>
-    </entry>
-    <entry>
-      <version>1.0a draft</version>
-      <date>2021-03-11</date>
-      <subject>Incorporated CCUF CWG input.</subject>
+      <date>2021-05-13</date>
+      <subject>Converted SSH EP to a Functional Package and incorporated CCUF CWG input.</subject>
     </entry>
   </RevisionHistory>
 	
