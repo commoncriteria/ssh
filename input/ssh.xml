@@ -41,7 +41,7 @@
   
   <RevisionHistory>
     <entry>
-      <version>1.0 draft</version>
+      <version>1.0</version>
       <date>2021-05-13</date>
       <subject>Converted SSH EP to a Functional Package and incorporated CCUF CWG input.</subject>
     </entry>
