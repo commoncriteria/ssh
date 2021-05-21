@@ -1,6 +1,7 @@
 Functional Package for Secure Shell (SSH) 
 ============
 ![Build](https://github.com/commoncriteria/ssh/workflows/Build/badge.svg)
+![Build](https://github.com/commoncriteria/ssh/workflows/Validate/badge.svg)
 [![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/ssh.svg?maxAge=2592000)](https://github.com/commoncriteria/ssh/issues) 
 ![license](https://img.shields.io/badge/license-Unlicensed-blue.svg)
 
