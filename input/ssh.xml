@@ -674,7 +674,7 @@
 			</f-element>
 			<audit-event type="optional">
 				<audit-event-descr>Failure to establish SSH connection</audit-event-descr>
-				<audit-event-info>Reason for failure.<h:p/></audit-event-info>
+				<audit-event-info>Reason for failure.</audit-event-info>
 				<audit-event-info type="optional">Non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
 			</audit-event>
 			<audit-event type="optional">
