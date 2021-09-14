@@ -8,7 +8,7 @@
 <!-- 
 -->  
 
-<Package name="Secure Shell" 
+<Package name="Secure Shell" repo-name="ssh" pp-version="1.0"
   xmlns="https://niap-ccevs.org/cc/v1"
   xmlns:sec="https://niap-ccevs.org/cc/v1/section"
   xmlns:h="http://www.w3.org/1999/xhtml">
