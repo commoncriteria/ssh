@@ -252,7 +252,7 @@
 						<selectable id="sel-rfc8332">8332</selectable>
 						<selectable id="sel-rfc8709">8709</selectable>
 						<selectable id="sel-rfc8731">8731</selectable>
-						<selectable>no other RFCs</selectable>
+						<selectable exclusive="yes">no other RFCs</selectable>
 					</selectables> and [<h:i>no other standard</h:i>].
 				</title>
 				<note role="application">
