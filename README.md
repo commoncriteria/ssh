@@ -1,12 +1,15 @@
 Functional Package for Secure Shell (SSH) 
 ============
-[![Build](https://github.com/commoncriteria/ssh/workflows/Build/badge.svg)
+![Master Badges](https://img.shields.io/badge/Build-master-black.svg)
+![Build](https://github.com/commoncriteria/ssh/workflows/Build/badge.svg)
 ![Validate](https://github.com/commoncriteria/ssh/workflows/Validate/badge.svg)
-[![Validation](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/validation.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/ValidationReport.txt)
-[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/warnings-badge.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SanityChecksOutput.md)
-[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/spell-badge.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SpellCheckReport.txt)
+
+![Last QuickBuilt Branch](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/build-branch-badge.svg)
+[![Validation](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/validation.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/ValidationReport.txt)
+[![SanityChecks](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/warnings.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SanityChecksOutput.md)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SpellCheckReport.txt)
 [![QuickBuild](https://github.com/commoncriteria/ssh/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/ssh)
-[![GitHub issues Open](https://img.shields.io/github/issues/commoncriteria/ssh.svg?maxAge=2592000)](https://github.com/commoncriteria/ssh/issues) 
+
 
 This repository hosts the draft version of the Functional Package for Secure Shell (SSH) based on the 
 [Essential Security Requirements (ESR)](https://commoncriteria.github.io/pp/ssh/ssh-esr.html) for this technology class of 
