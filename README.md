@@ -23,7 +23,7 @@ A list of products that have passed evaluation against this Package can be found
 * [Functional Package for Secure Shell](https://commoncriteria.github.io/pp/ssh/ssh-release.pdf) (pdf)
 
 ## Release Version
-[Extended Package for Secure Shell (SSH) v1.0](https://www.niap-ccevs.org/Profile/Info.cfm?id=389)
+[Functional Package for Secure Shell (SSH) v1.0](https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459)
 
 ## Contributing
 
