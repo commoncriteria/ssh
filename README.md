@@ -9,6 +9,7 @@ Functional Package for Secure Shell (SSH)
 [![Validation](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/validation.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/ValidationReport.txt)
 [![SanityChecks](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/warnings.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SanityChecksOutput.md)
 [![SpellCheck](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/spell-badge.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/SpellCheckReport.txt)
+[![SpellCheck](https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/tds.svg)](https://github.com/commoncriteria/ssh/blob/gh-pages/TDValidationReport.txt)
 [![QuickBuild](https://github.com/commoncriteria/ssh/actions/workflows/quick_build.yml/badge.svg)](https://commoncriteria.github.io/ssh)
 
 
