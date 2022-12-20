@@ -4,16 +4,11 @@
 <!--
 <?xml-model href="CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>    
 -->
-
-<!-- 
--->  
-
-<!-- <Package name="Secure Shell" repo-name="ssh" pp-version="1.0"  -->
-
 <Package
   xmlns="https://niap-ccevs.org/cc/v1"
   xmlns:sec="https://niap-ccevs.org/cc/v1/section"
   xmlns:h="http://www.w3.org/1999/xhtml">
+  <title>Functional Package for Secure Shell (SSH)</title>
   <product_class>Secure Shell</product_class>
   <project-notes>
    This update turns the SSH Extended Package into a Functional Package. 
@@ -30,16 +25,6 @@
 	- Added audit events covering those specified in NDcPP and a couple of the ESM PPs. These are presented as optional, and can be
 		incoporated by selection in a PP or PP-module that includes this package. (TLS should do this too).   
  </project-notes>
-
-  <PPReference>
-   <ReferenceTable>
-      <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
-      <PPVersion>1.0</PPVersion>
-      <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2021-05-13</PPPubDate>
-      <Keywords>SSH; secure shell</Keywords>
-    </ReferenceTable>
-  </PPReference>
   
   <RevisionHistory>
     <entry>

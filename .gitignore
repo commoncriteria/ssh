@@ -1,6 +1,8 @@
 # files not to track in git
 output/images/diff*.gif
 output/*.*
+output/css/
+output/js/
 *~
 input/*.html
 input/schemas.xml
