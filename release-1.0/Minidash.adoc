@@ -1,0 +1,20 @@
+[cols="1,1,1,1,1,1,1,1"]
+|===
+8+|ssh 
+| https://github.com/commoncriteria/ssh/tree/release-1.0[release-1.0] 
+a| https://commoncriteria.github.io/ssh/release-1.0/ssh-release.html[📄]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/ValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/validation.svg[Validation]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/SanityChecksOutput.md]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/warnings.svg[SanityChecks]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/SpellCheckReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/spell-badge.svg[SpellCheck]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/TDValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/tds.svg[TDs]
+a|image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/transforms.svg[transforms,150]
+a| 
+https://commoncriteria.github.io/ssh/release-1.0/ssh-release-linkable.html[ssh-release-linkable.html] +
+https://commoncriteria.github.io/ssh/release-1.0/ssh-release.html[ssh-release.html] +
+https://commoncriteria.github.io/ssh/release-1.0/ssh.html[ssh.html] +
+https://commoncriteria.github.io/ssh/release-1.0/ssh-paged.pdf[ssh-paged.pdf] +
+|===
