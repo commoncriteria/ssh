@@ -12,9 +12,8 @@ image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/spel
 a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/TDValidationReport.txt]
 image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/tds.svg[TDs]
 a|image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/transforms.svg[transforms,150]
-a| 
-https://commoncriteria.github.io/ssh/master/ssh-release-linkable.html[ssh-release-linkable.html] +
-https://commoncriteria.github.io/ssh/master/ssh-release.html[ssh-release.html] +
-https://commoncriteria.github.io/ssh/master/ssh.html[ssh.html] +
-https://commoncriteria.github.io/ssh/master/*.pdf[*.pdf] +
+a| [link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/HTMLs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/html_count.svg[HTML Count]
+[link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/PDFs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/pdf_count.svg[PDF Count]
 |===
