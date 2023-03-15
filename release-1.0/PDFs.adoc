@@ -1,1 +1,3 @@
-* https://commoncriteria.github.io/ssh/release-1.0/ssh-paged.pdf[ssh-paged.pdf]
+* https://commoncriteria.github.io/ssh/release-1.0/ssh-release.html.pdf[ssh-release.html.pdf]
+* https://commoncriteria.github.io/ssh/release-1.0/ssh.html.pdf[ssh.html.pdf]
+* https://commoncriteria.github.io/ssh/release-1.0/ssh-release-linkable.html.pdf[ssh-release-linkable.html.pdf]
