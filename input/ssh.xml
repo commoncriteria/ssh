@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
+<?xml-model href="https://raw.githubusercontent.com/commoncriteria/transforms/master/schemas/CCPackage.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <!--
 <?xml-model href="CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>    
@@ -247,6 +248,7 @@
 		</ext-comp-def>
 		
 		<f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
+			<!-- 
 			<comp-lev> requires the TSF to specify the details of its SSH protocol implementation.</comp-lev>
 			<management>No specific management functions are identified.</management>
 			<audit>The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
@@ -263,6 +265,7 @@
 				FCS_COP.1 Cryptographic Operation<h:br/>
 				FCS_RBG.1 Random Bit Generation
 			</dependencies>
+			-->
 			
 			<f-element id="fcs-ssh-ext-1e1">
 				<title>The TOE shall implement SSH acting as a
