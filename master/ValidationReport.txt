@@ -1,0 +1,8 @@
+/home/runner/work/ssh/ssh/input/ssh.xml:250:14: error: element "comp-lev" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:251:16: error: element "management" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:252:11: error: element "audit" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:258:12: error: element "audit" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:260:18: error: element "dependencies" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:261:50: error: element "dependencies" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:262:50: error: element "dependencies" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"
+/home/runner/work/ssh/ssh/input/ssh.xml:263:45: error: element "dependencies" not allowed anywhere; expected the element end-tag or element "audit-event", "audit-table", "f-element" or "note"

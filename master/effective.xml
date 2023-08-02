@@ -1,4 +1,4 @@
-<Package xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section" name="Secure Shell">
+<Package xmlns="https://niap-ccevs.org/cc/v1" xmlns:sec="https://niap-ccevs.org/cc/v1/section" xmlns:h="http://www.w3.org/1999/xhtml" name="Secure Shell">
 
   <project-notes>
    This update turns the SSH Extended Package into a Functional Package. 
@@ -19,36 +19,41 @@
   <PPReference>
    <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
-      <PPVersion>1.0</PPVersion>
+      <PPVersion>1.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2021-05-13</PPPubDate>
+      <PPPubDate>2023-08-04</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
   
   <RevisionHistory>
-    <entry>
+  	<entry>
+  		<version>1.1</version>
+  		<date>2023-08-04</date>
+  		<subject>Updated for CC:2022 conformance, incorporated NIAP TDs issued against version 1.0.</subject>
+  	</entry>
+  	<entry>
       <version>1.0</version>
       <date>2021-05-13</date>
       <subject>Converted SSH EP to a Functional Package and incorporated CCUF CWG input.</subject>
     </entry>
   </RevisionHistory>
 	
-
+<release-notes><h:h3>TDs Applied</h:h3></release-notes><!-- PP-style preferences   -->
   <pp-preferences>
-
-    <audit-events-in-sfrs />
+<!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
+    <audit-events-in-sfrs/>
   </pp-preferences>
 
 	
-
-
-
+<!-- 			-->
+<!-- 1.0 Introduction   -->
+<!-- 			-->
 <sec:Introduction>
 	
-
-
-
+<!-- 			-->
+<!-- 1.1 Overview	-->
+<!--			-->
   <sec:Overview>
         <h:p>
 	    Secure Shell (SSH) is a protocol for secure remote login and other secure network services over
@@ -61,11 +66,11 @@
         </h:p>
    </sec:Overview>
 
-
-
-
-
-
+<!-- 			-->
+<!-- 1.2 Terms		-->
+<!-- 1.2.1 Common Criteria Terms -->
+<!-- 1.2.2 Technology Terms -->
+<!--			-->
    <tech-terms>
 	   <term full="Connection">The SSH transport layer between a client and a server.  Within a connection there can
 			be multiple sessions. </term>
@@ -77,12 +82,12 @@
    </tech-terms>
 	
      
-
-
-
+<!-- 			-->
+<!-- 1.3 Compliant Targets of Evaluation	-->
+<!--			-->
     <sec:toes title="Compliant Targets of Evaluation">
 		<h:p>The Target of Evaluation (TOE) in this Functional Package (FP) is a product which acts as an SSH client, SSH 
-	    server, or both. This FP describes the extended security functionality of SSH in terms of <xref g="CC" />. </h:p>
+	    server, or both. This FP describes the extended security functionality of SSH in terms of <xref g="CC"/>. </h:p>
 		<h:p>The contents of this Functional Package must be appropriately incoporated into a PP, cPP, or PP-Module. When this package 
 		is so incorporated, the ST must include selection-based requirements in accordance with the selections or assignments 
 		indicated in the incorporating document.
@@ -105,19 +110,20 @@
 			<componentneeded>
 				<componentid>FCS_COP.1</componentid>
 				<notes>
-					To support the cryptography needed for SSH communications, the incoporating document must include FCS_COP.1 
+					<!-- modified by TD0695 -->
+					To support the cryptography needed for SSH communications, the incorporating document must include FCS_COP.1 
 					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
 					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
-					authentication function. In particular, the incoporating document must support AES-CTR as defined in NIST SP 800-38A 
-					with key sizes of both 128 and 256 bits.
+					authentication function. In particular, the incorporating document must support AES-CTR as defined in NIST SP 800-38A 
+					with key sizes of 128 or 256 bits, depending on the algorithms selected.
 				</notes>
 			</componentneeded>
-			
+			<!-- The components in the PP or PP-Module that need this SFR should require it;
+			it is not _directly_ depended upon by this Package.-->
 			<componentneeded>
-				<componentid>FCS_RBG_EXT.1</componentid>
+				<componentid>FCS_RBG.1</componentid>
 				<notes>To support random bit generation needed for SSH key generation,
-					the incorporating document must include a requirement that specifies the TOE's ability to invoke or provide 
-					random bit generation services, commonly identified as FCS_RBG_EXT.1.</notes>
+					the incorporating document must include FCS_RBG.1.</notes>
 			</componentneeded>
 			<componentneeded>
 				<componentid>FIA_X509_EXT.1</componentid>
@@ -141,25 +147,46 @@
 	</sec:toes>
 </sec:Introduction>
   
-
-
-
-<sec:Conformance_Claims>
-      
-
-	  
+<!-- 			-->
+<!-- 2.0 Conformance Claims	-->
+<!--			-->
+<sec:Conformance_Claims boilerplate="no">
+	<cclaims>
+		<cclaim name="Conformance Statement">
+			<description>An ST must claim exact conformance to this PP.
+				<h:br/><h:br/>
+				The evaluation methods used for evaluating the TOE are a combination of the workunits defined in <xref to="bibCEM"/> as well as the
+				Evaluation Activities for ensuring that individual SFRs have sufficient level of supporting evidence in the Security Target and 
+				guidance documentation and have been sufficiently tested by the laboratory as part of completing ATE_IND.1.
+			</description>
+		</cclaim>
+		<cclaim name="CC Conformance Claims">
+			<description>This Functional Package is conformant to Part 2 (extended) of Common Criteria CC:2022, Revision 1. Functional Packages
+			do not contain any SARs so no CC Part 3 claim is made.</description>
+		</cclaim>
+		<cclaim name="PP Claim">
+			<description>This Functional Package does not claim conformance to any Protection Profile.<h:br/><h:br/>
+				PP-Configurations do not require enumeration of Functional Packages; this Functional Package can be claimed in any PP-Configuration that includes
+				a Protection Profile or PP-Module that permits the Functional Package to be claimed as part of it.
+			</description>
+		</cclaim>
+		<cclaim name="Package Claim">
+			<description>This Functional Package does not claim conformance to any other Functional Packages.
+			</description>
+		</cclaim>
+	</cclaims>
 </sec:Conformance_Claims>
 
-
-
-
+<!-- 				-->
+<!-- 3.0 Security Requirements 	-->
+<!--				-->
 	
-
-
-
+<!-- 			-->
+<!-- 3.1 Security Functional Requirements 	-->
+<!--			-->
 <sec:Security_Functional_Requirements>
 
-	
+	<!-- Audit table for mandatory requirements  -->
 	<sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
 		<h:p>
 			The auditable events specified in this Package are included in a Security Target 
@@ -171,22 +198,62 @@
 		</audit-table>
 	</sec:ss-audit-table>
 	  
-	
-	
-	
+	<!-- 			-->
+	<!-- 3.1.1 FCS: Cryptgraphic Support	-->
+	<!--			-->
 	<sec:cryptsup title="Cryptographic Support (FCS)">
 	
-	
-	
-	
-	
+	<!-- 			-->
+	<!-- FCS_SSH_EXT.1	-->
+	<!-- Rules: (not updated for the CCUF version)
+		sel-rfc5647 IF (fcs-sshc-ext1e3:sel-sshc-aes128-gcm OR fcs-sshc-ext1e3:sel-sshc-aes256-gcm OR
+				fcs-sshs-ext1e3:sel-sshs-aes128-gcm OR fcs-sshs-ext1e3:sel-sshs-aes256-gcm) AND
+				(fcs-sshc-ext1e5:sel-sshc-mac-aes128-gcm OR fcs-sshc-ext1e5:sel-sshc-mac-aes256-gcm OR
+				fcs-sshs-ext1e5:sel-sshs-mac-aes128-gcm OR fcs-sshs-ext1e5:sel-sshs-mac-aes256-gcm)			
+			sel-rfc5656 IF (fcs-sshc-ext-1e4:sel-sshc-ecdsa-sha2-p256 OR fcs-sshc-ext-1e4:sel-sshc-ecdsa-sha2-p384 OR
+				fcs-sshs-ext-1e4:sel-sshs-ecdsa-sha2-p256 or fcs-sshs-ext-1e4:sel-sshs-ecdsa-sha2-p384) OR
+				(fcs-sshc-ext-1e6:sel-sshc-ecdh-sha2-p256 OR fcs-sshc-ext-1e6:sel-sshc-ecdh-sha2-p384 OR
+				fcs-sshc-ext-1e6:sel-sshc-ecdh-sha2-p521) OR
+				(fcs-sshs-ext-1e6:sel-sshs-ecdh-sha2-p256 OR fcs-sshs-ext-1e6:sel-sshs-ecdh-sha2-p384 OR
+				fcs-sshs-ext-1e6:sel-sshs-ecdh-sha2-p521)
+			sel-rfc6187 IF fcs-sshc-ext-1e4:sel-sshc-x509v3-ecdsa-sha2-p256 OR fcs-sshc-ext-1e4:sel-sshc-x509v3-ecdsa-sha2-p384 OR
+				fcs-sshs-ext-1e4:sel-sshs-x509v3-ecdsa-sha2-p256 OR fcs-sshs-ext-1e4:sel-sshs-x509v3-ecdsa-sha2-p384
+		sel-rfc6668 IF fcs-sshc-ext-1.5:sel-sshc-hmac-sha2-256 OR fcs-sshc-ext-1.5:sel-sshc-hmac-sha2-512 OR
+				fcs-sshs-ext-1.5:sel-sshs-hmac-sha2-256 OR fcs-sshs-ext-1.5:sel-sshs-hmac-sha2-512
+			sel-rfc8332 IF fcs-sshc-ext-1e4:sel-sshc-rsa-sha2-256 OR fcs-sshc-ext-1e4:sel-sshc-rsa-sha2-512 OR
+				fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-256 OR fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-512
+-->
+<!--			-->	
+		
+		<ext-comp-def fam-id="FCS_SSH_EXT" title="SSH Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified
+				for trusted communications in CC Part 2.
+			</fam-behavior>
+		</ext-comp-def>
+		
 		<f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
+			<comp-lev> requires the TSF to specify the details of its SSH protocol implementation.</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
+				PP, PP-Module, functional package, or ST:<h:ul>
+					<h:li>Failure to establish SSH connection</h:li>
+					<h:li>Establishment of SSH connection</h:li>
+					<h:li>Termination of SSH connection</h:li>
+					<h:li>Dropping of packets outside defined size limits</h:li>
+				</h:ul>
+			</audit>
+			<dependencies>
+				FCS_CKM.1 Cryptographic Key Generation<h:br/>
+				FCS_CKM.2 Cryptographic Key Derivation<h:br/>
+				FCS_COP.1 Cryptographic Operation<h:br/>
+				FCS_RBG.1 Random Bit Generation
+			</dependencies>
+			
 			<f-element id="fcs-ssh-ext-1e1">
-				<title>The TOE shall implement <h:i>SSH</h:i> acting as a
+				<title>The TOE shall implement SSH acting as a
 					<selectables>
 						<selectable id="ssh-client">client</selectable>
-						<selectable id="ssh-server">server</selectable>
-					</selectables> in accordance with
+						<selectable id="ssh-server">server</selectable></selectables> in accordance with
 				that complies with RFCs 4251, 4252, 4253, 4254,
 					<selectables>
 						<selectable id="sel-rfc4256">4256</selectable>
@@ -200,8 +267,7 @@
 						<selectable id="sel-rfc8332">8332</selectable>
 						<selectable id="sel-rfc8709">8709</selectable>
 						<selectable id="sel-rfc8731">8731</selectable>
-						<selectable exclusive="yes">no other RFCs</selectable>
-					</selectables> and [<h:i>no other standard</h:i>].
+						<selectable exclusive="yes">no other RFCs</selectable></selectables> and [<h:i>no other standard</h:i>].
 				</title>
 				<note role="application">
 					The following mapping is provided as a guide to ST authors to ensure the appropriate RFC selections are made 
@@ -270,13 +336,13 @@
 				<aactivity level="element">
 					<TSS>
 						The evaluator shall ensure that the selections indicated in the ST are consistent with selections in this
-						and subsequent components. Otherwise, this SFR is evaluated by activities for other SFRs. <h:p />
+						and subsequent components. Otherwise, this SFR is evaluated by activities for other SFRs. <h:p/>
 					</TSS>
 					<Guidance>
-						There are no guidance evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p />
+						There are no guidance evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p/>
 					</Guidance>
 					<Tests>
-						There are no test evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p />
+						There are no test evaluation activities for this component. This SFR is evaluated by activities for other SFRs.<h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -304,6 +370,12 @@
 						</selectable>
 					</selectables> and no other methods.
 				</title>
+				<ext-comp-def-title>
+					<title>
+						The TSF shall ensure that the SSH protocol implementation supports the following authentication methods: 
+						<assignable>supported authentication methods</assignable> and no other methods.
+					</title>
+				</ext-comp-def-title>
 				<note role="application">
 					Within SSH there are two types of authentication: user authentication and peer authentication. This SFR 
 					deals with the options supported for user authentication. Peer authentication is covered in
@@ -314,15 +386,15 @@
 						The evaluator shall check to ensure that the authentication methods listed in the TSS are identical to those
 						listed in this SFR component; and, ensure if password-based authentication methods have been selected in the ST 
 						then these are also described; and, ensure that if keyboard-interactive is selected, it describes the
-						multifactor authentication mechanisms provided by the TOE.<h:p />
+						multifactor authentication mechanisms provided by the TOE.<h:p/>
 					</TSS>	
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure the configuration options, if any, for
-						authentication mechanisms provided by the TOE are described.<h:p />
+						authentication mechanisms provided by the TOE are described.<h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
-							<test> [conditional] If the TOE is acting as SSH Server: <h:p />
+							<test> [conditional] If the TOE is acting as SSH Server: <h:p/>
 								<h:ol type="a">
 									<h:li>The evaluator shall use a suitable SSH Client to connect to the TOE, enable debug messages
 										in the SSH Client, and examine the debug messages to determine that only the configured authentication
@@ -365,7 +437,7 @@
 						If the Client supports only one authentication method, the evaluator can test this failure of connection by
 						configuring the Server with an authentication method not supported by the Client. In order to facilitate
 						this test, it is acceptable for the evaluator to configure an authentication method that is outside of the 
-						selections in the SFR.<h:p />
+						selections in the SFR.<h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -378,12 +450,12 @@
 				<note role="application">
 					RFC 4253 (section 6.1) provides for the acceptance of “large packets” with the caveat that the packets should
 					be of “reasonable length” or dropped. The assignment should be filled in by the ST author with the maximum packet 
-					size accepted, thus defining “reasonable length” for the TOE. <h:p />
+					size accepted, thus defining “reasonable length” for the TOE. <h:p/>
 					The upper bound on the packet size is driven by the size identified in FCS_SSH_EXT.1.8.
 				</note>
 				<aactivity level="element">
 					<TSS>
-						The evaluator shall check that the TSS describes how “large packets” are detected and handled. <h:p />
+						The evaluator shall check that the TSS describes how “large packets” are detected and handled. <h:p/>
 					</TSS>
 					<Tests>
 						<testlist>
@@ -391,15 +463,18 @@
 							<test>This test is performed to verify that the TOE drops packets that are larger than size
 								specified in the component.
 								<h:ol type="a">
+									<!-- updated for TD0732 -->
 									<h:li>The evaluator shall establish a successful SSH connection with the peer. </h:li> 	
-									<h:li>Next the evaluator shall craft a packet that is one byte larger than the maximum
-										size specified in this component and send it through the established SSH connection
-										to the TOE. </h:li>
-									<h:li>Evaluator shall verify that the packet was dropped by the TOE by reviewing the TOE 
-										audit log for a dropped packet audit.</h:li>
+									<h:li>Next, the evaluator shall craft a packet that is slightly larger than the maximum
+										size specified in this element and send it through the established SSH connection
+										to the TOE. The packet should not be greater than the maximum packet size + 16 bytes. 
+										If the packet is larger, the evaluator shall justify the need to send a larger packet.</h:li>
+									<h:li>The evaluator shall verify that the packet was dropped by the TOE. The method of verification will vary by the TOE.
+										Examples include reviewing the TOE audit log for a dropped packet audit or observing that 
+										the TOE terminates the connection.</h:li>
 								</h:ol>
 							</test>
-						</testlist><h:p />
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -417,6 +492,12 @@
 						<selectable>aes256-gcm@openssh.com (RFC 5647)</selectable>
 					</selectables> and no other mechanisms.
 				</title>
+				<ext-comp-def-title>
+					<title>
+						The TSF shall protect data in transit from unauthorised disclosure using the following mechanisms: 
+						<assignable>confidentiality mechanisms</assignable> and no other mechanisms.
+					</title>
+				</ext-comp-def-title>
 				<note role="application">
 					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding MAC algorithm to be
 					selected in FCS_SSH_EXT.1.5.
@@ -425,14 +506,14 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the encryption
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the encryption algorithms
-						specified are identical to those listed for this component.<h:p />
+						specified are identical to those listed for this component.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the
-						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p /> 
+						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p/> 
 					</Guidance>
 					<Tests>
-						The evaluator shall perform the following tests.  <h:p />
+						The evaluator shall perform the following tests.  <h:p/>
 						If the TOE can be both a client and a server, these tests must be performed for both roles. 
 						<testlist>
 							<test>The evaluator must ensure that only claimed algorithms and cryptographic primitives are used to 
@@ -444,7 +525,7 @@
 								perform one successful negotiation of an SSH connection and verify that the negotiated algorithms 
 								were included in the advertised set. If the evaluator detects that not all algorithms defined in
 								the ST for SSH are advertised by the TOE or the TOE advertises additional algorithms not defined in 
-								the ST for SSH, the test shall be regarded as failed.<h:p />
+								the ST for SSH, the test shall be regarded as failed.<h:p/>
 								The data collected from the connection above shall be used for verification of the advertised
 								hashing and shared secret establishment algorithms in FCS_SSH_EXT.1.5 and FCS_SSH_EXT.1.6 respectively. 
 							</test>
@@ -452,7 +533,7 @@
 								that the TOE terminates the connection.</test>
 							<test>The evaluator shall configure the remote endpoint to only allow a mechanism that is not included in 
 								the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.</test>
-						</testlist><h:p />
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -460,7 +541,7 @@
 				<title>
 					The TSF shall protect data in transit from modification, deletion, and insertion using: 
 					<selectables linebreak="yes">
-
+<!--						<selectable>hmac-sha1 (RFC 4253)</selectable>  -->
 						<selectable>hmac-sha2-256 (RFC 6668)</selectable> 
 						<selectable>hmac-sha2-512 (RFC 6668)</selectable>
 						<selectable>AEAD_AES_128_GCM (RFC 5647)</selectable>
@@ -468,24 +549,30 @@
 						<selectable>implicit </selectable>
 					</selectables> and no other mechanisms.
 				</title>
+				<ext-comp-def-title>
+					<title>
+						The TSF shall protect data in transit from modification, deletion, and insertion using: 
+						<assignable>data integrity mechanisms</assignable> and no other mechanisms.
+					</title>
+				</ext-comp-def-title>
 				<note role="application">
 					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding encryption algorithm 
-					to be selected. <h:p />
+					to be selected. <h:p/>
 					In AES-GCM mode, integrity is not provided using a MAC, it is implicit in AES-GCM mode itself. There is no need
-					for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this. <h:p />
+					for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this. <h:p/>
 					If the negotiated encryption algorithm is one of the aes*-gcm@openssh.com algorithms, then the MAC field is 
 					ignored during negotiation and implicitly selects AES-GCM for the MAC. “implicit” is not an SSH identifier and
-					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit”.<h:p />
+					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit”.<h:p/>
 				</note>
 				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the hashing
 						algorithms supported are specified. The evaluator will check the TSS to ensure that the hashing algorithms 
-						specified are identical to those listed for this component. <h:p />
+						specified are identical to those listed for this component. <h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
-						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p />
+						administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -494,7 +581,7 @@
 							<test> The evaluator shall configure an SSH peer to allow only a hashing algorithm that is not included
 								in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that 
 								the connection is rejected.</test>
-						</testlist><h:p />
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -502,7 +589,7 @@
 				<title>
 					The TSF shall establish a shared secret with its peer using: 
 					<selectables linebreak="yes">
-
+<!--						<selectable>diffie-hellman-group14-sha1 (RFC 4253)</selectable>  -->
 						<selectable>diffie-hellman-group14-sha256 (RFC 8268)</selectable>  
 						<selectable>diffie-hellman-group15-sha512 (RFC 8268)</selectable>  
 						<selectable>diffie-hellman-group16-sha512 (RFC 8268)</selectable>  
@@ -515,15 +602,21 @@
 						<selectable>curve448-sha512 (RFC 8731)</selectable> 
 					</selectables> and no other mechanisms.
 				</title>
+				<ext-comp-def-title>
+					<title>
+						The TSF shall establish a shared secret with its peer using: 
+						<assignable>key agreement mechanisms</assignable> and no other mechanisms.
+					</title>
+				</ext-comp-def-title>
 				<aactivity level="element">
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the shared
 						secret establishment algorithms supported are specified. The evaluator will check the TSS to ensure that
-						the shared secret establishment algorithms specified are identical to those listed for this component.<h:p />
+						the shared secret establishment algorithms specified are identical to those listed for this component.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator 
-						on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p />
+						on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						<testlist>
@@ -532,24 +625,24 @@
 							<test>The evaluator shall configure an SSH peer to allow only a key exchange method that is not included in the
 								ST selection. The evaluator shall attempt to establish an SSH connection and observe that the
 								connection is rejected.</test>
-						</testlist><h:p />
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
 			<f-element id="fcs-ssh-ext-1e7">
 				<title>
-					The TSF shall use <h:i>SSH KDF</h:i> as defined in 
+					The TSF shall use SSH KDF as defined in 
 					<selectables linebreak="yes">
 						<selectable>RFC 4253 (Section 7.2)</selectable> 
 						<selectable> RFC 5656 (Section 4) </selectable>
 					</selectables>
-					to derive the following cryptographic keys from a shared secret: <h:i>session keys</h:i>.
+					to derive the following cryptographic keys from a shared secret: session keys.
 				</title>
 				<note role="application">
 					RFC 4253 must be selected when the key establishment scheme (selected in FCS_SSH_EXT.1.6) uses finite field 
-					cryptography (FFC) and RFC 5656 when it uses elliptic curve cryptography (ECC).  <h:p />
+					cryptography (FFC) and RFC 5656 when it uses elliptic curve cryptography (ECC).  <h:p/>
 					RFC 4253 section 7.2 defines two KDFs for FFC based key establishment schemes.  Therefore RFC 4253 should be 
-					selected if any of the RFC 4253 or RFC 8268 key establishment schemes are selected. <h:p />
+					selected if any of the RFC 4253 or RFC 8268 key establishment schemes are selected. <h:p/>
 					RFC 5656 section 4 defines KDFs used in ECC key establishment schemes and should be selected when RFC 5656 or 
 					RFC 8731 key establishment schemes are selected.
 				</note>
@@ -557,7 +650,7 @@
 					<TSS>
 						The evaluator will check the description of the implementation of SSH in the TSS to ensure the KDFs supported 
 						are specified. The evaluator will check the TSS to ensure that the KDFs specified are identical to those listed 
-						for this component.<h:p />
+						for this component.<h:p/>
 					</TSS>
 				</aactivity>
 			</f-element>
@@ -580,17 +673,17 @@
 					that the cryptographic key space for the symmetric session keys isn’t exhausted (more detail can be found in
 					RFC 4344 and RFC 4253). A rekey or connection termination needs to be performed whenever a threshold is reached 
 					for a given connection. The rekey applies to all session keys (encryption, integrity protection) for incoming and 
-					outgoing traffic.  <h:p />
+					outgoing traffic.  <h:p/>
 					It is acceptable for a TOE to implement lower thresholds than the maximum values defined in the SFR. If a 
-					threshold is configurable, the guidance documentation needs to specify how to configure that threshold. <h:p />
+					threshold is configurable, the guidance documentation needs to specify how to configure that threshold. <h:p/>
 					It is possible that hardware limitation may prevent reaching data transfer threshold in less than one hour. In 
 					cases where data transfer threshold could not be reached due to hardware limitations it is acceptable to omit
-					testing of this (SSH rekeying based on data transfer threshold). See Evaluation Activities for details.<h:p />
+					testing of this (SSH rekeying based on data transfer threshold). See Evaluation Activities for details.<h:p/>
 				</note>
 				<aactivity level="element">
 					<TSS>
 						The evaluator shall check the TSS to ensure that if the TOE enforces connection rekey or termination limits
-						lower than the maximum values that these lower limits are identified.  <h:p />
+						lower than the maximum values that these lower limits are identified.  <h:p/>
 						In cases where hardware limitation will prevent reaching data transfer threshold in less than one hour, the
 						evaluator shall check the TSS to ensure it contains: 
 						<h:ol type="a">
@@ -598,17 +691,17 @@
 							<h:li>Identification of the hardware components that form the basis of such argument. </h:li>
 						</h:ol>
 						For example, if specific Ethernet Controller or Wi-Fi radio chip is the root cause of such
-						limitation, these subsystems shall be identified.<h:p />
+						limitation, these subsystems shall be identified.<h:p/>
 					</TSS>
 					<Guidance>
 						The evaluator shall check the guidance documentation to ensure that if the connection rekey or termination 
 						limits are configurable, it contains instructions to the administrator on how to configure the relevant 
-						connection rekey or termination limits for the TOE. <h:p />
+						connection rekey or termination limits for the TOE. <h:p/>
 					</Guidance>
 					<Tests>
 						The test harness needs to be configured so that its connection rekey or termination limits are greater than
 						the limits supported by the TOE -- it is expected that the test harness should not be initiating the
-						connection rekey or termination. <h:p />
+						connection rekey or termination. <h:p/>
 						<testlist>
 							<test>Establish an SSH connection.  Wait until the identified connection rekey limit is met.  Observed 
 								that a connection rekey or termination is initiated.  This may require traffic to periodically be sent, 
@@ -618,7 +711,7 @@
 								termination limit is met.  Observe that a connection rekey or termination is initiated. </test>
 							<test> Establish an SSH connection.  Send data to the TOE until the identified connection rekey limit or
 								termination is met.  Observe that a connection rekey or termination is initiated.</test>
-						</testlist><h:p />
+						</testlist><h:p/>
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -641,11 +734,11 @@
 			</audit-event>
 		</f-component>
 
-
-
-	
+<!-- 			-->
+<!-- FCS_SSHC_EXT.1	-->
+<!--			-->	
     <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-		<depends on="ssh-client" />       
+		<depends on="ssh-client"/>       
 		<f-element id="fcs-sshc-ext-1e1">
 			<title>The TSF shall authenticate its peer (SSH server) using: 
 				<selectables linebreak="yes">
@@ -677,11 +770,11 @@
 			</note>
 			<aactivity>
 				<TSS>
-					No activities.<h:p />
+					No activities.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
-					administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p />
+					administrator on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE.<h:p/>
 				</Guidance>
 				<Tests>
 					The evaluator shall perform the following tests: 
@@ -704,18 +797,18 @@
 						<test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the 
 							TOE with only a single trusted certification authority that does not correspond to the host. The evaluator 
 							shall verify that the TOE fails to the host identified by the host name.</test>
-					</testlist><h:p />
+					</testlist><h:p/>
 				</Tests>
 			</aactivity>
 		</f-element>
-       <audit-event />
+       <audit-event/>
     </f-component>
 
-
-
-	
+<!-- 			-->
+<!-- FCS_SSHS_EXT.1	-->
+<!--			-->	
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
-		<depends on="ssh-server" />
+		<depends on="ssh-server"/>
 		<f-element id="fcs-sshs-ext-1e1"> 
 			<title>The TSF shall authenticate itself to its peer (SSH Client) using:
 				<selectables linebreak="yes">
@@ -739,49 +832,63 @@
 			</note>
 			<aactivity>
 				<TSS>
-					No activites.<h:p />
+					There are no TSS evaluation activities for this component.<h:p/>
 				</TSS>
 				<Guidance>
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator
-					on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p />
+					on how to ensure that only the allowed mechanisms are used in SSH connections with the TOE. <h:p/>
 				</Guidance>
 				<Tests>
-					The evaluator shall repeat Test 1 and Test 2 from FCS_SSH_EXT.1.4 for each of the authentication mechanisms 
-					supported by the TOE.  <h:p />
-					Next the evaluator shall configure the remote peer to only allow an authentication mechanism that is not included 
-					in the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.<h:p />
+					<!-- updated by TD0682 -->
+					The evlauator shall perform the following tests:
+					<testlist>
+						<test>The evaluator shall use a suitable SSH Client to connect to the TOE and examine the list of server host key algorithms 
+							in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that 
+							only the configured server authentication methods for the TOE were offered by the server.</test>
+						<test>The evaluator shall test for a successful configuration setting of each server authentication method as follows. 
+							The evaluator shall initiate a SSH session using the authentication method configured and verify that the session is 
+							successfully established. Repeat this process for each independently configurable server authentication method supported by the server.</test>
+						<test>The evaluator shall configure the peer to only allow an authentication mechanism that is not included in the ST selection. 
+							The evaluator shall attempt to connect to the TOE and observe that the TOE sends a disconnect message.</test>
+					</testlist>
 				</Tests>
 			</aactivity>
 		</f-element>
-		<audit-event />
+		<audit-event/>
 	</f-component>
 </sec:cryptsup>
 
 </sec:Security_Functional_Requirements>
   
-
-
-
+<!--                    -->
+<!-- Appendix A: Optional Requirements 	-->
+<!--                    -->
 	
 <appendix id="appendix-optional-plus" title="Optional Requirements">  
 
-    
-    
+    <!-- Contents of the appendix are totally generated by "optional-appendix-plus" xsl template. 
+         Includes boilerplate, headers, audit table. So the below is not needed. But there is is. -->
+    <!--    <audit-table table="optional">
+	  Auditable events for Optional SFRs:<h:br/><h:br/>
+	</audit-table>  -->
 </appendix> 
 
-
-
-
+<!--                    -->
+<!-- Appendix B: Selection-based Requirements 	-->
+<!--                    -->
 
     <appendix id="appendix-sel-based" title="Selection-Based Requirements"> 
        
-    
-    
+    <!-- Contents of the appendix are totally generated by "optional-appendix" xsl template. 
+         Includes boilerplate, headers, audit table. So the below is not needed. But there is is. -->
+    <!--    <audit-table table="sel-based">
+	  Auditable events for Selecton-based Requirements:	
+	</audit-table>   -->
     </appendix> 
 	
-
-
-
+<!--                    -->
+<!-- Appendix C: References 	-->
+<!--                    -->
 	
    <bibliography>
 		<entry id="bibGPOS">
