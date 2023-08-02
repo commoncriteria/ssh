@@ -39,3 +39,5 @@
 * Warning: Detected an empty _p_ element./Package[1]""/sec:Security_Functional_Requirements[1]""/sec:cryptsup[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/TSS[1]"There are"/h:p[1]""
 * Warning: Detected an empty _p_ element./Package[1]""/sec:Security_Functional_Requirements[1]""/sec:cryptsup[1]""/f-component[3]""/f-element[1]""/aactivity[1]""/Guidance[1]"The evalu"/h:p[1]""
  Failed to find a reference to bibCEM.
+* Warning: Since FCS_SSH_EXT.1.1 has an 'id' attribute in a descendant node in the title, you probably need to define an alternative 'ext-comp-def-title'.
+                       
