@@ -239,14 +239,14 @@
 			sel-rfc8332 IF fcs-sshc-ext-1e4:sel-sshc-rsa-sha2-256 OR fcs-sshc-ext-1e4:sel-sshc-rsa-sha2-512 OR
 				fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-256 OR fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-512
 -->
-<!--			-->	
-		
+	
+<!--		
 		<ext-comp-def fam-id="FCS_SSH_EXT" title="SSH Protocol">
 			<fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified
 				for trusted communications in CC Part 2.
 			</fam-behavior>
 		</ext-comp-def>
-		
+-->		
 		<f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
 			<!-- 
 			<comp-lev> requires the TSF to specify the details of its SSH protocol implementation.</comp-lev>
