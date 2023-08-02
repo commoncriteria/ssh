@@ -169,7 +169,7 @@
 <sec:Conformance_Claims boilerplate="no">
 	<cclaims>
 		<cclaim name="Conformance Statement">
-			<description>An ST must claim exact conformance to this PP.
+			<description>An ST must claim exact conformance to this Functional Package.
 				<h:br/><h:br/>
 				The evaluation methods used for evaluating the TOE are a combination of the workunits defined in <xref to="bibCEM"/> as well as the
 				Evaluation Activities for ensuring that individual SFRs have sufficient level of supporting evidence in the Security Target and 
@@ -240,15 +240,15 @@
 				fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-256 OR fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-512
 -->
 	
-<!--		
+	
 		<ext-comp-def fam-id="FCS_SSH_EXT" title="SSH Protocol">
 			<fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified
 				for trusted communications in CC Part 2.
 			</fam-behavior>
 		</ext-comp-def>
--->		
+	
 		<f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
-			<!-- 
+	
 			<comp-lev> requires the TSF to specify the details of its SSH protocol implementation.</comp-lev>
 			<management>No specific management functions are identified.</management>
 			<audit>The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
@@ -265,7 +265,7 @@
 				FCS_COP.1 Cryptographic Operation<h:br/>
 				FCS_RBG.1 Random Bit Generation
 			</dependencies>
-			-->
+
 			
 			<f-element id="fcs-ssh-ext-1e1">
 				<title>The TOE shall implement SSH acting as a
@@ -388,12 +388,14 @@
 						</selectable>
 					</selectables> and no other methods.
 				</title>
+		 
 				<ext-comp-def-title>
 					<title>
 						The TSF shall ensure that the SSH protocol implementation supports the following authentication methods: 
 						<assignable>supported authentication methods</assignable> and no other methods.
 					</title>
 				</ext-comp-def-title>
+			
 				<note role="application">
 					Within SSH there are two types of authentication: user authentication and peer authentication. This SFR 
 					deals with the options supported for user authentication. Peer authentication is covered in
@@ -755,8 +757,23 @@
 <!-- 			-->
 <!-- FCS_SSHC_EXT.1	-->
 <!--			-->	
+		
+		<ext-comp-def fam-id="FCS_SSHC_EXT" title="SSH Client Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a client.
+			</fam-behavior>
+		</ext-comp-def>
+		
     <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-		<depends on="ssh-client"/>       
+		<depends on="ssh-client"/>
+    	
+    	<comp-lev> requires the TSF to specify the details of its SSH client implementation.</comp-lev>
+    	<management>No specific management functions are identified.</management>
+    	<audit>There are no auditable events foreseen.</audit>
+    	<dependencies>
+    		FCS_SSH_EXT.1 SSH Protocol
+    	</dependencies>
+    	
+    	
 		<f-element id="fcs-sshc-ext-1e1">
 			<title>The TSF shall authenticate its peer (SSH server) using: 
 				<selectables linebreak="yes">
@@ -783,6 +800,12 @@
 				</selectables>
 				as described in RFC 4251 section 4.1.
 			</title>
+			<ext-comp-def-title>
+				<title>The TSF shall authenticate its peer (SSH server) using: 
+					<assignable>peer authentication method</assignable>
+					as described in RFC 4251 section 4.1.
+				</title>
+			</ext-comp-def-title>
 			<note role="application">
 				The local database may be implemented using any equivalent local storage mechanism.
 			</note>
@@ -825,8 +848,21 @@
 <!-- 			-->
 <!-- FCS_SSHS_EXT.1	-->
 <!--			-->	
+		<ext-comp-def fam-id="FCS_SSHS_EXT" title="SSH Server Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a server.
+			</fam-behavior>
+		</ext-comp-def>
+		
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
 		<depends on="ssh-server"/>
+    	
+    	<comp-lev> requires the TSF to specify the details of its SSH server implementation.</comp-lev>
+    	<management>No specific management functions are identified.</management>
+    	<audit>There are no auditable events foreseen.</audit>
+    	<dependencies>
+    		FCS_SSH_EXT.1 SSH Protocol
+    	</dependencies>
+    	
 		<f-element id="fcs-sshs-ext-1e1"> 
 			<title>The TSF shall authenticate itself to its peer (SSH Client) using:
 				<selectables linebreak="yes">
@@ -844,6 +880,11 @@
 					<selectable>ssh-ed448 (RFC 8709)</selectable>
 				</selectables>.
 			</title>
+			<ext-comp-def-title>
+				<title>The TSF shall authenticate its peer (SSH client) using: 
+					<assignable>peer authentication method</assignable>.
+				</title>
+			</ext-comp-def-title>
 			<note role="application">
 				These requirements relate to Server authenticating to the Client. The Client authenticating to the Server is covered
 				in FCS_SSHC_EXT.1.1.
