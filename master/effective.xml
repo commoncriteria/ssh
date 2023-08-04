@@ -196,7 +196,7 @@
 		<h:p>
 			The auditable events specified in this Package are included in a ST 
 			if the incorporating PP, cPP, or PP-Module supports audit event reporting through FAU_GEN.1,
-			and all other criteria in the incorporating PP or PP-Module are met.
+			and if all other criteria in the incorporating PP or PP-Module are met.
 		</h:p>
 		<audit-table id="at-man-audit" table="mandatory">
 			<h:div class="table-caption"><ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr></h:div>
