@@ -41,6 +41,7 @@
 	
 <release-notes><h:h3>TDs Applied</h:h3></release-notes><!-- PP-style preferences   -->
   <pp-preferences>
+  		<using-cc2022/>
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
     <audit-events-in-sfrs/>
   </pp-preferences>
@@ -64,6 +65,9 @@
 		Evaluation Activities (EAs) covering audit, authentication, cryptographic algorithms, and protocol negotiation. The intent 
 		of this package is to provide Protection Profile (PP), collaborative Protection Profile (cPP), and Protection Profile Module (PP-Module) authors with a readily consumable collection of SFRs and EAs to be integrated into
 		their documents.  
+        </h:p><h:p>
+        	The functional components defined for this package were chosen to ensure that a conformant TOE implements SSH in a secure manner by requiring
+        	that the TSF implement protocol-specific details that are not captured in the FTP_PRO SFR family. 
         </h:p>
    </sec:Overview>
 
