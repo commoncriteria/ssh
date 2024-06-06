@@ -37,7 +37,7 @@
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2023-08-04</PPPubDate>
+      <PPPubDate>2024-06-07</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -50,7 +50,7 @@
     </entry>
   	<entry>
   		<version>1.1</version>
-  		<date>2023-08-04</date>
+  		<date>2024-06-07</date>
   		<subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
   	</entry>
   </RevisionHistory>
@@ -187,7 +187,7 @@
 		</cclaim>
 		<cclaim name="CC Conformance Claims">
 			<description>This FP is conformant to Part 2 (extended) of Common Criteria CC:2022, Revision 1. FPs
-			do not contain any SARs so no CC Part 3 claim is made.</description>
+			do not contain any SARs so no CC Part 3 claim is made. The </description>
 		</cclaim>
 		<cclaim name="PP Claim">
 			<description>This FP does not claim conformance to any PP.<h:br/><h:br/>
@@ -754,8 +754,7 @@
 			</f-element>
 			<audit-event type="optional">
 				<audit-event-descr>Failure to establish SSH connection</audit-event-descr>
-				<audit-event-info>Reason for failure.</audit-event-info>
-				<audit-event-info type="optional">Non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
+				<audit-event-info type="optional">Reason for failure and non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
 			</audit-event>
 			<audit-event type="optional">
 			<audit-event-descr>Establishment of SSH connection</audit-event-descr>
