@@ -26,7 +26,6 @@ output/ssh-release-linkable.html: group16
 output/ssh-release-linkable.html: group17
 output/ssh-release-linkable.html: group18
 output/ssh-release-linkable.html: incoporated
-output/ssh-release-linkable.html: isn
 output/ssh-release-linkable.html: multifactor
 output/ssh-release-linkable.html: nistp256
 output/ssh-release-linkable.html: nistp384
