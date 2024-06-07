@@ -296,6 +296,17 @@
 						<selectable id="sel-rfc8731">8731</selectable>
 						<selectable exclusive="yes">no other RFCs</selectable></selectables> and [<h:i>no other standard</h:i>].
 				</title>
+				<ext-comp-def-title>
+					<title>
+					The TOE shall implement SSH acting as a
+					<selectables>
+						<selectable>client</selectable>
+						<selectable>server</selectable></selectables> 
+					that complies with RFCs 4251, 4252, 4253, 4254,
+					<assignable>other RFCs</assignable>
+					and <assignable>other standards</assignable>.
+					</title>
+				</ext-comp-def-title>
 				<note role="application">
 					The following mapping is provided as a guide to ST authors to ensure the appropriate RFC selections are made 
 					based on applicable selections in subsequent SFRs: 
