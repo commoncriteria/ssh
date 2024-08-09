@@ -1,0 +1,2 @@
+/home/runner/work/ssh/ssh/output/effective.xml:112:27: error: element "no-link" not allowed here; expected data
+/home/runner/work/ssh/ssh/output/effective.xml:112:60: error: element "componentid" incomplete; expected data

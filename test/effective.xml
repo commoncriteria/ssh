@@ -109,7 +109,7 @@
     	<h:div class="table-caption"><ctr ctr-type="Table" id="dependencies">: Dependent Components Required for Package Functionality</ctr></h:div>
 		<componentsneeded>
 			<componentneeded>
-				<componentid>FCS_CKM.1</componentid>
+				<componentid><no-link>FCS_CKM.1</no-link></componentid>
 				<notes>To support key generation for SSH, the PP or PP-Module must
 					include <no-link>FCS_CKM.1</no-link> and specify the corresponding algorithms.</notes>
 			</componentneeded>
