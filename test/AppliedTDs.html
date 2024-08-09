@@ -1,0 +1,1531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html><head><meta content="text/html;charset=utf-8" http-equiv="Content-Type"></meta><meta content="utf-8" http-equiv="encoding"></meta><title>Functional Package for Secure Shell (SSH)</title><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script><script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX", "output/HTML-CSS"],
+            showMathMenu: false,
+            tex2jax: {
+              inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+              displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+              processEscapes: true
+            },
+            styles: {
+
+                ".MathJax_Display": {
+                "text-align": "left !important",
+                margin:       "0em 0em !important"
+            }}
+            });
+        </script><script type="text/javascript">// 
+
+// Called on page load to parse URL parameters and perform actions on them.
+function init(){
+    if(getQueryVariable("expand") == "on"){
+      expand();
+    }
+    fixAbbrs();
+}
+
+
+function fixAbbrs(){
+    var aa;
+    var brk_els = document.getElementsByClassName("dyn-abbr");
+    //
+    for(aa=0; aa!=brk_els.length; aa++){
+        var abbr = brk_els[aa].firstElementChild.getAttribute("href").substring(1);
+        var el = document.getElementById("long_"+abbr)
+        if (el==null) {
+             console.log("Could not find 'long_abbr_'"+abbr);
+             continue;
+        }
+        var abbr_def = el.textContent;
+        brk_els[aa].setAttribute("title", abbr_def);
+    }
+}
+// // 
+const AMPERSAND=String.fromCharCode(38);
+
+// Pass a URL variable to this function and it will return its value
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split(AMPERSAND);
+    for (var i=0;i!=vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
+
+
+//    Expands all evaluation activities
+function expand(){
+    var ap = document.getElementsByClassName('activity_pane');
+    for (var ii = 0; ii!=ap.length; ii++) {
+        ap[ii].classList.remove('hide');
+    }
+}
+
+// Function to expand and contract a given div
+function toggle(descendent) {
+    var cl = descendent.parentNode.parentNode.classList;
+    if (cl.contains('hide')){
+      cl.remove('hide');
+    }
+    else{
+      cl.add('hide');
+    }
+}
+
+// Expands targets if they are hidden
+function showTarget(id){
+    var element = document.getElementById(id);
+    while (element != document.body.rootNode ){
+	element.classList.remove("hide");
+	element = element.parentElement;
+    }
+}
+
+
+// </script><style type="text/css">
+    #toc a{
+        display: block;
+    }
+    .td-{
+        display: block;
+    }
+    svg{
+      width: 100%;
+    }
+
+    a[id^="ajq_"]{
+        color:black;
+    }
+
+    
+    body{
+       max-width: 900px;
+       margin: auto;
+    }
+    #toc span{
+       margin-left: 20px;
+    }
+    .assignable-content{
+      font-style: italic;
+    }
+    .selectable-content{
+      font-style: italic;
+    }
+    .not-selectable-content{
+      font-style: italic;
+      text-decoration: line-through;
+    }
+    .refinement{
+      font-weight: bold;
+    }
+    div.eacategory{
+      font-style: italic;
+      font-weight: bold;
+    }
+    .activity_pane .toggler::after, .activity_pane .toggler{
+       display: inline-block;
+       height: auto;
+       content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8A\
+       AAAPCAYAAAA71pVKAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAQOFAAEDhQGl\
+       VDz+AAAAB3RJTUUH4gIXFDM7fhmr1wAAAfRJREFUKM+dkk9I02EYxz/P+25uurWR\
+       tTkzI4NGl4jQgkq71K1DhnTQIDolRAQFQYSHTtGhU4e6eujQofBSFLOg0C4RUSjh\
+       FnmqTTdKpj/mfv/eX4cUpmRYn9vz8v3w8D7PA/AWGADCbI4QcAb4AnAF8IBJEdX+\
+       N0tEda40C4AHADviW1LFvpOX6+FwtAacVzqkGiWtwxo4F21OuPu7+yvxRNoDEhpY\
+       cpzavkQyc7D76FCk+vN7j7VU6RdR4xAsikjGGP9FKrN3sPfEpajv2i2zhckR4JUG\
+       UCr0erFavLkn2ytd2WPxcFOsZb74+SIQA0YPHBqIdB8Z6tChJv1m/N4P33OGAUsD\
+       BIFxPNcOkq07jyeSbbo1tTu2q6vHEqU7D/ddSKcz2ZQJjBSmx925b9NjwEMAafha\
+       eyQa/3Dq7O0243sCIEoRGAOA59nm5dM7OHVruzH+AkDjYEp23RrLT+U8Ub+fV0UR\
+       oVyaMfVa9fqquF5GKX3ja2FCuc6yWbMipYNP755UgEdr8o2FMf5ivVYdKRfzRkRW\
+       RfJTOc+2rWdAcUN5hdGP7x8viGgAXLvGbGFCKxW6tj74J3nOqVvP89M5V6kQ86UZ\
+       f7lWvWWMt7Sp41VKb21uSfqnB++6kWi8BLTzL4ioq7H4tgC4z3/QAZSBxEaBXygN\
+       v+jeFnAPAAAAAElFTkSuQmCC');
+       max-width: 15px;
+    }
+
+    a.defined{
+      color: inherit;
+      text-decoration: inherit;
+    }
+      
+    a {
+      text-decoration: none;
+      word-wrap: break-word;
+    }
+    a.abbr:link{
+      color:black;
+      text-decoration:none;
+    }
+    a.abbr:visited{
+      color:black;
+      text-decoration:none;
+    }
+    a.abbr:hover{
+      color:blue;
+      text-decoration:none;
+    }
+    a.abbr:hover:visited{
+      color:purple;
+      text-decoration:none;
+    }
+    a.abbr:active{
+      color:red;
+      text-decoration:none;
+    }
+    .note-header{
+      font-weight: bold;
+    }
+    .note p:first-child{
+      display: inline;
+    }
+
+    .indent{ margin-left:2em; }
+
+    /* Tooltip container */
+    .tooltipped {
+       position: relative;
+       display: inline-block;
+       border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+    }
+
+    /* Tooltip text */
+    .tooltiptext {
+       visibility: hidden;
+       width: 120px;
+       background-color: black;
+       color: #fff;
+       text-align: center;
+       padding: 5px 0;
+       border-radius: 6px;
+
+       /* Position the tooltip text - see examples below! */
+       position: absolute;
+       z-index: 1;
+   }
+
+   /* Show the tooltip text when you mouse over the tooltip container */
+   .tooltipped:hover .tooltiptext {
+       visibility: visible;
+   }
+   tr.major-row{
+       border-top-style: double;
+   }
+   tr.major-row td:first-child{
+       border-right-style: ridge;
+       background-color: white;
+   } 
+   table.mfs td{
+       text-align: center;
+   }
+   table.mfs td:first-child{
+       text-align: left;
+       white-space: nowrap;
+   }
+  .table-caption, caption{
+       text-align: center;
+       font-weight: bold;
+   }
+   table{
+       margin:auto;
+       margin-top:1em;
+       border-collapse:collapse; /*border: 1px solid black;*/
+   }
+   td{
+       text-align:left;
+       padding:8px 8px;
+   }
+   th{
+       padding:8px 8px;
+   }
+   thead tr td{
+       text-align: center;
+       font-style: oblique;
+       font-weight: bold;
+   }
+   tr.header{
+       border-bottom:3px solid gray;
+       padding:8px 8px;
+       text-align:left;
+       font-weight:bold; /*font-size: 90%; font-family: verdana, arial, helvetica, sans-serif; */
+   }
+   table tr:nth-child(2n+2){
+       background-color:#F4F4F4;
+   }
+
+   table.ecd_heir_dep{
+       width: 100%;
+   }
+   table.ecd_heir_dep tr{
+       background-color: inherit;
+   }
+       
+   table.ecd_heir_dep tr :first-child{
+       white-space: nowrap;
+   }
+   table.ecd_heir_dep tr :last-child{
+       width: 100%;
+   }
+
+       
+   .dependent{
+       border: 1px solid gray;
+       border-radius: 1px
+   }
+   .dependent-content{
+       margin-left: 25px;
+       font-style: italic;
+   }
+
+   .uc_table_or td, .uc_table_or tr {
+       vertical-align: middle;
+       border: 1px solid black;
+       background-color: white;
+   }
+
+   .uc_not, .uc_mf, .uc_sel, .uc_guide{
+       text-indent: 10px;
+   }
+   .uc_sel &gt; a{ 
+       font-style: italic;
+   }
+
+   .uc_not_sel, .uc_sel.uc_mf, uc_assign.uc_mf{
+       text-indent: 20px;
+   }
+
+
+   .uc_table_or tr td.or_cell{
+      white-space: nowrap;
+      border-radius: 0.6em 0 0 0.6em;
+      background-color: black;
+      color: white;
+   }
+
+   .uc_table_and, .uc_table_or {
+       width: 100%;
+       background-color: white;
+   }
+   .uc_guidance{
+       display: table;
+       background-color: gray;
+   }  
+   div.uc_inc_fcomp{
+       display: list-item;
+       list-style-type: disc;
+       list-style-position: inside;
+       }
+
+   div.validationguidelines_label{
+        padding-top: 10px;
+   }
+	
+   .evidence, .test-obj { font-style: normal; font-size: 90%;}
+   
+   
+	table.classic {
+    	width: 100%;
+    	background-color: white;
+    	border-collapse: collapse;
+    	border-width: 2px;
+  		border-color: gray;
+  		border-style: solid;
+  		color: black;
+		font-size: small;
+	}
+    table.classic th {
+  		background-color: lightgray;   
+	}
+    table.classic th:empty{
+	    background-color: white;
+		border-top: none;
+		border-left: none;
+	}
+	table.classic td, table.classic th {
+  		border-width: 2px;
+  		border-color: gray;
+  		border-style: solid;
+  		padding: 5px;
+	}
+
+   
+    .comp .description{
+        padding-bottom: 20px;
+        display: block;
+    }    
+   
+   
+          .figure{
+              font-weight:bold;
+          }
+          h1{
+              page-break-before:always;
+              text-align:left;
+              font-size:200%;
+              margin-top:2em;
+              margin-bottom:2em;
+              font-family:verdana, arial, helvetica, sans-serif;
+              margin-bottom:1.0em;
+          }
+          h1.title{
+              text-align:center;
+          }
+          h2{
+              font-size:125%;
+              border-bottom:solid 1px gray;
+              margin-bottom:1.0em;
+              margin-top:2em;
+              margin-bottom:0.75em;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+          h3{
+              font-size:110%;
+              margin-bottom:0.25em;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+          h4{
+              margin-left:0%;
+              font-size:100%;
+              margin-bottom:0.75em;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+          h5,
+          h6{
+              margin-left:6%;
+              font-size:90%;
+              margin-bottom:0.5em;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+          p{
+              margin-bottom:0.6em;
+              margin-top:0.2em;
+          }
+          pre{
+              margin-bottom:0.5em;
+              margin-top:0.25em;
+              margin-left:3%;
+              font-family:monospace;
+              font-size:90%;
+          }
+          ul{
+              margin-bottom:0.5em;
+              margin-top:0.25em;
+          }
+          td{
+              vertical-align:top;
+          }
+          dl{
+              margin-bottom:0.5em;
+              margin-top:0.25em;
+          }
+          dt{
+              margin-top:0.7em;
+              font-weight:bold;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+
+          a.linkref{
+              font-family:verdana, arial, helvetica, sans-serif;
+              font-size:90%;
+          }
+
+          *.simpleText{
+              margin-left:10%;
+          }
+          *.propertyText{
+              margin-left:10%;
+              margin-top:0.2em;
+              margin-bottom:0.2em
+          }
+          *.toc{
+              background:#FFFFFF;
+          }
+          *.toc2{
+              background:#FFFFFF;
+          }
+	  .choicelabel{
+	    font-weight: bold;
+	  }
+          div.comp{
+              margin-left:8%;
+              margin-top:1em;
+              margin-bottom:1em;
+          }
+          div.element{
+              margin-bottom:1em;
+          }
+          div.appnote{
+              margin-left:0%;
+              margin-top:1em;
+          }
+          .comment{
+              background-color:beige;
+              color:green;
+          }
+
+          div.subaact{
+              margin-left:0%;
+              margin-top:1em;
+          }
+          .subaact-header{
+              font-weight: bold;
+          }
+
+          div.activity_pane_body{
+              font-style:italic;
+              margin-left:0%;
+              margin-top:1em;
+              margin-bottom:1em;
+              padding:1em;
+              border:2px solid #888888;
+              border-radius:3px;
+              display:block;
+              margin-left:0%;
+              margin-top:1em;
+              margin-bottom:1em;
+              box-shadow:0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+          }
+          div.optional-appendicies{
+              display:none;
+          }
+
+          div.statustag{
+              margin-left:0%;
+              margin-top:1em;
+              margin-bottom:1em;
+              padding: 0.6em;
+              border:2px solid #888888;
+              border-radius:3px;
+          }
+
+          div.toc{
+              margin-left:8%;
+              margin-bottom:4em;
+              padding-bottom:0.75em;
+              padding-top:1em;
+              padding-left:2em;
+              padding-right:2em;
+          }
+          span.SOlist{
+              font-size:90%;
+              font-family:verdana, arial, helvetica, sans-serif;
+          }
+          h2.toc{
+              border-bottom:none;
+              margin-left:0%;
+              margin-top:0em;
+          }
+          p.toc{
+              margin-left:2em;
+              margin-bottom:0.2em;
+              margin-top:0.5em;
+          }
+          p.toc2{
+              margin-left:5em;
+              margin-bottom:0.1em;
+              margin-top:0.1em;
+          }
+          div.center{
+              display:block;
+              margin-left:auto;
+              margin-right:auto;
+              text-align:center;
+              }
+          div.ea{
+	      padding-bottom:10px;
+          }
+	      
+          div.figure{
+              display:block;
+              margin-left:auto;
+              margin-right:auto;
+              text-align:center;
+              margin-top:1em;
+          }
+          div.activity_pane_header{
+              display:table-cell;
+              vertical-align:middle;
+              padding-top:10px;
+          }
+          span.activity_pane_label{
+              vertical-align:middle;
+              color:black;
+              text-decoration:none;
+              font-size:100%;
+              font-weight:bold; /*font-family: verdana, arial, helvetica, sans-serif; */
+          }
+          .dyn-abbr a, .dyn-abbr a:active, .dyn-abbr a:visited{
+              background-color: inherit;
+              color: inherit;
+              text-decoration: inherit;;
+          }
+
+          @media screen{
+              *.reqid{
+                  float:left;
+                  font-size:90%;
+                  font-family:verdana, arial, helvetica, sans-serif;
+                  margin-right:1em;
+              }
+              *.req{
+                  margin-left:0%;
+                  margin-top:1em;
+                  margin-bottom:1em;
+              }
+              *.reqdesc{
+                  margin-left:20%;
+              }
+
+              .activity_pane.hide .toggler::after, .activity_pane.hide .toggler{
+	          content: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8A\
+		  AAAPCAYAAAA71pVKAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAQOFAAEDhQGl\
+		  VDz+AAAAB3RJTUUH4gIXFC4BR3keeQAAAfZJREFUKM+d0k1PE1EUBuB37h2nQ+30\
+		  w5YObR0FhIppqBgWuDCaSBQjiQZNTIxLfoAkBHXh2vg7xID+ABPXBl3UdAMaN1CR\
+		  j5ZijZ22DKW9d44LP1KMROvZnMU5z+KcvBzAAgADwCdV1RzXlYQ26tYhrYM6u/qX\
+		  ATwCcKodrAOYv3z9IV28OuP6/NHPAGYZ45G/QQ5AAFjNbyzdTA2NewcGx7xeI5wu\
+		  FZenQOQQuasHncN/9IJo1sn+unkpbqVFIJhgydQo13VjDKCJSnnLBJAHUPoTBoA3\
+		  uzvlfiNgDhn+KMiVCB6xYCZSoaPHz5wrba/cbuztpBWFvQLI+R2DSGZqleKNuJX2\
+		  cVVjAIExDo/uV7pPjGhSNntrleI9+n7Ox33Y549Wq/ZWTyh8rNcfjPlaZ4xzZvUM\
+		  ezrNvnJ+fXFCiL2k2rpQq2wnAqH4tYjZFyZq/Y8CKZoim51z1nIZQ4jGNIC5fZhz\
+		  7fHA4JVuj26AyIWiMDSbdTi1L/T29RO7ahdfKgqbInJLANCKZ6Kx5J24dVowztW6\
+		  Y+8WNt91FNYXc4WN988BzAL4QOT+Aj/x8GFf+MHI+UlI2cBS9kVlLZfxSFdMS9GY\
+		  V1WtKETDPShhz85emLRHx++TETBLAJ4qCov8c7ajsZMr/5PtBQB3AXSpqsbagd8A\
+		  O+HMRUtPNsQAAAAASUVORK5CYII=');
+              }
+
+              .activity_pane.hide .activity_pane_body{
+                  display:none;
+              }
+              div.statustag{
+                  box-shadow:4px 4px 3px #888888;
+              }
+          }
+
+
+          @media print{
+              *.reqid{
+                  font-size:90%;
+                  font-family:verdana, arial, helvetica, sans-serif;
+              }
+              *.req{
+                  margin-left:0%;
+                  margin-top:1em;
+                  margin-bottom:1em;
+              }
+              *.reqdesc{
+                  margin-left:20%;
+              }
+              div.activity_pane_body{
+                  padding:1em;
+                  border:2px solid #888888;
+                  border-radius:3px;
+                  display:block;
+              }
+
+	            img[src="images/collapsed.png"] { display:none;}
+
+          }
+    </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Functional Package for Secure Shell (SSH)</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
+      Version: 1.1<br/>2024-06-07<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>1.0</td><td>2021-05-13</td><td>Converted <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> EP to a Functional Package and incorporated CCUF CWG input.</td></tr>
+<tr><td>1.1</td><td>2024-06-07</td><td>Updated for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022 conformance, incorporated applicable errata.</td></tr>
+</table><h3>TDs Applied</h3><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#toes" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">3<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">3.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#cryptsup" style="text-indent:10px">3.2<span>Cryptographic Support (FCS)</span></a><a href="#opt-app" style="text-indent:0px">Appendix A - <span>Optional Requirements</span></a><a href="#optional-reqs" style="text-indent:10px">A.1<span>Strictly Optional  Requirements
+    </span></a><a href="#objective-reqs" style="text-indent:10px">A.2<span>Objective  Requirements
+    </span></a><a href="#feat-based-reqs" style="text-indent:10px">A.3<span>Implementation-dependent  Requirements
+    </span></a><a href="#sel-based-reqs" style="text-indent:0px">Appendix B - <span>Selection-based  Requirements
+    </span></a><a href="#sel-based-reqs-audit" style="text-indent:10px">B.1<span>
+              Auditable Events for Selection-based  Requirements
+           </span></a><a href="#-sel-based" style="text-indent:10px">B.2<span>Cryptographic Support (FCS)</span></a><a href="#ext-comp-defs" style="text-indent:0px">Appendix C - <span>Extended Component Definitions</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">C.1<span>Extended Components Table</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">C.2<span>Extended Component Definitions</span></a><a href="#ext-comp-FCS" style="text-indent:20px">C.2.1<span>Cryptographic Support (FCS)</span></a><a href="#ext-comp-FCS_SSH_EXT" style="text-indent:30px">C.2.1.1<span>FCS_SSH_EXT SSH Protocol</span></a><a href="#ext-comp-FCS_SSHC_EXT" style="text-indent:30px">C.2.1.2<span>FCS_SSHC_EXT SSH Client Protocol</span></a><a href="#ext-comp-FCS_SSHS_EXT" style="text-indent:30px">C.2.1.3<span>FCS_SSHS_EXT SSH Server Protocol</span></a><a href="#acronyms" style="text-indent:0px">Appendix D - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix E - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+	
+
+
+
+  <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
+        <p>
+	    Secure Shell (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>) is a protocol for secure remote login and other secure network services over
+	    an untrusted network. <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> software can act as a client, server, or both.
+      	</p><p>
+		This <i>Functional Package (<abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>) for Secure Shell</i> provides a collection of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol related 
+      		Security Functional Requirements (<abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>) and 
+		Evaluation Activities (EAs) covering audit, authentication, cryptographic algorithms, and protocol negotiation. The intent 
+		of this package is to provide Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>), collaborative Protection Profile (<abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>), and Protection Profile Module (<abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>) authors with a readily consumable collection of <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> and EAs to be integrated into
+		their documents.  
+        </p><p>
+        	The functional components defined for this package were chosen to ensure that a conformant <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in a secure manner by requiring
+        	that the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> implement protocol-specific details that are not captured in the FTP_PRO <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> family. 
+        </p>
+   
+
+
+
+
+
+
+   <div class="no-link"><h2 id="glossary" class="indexable" data-level="2">1.2 Terms</h2>
+The following sections list Common Criteria and technology terms used in this document.
+    <h3 id="cc-terms" class="indexable" data-level="3">1.2.1 Common Criteria Terms</h3><table><tr><td><div id="Assurance">Assurance</div></td><td>Grounds for confidence that a TOE meets the SFRs <a href="#bibCC">[CC]</a>.</td></tr>
+<tr><td><div id="Base_Protection_Profile">Base Protection Profile (Base-PP)</div></td><td>Protection Profile used as a basis to build a PP-Configuration.</td></tr>
+<tr><td><div id="Collaborative_Protection_Profile">Collaborative Protection Profile (cPP)</div></td><td>A Protection Profile developed by
+    international technical communities and approved by multiple schemes.</td></tr>
+<tr><td><div id="Common_Criteria">Common Criteria (CC)</div></td><td>Common Criteria for Information Technology Security Evaluation (International Standard ISO/IEC 15408).</td></tr>
+<tr><td><div id="Common_Criteria_Testing_Laboratory">Common Criteria Testing Laboratory</div></td><td>
+      Within the context of the Common Criteria Evaluation and Validation Scheme (CCEVS), an IT security evaluation facility
+      accredited by the National Voluntary Laboratory Accreditation Program (NVLAP) and approved by the NIAP Validation Body to conduct Common Criteria-based evaluations.
+    </td></tr>
+<tr><td><div id="Common_Evaluation_Methodology">Common Evaluation Methodology (CEM)</div></td><td>Common Evaluation Methodology for Information Technology Security Evaluation.</td></tr>
+<tr><td><div id="Distributed_TOE">Distributed TOE</div></td><td>A TOE composed of multiple components operating as a logical whole.</td></tr>
+<tr><td><div id="Functional_Package">Functional Package (FP)</div></td><td>A document that collects SFRs for a particular protocol, technology,
+	    or functionality.</td></tr>
+<tr><td><div id="Operational_Environment">Operational Environment (OE)</div></td><td>Hardware and software that are outside the TOE boundary that support the TOE functionality and security policy.</td></tr>
+<tr><td><div id="Protection_Profile">Protection Profile (PP)</div></td><td>An implementation-independent set of security requirements for a category of products.</td></tr>
+<tr><td><div id="Protection_Profile_Configuration">Protection Profile Configuration (PP-Configuration)</div></td><td>A comprehensive set of security requirements for a product type that consists of at least one Base-PP and at least one PP-Module.</td></tr>
+<tr><td><div id="Protection_Profile_Module">Protection Profile Module (PP-Module)</div></td><td>An implementation-independent statement of security needs for a TOE type complementary to one or more Base-PPs.</td></tr>
+<tr><td><div id="Security_Assurance_Requirement">Security Assurance Requirement (SAR)</div></td><td>A requirement to assure the security of the TOE.</td></tr>
+<tr><td><div id="Security_Functional_Requirement">Security Functional Requirement (SFR)</div></td><td>A requirement for security enforcement by the TOE.</td></tr>
+<tr><td><div id="Security_Target">Security Target (ST)</div></td><td>A set of implementation-dependent security requirements for a specific product.</td></tr>
+<tr><td><div id="Target_of_Evaluation">Target of Evaluation (TOE)</div></td><td>The product under evaluation. </td></tr>
+<tr><td><div id="TOE_Security_Functionality">TOE Security Functionality (TSF)</div></td><td>The security functionality of the product under evaluation.</td></tr>
+<tr><td><div id="TOE_Summary_Specification">TOE Summary Specification (TSS)</div></td><td>A description of how a TOE satisfies the SFRs in an ST.</td></tr>
+</table><h3 id="tech-terms" class="indexable" data-level="3">1.2.2 Technical Terms</h3><table style="width: 100%"><tr><td><div id="Connection">Connection</div></td><td>The SSH transport layer between a client and a server.  Within a connection there can
+			be multiple sessions. </td></tr>
+<tr><td><div id="Rekey">Rekey</div></td><td>Where the connection renegotiates the shared secret and each session subsequently derives a new 
+			encryption key.  </td></tr>
+<tr><td><div id="Secure_Shell">Secure Shell (SSH)</div></td><td>Cryptographic network protocol for initiating text-based shell sessions
+		   on remote systems.</td></tr>
+<tr><td><div id="Session">Session</div></td><td>A discrete stream of data within a connection.  </td></tr>
+</table></div>
+	
+     
+
+
+
+    <h2 class="indexable" data-level="2" id="toes">1.3 Compliant Targets of Evaluation</h2>
+		<p>The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is a product that acts as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> 
+	    server, or both. This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> describes the extended security functionality of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in terms of <a href="#bibCC">[CC]</a>. </p>
+		<p>The contents of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> must be appropriately incoporated into a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>. When this package 
+		is incorporated as such, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include selection-based requirements in accordance with the selections or assignments 
+		indicated in the incorporating document.
+		</p><p>The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that instantiates this Package must typically include the following components in order to satisfy 
+		dependencies of this Package. It is the responsibility of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> author who incorporates this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to 
+		ensure that dependence on these components is satisfied, either by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or by assumptions about its <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>.
+		</p><p>An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must identify the applicable version of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, and of this
+		<abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> in its conformance claims.</p>
+    	
+    	<div class="table-caption"><span class="ctr" data-myid="dependencies" data-counter-type="ct-Table" id="dependencies">Table <span class="counter">1</span>: Dependent Components Required for Package Functionality</span></div>
+		<table><tr class="header"><th>Component</th><th>Explanation</th></tr><tr><td class="componentneeded" id="FCS_CKM.1"><a href="#FCS_CKM.1">FCS_CKM.1</a></td><td>To support key generation for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must
+					include <span class="no-link">FCS_CKM.1</span> and specify the corresponding algorithms.<br/></td></tr><tr><td class="componentneeded" id="FCS_CKM.2"><a href="#FCS_CKM.2">FCS_CKM.2</a></td><td>To support key establishment for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must
+					include <span class="no-link">FCS_CKM.2</span> and specify the corresponding algorithms.<br/></td></tr><tr><td class="componentneeded" id="FCS_COP.1"><a href="#FCS_COP.1">FCS_COP.1</a></td><td>
+					
+					To support the cryptography needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FCS_COP.1</span> 
+					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
+					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
+					authentication function. In particular, the incorporating document must support AES-CTR as defined in NIST SP 800-38A 
+					with key sizes of 128 or 256 bits, depending on the algorithms selected.
+				<br/></td></tr><tr><td class="componentneeded" id="FCS_RBG.1"><a href="#FCS_RBG.1">FCS_RBG.1</a></td><td>To support random bit generation needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key generation,
+					the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FCS_RBG.1</span> or an extended <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> that defines comparable functionality.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.1"><a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FIA_X509_EXT.1</span>. Note however that support for X.509 is selectable 
+					and not mandatory.  <br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.2"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FIA_X509_EXT.2</span>. Note however that support for X.509 is selectable 
+					and not mandatory. <br/></td></tr><tr><td class="componentneeded" id="FPT_STM.1"><a href="#FPT_STM.1">FPT_STM.1</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FPT_STM.1</span> or some other requirement that ensures reliable system time.  
+					Note however that support for time-based rekey thresholds is selectable and not mandatory.<br/></td></tr></table>
+	
+<h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1>
+	<dl><dt class="cclaim defined" id="Conformance Statement">Conformance Statement</dt><dd><span class="description">An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>.
+				<br/><br/>
+				The evaluation methods used for evaluating the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are a combination of the workunits defined in <a href="#bibCEM">[CEM]</a> as well as the
+				EAs for ensuring that individual <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> have a sufficient level of supporting evidence in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and 
+				guidance documentation, and have been sufficiently tested by the laboratory as part of completing ATE_IND.1.
+			</span></dd><dt class="cclaim defined" id="CC Conformance Claims">CC Conformance Claims</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is conformant to Part 2 (extended) of Common Criteria <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1. FPs
+			do not contain any <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>, so no <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 3 claim is made. The </span></dd><dt class="cclaim defined" id="PP Claim">PP Claim</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> does not claim conformance to any <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.<br/><br/>
+				<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Configurations do not require enumeration of FPs; this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> can be claimed in any <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes
+				a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that permits the <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to be claimed as part of it.
+			</span></dd><dt class="cclaim defined" id="Package Claim">Package Claim</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> does not claim conformance to any other FPs.
+			</span></dd></dl>
+<h1 class="indexable" data-level="1" id="Security_Functional_Requirements">3 Security Functional Requirements</h1>
+      This chapter describes the security requirements which have to be fulfilled by the product under evaluation.
+      Those requirements comprise functional components from Part 2 of <a href="#bibCC">[CC]</a>.
+ 
+       
+    The following conventions are used for the completion of operations:
+     <ul>
+       <li>
+         <b>Refinement</b> operation (denoted by <b>bold text</b> or <strike>strikethrough
+         text</strike>): Is used to add details to a requirement or to remove part of the requirement that is made irrelevant
+         through the completion of another operation, and thus further restricts a requirement.
+         </li>
+       <li>
+         <b>Selection</b> (denoted by <i>italicized text</i>): Is used to select one or more options
+         provided by the [<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>] in stating a requirement.</li>
+       <li>
+         <b>Assignment</b> operation (denoted by <span class="assignable-content">italicized text</span>): Is used to assign a
+         specific value to an unspecified parameter, such as the length of a password. Showing the
+         value in square brackets indicates assignment.</li>
+       <li>
+         <b>Iteration</b> operation: Is indicated by appending the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> name with a slash and unique identifier
+            suggesting the purpose of the operation, e.g. "/EXAMPLE1."
+       </li>
+     </ul>
+   
+
+	
+	<h2 class="indexable" data-level="2" id="ss-audit-table">3.1 Auditable Events for Mandatory SFRs</h2>
+		<p>
+			The auditable events specified in this Package are included in an <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+			if the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> supports audit event reporting through FAU_GEN.1,
+			and if all other criteria in the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> are met.
+		</p>
+		<table class="sort_kids_" border="1"><caption data-sortkey="#0"><span class="ctr" data-myid="at-man-audit" data-counter-type="ct-Table" id="at-man-audit">Table <span class="counter">2</span></span>: Auditable Events for Mandatory Requirements</caption><tr data-sortkey="#1"><th>Requirement</th><th>Auditable Events</th><th>Additional Audit Record Contents</th></tr><tr data-sortkey="FCS_SSH_EXT.1"><td rowspan="5"><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a></td><td style="display:none"></td></tr><tr style="display:none;" data-sortkey="FCS_SSH_EXT.1#"><td></td></tr><tr data-sortkey="FCS_SSH_EXT.1.12"><td><b>[selection: </b><i>Failure to establish <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, None</i><b>]</b></td><td><b>[selection: </b><i>Reason for failure and non-TOE endpoint of attempted connection (IP Address), No additional information</i><b>]</b></td></tr><tr data-sortkey="FCS_SSH_EXT.1.13"><td><b>[selection: </b><i>Establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, None</i><b>]</b></td><td><b>[selection: </b><i>Non-TOE endpoint of connection (IP Address), No additional information</i><b>]</b></td></tr><tr data-sortkey="FCS_SSH_EXT.1.14"><td><b>[selection: </b><i>Termination of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection session, None</i><b>]</b></td><td><b>[selection: </b><i>Non-TOE endpoint of connection (IP Address), No additional information</i><b>]</b></td></tr><tr data-sortkey="FCS_SSH_EXT.1.15"><td><b>[selection: </b><i>Dropping of packets outside defined size limits, None</i><b>]</b></td><td><b>[selection: </b><i>Packet size, No additional information</i><b>]</b></td></tr></table>
+	
+	  
+	
+	
+	
+	<h2 id="cryptsup" class="indexable" data-level="2">3.2 Cryptographic Support (FCS)</h2>
+	
+	
+	
+	
+	
+	
+		
+	
+		<div class="comp" id="FCS_SSH_EXT.1"><h4>FCS_SSH_EXT.1 SSH Protocol</h4>
+	
+			
+			
+			
+			
+
+			
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.1"><a href="#FCS_SSH_EXT.1.1" class="abbr">FCS_SSH_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
+					[<b>selection</b>: <span class="selectable-content" id="ssh-client">client</span>, <span class="selectable-content" id="ssh-server">server</span>] 
+				that complies with RFCs 4251, 4252, 4253, 4254,
+					[<b>selection</b>: <span class="selectable-content" id="sel-rfc4256">4256</span>, <span class="selectable-content" id="sel-rfc4344">4344</span>, <span class="selectable-content" id="sel-rfc5647">5647</span>, <span class="selectable-content" id="sel-rfc5656">5656</span>, <span class="selectable-content" id="sel-rfc6187">6187</span>, <span class="selectable-content" id="sel-rfc6668">6668</span>, <span class="selectable-content" id="sel-rfc8268">8268</span>, <span class="selectable-content" id="sel-rfc8308">8308</span>, <span class="selectable-content" id="sel-rfc8332">8332</span>, <span class="selectable-content" id="sel-rfc8709">8709</span>, <span class="selectable-content" id="sel-rfc8731">8731</span>, <span class="selectable-content" id="_s_14">no other RFCs</span>] and [<i>no other standard</i>].
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					The following mapping is provided as a guide to <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors to ensure the appropriate RFC selections are made 
+					based on applicable selections in subsequent <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>. 
+					<ul>
+						<li>RFC 4256: Select for keyboard-interactive authentication </li>
+						<li>RFC 4344: Select for AES-128-CTR or AES-256-CTR  </li>
+						<li>RFC 5647: Select for AEAD_AES_128_GCM, AEAD_AES_256_GCM, or aes*-gcm@openssh.com </li> 
+						<li>RFC 5656: Select for elliptic curve cryptography (<abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr>) </li>
+						<li>RFC 6187: Select for X.509 certificate use </li>
+						<li>RFC 6668: Select for HMAC-SHA-2 algorithms </li>
+						<li>RFC 8268: Select for FFC DH groups with SHA-2  </li>
+						<li>RFC 8308: Select if RFC 8332 is selected </li>
+						<li>RFC 8332: Select if SHA-2 is available with ssh-rsa </li>
+						<li>RFC 8709: Select if ed25519 or ed448 is used as a public key algorithm </li>
+						<li>RFC 8731: Select if curve25519 or curve448 is used for key exchange </li> 
+					</ul>
+					<p>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the additional RFCs to which
+					conformance is being claimed. An <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> product can implement additional RFCs, but only those
+					listed in the selection can be claimed as conformant under <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>. 
+					The RFC selections for this requirement must be consistent with selections in
+					later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> (e.g., cryptographic algorithms permitted). </p>
+
+					<p>For the purposes of this package (and subsequent integration into <abbr class="dyn-abbr"><a href="#abbr_cPP">cPPs</a></abbr>), only the claimed algorithms listed 
+					in the package must be enabled for use.</p>
+
+<p>
+	RFC 4251 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol.
+</p>
+					
+					<p>
+						RFC 4252 defines support for the required <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> authentication method.
+					</p>
+
+					<p>RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
+					Internet Engineering Task Force's perspective, the implementation must include support, not that the algorithms must 
+					be enabled for use. For the purposes of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_EA">EA</a></abbr> and this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>
+					overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
+					but not listed in later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> are actually implemented.</p>
+
+<p>
+	RFC 4254 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection protocol.
+</p>
+
+					<p>RFC 4256 must be selected if "keyboard-interactive" is selected in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+
+					<p>RFC 4344 must be selected if aes128-ctr or aes256-ctr is selected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>.</p>
+
+					
+
+					<p>RFC 5647 must be selected when AEAD_AES_128_GCM, AEAD_AES_256_GCM, aes128-gcm@openssh.com, or
+					aes256-gcm@openssh.com is selected as an encryption algorithm in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a> 
+					and when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
+
+					<p>RFC 5656 must be selected when ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521 is selected as a public key algorithm
+					in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or ecdh-sha2-nistp521 is selected
+					as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>, or when "RFC 5656" is selected in <a href="#FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</a>.</p>
+
+					<p>RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp256, x509v3-ecdsa-sha2-nistp384, x509v3-ecdsa-sha2-nistp521,
+					or x509v3-rsa2048-sha256 is selected as a public key algorithm in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+
+					<p>RFC 6668 must be selected when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
+
+					<p>RFC 8268 must be selected when diffie-hellman-group14-sha256, diffie-hellman-group15-sha512,   
+						diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512
+						is selected as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>.</p>
+
+					<p>
+						RFC 8308 defines support for secure negotiation of protocol extensions, and must be 
+						claimed when RFC 8332 is claimed.
+					</p>
+
+					<p>RFC 8332 must be selected when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in
+					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+
+					<p>RFC 8709 must be selected when ssh-ed25519 or ssh-ed448 is selected as a public key algorithm in
+					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+					
+					<p>RFC 8731 must be selected when curve25519-sha256 or curve448-sha512 is selected as a key exchange 
+						algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>.</p>						
+
+					<p>If "client" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>.</p>
+					<p>If "server" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>.</p>
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.2"><a href="#FCS_SSH_EXT.1.2" class="abbr">FCS_SSH_EXT.1.2</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_17">“password” (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_18">“keyboard-interactive” (RFC 4256)</span></li><li style=""><span class="selectable-content" id="_s_19">“publickey” (RFC 4252): 
+							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_20">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_21">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_22">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_23">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_24">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_25">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_26">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_27">ssh-ed448 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_28">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_29">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_30">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_31">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
+						</span></li></ul>] and no other methods.
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					Within <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> there are two types of authentication: user authentication and peer authentication. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> 
+					deals with the options supported for user authentication. Peer authentication is covered in
+					<a href="#FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</a> (for clients) and <a href="#FCS_SSHS_EXT.1.1">FCS_SSHS_EXT.1.1</a> (for servers).
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.3"><a href="#FCS_SSH_EXT.1.3" class="abbr">FCS_SSH_EXT.1.3</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that, as described in RFC 4253, packets greater than 
+					[<b>assignment</b>: 
+     <span class="assignable-content">number of bytes between 35 KB and 1 GB (inclusive)</span>]
+					in an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> transport connection are dropped.
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					RFC 4253, Section 6.1 provides for the acceptance of “large packets” with the caveat that the packets should
+					be of “reasonable length” or dropped. The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.. <p></p>
+					The upper bound on the packet size is driven by the size identified in <a href="#FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</a>.
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.4"><a href="#FCS_SSH_EXT.1.4" class="abbr">FCS_SSH_EXT.1.4</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_32">aes128-ctr (RFC 4344)</span></li><li style=""><span class="selectable-content" id="_s_33">aes256-ctr (RFC 4344)</span></li><li style=""><span class="selectable-content" id="_s_34">aes128-cbc (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_35">aes256-cbc (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_36">AEAD_AES_128_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_37">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_38">aes128-gcm@openssh.com (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_39">aes256-gcm@openssh.com (RFC 5647)</span></li></ul>] and no other mechanisms.
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding MAC algorithm to be
+					selected in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.5"><a href="#FCS_SSH_EXT.1.5" class="abbr">FCS_SSH_EXT.1.5</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from modification, deletion, and insertion using: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_40">hmac-sha2-256 (RFC 6668)</span></li><li style=""><span class="selectable-content" id="_s_41">hmac-sha2-512 (RFC 6668)</span></li><li style=""><span class="selectable-content" id="_s_42">AEAD_AES_128_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_43">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_44">implicit</span></li></ul>] and no other mechanisms.
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding encryption algorithm 
+					to be selected. <p></p>
+					In AES-GCM mode, integrity is not provided using a MAC, it is implicit in the AES-GCM mode itself. There is no need
+					for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this. <p></p>
+					If the negotiated encryption algorithm is one of the aes*-gcm@openssh.com algorithms, then the MAC field is 
+					ignored during negotiation and implicitly selects AES-GCM for the MAC. The selection “implicit” is not an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> identifier and
+					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit.”<p></p>
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.6"><a href="#FCS_SSH_EXT.1.6" class="abbr">FCS_SSH_EXT.1.6</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall establish a shared secret with its peer using: 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_45">diffie-hellman-group14-sha256 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_46">diffie-hellman-group15-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_47">diffie-hellman-group16-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_48">diffie-hellman-group17-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_49">diffie-hellman-group18-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_50">ecdh-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_51">ecdh-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_52">ecdh-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_53">curve25519-sha256 (RFC 8731)</span></li><li style=""><span class="selectable-content" id="_s_54">curve448-sha512 (RFC 8731)</span></li></ul>] and no other mechanisms.
+				</div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.7"><a href="#FCS_SSH_EXT.1.7" class="abbr">FCS_SSH_EXT.1.7</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_55">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_56"> RFC 5656, Section 4 </span></li></ul>]
+					to derive the following cryptographic keys from a shared secret: session keys.
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					RFC 4253 must be selected when the key establishment scheme (selected in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>) uses finite field 
+					cryptography (FFC) and RFC 5656 when it uses <abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr>.  <p></p>
+					RFC 4253, Section 7.2 defines two KDFs for FFC-based key establishment schemes.  Therefore, RFC 4253 should be 
+					selected if any of the RFC 4253 or RFC 8268 key establishment schemes are selected. <p></p>
+					RFC 5656, Section 4 defines KDFs used in <abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr> key establishment schemes and should be selected when RFC 5656 or 
+					RFC 8731 key establishment schemes are selected.
+				</span></div></div></div>
+			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.8"><a href="#FCS_SSH_EXT.1.8" class="abbr">FCS_SSH_EXT.1.8</a></div><div class="reqdesc">
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_57">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_58">connection termination</span></li></ul>]
+					occurs when any of the following thresholds are met: 
+					<ul>
+						<li>one hour connection time</li>
+						<li>no more than one gigabyte of transmitted data, or</li>
+						<li>no more than one gigabyte of received data.</li>
+					</ul>
+				<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+					This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> defines three thresholds that need to be implemented. These thresholds were arrived at to ensure 
+					that the cryptographic key space for the symmetric session keys is not exhausted (more detail can be found in
+					RFC 4344 and RFC 4253). A rekey or connection termination needs to be performed whenever a threshold is reached 
+					for a given connection. The rekey applies to all session keys (encryption, integrity protection) for incoming and 
+					outgoing traffic.  <p></p>
+					It is acceptable for a <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to implement lower thresholds than the maximum values defined in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>. If a 
+					threshold is configurable, the guidance documentation needs to specify how to configure that threshold. <p></p>
+					It is possible that hardware limitations may prevent reaching the data transfer threshold in less than one hour. In 
+					cases where the data transfer threshold could not be reached due to hardware limitations, it is acceptable to omit
+					testing of this (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> rekeying based on data transfer threshold). See EAs for details.<p></p>
+				</span></div></div></div>
+			
+			
+			
+			
+		<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall ensure that the selections indicated in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> are consistent with selections in this element
+						and subsequent element. Otherwise, this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is evaluated by activities for other <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>. <p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						There are no guidance EAs for this element. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is evaluated by activities for other <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>.<p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						There are no test EAs for this element. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> is evaluated by activities for other <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>.<p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check to ensure that:
+						<ul>
+						<li>the authentication methods listed in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> are identical to those claimed 
+							in this element;</li>
+						<li>if password-based authentication methods have been claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, 
+							then the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> also describes these;</li> 
+							<li>if keyboard-interactive is selected, 
+								the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes the multifactor authentication mechanisms provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.</li>
+						</ul>
+							<p></p>
+					</div>	
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall check the guidance documentation to ensure the configuration options, if any, for
+						authentication mechanisms provided by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are described.<p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_1" class="defined" href="#_t_1">Test FCS_SSH_EXT.1.2:1</a>:
+       [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server: <p></p>
+								<ol type="a">
+									<li>The evaluator shall use a suitable <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, enable debug messages
+										in the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, and examine the debug messages to determine that only the configured authentication
+										methods for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> were offered by the server. </li>
+									<li>[conditional] If the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server supports X.509-based client authentication options: 
+										<ol type="i">
+											<li>The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session from a client where the username is
+												associated with the X.509 certificate. The evaluator shall verify the session is successfully
+												established. </li>
+											<li>Next, the evaluator shall use the same X.509 certificate as above, but include a 
+												username not associated with the certificate. The evaluator shall verify that the
+												session does not establish.</li>
+											<li>Finally, the evaluator shall use the correct username (from step a above), but use 
+												a different X.509 certificate which is not associated with the username. The evaluator
+												shall verify that the session does not establish. </li>
+										</ol>
+									</li>
+								</ol>
+							</li>
+							<li class="test-"><a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>:
+      [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall test for a successful 
+								configuration setting of each authentication method as follows.
+								<ol type="a">
+									<li>The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using the authentication method configured and
+										verify that the session is successfully established.</li>
+									<li>Next, the evaluator shall use bad authentication data (e.g., incorrectly generated 
+										certificate or incorrect password) and ensure that the connection is rejected. </li>
+								</ol>
+							  Steps a-b shall be repeated for each independently configurable authentication method supported by the server. 
+							</li>
+							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>:
+      
+								[conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall verify that the connection
+								fails upon configuration mismatch as follows:. 
+								<ol type="a">
+									<li>The evaluator shall configure the client with an authentication method not supported by
+										the server.  </li>
+									<li>The evaluator shall verify that the connection fails. </li>
+								</ol>
+							</li>	
+						</ul></span>
+						If the client supports only one authentication method, the evaluator can test this failure of connection by
+						configuring the server with an authentication method not supported by the client. In order to facilitate
+						this test, it is acceptable for the evaluator to configure an authentication method that is outside of the 
+						selections in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.<p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.3">FCS_SSH_EXT.1.3</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check that the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> describes how “large packets” are detected and handled. <p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						There are no guidance EAs for this element. <p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_4" class="defined" href="#_t_4">Test FCS_SSH_EXT.1.3:1</a>:
+      The evaluator shall demonstrate that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> accepts the maximum allowed packet size.</li>
+							<li class="test-"><a id="_t_5" class="defined" href="#_t_5">Test FCS_SSH_EXT.1.3:2</a>:
+      This test is performed to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> drops packets that are larger than the size
+								specified in the element.
+								<ol type="a">
+									
+									<li>The evaluator shall establish a successful <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection with the peer. </li> 	
+									<li>Next, the evaluator shall craft a packet that is slightly larger than the maximum
+										size specified in this element and send it through the established <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection
+										to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The packet should not be greater than the maximum packet size plus 16 bytes. 
+										If the packet is larger, the evaluator shall justify the need to send a larger packet.</li>
+									<li>The evaluator shall verify that the packet was dropped by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The method of verification will vary by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.
+										Examples include reviewing the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> audit log for a dropped packet audit or observing that 
+										the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> terminates the connection.</li>
+								</ol>
+							</li>
+						</ul></span><p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check the description of the implementation of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure the encryption
+						algorithms supported are specified. The evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that the encryption algorithms
+						specified are identical to those listed for this element.<p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall check the guidance documentation to ensure that it contains instructions to the
+						administrator on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p> 
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						The evaluator shall perform the following tests.  <p></p>
+						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can be both a client and a server, these tests must be performed for both roles. 
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_6" class="defined" href="#_t_6">Test FCS_SSH_EXT.1.4:1</a>:
+      The evaluator shall ensure that only claimed algorithms and cryptographic primitives are used to 
+								establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection. To verify this, the evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection with a 
+								remote endpoint. The evaluator shall capture the traffic exchanged between the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the remote
+								endpoint during protocol negotiation (e.g., using a packet capture tool or information provided by 
+								the endpoint, respectively). The evaluator shall verify from the captured traffic that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>
+								offers only the algorithms defined in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections. The evaluator shall
+								perform one successful negotiation of an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and verify that the negotiated algorithms 
+								were included in the advertised set. If the evaluator detects that not all algorithms defined in
+								the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> are advertised by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> advertises additional algorithms not defined in 
+								the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the test shall be regarded as failed.<p></p>
+								The data collected from the connection above shall be used for verification of the advertised
+								hashing and shared secret establishment algorithms in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a> and <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a> respectively. 
+							</li>
+							<li class="test-"><a id="_t_7" class="defined" href="#_t_7">Test FCS_SSH_EXT.1.4:2</a>:
+      For the connection established in Test 1, the evaluator shall terminate the connection and observe
+								that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> terminates the connection.</li>
+							<li class="test-"><a id="_t_8" class="defined" href="#_t_8">Test FCS_SSH_EXT.1.4:3</a>:
+      The evaluator shall configure the remote endpoint to only allow a mechanism that is not included in 
+								the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the attempt fails.</li>
+						</ul></span><p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check the description of the implementation of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure the hashing
+						algorithms supported are specified. The evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that the hashing algorithms 
+						specified are identical to those listed for this element. <p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
+						administrator on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. <p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_9" class="defined" href="#_t_9">Test FCS_SSH_EXT.1.5:1</a>:
+       The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that
+								appropriate mechanisms are advertised.</li>
+							<li class="test-"><a id="_t_10" class="defined" href="#_t_10">Test FCS_SSH_EXT.1.5:2</a>:
+       The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a hashing algorithm that is not included
+								in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that 
+								the connection is rejected.</li>
+						</ul></span><p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check the description of the implementation of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure the shared
+						secret establishment algorithms supported are specified. The evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that
+						the shared secret establishment algorithms specified are identical to those listed for this element.<p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator 
+						on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. <p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_11" class="defined" href="#_t_11">Test FCS_SSH_EXT.1.6:1</a>:
+      The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate 
+								mechanisms are advertised.</li>
+							<li class="test-"><a id="_t_12" class="defined" href="#_t_12">Test FCS_SSH_EXT.1.6:2</a>:
+      The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a key exchange method that is not included in the
+								<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that the
+								connection is rejected.</li>
+						</ul></span><p></p>
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check the description of the implementation of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure the supported KDFs 
+						are specified. The evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that the KDFs specified are identical to those listed 
+						for this element.<p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						There are no guidance EAs for this element.<p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						There are no test EAs for this element.
+					</div>
+				<div class="element-activity-header"><a href="#FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</a></div>
+					<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+						The evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure that if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> enforces connection rekey or termination limits
+						lower than the maximum values, that these lower limits are identified.  <p></p>
+						In cases where hardware limitation will prevent reaching the data transfer threshold in less than one hour, the
+						evaluator shall check the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> to ensure it contains: 
+						<ol type="a">
+							<li>An argument describing this hardware-based limitation and </li>
+							<li>Identification of the hardware components that form the basis of such argument. </li>
+						</ol>
+						For example, if a specific Ethernet Controller or Wi-Fi radio chip is the root cause of such
+						limitation, these subsystems shall be identified.<p></p>
+					</div>
+					<div class="eacategory">Guidance</div><div class="ea">
+						The evaluator shall check the guidance documentation to ensure that if the connection rekey or termination 
+						limits are configurable, it contains instructions to the administrator on how to configure the relevant 
+						connection rekey or termination limits for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. <p></p>
+					</div>
+					<div class="eacategory">Tests</div><div class="ea">
+						The evaluator shall ensure that the test harness is configured so that its connection rekey or termination limits are greater than
+						the limits supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. It is expected that the test harness should not be initiating the
+						connection rekey or termination. <p></p>
+						<span class="testlist-"><ul>
+							<li class="test-"><a id="_t_13" class="defined" href="#_t_13">Test FCS_SSH_EXT.1.8:1</a>:
+      The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, wait until the identified connection rekey limit is met, and observe 
+								that a connection rekey or termination is initiated.  This may require traffic to periodically be sent or 
+								a keep-alive setting for the connection to be applied to ensure that the connection is not closed due to an idle
+								timeout. </li>
+							<li class="test-"><a id="_t_14" class="defined" href="#_t_14">Test FCS_SSH_EXT.1.8:2</a>:
+      The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, transmit data from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey or
+								termination limit is met, and observe that a connection rekey or termination is initiated. </li>
+							<li class="test-"><a id="_t_15" class="defined" href="#_t_15">Test FCS_SSH_EXT.1.8:3</a>:
+      The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, send data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey limit or
+								termination is met, and observe that a connection rekey or termination is initiated.</li>
+						</ul></span><p></p>
+					</div>
+				</div></div></div>
+
+
+
+	
+		
+		
+		
+    
+
+
+
+	
+		
+		
+    
+
+
+<h1 id="opt-app" class="indexable" data-level="A">Appendix A -  Optional Requirements</h1>
+    As indicated in the introduction to this Functional Package, the baseline requirements (those that must be
+	  performed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>) are contained in the body of this Functional Package.
+    This appendix contains three other types of optional requirements:<br/><br/>
+
+   The first type, defined in Appendix <a href="#optional-reqs" class="dynref">A.1 Strictly Optional  Requirements</a>, are strictly optional requirements.
+   If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> meets any of these requirements the vendor is encouraged to claim the associated <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>
+	  in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, but doing so is not required in order to conform to this Functional Package.<br/><br/>
+
+  The second type, defined in Appendix <a href="#objective-reqs" class="dynref">A.2 Objective  Requirements</a>, are objective requirements. These describe security functionality that is not yet 
+	  widely available in commercial technology. 
+   Objective requirements are not currently mandated by this Functional Package, but will be mandated in
+	  the future. Adoption by vendors is encouraged, but claiming these <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> is not required in order to conform to this
+	  Functional Package.<br/><br/>
+
+  The third type, defined in Appendix <a href="#feat-based-reqs" class="dynref">A.3 Implementation-dependent  Requirements</a>, are Implementation-dependent requirements.
+	If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements the product features associated with the listed <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, either the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> must be claimed
+	or the product features must be disabled in the evaluated ocnfiguration. 
+  <h2 id="optional-reqs" class="indexable" data-level="2">A.1 Strictly Optional  Requirements
+    </h2><p>This Functional Package does not define any 
+            Strictly Optional requirements.</p><h2 id="objective-reqs" class="indexable" data-level="2">A.2 Objective  Requirements
+    </h2><p>This Functional Package does not define any 
+            Objective requirements.</p><h2 id="feat-based-reqs" class="indexable" data-level="2">A.3 Implementation-dependent  Requirements
+    </h2><p>This Functional Package does not define any 
+            Implementation-dependent requirements.</p><h1 id="sel-based-reqs" class="indexable" data-level="A">Appendix B -  Selection-based  Requirements
+    </h1><span class="description">
+	<p>As indicated in the introduction to this Functional Package,
+        the baseline requirements
+        (those that must be performed by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or its underlying platform)
+        are contained in the body of this Functional Package.
+        There are additional requirements based on selections in the body of 
+        the Functional Package:
+        if certain selections are made, then additional requirements below must be included.
+ 	</p>
+		 </span><h2 id="sel-based-reqs-audit" class="indexable" data-level="2">B.1 
+              Auditable Events for Selection-based  Requirements
+           </h2>
+         <p>The auditable events in the table below are included in a Security Target if both the associated requirement is included and the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> supports audit event reporting through FAU_GEN.1 and any other criteria in the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> are met.</p>
+         <table class="sort_kids_" border="1"><caption data-sortkey="#0"><span class="ctr" data-myid="t-audit-sel-based" data-counter-type="ct-Table" id="t-audit-sel-based">Table <span class="counter">3</span></span>: Auditable Events for Selection-based Requirements</caption><tr data-sortkey="#1"><th>Requirement</th><th>Auditable Events</th><th>Additional Audit Record Contents</th></tr><tr data-sortkey="FCS_SSHC_EXT.1"><td rowspan="2"><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a></td><td style="display:none"></td></tr><tr style="display:none;" data-sortkey="FCS_SSHC_EXT.1#"><td></td></tr><tr data-sortkey="FCS_SSHC_EXT.1.1"><td>No events specified</td><td>N/A</td></tr><tr data-sortkey="FCS_SSHS_EXT.1"><td rowspan="2"><a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a></td><td style="display:none"></td></tr><tr style="display:none;" data-sortkey="FCS_SSHS_EXT.1#"><td></td></tr><tr data-sortkey="FCS_SSHS_EXT.1.1"><td>No events specified</td><td>N/A</td></tr></table><h2 id="-sel-based" class="indexable" data-level="2">B.2 Cryptographic Support (FCS)</h2><div class="comp" id="FCS_SSHC_EXT.1"><h4>FCS_SSHC_EXT.1 SSH Client Protocol</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
+           <a href="#FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</a>.
+           </i></b></div>
+		
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+		<div class="element"><div class="reqid" id="FCS_SSHC_EXT.1.1"><a href="#FCS_SSHC_EXT.1.1" class="abbr">FCS_SSHC_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: 
+				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_59">a local database by associating each host name with a public key corresponding to the following list:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_60">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_61">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_62">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_63">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_64">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_65">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_66">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_67">ssh-ed448 (RFC 8709)</span></li></ul>]
+					</span></li><li style=""><span class="selectable-content" id="_s_68">a list of trusted certification authorities when the public key is in the following formats:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_69">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_70">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_71">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_72">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
+					</span></li></ul>]
+				as described in RFC 4251, Section 4.1.
+			<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+				The local database may be implemented using any equivalent local storage mechanism.
+			</span></div></div></div>
+       
+    <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a></div>
+				
+				
+				
+			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
+					There are no <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> EAs for this component.<p></p>
+				</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
+					The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
+					administrator on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p>
+				</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+					The evaluator shall perform the following tests: 
+					<span class="testlist-"><ul>
+						<li class="test-"><a id="_t_16" class="defined" href="#_t_16">Test FCS_SSHC_EXT.1:1</a>:
+      [conditional] If using a local database by associating each host name with its corresponding public 
+							key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and corresponding public key in
+							the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified
+							by the host name.</li>
+						<li class="test-"><a id="_t_17" class="defined" href="#_t_17">Test FCS_SSHC_EXT.1:2</a>:
+      [conditional] If using a local database by associating each host name with its corresponding public key,
+							the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in 
+							the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to a host not identified by 
+							the host name. </li>
+						<li class="test-"><a id="_t_18" class="defined" href="#_t_18">Test FCS_SSHC_EXT.1:3</a>:
+      [conditional] If using a local database by associating each host name with its corresponding public
+							key, the evaluator shall try to connect to a host not configured in the local database. The evaluator 
+							shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either fails to connect to a host identified by the host name or there is a prompt
+							provided to store the public key in the local database. </li>
+						<li class="test-"><a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:4</a>:
+      [conditional] If using a list of trusted certification authorities, the evaluator shall configure the
+							<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority corresponding to the host. The evaluator shall 
+							verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.</li>
+						<li class="test-"><a id="_t_20" class="defined" href="#_t_20">Test FCS_SSHC_EXT.1:5</a>:
+      [conditional] If using a list of trusted certification authorities, the evaluator shall configure the 
+							<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority that does not correspond to the host. The evaluator 
+							shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to the host identified by the host name.</li>
+					</ul></span><p></p>
+				</div></div></div></div></div><div class="comp" id="FCS_SSHS_EXT.1"><h4>FCS_SSHS_EXT.1 SSH Server Protocol</h4><div class="statustag"><b><i>The inclusion of this selection-based component depends upon selection in
+           <a href="#FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</a>.
+           </i></b></div>
+		
+    	
+    	
+    	
+    	
+    	
+    	
+		<div class="element"><div class="reqid" id="FCS_SSHS_EXT.1.1"><a href="#FCS_SSHS_EXT.1.1" class="abbr">FCS_SSHS_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using:
+				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_73">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_74">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_75">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_76">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_77">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_78">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_79">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_80">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_81">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_82">x509v3-rsa2048-sha256  (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_83">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_84">ssh-ed448 (RFC 8709)</span></li></ul>].
+			<div class="appnote"><span class="note-header">Application
+      Note:
+    </span><span class="note">
+				These requirements relate to the server authenticating to the client. The client authenticating to the server is covered
+				in <a href="#FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</a>.
+			</span></div></div></div>
+		
+	<div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a></div>
+				
+				
+				
+			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
+					There are no <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> EAs for this component.<p></p>
+				</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
+					The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator
+					on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. <p></p>
+				</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
+					
+					The evlauator shall perform the following tests:
+					<span class="testlist-"><ul>
+						<li class="test-"><a id="_t_21" class="defined" href="#_t_21">Test FCS_SSHS_EXT.1:1</a>:
+      The evaluator shall use a suitable <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and examine the list of server host key algorithms 
+							in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that 
+							only the configured server authentication methods for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> were offered by the server.</li>
+						<li class="test-"><a id="_t_22" class="defined" href="#_t_22">Test FCS_SSHS_EXT.1:2</a>:
+      The evaluator shall test for a successful configuration setting of each server authentication method as follows. 
+							The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using the authentication method configured and verify that the session is 
+							successfully established. Repeat this process for each independently configurable server authentication method supported by the server.</li>
+						<li class="test-"><a id="_t_23" class="defined" href="#_t_23">Test FCS_SSHS_EXT.1:3</a>:
+      The evaluator shall configure the peer to only allow an authentication mechanism that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. 
+							The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> sends a disconnect message.</li>
+					</ul></span>
+				</div></div></div></div></div><h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix C -  Extended Component Definitions</h1>
+	This appendix contains the definitions for all extended requirements specified in the Functional Package.
+
+    <h2 id="ext-comp-defs-bg" class="indexable" data-level="2">C.1 Extended Components Table</h2>
+
+	All extended components specified in the Functional Package are listed in this table:
+
+<table class="sort_kids_"><caption data-sortkey="#0"><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">4</span></span>: Extended Component Definitions</b></caption><tr data-sortkey="#1"><th>Functional Class</th><th>Functional Components</th></tr><tr data-sortkey="Cryptographic Support (FCS)"><td>Cryptographic Support (FCS)</td><td>FCS_SSHC_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol<br/>FCS_SSHS_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol<br/>FCS_SSH_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">C.2 Extended Component Definitions</h2><span class="sort_kids_"><span data-sortkey="Cryptographic Support (FCS)"><h3 id="ext-comp-FCS" class="indexable" data-level="3">C.2.1 Cryptographic Support (FCS)</h3>This Functional Package defines the following extended components as part of the
+	 FCS class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
+	<h3 id="ext-comp-FCS_SSH_EXT" class="indexable" data-level="4">C.2.1.1 FCS_SSH_EXT SSH Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol that goes beyond the level of detail specified
+				for trusted communications in <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2.
+			</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSH_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a>,
+             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol,
+              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation.</p><h4>Management: FCS_SSH_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSH_EXT.1</h4><p>The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
+				<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:<ul>
+					<li>Failure to establish <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
+					<li>Establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
+					<li>Termination of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
+					<li>Dropping of packets outside defined size limits</li>
+				</ul>
+			</p><h4>FCS_SSH_EXT.1 SSH Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
+				<a href="#FCS_CKM.1">FCS_CKM.1</a> Cryptographic Key Generation<br/>
+				<a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic Key Derivation<br/>
+				<a href="#FCS_COP.1">FCS_COP.1</a> Cryptographic Operation<br/>
+				<a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation
+			</td></tr></table><h4 id="ext-comp-FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</h4>
+					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
+					[<b>selection</b>: <span class="selectable-content" id="_s_15">client</span>, <span class="selectable-content" id="_s_16">server</span>] 
+					that complies with RFCs 4251, 4252, 4253, 4254,
+					[<b>assignment</b>: 
+     <span class="assignable-content">other RFCs</span>]
+					and [<b>assignment</b>: 
+     <span class="assignable-content">other standards</span>].
+					<h4 id="ext-comp-FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</h4>
+						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: 
+						[<b>assignment</b>: 
+     <span class="assignable-content">supported authentication methods</span>] and no other methods.
+					<h4 id="ext-comp-FCS_SSH_EXT.1.3">FCS_SSH_EXT.1.3</h4>
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that, as described in RFC 4253, packets greater than 
+					[<b>assignment</b>: 
+     <span class="assignable-content">number of bytes between 35 KB and 1 GB (inclusive)</span>]
+					in an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> transport connection are dropped.
+				<h4 id="ext-comp-FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</h4>
+						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms: 
+						[<b>assignment</b>: 
+     <span class="assignable-content">confidentiality mechanisms</span>] and no other mechanisms.
+					<h4 id="ext-comp-FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</h4>
+						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from modification, deletion, and insertion using: 
+						[<b>assignment</b>: 
+     <span class="assignable-content">data integrity mechanisms</span>] and no other mechanisms.
+					<h4 id="ext-comp-FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</h4>
+						The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall establish a shared secret with its peer using: 
+						[<b>assignment</b>: 
+     <span class="assignable-content">key agreement mechanisms</span>] and no other mechanisms.
+					<h4 id="ext-comp-FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</h4>
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_55">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_56"> RFC 5656, Section 4 </span></li></ul>]
+					to derive the following cryptographic keys from a shared secret: session keys.
+				<h4 id="ext-comp-FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</h4>
+					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that 
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_57">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_58">connection termination</span></li></ul>]
+					occurs when any of the following thresholds are met: 
+					<ul>
+						<li>one hour connection time</li>
+						<li>no more than one gigabyte of transmitted data, or</li>
+						<li>no more than one gigabyte of received data.</li>
+					</ul>
+				</div></div><h3 id="ext-comp-FCS_SSHC_EXT" class="indexable" data-level="4">C.2.1.2 FCS_SSHC_EXT SSH Client Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol when the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is acting as a client.
+			</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSHC_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>,
+             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol,
+              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client implementation.</p><h4>Management: FCS_SSHC_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSHC_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FCS_SSHC_EXT.1 SSH Client Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
+    		<a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a> <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol
+    	</td></tr></table><h4 id="ext-comp-FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: 
+					[<b>assignment</b>: 
+     <span class="assignable-content">peer authentication method</span>]
+					as described in RFC 4251, Section 4.1.
+				</div></div><h3 id="ext-comp-FCS_SSHS_EXT" class="indexable" data-level="4">C.2.1.3 FCS_SSHS_EXT SSH Server Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol when the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is acting as a server.
+			</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSHS_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>,
+             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol,
+              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server implementation.</p><h4>Management: FCS_SSHS_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSHS_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FCS_SSHS_EXT.1 SSH Server Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
+    		<a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a> <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol
+    	</td></tr></table><h4 id="ext-comp-FCS_SSHS_EXT.1.1">FCS_SSHS_EXT.1.1</h4>The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using: 
+					[<b>assignment</b>: 
+     <span class="assignable-content">peer authentication method</span>].
+				</div></div></span></span><h1 id="acronyms" class="indexable" data-level="A">Appendix D -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">5</span></span>: Acronyms
+		</caption><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
+<tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
+<tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
+<tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
+<tr><td><span class="term" id="abbr_EA"><abbr class="dyn-abbr"><a href="#abbr_EA">EA</a></abbr></span></td><td><span id="long_abbr_EA">Evaluation Activity</span></td></tr>
+<tr><td><span class="term" id="abbr_ECC"><abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr></span></td><td><span id="long_abbr_ECC">Elliptic Curve Cryptography</span></td></tr>
+<tr><td><span class="term" id="abbr_FP"><abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr></span></td><td><span id="long_abbr_FP">Functional Package</span></td></tr>
+<tr><td><span class="term" id="abbr_KDF"><abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr></span></td><td><span id="long_abbr_KDF">Key Derivation Function</span></td></tr>
+<tr><td><span class="term" id="abbr_OE"><abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr></span></td><td><span id="long_abbr_OE">Operational Environment</span></td></tr>
+<tr><td><span class="term" id="abbr_PP" data-plural="PPs"><abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr></span></td><td><span id="long_abbr_PP">Protection Profile</span></td></tr>
+<tr><td><span class="term" id="abbr_PP-Configuration"><abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr></span></td><td><span id="long_abbr_PP-Configuration">Protection Profile Configuration</span></td></tr>
+<tr><td><span class="term" id="abbr_PP-Module"><abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr></span></td><td><span id="long_abbr_PP-Module">Protection Profile Module</span></td></tr>
+<tr><td><span class="term" id="abbr_SAR" data-plural="SARs"><abbr class="dyn-abbr"><a href="#abbr_SAR">SAR</a></abbr></span></td><td><span id="long_abbr_SAR">Security Assurance Requirement</span></td></tr>
+<tr><td><span class="term" id="abbr_SFR" data-plural="SFRs"><abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr></span></td><td><span id="long_abbr_SFR">Security Functional Requirement</span></td></tr>
+<tr><td><span class="term" id="abbr_SSH"><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr></span></td><td><span id="long_abbr_SSH">Secure Shell</span></td></tr>
+<tr><td><span class="term" id="abbr_ST" data-plural="STs"><abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr></span></td><td><span id="long_abbr_ST">Security Target</span></td></tr>
+<tr><td><span class="term" id="abbr_TOE" data-plural="TOEs"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr></span></td><td><span id="long_abbr_TOE">Target of Evaluation</span></td></tr>
+<tr><td><span class="term" id="abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span></td><td><span id="long_abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Functionality</span></td></tr>
+<tr><td><span class="term" id="abbr_TSFI" data-plural="TSFIs"><abbr class="dyn-abbr"><a href="#abbr_TSFI">TSFI</a></abbr></span></td><td><span id="long_abbr_TSFI"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Interface</span></td></tr>
+<tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix E -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">6</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibRFC4251">[RFC 4251]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc4251">The Secure Shell (SSH) Protocol Architecture </a>
+			</span></td></tr><tr><td><span id="bibRFC4252 ">[RFC 4252]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc4252">The Secure Shell (SSH) Authentication Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC4253">[RFC 4253]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc4253">The Secure Shell (SSH) Transport Layer Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC4254">[RFC 4254]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc4254">The Secure Shell (SSH) Connection Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC4256">[RFC 4256]</span></td><td><span class="description">
+				<a href="https://www.ietf.org/rfc/rfc4256.txt">Generic Message Exchange Authentication for the Secure Shell Protocol (SSH)</a>
+			</span></td></tr><tr><td><span id="bibRFC4344">[RFC 4344]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc4344">The Secure Shell (SSH) Transport Layer Encryption Modes</a>
+			</span></td></tr><tr><td><span id="bibRFC5647">[RFC 5647]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc5647">AES Galois Counter Mode for the Secure Shell Transport Layer Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC5656">[RFC 5656]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc5656">Elliptic Curve Algorithm Integration in the Secure Shell Transport Layer</a>
+			</span></td></tr><tr><td><span id="bibRFC6187">[RFC 6187]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc6187">X.509v3 Certificates for Secure Shell Authentication</a>
+			</span></td></tr><tr><td><span id="bibRFC6668">[RFC 6668]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc6668">SHA-2 Data Integrity Verification for the Secure Shell (SSH) Transport Layer Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC8268">[RFC 8268]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc8268">More Modular Exponentiation (MODP) Diffie-Hellman (DH) Key Exchange (KEX) Groups for Secure Shell (SSH)</a>
+			</span></td></tr><tr><td><span id="bibRFC8308">[RFC 8308]</span></td><td><span class="description">
+				<a href="https://www.ietf.org/rfc/rfc8308.txt">Extension Negotiation in the Secure Shell (SSH) Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC8332">[RFC 8332]</span></td><td><span class="description">
+				<a href="https://www.ietf.org/rfc/rfc8332.txt">Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell (SSH) Protocol</a>
+			</span></td></tr><tr><td><span id="bibRFC8709">[RFC 8709]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc8709">Ed25519 and Ed448 public key algorithms for the Secure Shell (SSH) protocol </a>
+			</span></td></tr><tr><td><span id="bibRFC8731">[RFC 8731]</span></td><td><span class="description">
+				<a href="https://tools.ietf.org/html/rfc8731">Secure Shell (SSH) Key Exchange Method using Curve25519 and Curve448</a>
+			</span></td></tr><tr><td><span id="bibOpenssh">[openssh-portable/ PROTOCOL]</span></td><td><span class="description">
+				<a href="https://cvsweb.openbsd.org/cgi-bin/cvsweb/src/usr.bin/ssh/PROTOCOL?rev=1.31">OpenSSH's deviations and extensions (1.6 transport: AES-GCM) </a>
+			</span></td></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description">
+   			<a href="https://commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">Common
+   				Methodology for Information Technology Security - Evaluation Methodology</a>,
+   			CCMB-2022-11-006, <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>:2022, Revision 1, November 2022. </span></td></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
+            <li><a href="https://www.commoncriteriaportal.org/files/ccfiles/CC2022PART1R1.pdf">Part 1: 
+				Introduction and general model</a>, CCMB-2022-11-001, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART2R1.pdf">Part 2: 
+				Security functional requirements</a>, CCMB-2022-11-002, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART3R1.pdf">Part 3: 
+                Security assurance requirements</a>, CCMB-2022-11-003, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART4R1.pdf">Part 4: 
+                Framework for the specification of evaluation methods and activities</a>, CCMB-2022-11-004, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART5R1.pdf">Part 5: 
+                 Pre-defined packages of security requirements</a>, CCMB-2022-11-005, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+          </ul></span></td></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description">Common Methodology for Information Technology Security Evaluation - <ul>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">
+                 Evaluation methodology</a>, CCMB-2022-11-006, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+          </ul></span></td></tr></table></body></html>
