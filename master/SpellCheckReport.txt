@@ -20,7 +20,6 @@ output/ssh-release-linkable.html: curve448
 output/ssh-release-linkable.html: ed25519
 output/ssh-release-linkable.html: ed448
 output/ssh-release-linkable.html: evlauator
-output/ssh-release-linkable.html: group14
 output/ssh-release-linkable.html: group15
 output/ssh-release-linkable.html: group16
 output/ssh-release-linkable.html: group17
@@ -57,7 +56,6 @@ output/ssh-release.html: curve448
 output/ssh-release.html: ed25519
 output/ssh-release.html: ed448
 output/ssh-release.html: evlauator
-output/ssh-release.html: group14
 output/ssh-release.html: group15
 output/ssh-release.html: group16
 output/ssh-release.html: group17
@@ -94,7 +92,6 @@ output/ssh.html: curve448
 output/ssh.html: ed25519
 output/ssh.html: ed448
 output/ssh.html: evlauator
-output/ssh.html: group14
 output/ssh.html: group15
 output/ssh.html: group16
 output/ssh.html: group17

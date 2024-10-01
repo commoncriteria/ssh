@@ -126,7 +126,7 @@
 					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
 					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
 					authentication function. In particular, the incorporating document must support AES-CTR as defined in NIST SP 800-38A 
-					with key sizes of 128 or 256 bits, depending on the algorithms selected.
+					with key sizes of 256 bits.
 				</notes>
 			</componentneeded>
 			<!-- The components in the PP or PP-Module that need this SFR should require it;
@@ -298,8 +298,8 @@
 					based on applicable selections in subsequent SFRs. 
 					<h:ul>
 						<h:li>RFC 4256: Select for keyboard-interactive authentication </h:li>
-						<h:li>RFC 4344: Select for AES-128-CTR or AES-256-CTR  </h:li>
-						<h:li>RFC 5647: Select for AEAD_AES_128_GCM, AEAD_AES_256_GCM, or aes*-gcm@openssh.com </h:li> 
+						<h:li>RFC 4344: Select for AES-256-CTR  </h:li>
+						<h:li>RFC 5647: Select for AEAD_AES_256_GCM or aes256-gcm@openssh.com </h:li> 
 						<h:li>RFC 5656: Select for elliptic curve cryptography (ECC) </h:li>
 						<h:li>RFC 6187: Select for X.509 certificate use </h:li>
 						<h:li>RFC 6668: Select for HMAC-SHA-2 algorithms </h:li>
@@ -338,24 +338,23 @@
 
 					<h:p>RFC 4256 must be selected if "keyboard-interactive" is selected in FCS_SSH_EXT.1.2.</h:p>
 
-					<h:p>RFC 4344 must be selected if aes128-ctr or aes256-ctr is selected in FCS_SSH_EXT.1.4.</h:p>
+					<h:p>RFC 4344 must be selected if aes256-ctr is selected in FCS_SSH_EXT.1.4.</h:p>
 
 					
 
-					<h:p>RFC 5647 must be selected when AEAD_AES_128_GCM, AEAD_AES_256_GCM, aes128-gcm@openssh.com, or
-					aes256-gcm@openssh.com is selected as an encryption algorithm in FCS_SSH_EXT.1.4 
-					and when AEAD_AES_128_GCM or AEAD_AES_256_GCM is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
+					<h:p>RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm
+					in FCS_SSH_EXT.1.4 and when AEAD_AES_256_GCM is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
 
-					<h:p>RFC 5656 must be selected when ecdsa-sha2-nistp256, ecdsa-sha2-nistp384, ecdsa-sha2-nistp521 is selected as a public key algorithm
-					in FCS_SSH_EXT.1.2, or when ecdh-sha2-nistp256, ecdh-sha2-nistp384, or ecdh-sha2-nistp521 is selected
+					<h:p>RFC 5656 must be selected when ecdsa-sha2-nistp384 or ecdsa-sha2-nistp521 is selected as a public key algorithm
+					in FCS_SSH_EXT.1.2, or when ecdh-sha2-nistp384 or ecdh-sha2-nistp521 is selected
 					as a key exchange algorithm in FCS_SSH_EXT.1.6, or when "RFC 5656" is selected in FCS_SSH_EXT.1.7.</h:p>
 
-					<h:p>RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp256, x509v3-ecdsa-sha2-nistp384, x509v3-ecdsa-sha2-nistp521,
-					or x509v3-rsa2048-sha256 is selected as a public key algorithm in FCS_SSH_EXT.1.2.</h:p>
+					<h:p>RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp384 or x509v3-ecdsa-sha2-nistp521
+					is selected as a public key algorithm in FCS_SSH_EXT.1.2.</h:p>
 
-					<h:p>RFC 6668 must be selected when hmac-sha2-256 or hmac-sha2-512 is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
+					<h:p>RFC 6668 must be selected when hmac-sha2-512 is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
 
-					<h:p>RFC 8268 must be selected when diffie-hellman-group14-sha256, diffie-hellman-group15-sha512,   
+					<h:p>RFC 8268 must be selected when diffie-hellman-group15-sha512,   
 						diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512
 						is selected as a key exchange algorithm in FCS_SSH_EXT.1.6.</h:p>
 
@@ -364,7 +363,7 @@
 						claimed when RFC 8332 is claimed.
 					</h:p>
 
-					<h:p>RFC 8332 must be selected when rsa-sha2-256 or rsa-sha2-512 is selected as a public key algorithm in
+					<h:p>RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in
 					FCS_SSH_EXT.1.2.</h:p>
 
 					<h:p>RFC 8709 must be selected when ssh-ed25519 or ssh-ed448 is selected as a public key algorithm in
@@ -397,18 +396,13 @@
 						<selectable>“keyboard-interactive” (RFC 4256)</selectable> 
 						<selectable>“publickey” (RFC 4252): 
 							<selectables linebreak="yes">
-								<selectable>ssh-rsa (RFC 4253)</selectable>  
-								<selectable>rsa-sha2-256 (RFC 8332)</selectable> 
 								<selectable>rsa-sha2-512 (RFC 8332)</selectable> 
-								<selectable>ecdsa-sha2-nistp256 (RFC 5656)</selectable>  
 								<selectable>ecdsa-sha2-nistp384 (RFC 5656)</selectable> 
 								<selectable>ecdsa-sha2-nistp521 (RFC 5656)</selectable>
 								<selectable>ssh-ed25519 (RFC 8709)</selectable>
 								<selectable>ssh-ed448 (RFC 8709)</selectable>
-								<selectable>x509v3-ecdsa-sha2-nistp256 (RFC 6187)</selectable> 
 								<selectable>x509v3-ecdsa-sha2-nistp384 (RFC 6187)</selectable> 
 								<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>
-								<selectable>x509v3-rsa2048-sha256  (RFC 6187)</selectable> 
 							</selectables>
 						</selectable>
 					</selectables> and no other methods.
@@ -473,7 +467,7 @@
 									<h:li>Next, the evaluator shall use bad authentication data (e.g., incorrectly generated 
 										certificate or incorrect password) and ensure that the connection is rejected. </h:li>
 								</h:ol>
-							  Steps a-b shall be repeated for each independently configurable authentication method supported by the server. 
+							  Steps a-b shall be repeated for each independently configurable authentication method supported by the client. 
 							</test>
 							<test>
 								[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection
@@ -534,14 +528,10 @@
 			<f-element id="fcs-ssh-ext-1e4">
 				<title>
 					The TSF shall protect data in transit from unauthorised disclosure using the following mechanisms: 
-					<selectables linebreak="yes">
-						<selectable>aes128-ctr (RFC 4344)</selectable>  
+					<selectables linebreak="yes"> 
 						<selectable>aes256-ctr (RFC 4344)</selectable>
-						<selectable>aes128-cbc (RFC 4253)</selectable>
-						<selectable>aes256-cbc (RFC 4253)</selectable>
-						<selectable>AEAD_AES_128_GCM (RFC 5647)</selectable> 
+						<selectable>aes256-cbc (RFC 4253)</selectable> 
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable> 
-						<selectable>aes128-gcm@openssh.com (RFC 5647)</selectable> 
 						<selectable>aes256-gcm@openssh.com (RFC 5647)</selectable>
 					</selectables> and no other mechanisms.
 				</title>
@@ -552,7 +542,7 @@
 					</title>
 				</ext-comp-def-title>
 				<note role="application">
-					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding MAC algorithm to be
+					As described in RFC 5647, AEAD_AES_256_GCM needs the corresponding MAC algorithm to be
 					selected in FCS_SSH_EXT.1.5.
 				</note>
 				<aactivity level="element">
@@ -595,9 +585,7 @@
 					The TSF shall protect data in transit from modification, deletion, and insertion using: 
 					<selectables linebreak="yes">
 <!--						<selectable>hmac-sha1 (RFC 4253)</selectable>  -->
-						<selectable>hmac-sha2-256 (RFC 6668)</selectable> 
 						<selectable>hmac-sha2-512 (RFC 6668)</selectable>
-						<selectable>AEAD_AES_128_GCM (RFC 5647)</selectable>
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable>
 						<selectable>implicit</selectable></selectables> and no other mechanisms.
 				</title>
@@ -608,12 +596,12 @@
 					</title>
 				</ext-comp-def-title>
 				<note role="application">
-					As described in RFC 5647, AEAD_AES_128_GCM and AEAD_AES_256_GCM need the corresponding encryption algorithm 
+					As described in RFC 5647, AEAD_AES_256_GCM needs the corresponding encryption algorithm 
 					to be selected. <h:p/>
 					In AES-GCM mode, integrity is not provided using a MAC, it is implicit in the AES-GCM mode itself. There is no need
 					for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this. <h:p/>
-					If the negotiated encryption algorithm is one of the aes*-gcm@openssh.com algorithms, then the MAC field is 
-					ignored during negotiation and implicitly selects AES-GCM for the MAC. The selection “implicit” is not an SSH identifier and
+					If the negotiated encryption algorithm is aes256-gcm@openssh.com algorithms, then the MAC field is 
+					ignored during negotiation and AES-GCM is implicitly selected for the MAC. The selection “implicit” is not an SSH identifier and
 					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit.”<h:p/>
 				</note>
 				<aactivity level="element">
@@ -641,13 +629,11 @@
 				<title>
 					The TSF shall establish a shared secret with its peer using: 
 					<selectables linebreak="yes">
-<!--						<selectable>diffie-hellman-group14-sha1 (RFC 4253)</selectable>  -->
-						<selectable>diffie-hellman-group14-sha256 (RFC 8268)</selectable>  
+<!--						<selectable>diffie-hellman-group14-sha1 (RFC 4253)</selectable>  --> 
 						<selectable>diffie-hellman-group15-sha512 (RFC 8268)</selectable>  
 						<selectable>diffie-hellman-group16-sha512 (RFC 8268)</selectable>  
 						<selectable>diffie-hellman-group17-sha512 (RFC 8268)</selectable>  
-						<selectable>diffie-hellman-group18-sha512 (RFC 8268)</selectable> 
-						<selectable>ecdh-sha2-nistp256 (RFC 5656)</selectable> 
+						<selectable>diffie-hellman-group18-sha512 (RFC 8268)</selectable>
 						<selectable>ecdh-sha2-nistp384 (RFC 5656)</selectable>
 						<selectable>ecdh-sha2-nistp521 (RFC 5656)</selectable>  
 						<selectable>curve25519-sha256 (RFC 8731)</selectable>
