@@ -1,4 +1,4 @@
-output/ssh-release-linkable.html: 38A
+output/ssh-release-linkable.html: 38D
 output/ssh-release-linkable.html: CCUF
 output/ssh-release-linkable.html: CWG
 output/ssh-release-linkable.html: Curve25519
@@ -15,8 +15,6 @@ output/ssh-release-linkable.html: OpenSSH
 output/ssh-release-linkable.html: STM
 output/ssh-release-linkable.html: Wi
 output/ssh-release-linkable.html: cPPs
-output/ssh-release-linkable.html: curve25519
-output/ssh-release-linkable.html: curve448
 output/ssh-release-linkable.html: ed25519
 output/ssh-release-linkable.html: ed448
 output/ssh-release-linkable.html: evlauator
@@ -34,7 +32,7 @@ output/ssh-release-linkable.html: publickey
 output/ssh-release-linkable.html: rekeying
 output/ssh-release-linkable.html: rsa2048
 output/ssh-release-linkable.html: unauthorised
-output/ssh-release.html: 38A
+output/ssh-release.html: 38D
 output/ssh-release.html: CCUF
 output/ssh-release.html: CWG
 output/ssh-release.html: Curve25519
@@ -51,8 +49,6 @@ output/ssh-release.html: OpenSSH
 output/ssh-release.html: STM
 output/ssh-release.html: Wi
 output/ssh-release.html: cPPs
-output/ssh-release.html: curve25519
-output/ssh-release.html: curve448
 output/ssh-release.html: ed25519
 output/ssh-release.html: ed448
 output/ssh-release.html: evlauator
@@ -70,7 +66,7 @@ output/ssh-release.html: publickey
 output/ssh-release.html: rekeying
 output/ssh-release.html: rsa2048
 output/ssh-release.html: unauthorised
-output/ssh.html: 38A
+output/ssh.html: 38D
 output/ssh.html: CCUF
 output/ssh.html: CWG
 output/ssh.html: Curve25519
@@ -87,8 +83,6 @@ output/ssh.html: OpenSSH
 output/ssh.html: STM
 output/ssh.html: Wi
 output/ssh.html: cPPs
-output/ssh.html: curve25519
-output/ssh.html: curve448
 output/ssh.html: ed25519
 output/ssh.html: ed448
 output/ssh.html: evlauator

@@ -722,7 +722,7 @@ The following sections list Common Criteria and technology terms used in this do
 					To support the cryptography needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FCS_COP.1</span> 
 					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
 					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
-					authentication function. In particular, the incorporating document must support AES-CTR as defined in NIST SP 800-38A 
+					authentication function. In particular, the incorporating document must support AES-GCM as defined in NIST SP 800-38D 
 					with key sizes of 256 bits.
 				<br/></td></tr><tr><td class="componentneeded" id="FCS_RBG.1"><span class="no-link">FCS_RBG.1</span></td><td>To support random bit generation needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key generation,
 					the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <span class="no-link">FCS_RBG.1</span> or an extended <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> that defines comparable functionality.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.1"><span class="no-link">FIA_X509_EXT.1</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
@@ -804,7 +804,7 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.1"><a href="#FCS_SSH_EXT.1.1" class="abbr">FCS_SSH_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
 					[<b>selection</b>: <span class="selectable-content" id="ssh-client">client</span>, <span class="selectable-content" id="ssh-server">server</span>] 
 				that complies with RFCs 4251, 4252, 4253, 4254,
-					[<b>selection</b>: <span class="selectable-content" id="sel-rfc4256">4256</span>, <span class="selectable-content" id="sel-rfc4344">4344</span>, <span class="selectable-content" id="sel-rfc5647">5647</span>, <span class="selectable-content" id="sel-rfc5656">5656</span>, <span class="selectable-content" id="sel-rfc6187">6187</span>, <span class="selectable-content" id="sel-rfc6668">6668</span>, <span class="selectable-content" id="sel-rfc8268">8268</span>, <span class="selectable-content" id="sel-rfc8308">8308</span>, <span class="selectable-content" id="sel-rfc8332">8332</span>, <span class="selectable-content" id="sel-rfc8709">8709</span>, <span class="selectable-content" id="sel-rfc8731">8731</span>, <span class="selectable-content" id="_s_14">no other RFCs</span>] and [<i>no other standard</i>].
+					[<b>selection</b>: <span class="selectable-content" id="sel-rfc4256">4256</span>, <span class="selectable-content" id="sel-rfc4344">4344</span>, <span class="selectable-content" id="sel-rfc5647">5647</span>, <span class="selectable-content" id="sel-rfc5656">5656</span>, <span class="selectable-content" id="sel-rfc6187">6187</span>, <span class="selectable-content" id="sel-rfc6668">6668</span>, <span class="selectable-content" id="sel-rfc8268">8268</span>, <span class="selectable-content" id="sel-rfc8308">8308</span>, <span class="selectable-content" id="sel-rfc8332">8332</span>, <span class="selectable-content" id="_s_12">no other RFCs</span>] and [<i>no other standard</i>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -820,8 +820,6 @@ The following sections list Common Criteria and technology terms used in this do
 						<li>RFC 8268: Select for FFC DH groups with SHA-2  </li>
 						<li>RFC 8308: Select if RFC 8332 is selected </li>
 						<li>RFC 8332: Select if SHA-2 is available with ssh-rsa </li>
-						<li>RFC 8709: Select if ed25519 or ed448 is used as a public key algorithm </li>
-						<li>RFC 8731: Select if curve25519 or curve448 is used for key exchange </li> 
 					</ul>
 					<p>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the additional RFCs to which
 					conformance is being claimed. An <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> product can implement additional RFCs, but only those
@@ -853,7 +851,6 @@ The following sections list Common Criteria and technology terms used in this do
 					<p>RFC 4256 must be selected if "keyboard-interactive" is selected in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
 
 					<p>RFC 4344 must be selected if aes256-ctr is selected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>.</p>
-
 					
 
 					<p>RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm
@@ -878,21 +875,15 @@ The following sections list Common Criteria and technology terms used in this do
 					</p>
 
 					<p>RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in
-					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
-
-					<p>RFC 8709 must be selected when ssh-ed25519 or ssh-ed448 is selected as a public key algorithm in
-					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
-					
-					<p>RFC 8731 must be selected when curve25519-sha256 or curve448-sha512 is selected as a key exchange 
-						algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>.</p>						
+					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>				
 
 					<p>If "client" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>.</p>
 					<p>If "server" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>.</p>
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.2"><a href="#FCS_SSH_EXT.1.2" class="abbr">FCS_SSH_EXT.1.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_17">“password” (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_18">“keyboard-interactive” (RFC 4256)</span></li><li style=""><span class="selectable-content" id="_s_19">“publickey” (RFC 4252): 
-							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_20">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_21">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_22">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_23">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_24">ssh-ed448 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_25">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_26">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_15">“password” (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_16">“keyboard-interactive” (RFC 4256)</span></li><li style=""><span class="selectable-content" id="_s_17">“publickey” (RFC 4252): 
+							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_18">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_19">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_20">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_21">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_22">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
 						</span></li></ul>] and no other methods.
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -915,7 +906,7 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.4"><a href="#FCS_SSH_EXT.1.4" class="abbr">FCS_SSH_EXT.1.4</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_27">aes256-ctr (RFC 4344)</span></li><li style=""><span class="selectable-content" id="_s_28">aes256-cbc (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_29">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_30">aes256-gcm@openssh.com (RFC 5647)</span></li></ul>] and no other mechanisms.
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_23">aes256-ctr (RFC 4344)</span></li><li style=""><span class="selectable-content" id="_s_24">aes256-cbc (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_25">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_26">aes256-gcm@openssh.com (RFC 5647)</span></li></ul>] and no other mechanisms.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -924,7 +915,7 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.5"><a href="#FCS_SSH_EXT.1.5" class="abbr">FCS_SSH_EXT.1.5</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from modification, deletion, and insertion using: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_31">hmac-sha2-512 (RFC 6668)</span></li><li style=""><span class="selectable-content" id="_s_32">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_33">implicit</span></li></ul>] and no other mechanisms.
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_27">hmac-sha2-512 (RFC 6668)</span></li><li style=""><span class="selectable-content" id="_s_28">AEAD_AES_256_GCM (RFC 5647)</span></li><li style=""><span class="selectable-content" id="_s_29">implicit</span></li></ul>] and no other mechanisms.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -938,11 +929,11 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.6"><a href="#FCS_SSH_EXT.1.6" class="abbr">FCS_SSH_EXT.1.6</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall establish a shared secret with its peer using: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_34">diffie-hellman-group15-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_35">diffie-hellman-group16-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_36">diffie-hellman-group17-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_37">diffie-hellman-group18-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_38">ecdh-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_39">ecdh-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_40">curve25519-sha256 (RFC 8731)</span></li><li style=""><span class="selectable-content" id="_s_41">curve448-sha512 (RFC 8731)</span></li></ul>] and no other mechanisms.
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_30">diffie-hellman-group15-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_31">diffie-hellman-group16-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_32">diffie-hellman-group17-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_33">diffie-hellman-group18-sha512 (RFC 8268)</span></li><li style=""><span class="selectable-content" id="_s_34">ecdh-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_35">ecdh-sha2-nistp521 (RFC 5656)</span></li></ul>] and no other mechanisms.
 				</div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.7"><a href="#FCS_SSH_EXT.1.7" class="abbr">FCS_SSH_EXT.1.7</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_43"> RFC 5656, Section 4 </span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_36">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_37"> RFC 5656, Section 4 </span></li></ul>]
 					to derive the following cryptographic keys from a shared secret: session keys.
 				<div class="appnote"><span class="note-header">Application
       Note:
@@ -951,12 +942,10 @@ The following sections list Common Criteria and technology terms used in this do
 					cryptography (FFC) and RFC 5656 when it uses <abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr>.  <p></p>
 					RFC 4253, Section 7.2 defines two KDFs for FFC-based key establishment schemes.  Therefore, RFC 4253 should be 
 					selected if any of the RFC 4253 or RFC 8268 key establishment schemes are selected. <p></p>
-					RFC 5656, Section 4 defines KDFs used in <abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr> key establishment schemes and should be selected when RFC 5656 or 
-					RFC 8731 key establishment schemes are selected.
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.8"><a href="#FCS_SSH_EXT.1.8" class="abbr">FCS_SSH_EXT.1.8</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_44">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_45">connection termination</span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_38">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_39">connection termination</span></li></ul>]
 					occurs when any of the following thresholds are met: 
 					<ul>
 						<li>one hour connection time</li>
@@ -1030,18 +1019,12 @@ The following sections list Common Criteria and technology terms used in this do
 												shall verify that the session does not establish. </li>
 										</ol>
 									</li>
+									<li>For each supported authentication method, the evaluator shall verify that an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client can be used to establish a session with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> while using the supported method.</li>
+									<li>For each supported authentication method, the evaluator shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</li>
 								</ol>
 							</li>
 							<li class="test-"><a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>:
-      [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall test for a successful 
-								configuration setting of each authentication method as follows.
-								<ol type="a">
-									<li>The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using the authentication method configured and
-										verify that the session is successfully established.</li>
-									<li>Next, the evaluator shall use bad authentication data (e.g., incorrectly generated 
-										certificate or incorrect password) and ensure that the connection is rejected. </li>
-								</ol>
-							  Steps a-b shall be repeated for each independently configurable authentication method supported by the client. 
+      [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using each supported authentication method and verify that the session is successfully established.
 							</li>
 							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>:
       
@@ -1281,10 +1264,10 @@ The following sections list Common Criteria and technology terms used in this do
     	
     	
 		<div class="element"><div class="reqid" id="FCS_SSHC_EXT.1.1"><a href="#FCS_SSHC_EXT.1.1" class="abbr">FCS_SSHC_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: 
-				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_46">a local database by associating each host name with a public key corresponding to the following list:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_47">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_48">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_49">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_50">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_51">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_52">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_53">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_54">ssh-ed448 (RFC 8709)</span></li></ul>]
-					</span></li><li style=""><span class="selectable-content" id="_s_55">a list of trusted certification authorities when the public key is in the following formats:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_56">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_57">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_58">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_59">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
+				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_40">a local database by associating each host name with a public key corresponding to the following list:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_41">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_42">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_43">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_44">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_45">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_46">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_47">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_48">ssh-ed448 (RFC 8709)</span></li></ul>]
+					</span></li><li style=""><span class="selectable-content" id="_s_49">a list of trusted certification authorities when the public key is in the following formats:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_50">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_51">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_53">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
 					</span></li></ul>]
 				as described in RFC 4251, Section 4.1.
 			<div class="appnote"><span class="note-header">Application
@@ -1340,7 +1323,7 @@ The following sections list Common Criteria and technology terms used in this do
     	
     	
 		<div class="element"><div class="reqid" id="FCS_SSHS_EXT.1.1"><a href="#FCS_SSHS_EXT.1.1" class="abbr">FCS_SSHS_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using:
-				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_60">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_61">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_62">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_63">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_64">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_65">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_66">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_67">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_68">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_69">x509v3-rsa2048-sha256  (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_70">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_71">ssh-ed448 (RFC 8709)</span></li></ul>].
+				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_54">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_55">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_56">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_57">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_58">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_59">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_60">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_61">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_62">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_63">x509v3-rsa2048-sha256  (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_64">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_65">ssh-ed448 (RFC 8709)</span></li></ul>].
 			<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1400,7 +1383,7 @@ The following sections list Common Criteria and technology terms used in this do
 				<a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation
 			</td></tr></table><h4 id="ext-comp-FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
-					[<b>selection</b>: <span class="selectable-content" id="_s_15">client</span>, <span class="selectable-content" id="_s_16">server</span>] 
+					[<b>selection</b>: <span class="selectable-content" id="_s_13">client</span>, <span class="selectable-content" id="_s_14">server</span>] 
 					that complies with RFCs 4251, 4252, 4253, 4254,
 					[<b>assignment</b>: 
      <span class="assignable-content">other RFCs</span>]
@@ -1429,11 +1412,11 @@ The following sections list Common Criteria and technology terms used in this do
      <span class="assignable-content">key agreement mechanisms</span>] and no other mechanisms.
 					<h4 id="ext-comp-FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_43"> RFC 5656, Section 4 </span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_36">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="_s_37"> RFC 5656, Section 4 </span></li></ul>]
 					to derive the following cryptographic keys from a shared secret: session keys.
 				<h4 id="ext-comp-FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</h4>
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_44">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_45">connection termination</span></li></ul>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_38">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="_s_39">connection termination</span></li></ul>]
 					occurs when any of the following thresholds are met: 
 					<ul>
 						<li>one hour connection time</li>
