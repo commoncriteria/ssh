@@ -141,7 +141,7 @@
 					To support the cryptography needed for SSH communications, the PP or PP-Module must include <no-link>FCS_COP.1</no-link> 
 					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
 					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
-					authentication function. In particular, the incorporating document must support AES-CTR as defined in NIST SP 800-38A 
+					authentication function. In particular, the incorporating document must support AES-GCM as defined in NIST SP 800-38D 
 					with key sizes of 256 bits.
 				</notes>
 			</componentneeded>
@@ -294,8 +294,6 @@
 						<selectable id="sel-rfc8268">8268</selectable>
 						<selectable id="sel-rfc8308">8308</selectable>
 						<selectable id="sel-rfc8332">8332</selectable>
-						<selectable id="sel-rfc8709">8709</selectable>
-						<selectable id="sel-rfc8731">8731</selectable>
 						<selectable exclusive="yes">no other RFCs</selectable></selectables> and [<h:i>no other standard</h:i>].
 				</title>
 				<ext-comp-def-title>
@@ -322,8 +320,6 @@
 						<h:li>RFC 8268: Select for FFC DH groups with SHA-2  </h:li>
 						<h:li>RFC 8308: Select if RFC 8332 is selected </h:li>
 						<h:li>RFC 8332: Select if SHA-2 is available with ssh-rsa </h:li>
-						<h:li>RFC 8709: Select if ed25519 or ed448 is used as a public key algorithm </h:li>
-						<h:li>RFC 8731: Select if curve25519 or curve448 is used for key exchange </h:li> 
 					</h:ul>
 					<h:p>The ST author selects the additional RFCs to which
 					conformance is being claimed. An SSH product can implement additional RFCs, but only those
@@ -355,7 +351,6 @@
 					<h:p>RFC 4256 must be selected if "keyboard-interactive" is selected in FCS_SSH_EXT.1.2.</h:p>
 
 					<h:p>RFC 4344 must be selected if aes256-ctr is selected in FCS_SSH_EXT.1.4.</h:p>
-
 					
 
 					<h:p>RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm
@@ -380,13 +375,7 @@
 					</h:p>
 
 					<h:p>RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in
-					FCS_SSH_EXT.1.2.</h:p>
-
-					<h:p>RFC 8709 must be selected when ssh-ed25519 or ssh-ed448 is selected as a public key algorithm in
-					FCS_SSH_EXT.1.2.</h:p>
-					
-					<h:p>RFC 8731 must be selected when curve25519-sha256 or curve448-sha512 is selected as a key exchange 
-						algorithm in FCS_SSH_EXT.1.6.</h:p>						
+					FCS_SSH_EXT.1.2.</h:p>				
 
 					<h:p>If "client" is selected, then the ST must include FCS_SSHC_EXT.1.</h:p>
 					<h:p>If "server" is selected, then the ST must include FCS_SSHS_EXT.1.</h:p>
@@ -415,8 +404,6 @@
 								<selectable>rsa-sha2-512 (RFC 8332)</selectable> 
 								<selectable>ecdsa-sha2-nistp384 (RFC 5656)</selectable> 
 								<selectable>ecdsa-sha2-nistp521 (RFC 5656)</selectable>
-								<selectable>ssh-ed25519 (RFC 8709)</selectable>
-								<selectable>ssh-ed448 (RFC 8709)</selectable>
 								<selectable>x509v3-ecdsa-sha2-nistp384 (RFC 6187)</selectable> 
 								<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>
 							</selectables>
@@ -473,17 +460,11 @@
 												shall verify that the session does not establish. </h:li>
 										</h:ol>
 									</h:li>
+									<h:li>For each supported authentication method, the evaluator shall verify that an SSH client can be used to establish a session with the TOE while using the supported method.</h:li>
+									<h:li>For each supported authentication method, the evaluator shall use an SSH client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</h:li>
 								</h:ol>
 							</test>
-							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall test for a successful 
-								configuration setting of each authentication method as follows.
-								<h:ol type="a">
-									<h:li>The evaluator shall initiate an SSH session using the authentication method configured and
-										verify that the session is successfully established.</h:li>
-									<h:li>Next, the evaluator shall use bad authentication data (e.g., incorrectly generated 
-										certificate or incorrect password) and ensure that the connection is rejected. </h:li>
-								</h:ol>
-							  Steps a-b shall be repeated for each independently configurable authentication method supported by the client. 
+							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established.
 							</test>
 							<test>
 								[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection
@@ -652,8 +633,6 @@
 						<selectable>diffie-hellman-group18-sha512 (RFC 8268)</selectable>
 						<selectable>ecdh-sha2-nistp384 (RFC 5656)</selectable>
 						<selectable>ecdh-sha2-nistp521 (RFC 5656)</selectable>  
-						<selectable>curve25519-sha256 (RFC 8731)</selectable>
-						<selectable>curve448-sha512 (RFC 8731)</selectable> 
 					</selectables> and no other mechanisms.
 				</title>
 				<ext-comp-def-title>
@@ -697,8 +676,6 @@
 					cryptography (FFC) and RFC 5656 when it uses ECC.  <h:p/>
 					RFC 4253, Section 7.2 defines two KDFs for FFC-based key establishment schemes.  Therefore, RFC 4253 should be 
 					selected if any of the RFC 4253 or RFC 8268 key establishment schemes are selected. <h:p/>
-					RFC 5656, Section 4 defines KDFs used in ECC key establishment schemes and should be selected when RFC 5656 or 
-					RFC 8731 key establishment schemes are selected.
 				</note>
 				<aactivity level="element">
 					<TSS>
