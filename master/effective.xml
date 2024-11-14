@@ -97,7 +97,7 @@
     <sec:toes title="Compliant Targets of Evaluation">
 		<h:p>The TOE in this FP is a product that acts as an SSH client, SSH 
 	    server, or both. This FP describes the extended security functionality of SSH in terms of <xref g="CC"/>. </h:p>
-		<h:p>The contents of this FP must be appropriately incoporated into a PP, cPP, or PP-Module. When this package 
+		<h:p>The contents of this FP must be appropriately incorporated into a PP, cPP, or PP-Module. When this package 
 		is incorporated as such, the ST must include selection-based requirements in accordance with the selections or assignments 
 		indicated in the incorporating document.
 		</h:p><h:p>The PP, cPP, or PP-Module that instantiates this Package must typically include the following components in order to satisfy 
