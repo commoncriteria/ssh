@@ -57,7 +57,7 @@
 	
 <!-- PP-style preferences   -->
   <pp-preferences>
-  		<using-cc2022/>
+  		
 <!--        <pp-pref name="display-audit-with-sfrs">0</pp-pref> -->
     <audit-events-in-sfrs/>
   </pp-preferences>
@@ -398,7 +398,6 @@
 					The TSF shall ensure that the SSH protocol implementation supports the following authentication methods: 
 					<selectables linebreak="yes">
 						<selectable>“password” (RFC 4252)</selectable>
-						<selectable>“keyboard-interactive” (RFC 4256)</selectable> 
 						<selectable>“publickey” (RFC 4252): 
 							<selectables linebreak="yes">
 								<selectable>rsa-sha2-512 (RFC 8332)</selectable> 
@@ -408,7 +407,11 @@
 								<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>
 							</selectables>
 						</selectable>
-					</selectables> and no other methods.
+					</selectables> and 
+					<selectables>
+					<selectable>“keyboard-interactive” authentication methods (RFC 4256) consisting of the following: <assignable>one or more authentication methods></assignable> </selectable> 
+					<selectable>no other methods.</selectable>
+					</selectables>
 				</title>
 		 
 				<ext-comp-def-title>
@@ -432,7 +435,7 @@
 						<h:li>if password-based authentication methods have been claimed in the ST, 
 							then the TSS also describes these;</h:li> 
 							<h:li>if keyboard-interactive is selected, 
-								the TSS describes the multifactor authentication mechanisms provided by the TOE.</h:li>
+								the TSS identifies the authentication methods that are supported interactively.</h:li>
 						</h:ul>
 							<h:p/>
 					</TSS>	
@@ -460,11 +463,12 @@
 												shall verify that the session does not establish. </h:li>
 										</h:ol>
 									</h:li>
+									<h:li>If the TOE supports keyboard-interactive authentication, the evaluator shall verify that the TOE issues an authentication challenge to the SSH client for each supported method when the client specifies the use of a keyboard-interactive method.</h:li>
 									<h:li>For each supported authentication method, the evaluator shall verify that an SSH client can be used to establish a session with the TOE while using the supported method.</h:li>
 									<h:li>For each supported authentication method, the evaluator shall use an SSH client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</h:li>
 								</h:ol>
 							</test>
-							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established.
+							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. If the TOE supports keyboard-interactive authentication, the evaluator shall verify that the TOE is capable of interactive authentication, and that a connection is successfully established only once valid credentials for all interactive methods are supplied.
 							</test>
 							<test>
 								[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection
@@ -700,9 +704,9 @@
 					</selectables>
 					occurs when any of the following thresholds are met: 
 					<h:ul>
-						<h:li>one hour connection time</h:li>
-						<h:li>no more than one gigabyte of transmitted data, or</h:li>
-						<h:li>no more than one gigabyte of received data.</h:li>
+						<h:li><assignable>length of time lesser than or equal to one hour</assignable></h:li>
+						<h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of transmitted data, or</h:li>
+						<h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of received data.</h:li>
 					</h:ul>
 				</title>
 				<note role="application">
@@ -795,22 +799,16 @@
 				<selectables linebreak="yes">
 					<selectable>a local database by associating each host name with a public key corresponding to the following list:
 						<selectables linebreak="yes">
-							<selectable>ssh-rsa (RFC 4253)</selectable> 
-							<selectable>rsa-sha2-256 (RFC 8332)</selectable> 
 							<selectable>rsa-sha2-512 (RFC 8332)</selectable>
 							<selectable>ecdsa-sha2-nistp256 (RFC 5656)</selectable>
 							<selectable>ecdsa-sha2-nistp384 (RFC 5656)</selectable>
 							<selectable>ecdsa-sha2-nistp521 (RFC 5656)</selectable>
-							<selectable>ssh-ed25519 (RFC 8709)</selectable>
-							<selectable>ssh-ed448 (RFC 8709)</selectable>
 						</selectables>
 					</selectable>
 					<selectable>a list of trusted certification authorities when the public key is in the following formats:
 						<selectables linebreak="yes">
-							<selectable>x509v3-ecdsa-sha2-nistp256 (RFC 6187)</selectable>  
 							<selectable>x509v3-ecdsa-sha2-nistp384 (RFC 6187)</selectable>  
 							<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>  
-							<selectable>x509v3-rsa2048-sha256  (RFC 6187)</selectable>
 						</selectables>
 					</selectable>
 				</selectables>
@@ -823,7 +821,12 @@
 				</title>
 			</ext-comp-def-title>
 			<note role="application">
+				<h:p>
 				The local database may be implemented using any equivalent local storage mechanism.
+				</h:p>
+				<h:p>
+					Validation of X.509 certificates is expected to conform to the Functional Package for X.509.
+				</h:p>
 			</note>
 			<aactivity>
 				<TSS>
@@ -849,11 +852,12 @@
 							shall verify that the TOE either fails to connect to a host identified by the host name or there is a prompt
 							provided to store the public key in the local database. </test>
 						<test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the
-							TOE with only a single trusted certification authority corresponding to the host. The evaluator shall 
+							TOE with only a single trusted certification authority corresponding to the host's certificate. The evaluator shall 
 							verify that the TOE can successfully connect to the host identified by the host name.</test>
 						<test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the 
-							TOE with only a single trusted certification authority that does not correspond to the host. The evaluator 
-							shall verify that the TOE fails to the host identified by the host name.</test>
+							TOE with only a single trusted certification authority that does not correspond to the host's certificate. The evaluator 
+							shall verify that the TOE fails to connect to the host identified by the host name.</test>
+						<test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the test server with a certificate that does not belong to it, but is otherwise valid (i.e., it has an invalid reference identifier). This certificate shall be signed by a certificate authority that is one of the trusted certificate authorities configured on the TOE. The evaluator shall verify that the TOE fails to connect to the test server.</test>
 					</testlist><h:p/>
 				</Tests>
 			</aactivity>
@@ -882,18 +886,13 @@
 		<f-element id="fcs-sshs-ext-1e1"> 
 			<title>The TSF shall authenticate itself to its peer (SSH client) using:
 				<selectables linebreak="yes">
-					<selectable>ssh-rsa (RFC 4253)</selectable>
-					<selectable>rsa-sha2-256 (RFC 8332)</selectable>
 					<selectable>rsa-sha2-512 (RFC 8332)</selectable>
-					<selectable>ecdsa-sha2-nistp256 (RFC 5656)</selectable> 
+				
 					<selectable>ecdsa-sha2-nistp384 (RFC 5656)</selectable>
 					<selectable>ecdsa-sha2-nistp521 (RFC 5656)</selectable> 
-					<selectable>x509v3-ecdsa-sha2-nistp256 (RFC 6187)</selectable> 
+			
 					<selectable>x509v3-ecdsa-sha2-nistp384 (RFC 6187)</selectable> 
 					<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>
-					<selectable>x509v3-rsa2048-sha256  (RFC 6187)</selectable>
-					<selectable>ssh-ed25519 (RFC 8709)</selectable>
-					<selectable>ssh-ed448 (RFC 8709)</selectable>
 				</selectables>.
 			</title>
 			<ext-comp-def-title>
@@ -902,8 +901,13 @@
 				</title>
 			</ext-comp-def-title>
 			<note role="application">
+				<h:p>
 				These requirements relate to the server authenticating to the client. The client authenticating to the server is covered
 				in FCS_SSHC_EXT.1.1.
+				</h:p>
+				<h:p>
+					Validation of X.509 certificates is expected to conform to the Functional Package for X.509.
+				</h:p>
 			</note>
 			<aactivity>
 				<TSS>
@@ -915,7 +919,7 @@
 				</Guidance>
 				<Tests>
 					<!-- updated by TD0682 -->
-					The evlauator shall perform the following tests:
+					The evaluator shall perform the following tests:
 					<testlist>
 						<test>The evaluator shall use a suitable SSH client to connect to the TOE and examine the list of server host key algorithms 
 							in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that 
@@ -1083,18 +1087,20 @@
 				<h:a href="https://www.ietf.org/rfc/rfc8332.txt">Use of RSA Keys with SHA-256 and SHA-512 in the Secure Shell (SSH) Protocol</h:a>
 			</description>
 		</entry>   
+   	<!-- 
 		<entry id="bibRFC8709">
 			<tag>RFC 8709</tag>
 			<description>
 				<h:a href="https://tools.ietf.org/html/rfc8709">Ed25519 and Ed448 public key algorithms for the Secure Shell (SSH) protocol </h:a>
 			</description>
-		</entry>   
+		</entry>
 		<entry id="bibRFC8731">
 			<tag>RFC 8731</tag>
 			<description>
 				<h:a href="https://tools.ietf.org/html/rfc8731">Secure Shell (SSH) Key Exchange Method using Curve25519 and Curve448</h:a>
 			</description>
-		</entry>   
+		</entry>
+		-->
     </bibliography>
 </Package>
 
