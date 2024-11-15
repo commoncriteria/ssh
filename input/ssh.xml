@@ -663,15 +663,18 @@
 							<test><h:p>The evaluator shall use the test data collected in FCS_SSH_EXT.1.4, Test 1 to verify that appropriate 
 								mechanisms are advertised.
 							</h:p><h:p>
-								Note that it is permissible for the TOE to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms.
+								Note that it is permissible for the TOE to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms. These values are associated with client and server, respectively.
 							</h:p>
-							</test>
-							<test>
-								For each supported key exchange method, the evaluator shall verify that an SSH connection can be successfully established using that method. If the TOE advertises the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" method, the evaluator shall verify that the peer still negotiates the supported method, either because it does not support strict-kex (in which case the TOE's strict-kex offering is ignored) or because it does support strict-kex and the supported method is negotiated after updating the session state.
 							</test>
 							<test>The evaluator shall configure an SSH peer to allow only a key exchange method that is not included in the
 								ST selection. The evaluator shall attempt to establish an SSH connection and observe that the
 								connection is rejected.</test>
+							<test>
+								The evaluator shall configure the SSH peer to omit the strict-kex value from the kex_algorithms field. The evaluator shall verify that the TOE is able to successfully establish a connection with the SSH peer.
+							</test>
+							<test>
+								The evaluator shall configure the SSH peer to include the strict-kex value in the kex_algorithms field. The evaluator shall verify that the TOE is able to successfully establish a connection with the SSH peer.
+							</test>
 						</testlist><h:p/>
 					</Tests>
 				</aactivity>
