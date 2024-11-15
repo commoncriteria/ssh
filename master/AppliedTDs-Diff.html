@@ -518,6 +518,9 @@
                         </li>
                     </ul>
                     ] and no other mechanisms. 
+                    <div class="appnote">
+                        <span class="note-header">Application Note: </span><span class="note"> The values "strict-kex-c-v00@openssh.com" and "strict-kex-s-v00@openssh.com" may also be present in the key exchange offering. These values are used to protect against <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> prefix data truncation (i.e. Terrapin attack). These values are used to ensure that key exchange proceeds in an appropriate order; they are not exchange methods in and of themselves. </span>
+                    </div>
                 </div>
             </div>
             <div class="element">
@@ -803,10 +806,19 @@
                          <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_11" class="defined" href="#_t_11">Test FCS_SSH_EXT.1.6:1</a>: The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate mechanisms are advertised.
+                                    <a id="_t_11" class="defined" href="#_t_11">Test FCS_SSH_EXT.1.6:1</a>: 
+                                    <p>
+                                        The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate mechanisms are advertised. 
+                                    </p>
+                                    <p>
+                                         Note that it is permissible for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms. 
+                                    </p>
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_12" class="defined" href="#_t_12">Test FCS_SSH_EXT.1.6:2</a>: The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a key exchange method that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that the connection is rejected.
+                                    <a id="_t_12" class="defined" href="#_t_12">Test FCS_SSH_EXT.1.6:2</a>: For each supported key exchange method, the evaluator shall verify that an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection can be successfully established using that method. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> advertises the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" method, the evaluator shall verify that the peer still negotiates the supported method, either because it does not support strict-kex (in which case the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s strict-kex offering is ignored) or because it does support strict-kex and the supported method is negotiated after updating the session state. 
+                                </li>
+                                <li class="test-">
+                                    <a id="_t_13" class="defined" href="#_t_13">Test FCS_SSH_EXT.1.6:3</a>: The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a key exchange method that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that the connection is rejected.
                                 </li>
                             </ul>
                         </span>
@@ -858,13 +870,13 @@
                          <span class="testlist-">
                             <ul>
                                 <li class="test-">
-                                    <a id="_t_13" class="defined" href="#_t_13">Test FCS_SSH_EXT.1.8:1</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, wait until the identified connection rekey limit is met, and observe that a connection rekey or termination is initiated. This may require traffic to periodically be sent or a keep-alive setting for the connection to be applied to ensure that the connection is not closed due to an idle timeout. 
+                                    <a id="_t_14" class="defined" href="#_t_14">Test FCS_SSH_EXT.1.8:1</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, wait until the identified connection rekey limit is met, and observe that a connection rekey or termination is initiated. This may require traffic to periodically be sent or a keep-alive setting for the connection to be applied to ensure that the connection is not closed due to an idle timeout. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_14" class="defined" href="#_t_14">Test FCS_SSH_EXT.1.8:2</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, transmit data from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey or termination limit is met, and observe that a connection rekey or termination is initiated. 
+                                    <a id="_t_15" class="defined" href="#_t_15">Test FCS_SSH_EXT.1.8:2</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection, transmit data from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey or termination limit is met, and observe that a connection rekey or termination is initiated. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_15" class="defined" href="#_t_15">Test FCS_SSH_EXT.1.8:3</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection,&nbsp;send data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey limit or termination is met,&nbsp;and observe that a connection rekey or termination is initiated.
+                                    <a id="_t_16" class="defined" href="#_t_16">Test FCS_SSH_EXT.1.8:3</a>: The evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection,&nbsp;send data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey limit or termination is met,&nbsp;and observe that a connection rekey or termination is initiated.
                                 </li>
                             </ul>
                         </span>
@@ -1009,22 +1021,22 @@
                              The evaluator shall perform the following tests: <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_16" class="defined" href="#_t_16">Test FCS_SSHC_EXT.1:1</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.
+                                        <a id="_t_17" class="defined" href="#_t_17">Test FCS_SSHC_EXT.1:1</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_17" class="defined" href="#_t_17">Test FCS_SSHC_EXT.1:2</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to a host not identified by the host name. 
+                                        <a id="_t_18" class="defined" href="#_t_18">Test FCS_SSHC_EXT.1:2</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to a host not identified by the host name. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_18" class="defined" href="#_t_18">Test FCS_SSHC_EXT.1:3</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall try to connect to a host not configured in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either fails to connect to a host identified by the host name or there is a prompt provided to store the public key in the local database. 
+                                        <a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:3</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall try to connect to a host not configured in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either fails to connect to a host identified by the host name or there is a prompt provided to store the public key in the local database. 
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:4</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority corresponding to the host's certificate. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.
+                                        <a id="_t_20" class="defined" href="#_t_20">Test FCS_SSHC_EXT.1:4</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority corresponding to the host's certificate. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_20" class="defined" href="#_t_20">Test FCS_SSHC_EXT.1:5</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority that does not correspond to the host's certificate. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to the host identified by the host name.
+                                        <a id="_t_21" class="defined" href="#_t_21">Test FCS_SSHC_EXT.1:5</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority that does not correspond to the host's certificate. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to the host identified by the host name.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_21" class="defined" href="#_t_21">Test FCS_SSHC_EXT.1:6</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the test server with a certificate that does not belong to it, but is otherwise valid (i.e., it has an invalid reference identifier). This certificate shall be signed by a certificate authority that is one of the trusted certificate authorities configured on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to the test server.
+                                        <a id="_t_22" class="defined" href="#_t_22">Test FCS_SSHC_EXT.1:6</a>: [conditional] If using a list of trusted certification authorities, the evaluator shall configure the test server with a certificate that does not belong to it, but is otherwise valid (i.e., it has an invalid reference identifier). This certificate shall be signed by a certificate authority that is one of the trusted certificate authorities configured on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to the test server.
                                     </li>
                                 </ul>
                             </span>
@@ -1103,13 +1115,13 @@
                              The evaluator shall perform the following tests: <span class="testlist-">
                                 <ul>
                                     <li class="test-">
-                                        <a id="_t_22" class="defined" href="#_t_22">Test FCS_SSHS_EXT.1:1</a>: The evaluator shall use a suitable <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and examine the list of server host key algorithms in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that only the configured server authentication methods for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> were offered by the server.
+                                        <a id="_t_23" class="defined" href="#_t_23">Test FCS_SSHS_EXT.1:1</a>: The evaluator shall use a suitable <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and examine the list of server host key algorithms in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that only the configured server authentication methods for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> were offered by the server.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_23" class="defined" href="#_t_23">Test FCS_SSHS_EXT.1:2</a>: The evaluator shall test for a successful configuration setting of each server authentication method as follows. The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using the authentication method configured and verify that the session is successfully established. Repeat this process for each independently configurable server authentication method supported by the server.
+                                        <a id="_t_24" class="defined" href="#_t_24">Test FCS_SSHS_EXT.1:2</a>: The evaluator shall test for a successful configuration setting of each server authentication method as follows. The evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using the authentication method configured and verify that the session is successfully established. Repeat this process for each independently configurable server authentication method supported by the server.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_24" class="defined" href="#_t_24">Test FCS_SSHS_EXT.1:3</a>: The evaluator shall configure the peer to only allow an authentication mechanism that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> sends a disconnect message.
+                                        <a id="_t_25" class="defined" href="#_t_25">Test FCS_SSHS_EXT.1:3</a>: The evaluator shall configure the peer to only allow an authentication mechanism that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> sends a disconnect message.
                                     </li>
                                 </ul>
                             </span> 
