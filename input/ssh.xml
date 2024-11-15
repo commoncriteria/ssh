@@ -409,7 +409,7 @@
 						</selectable>
 					</selectables> and 
 					<selectables>
-					<selectable>“keyboard-interactive” authentication methods (RFC 4256) consisting of the following: <assignable>one or more authentication methods></assignable> </selectable> 
+					<selectable>“keyboard-interactive” authentication methods (RFC 4256) consisting of the following: <assignable>one or more authentication methods</assignable> </selectable> 
 					<selectable>no other methods.</selectable>
 					</selectables>
 				</title>
@@ -813,7 +813,6 @@
 					<selectable>a local database by associating each host name with a public key corresponding to the following list:
 						<selectables linebreak="yes">
 							<selectable>rsa-sha2-512 (RFC 8332)</selectable>
-							<selectable>ecdsa-sha2-nistp256 (RFC 5656)</selectable>
 							<selectable>ecdsa-sha2-nistp384 (RFC 5656)</selectable>
 							<selectable>ecdsa-sha2-nistp521 (RFC 5656)</selectable>
 						</selectables>
