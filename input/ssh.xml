@@ -645,6 +645,9 @@
 						<assignable>key agreement mechanisms</assignable> and no other mechanisms.
 					</title>
 				</ext-comp-def-title>
+				<note role="application">
+					The values "strict-kex-c-v00@openssh.com" and "strict-kex-s-v00@openssh.com" may also be present in the key exchange offering. These values are used to protect against SSH prefix data truncation (i.e. Terrapin attack). These values are used to ensure that key exchange proceeds in an appropriate order; they are not exchange methods in and of themselves.
+				</note>
 				<aactivity level="element">
 					<TSS>
 						The evaluator shall check the description of the implementation of SSH in the TSS to ensure the shared
@@ -657,8 +660,15 @@
 					</Guidance>
 					<Tests>
 						<testlist>
-							<test>The evaluator shall use the test data collected in FCS_SSH_EXT.1.4, Test 1 to verify that appropriate 
-								mechanisms are advertised.</test>
+							<test><h:p>The evaluator shall use the test data collected in FCS_SSH_EXT.1.4, Test 1 to verify that appropriate 
+								mechanisms are advertised.
+							</h:p><h:p>
+								Note that it is permissible for the TOE to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms.
+							</h:p>
+							</test>
+							<test>
+								For each supported key exchange method, the evaluator shall verify that an SSH connection can be successfully established using that method. If the TOE advertises the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" method, the evaluator shall verify that the peer still negotiates the supported method, either because it does not support strict-kex (in which case the TOE's strict-kex offering is ignored) or because it does support strict-kex and the supported method is negotiated after updating the session state.
+							</test>
 							<test>The evaluator shall configure an SSH peer to allow only a key exchange method that is not included in the
 								ST selection. The evaluator shall attempt to establish an SSH connection and observe that the
 								connection is rejected.</test>
