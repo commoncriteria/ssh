@@ -393,31 +393,31 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_15">&ldquo;password&rdquo; (RFC 4252)</span>
+                            <span class="selectable-content" id="_s_15">password, complying with [<b>selection</b>: <span class="selectable-content" id="_s_16">RFC 4252</span>, <span class="selectable-content" id="_s_17">RFC 4256 keyboard-interactive methods</span>] (RFC 4252)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_16">&ldquo;publickey&rdquo; (RFC 4252): [<b>selection</b>: 
+                            <span class="selectable-content" id="_s_18">&ldquo;publickey&rdquo; (RFC 4252): [<b>selection</b>: 
                                 <ul>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_17">rsa-sha2-512 (RFC 8332)</span>
+                                        <span class="selectable-content" id="_s_19">rsa-sha2-512 (RFC 8332)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_18">ecdsa-sha2-nistp384 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_20">ecdsa-sha2-nistp384 (RFC 5656)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_19">ecdsa-sha2-nistp521 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_21">ecdsa-sha2-nistp521 (RFC 5656)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_20">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_22">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_21">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_23">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
                                     </li>
                                 </ul>
                                 ] </span>
                         </li>
                     </ul>
-                    ] and [<b>selection</b>: <span class="selectable-content" id="_s_22">&ldquo;keyboard-interactive&rdquo; authentication methods (RFC 4256) consisting of the following: [<b>assignment</b>: <span class="assignable-content">one or more authentication methods&gt;</span>] </span>, <span class="selectable-content" id="_s_23">no other methods.</span>] 
+                    ] and no other methods. 
                     <div class="appnote">
                         <span class="note-header">Application Note: </span><span class="note"> Within <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> there are two types of authentication: user authentication and peer authentication. This <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> deals with the options supported for user authentication. Peer authentication is covered in <a href="#FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</a> (for clients) and <a href="#FCS_SSHS_EXT.1.1">FCS_SSHS_EXT.1.1</a> (for servers). </span>
                     </div>
@@ -564,7 +564,7 @@
                     ] occurs when any of the following thresholds are met: 
                     <ul>
                         <li>
-                            [<b>assignment</b>: <span class="assignable-content">length of time lesser than or equal to one hour</span>]
+                            [<b>assignment</b>: <span class="assignable-content">length of time lesser than or equal to one hour</span>] connection time
                         </li>
                         <li>
                             no more than [<b>assignment</b>: <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or
@@ -961,25 +961,22 @@
                                         <span class="selectable-content" id="_s_42">rsa-sha2-512 (RFC 8332)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_43">ecdsa-sha2-nistp256 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_43">ecdsa-sha2-nistp384 (RFC 5656)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_44">ecdsa-sha2-nistp384 (RFC 5656)</span>
-                                    </li>
-                                    <li style="">
-                                        <span class="selectable-content" id="_s_45">ecdsa-sha2-nistp521 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_44">ecdsa-sha2-nistp521 (RFC 5656)</span>
                                     </li>
                                 </ul>
                                 ] </span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_46">a list of trusted certification authorities when the public key is in the following formats: [<b>selection</b>: 
+                            <span class="selectable-content" id="_s_45">a list of trusted certification authorities when the public key is in the following formats: [<b>selection</b>: 
                                 <ul>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_47">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_46">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_48">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_47">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
                                     </li>
                                 </ul>
                                 ] </span>
@@ -1062,19 +1059,19 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_49">rsa-sha2-512 (RFC 8332)</span>
+                            <span class="selectable-content" id="_s_48">rsa-sha2-512 (RFC 8332)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_50">ecdsa-sha2-nistp384 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_49">ecdsa-sha2-nistp384 (RFC 5656)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_51">ecdsa-sha2-nistp521 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_50">ecdsa-sha2-nistp521 (RFC 5656)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
+                            <span class="selectable-content" id="_s_51">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_53">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
+                            <span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
                         </li>
                     </ul>
                     ]. 
@@ -1245,7 +1242,7 @@
                         ] occurs when any of the following thresholds are met: 
                         <ul>
                             <li>
-                                [<b>assignment</b>: <span class="assignable-content">length of time lesser than or equal to one hour</span>]
+                                [<b>assignment</b>: <span class="assignable-content">length of time lesser than or equal to one hour</span>] connection time
                             </li>
                             <li>
                                 no more than [<b>assignment</b>: <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or

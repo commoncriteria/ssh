@@ -882,11 +882,9 @@ The following sections list Common Criteria and technology terms used in this do
 				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.2"><a href="#FCS_SSH_EXT.1.2" class="abbr">FCS_SSH_EXT.1.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: 
-					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_15">“password” (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_16">“publickey” (RFC 4252): 
-							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_17">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_18">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_19">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_20">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_21">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
-						</span></li></ul>] and 
-					[<b>selection</b>: <span class="selectable-content" id="_s_22">“keyboard-interactive” authentication methods (RFC 4256) consisting of the following: [<b>assignment</b>: 
-     <span class="assignable-content">one or more authentication methods&gt;</span>] </span>, <span class="selectable-content" id="_s_23">no other methods.</span>]
+					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_15">password, complying with [<b>selection</b>: <span class="selectable-content" id="_s_16">RFC 4252</span>, <span class="selectable-content" id="_s_17">RFC 4256 keyboard-interactive methods</span>] (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_18">“publickey” (RFC 4252): 
+							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_19">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_20">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_21">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_22">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_23">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
+						</span></li></ul>] and no other methods.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -955,7 +953,7 @@ The following sections list Common Criteria and technology terms used in this do
 					occurs when any of the following thresholds are met: 
 					<ul>
 						<li>[<b>assignment</b>: 
-     <span class="assignable-content">length of time lesser than or equal to one hour</span>]</li>
+     <span class="assignable-content">length of time lesser than or equal to one hour</span>] connection time</li>
 						<li>no more than [<b>assignment</b>: 
      <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
 						<li>no more than [<b>assignment</b>: 
@@ -1287,9 +1285,9 @@ The following sections list Common Criteria and technology terms used in this do
     	
 		<div class="element"><div class="reqid" id="FCS_SSHC_EXT.1.1"><a href="#FCS_SSHC_EXT.1.1" class="abbr">FCS_SSHC_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: 
 				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_41">a local database by associating each host name with a public key corresponding to the following list:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_43">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_44">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_45">ecdsa-sha2-nistp521 (RFC 5656)</span></li></ul>]
-					</span></li><li style=""><span class="selectable-content" id="_s_46">a list of trusted certification authorities when the public key is in the following formats:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_47">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_48">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_42">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_43">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_44">ecdsa-sha2-nistp521 (RFC 5656)</span></li></ul>]
+					</span></li><li style=""><span class="selectable-content" id="_s_45">a list of trusted certification authorities when the public key is in the following formats:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_46">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_47">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>]
 					</span></li></ul>]
 				as described in RFC 4251, Section 4.1.
 			<div class="appnote"><span class="note-header">Application
@@ -1352,7 +1350,7 @@ The following sections list Common Criteria and technology terms used in this do
     	
     	
 		<div class="element"><div class="reqid" id="FCS_SSHS_EXT.1.1"><a href="#FCS_SSHS_EXT.1.1" class="abbr">FCS_SSHS_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using:
-				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_49">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_50">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_51">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_53">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>].
+				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_48">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_49">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_50">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_51">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li></ul>].
 			<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -1454,7 +1452,7 @@ The following sections list Common Criteria and technology terms used in this do
 					occurs when any of the following thresholds are met: 
 					<ul>
 						<li>[<b>assignment</b>: 
-     <span class="assignable-content">length of time lesser than or equal to one hour</span>]</li>
+     <span class="assignable-content">length of time lesser than or equal to one hour</span>] connection time</li>
 						<li>no more than [<b>assignment</b>: 
      <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
 						<li>no more than [<b>assignment</b>: 
