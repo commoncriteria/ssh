@@ -397,7 +397,7 @@
 				<title>
 					The TSF shall ensure that the SSH protocol implementation supports the following authentication methods: 
 					<selectables linebreak="yes">
-						<selectable>“password” (RFC 4252)</selectable>
+						<selectable>password, complying with <selectables><selectable>RFC 4252</selectable><selectable>RFC 4256 keyboard-interactive methods</selectable></selectables> (RFC 4252)</selectable>
 						<selectable>“publickey” (RFC 4252): 
 							<selectables linebreak="yes">
 								<selectable>rsa-sha2-512 (RFC 8332)</selectable> 
@@ -407,11 +407,7 @@
 								<selectable>x509v3-ecdsa-sha2-nistp521 (RFC 6187)</selectable>
 							</selectables>
 						</selectable>
-					</selectables> and 
-					<selectables>
-					<selectable>“keyboard-interactive” authentication methods (RFC 4256) consisting of the following: <assignable>one or more authentication methods</assignable> </selectable> 
-					<selectable>no other methods.</selectable>
-					</selectables>
+					</selectables> and no other methods.
 				</title>
 		 
 				<ext-comp-def-title>
@@ -717,7 +713,7 @@
 					</selectables>
 					occurs when any of the following thresholds are met: 
 					<h:ul>
-						<h:li><assignable>length of time lesser than or equal to one hour</assignable></h:li>
+						<h:li><assignable>length of time lesser than or equal to one hour</assignable> connection time</h:li>
 						<h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of transmitted data, or</h:li>
 						<h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of received data.</h:li>
 					</h:ul>
