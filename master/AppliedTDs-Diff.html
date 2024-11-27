@@ -393,7 +393,7 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_15">password, complying with [<b>selection</b>: <span class="selectable-content" id="_s_16">RFC 4252</span>, <span class="selectable-content" id="_s_17">RFC 4256 keyboard-interactive methods</span>] (RFC 4252)</span>
+                            <span class="selectable-content" id="_s_15">password, complying with [<b>selection</b>: <span class="selectable-content" id="_s_16">RFC 4252</span>, <span class="selectable-content" id="_s_17">RFC 4256 keyboard-interactive methods</span>]</span>
                         </li>
                         <li style="">
                             <span class="selectable-content" id="_s_18">&ldquo;publickey&rdquo; (RFC 4252): [<b>selection</b>: 
@@ -444,16 +444,10 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_24">aes256-ctr (RFC 4344)</span>
+                            <span class="selectable-content" id="_s_24">AEAD_AES_256_GCM (RFC 5647)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_25">aes256-cbc (RFC 4253)</span>
-                        </li>
-                        <li style="">
-                            <span class="selectable-content" id="_s_26">AEAD_AES_256_GCM (RFC 5647)</span>
-                        </li>
-                        <li style="">
-                            <span class="selectable-content" id="_s_27">aes256-gcm@openssh.com (RFC 5647)</span>
+                            <span class="selectable-content" id="_s_25">aes256-gcm@openssh.com (RFC 5647)</span>
                         </li>
                     </ul>
                     ] and no other mechanisms. 
@@ -470,13 +464,10 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from modification, deletion, and insertion using: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_28">hmac-sha2-512 (RFC 6668)</span>
+                            <span class="selectable-content" id="_s_26">AEAD_AES_256_GCM (RFC 5647)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_29">AEAD_AES_256_GCM (RFC 5647)</span>
-                        </li>
-                        <li style="">
-                            <span class="selectable-content" id="_s_30">implicit</span>
+                            <span class="selectable-content" id="_s_27">implicit</span>
                         </li>
                     </ul>
                     ] and no other mechanisms. 
@@ -499,22 +490,22 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall establish a shared secret with its peer using: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_31">diffie-hellman-group15-sha512 (RFC 8268)</span>
+                            <span class="selectable-content" id="_s_28">diffie-hellman-group15-sha512 (RFC 8268)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_32">diffie-hellman-group16-sha512 (RFC 8268)</span>
+                            <span class="selectable-content" id="_s_29">diffie-hellman-group16-sha512 (RFC 8268)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_33">diffie-hellman-group17-sha512 (RFC 8268)</span>
+                            <span class="selectable-content" id="_s_30">diffie-hellman-group17-sha512 (RFC 8268)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_34">diffie-hellman-group18-sha512 (RFC 8268)</span>
+                            <span class="selectable-content" id="_s_31">diffie-hellman-group18-sha512 (RFC 8268)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_35">ecdh-sha2-nistp384 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_32">ecdh-sha2-nistp384 (RFC 5656)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_36">ecdh-sha2-nistp521 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_33">ecdh-sha2-nistp521 (RFC 5656)</span>
                         </li>
                     </ul>
                     ] and no other mechanisms. 
@@ -531,10 +522,10 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_37">RFC 4253, Section 7.2</span>
+                            <span class="selectable-content" id="_s_34">RFC 4253, Section 7.2</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_38"> RFC 5656, Section 4 </span>
+                            <span class="selectable-content" id="_s_35"> RFC 5656, Section 4 </span>
                         </li>
                     </ul>
                     ] to derive the following cryptographic keys from a shared secret: session keys. 
@@ -555,10 +546,10 @@
                      The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_39">a rekey of the session keys</span>
+                            <span class="selectable-content" id="_s_36">a rekey of the session keys</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_40">connection termination</span>
+                            <span class="selectable-content" id="_s_37">connection termination</span>
                         </li>
                     </ul>
                     ] occurs when any of the following thresholds are met: 
@@ -622,10 +613,7 @@
                                 the authentication methods listed in the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> are identical to those claimed in this element;
                             </li>
                             <li>
-                                if password-based authentication methods have been claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> also describes these;
-                            </li>
-                            <li>
-                                if keyboard-interactive is selected, the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> identifies the authentication methods that are supported interactively.
+                                if password-based authentication methods have been claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>, then the <abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr> also describes these
                             </li>
                         </ul>
                         <p></p>
@@ -657,7 +645,7 @@
                                             </ol>
                                         </li>
                                         <li>
-                                            If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports keyboard-interactive authentication, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> issues an authentication challenge to the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client for each supported method when the client specifies the use of a keyboard-interactive method.
+                                            If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports keyboard-interactive password authentication, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> issues an authentication challenge to the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client for each supported method when the client specifies the use of a keyboard-interactive method.
                                         </li>
                                         <li>
                                             For each supported authentication method, the evaluator shall verify that an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client can be used to establish a session with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> while using the supported method.
@@ -668,18 +656,19 @@
                                     </ol>
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>: [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using each supported authentication method and verify that the session is successfully established. If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> supports keyboard-interactive authentication, the evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is capable of interactive authentication, and that a connection is successfully established only once valid credentials for all interactive methods are supplied. 
+                                    <a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>: [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, noninteractive, or both, depending on the claims made in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>. 
                                 </li>
                                 <li class="test-">
-                                    <a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>: [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall verify that the connection fails upon configuration mismatch as follows:. 
+                                    <a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>: [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall verify that the connection fails upon configuration mismatch as follows: 
                                     <ol type="a">
                                         <li>The evaluator shall configure the client with an authentication method not supported by the server. </li>
                                         <li>The evaluator shall verify that the connection fails. </li>
                                     </ol>
+                                     If the client supports only one authentication method, the evaluator can test this failure of connection by configuring the server with an authentication method not supported by the client. In order to facilitate this test, it is acceptable for the evaluator to configure an authentication method that is outside of the selections in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
+                                    <p></p>
                                 </li>
                             </ul>
-                        </span> If the client supports only one authentication method, the evaluator can test this failure of connection by configuring the server with an authentication method not supported by the client. In order to facilitate this test, it is acceptable for the evaluator to configure an authentication method that is outside of the selections in the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>.
-                        <p></p>
+                        </span> 
                     </div>
                     <div class="element-activity-header">
                         <a href="#FCS_SSH_EXT.1.3">FCS_SSH_EXT.1.3</a>
@@ -955,28 +944,28 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_41">a local database by associating each host name with a public key corresponding to the following list: [<b>selection</b>: 
+                            <span class="selectable-content" id="_s_38">a local database by associating each host name with a public key corresponding to the following list: [<b>selection</b>: 
                                 <ul>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_42">rsa-sha2-512 (RFC 8332)</span>
+                                        <span class="selectable-content" id="_s_39">rsa-sha2-512 (RFC 8332)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_43">ecdsa-sha2-nistp384 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_40">ecdsa-sha2-nistp384 (RFC 5656)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_44">ecdsa-sha2-nistp521 (RFC 5656)</span>
+                                        <span class="selectable-content" id="_s_41">ecdsa-sha2-nistp521 (RFC 5656)</span>
                                     </li>
                                 </ul>
                                 ] </span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_45">a list of trusted certification authorities when the public key is in the following formats: [<b>selection</b>: 
+                            <span class="selectable-content" id="_s_42">a list of trusted certification authorities when the public key is in the following formats: [<b>selection</b>: 
                                 <ul>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_46">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_43">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
                                     </li>
                                     <li style="">
-                                        <span class="selectable-content" id="_s_47">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
+                                        <span class="selectable-content" id="_s_44">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
                                     </li>
                                 </ul>
                                 ] </span>
@@ -1024,7 +1013,7 @@
                                         <a id="_t_18" class="defined" href="#_t_18">Test FCS_SSHC_EXT.1:1</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.
                                     </li>
                                     <li class="test-">
-                                        <a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:2</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to a host not identified by the host name. 
+                                        <a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:2</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to the configured host due to a public key mismatch. 
                                     </li>
                                     <li class="test-">
                                         <a id="_t_20" class="defined" href="#_t_20">Test FCS_SSHC_EXT.1:3</a>: [conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall try to connect to a host not configured in the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either fails to connect to a host identified by the host name or there is a prompt provided to store the public key in the local database. 
@@ -1059,19 +1048,19 @@
                     The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using: [<b>selection</b>: 
                     <ul>
                         <li style="">
-                            <span class="selectable-content" id="_s_48">rsa-sha2-512 (RFC 8332)</span>
+                            <span class="selectable-content" id="_s_45">rsa-sha2-512 (RFC 8332)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_49">ecdsa-sha2-nistp384 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_46">ecdsa-sha2-nistp384 (RFC 5656)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_50">ecdsa-sha2-nistp521 (RFC 5656)</span>
+                            <span class="selectable-content" id="_s_47">ecdsa-sha2-nistp521 (RFC 5656)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_51">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
+                            <span class="selectable-content" id="_s_48">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span>
                         </li>
                         <li style="">
-                            <span class="selectable-content" id="_s_52">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
+                            <span class="selectable-content" id="_s_49">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span>
                         </li>
                     </ul>
                     ]. 
@@ -1222,10 +1211,10 @@
                          The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in [<b>selection</b>: 
                         <ul>
                             <li style="">
-                                <span class="selectable-content" id="_s_37">RFC 4253, Section 7.2</span>
+                                <span class="selectable-content" id="_s_34">RFC 4253, Section 7.2</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="_s_38"> RFC 5656, Section 4 </span>
+                                <span class="selectable-content" id="_s_35"> RFC 5656, Section 4 </span>
                             </li>
                         </ul>
                         ] to derive the following cryptographic keys from a shared secret: session keys. 
@@ -1233,10 +1222,10 @@
                          The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that [<b>selection</b>: 
                         <ul>
                             <li style="">
-                                <span class="selectable-content" id="_s_39">a rekey of the session keys</span>
+                                <span class="selectable-content" id="_s_36">a rekey of the session keys</span>
                             </li>
                             <li style="">
-                                <span class="selectable-content" id="_s_40">connection termination</span>
+                                <span class="selectable-content" id="_s_37">connection termination</span>
                             </li>
                         </ul>
                         ] occurs when any of the following thresholds are met: 

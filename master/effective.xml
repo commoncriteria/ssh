@@ -381,7 +381,7 @@
 				<title>
 					The TSF shall ensure that the SSH protocol implementation supports the following authentication methods: 
 					<selectables linebreak="yes">
-						<selectable>password, complying with <selectables><selectable>RFC 4252</selectable><selectable>RFC 4256 keyboard-interactive methods</selectable></selectables> (RFC 4252)</selectable>
+						<selectable>password, complying with <selectables><selectable>RFC 4252</selectable><selectable>RFC 4256 keyboard-interactive methods</selectable></selectables></selectable>
 						<selectable>“publickey” (RFC 4252): 
 							<selectables linebreak="yes">
 								<selectable>rsa-sha2-512 (RFC 8332)</selectable> 
@@ -413,9 +413,7 @@
 						<h:li>the authentication methods listed in the TSS are identical to those claimed 
 							in this element;</h:li>
 						<h:li>if password-based authentication methods have been claimed in the ST, 
-							then the TSS also describes these;</h:li> 
-							<h:li>if keyboard-interactive is selected, 
-								the TSS identifies the authentication methods that are supported interactively.</h:li>
+							then the TSS also describes these</h:li> 
 						</h:ul>
 							<h:p/>
 					</TSS>	
@@ -443,27 +441,28 @@
 												shall verify that the session does not establish. </h:li>
 										</h:ol>
 									</h:li>
-									<h:li>If the TOE supports keyboard-interactive authentication, the evaluator shall verify that the TOE issues an authentication challenge to the SSH client for each supported method when the client specifies the use of a keyboard-interactive method.</h:li>
+									<h:li>If the TOE supports keyboard-interactive password authentication, the evaluator shall verify that the TOE issues an authentication challenge to the SSH client for each supported method when the client specifies the use of a keyboard-interactive method.</h:li>
 									<h:li>For each supported authentication method, the evaluator shall verify that an SSH client can be used to establish a session with the TOE while using the supported method.</h:li>
 									<h:li>For each supported authentication method, the evaluator shall use an SSH client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</h:li>
 								</h:ol>
 							</test>
-							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. If the TOE supports keyboard-interactive authentication, the evaluator shall verify that the TOE is capable of interactive authentication, and that a connection is successfully established only once valid credentials for all interactive methods are supplied.
+							<test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, noninteractive, or both, depending on the claims made in FCS_SSH_EXT.1.2. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in FCS_SSH_EXT.1.2. 
 							</test>
 							<test>
 								[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection
-								fails upon configuration mismatch as follows:. 
+								fails upon configuration mismatch as follows: 
 								<h:ol type="a">
 									<h:li>The evaluator shall configure the client with an authentication method not supported by
 										the server.  </h:li>
 									<h:li>The evaluator shall verify that the connection fails. </h:li>
 								</h:ol>
+								If the client supports only one authentication method, the evaluator can test this failure of connection by
+								configuring the server with an authentication method not supported by the client. In order to facilitate
+								this test, it is acceptable for the evaluator to configure an authentication method that is outside of the 
+								selections in the SFR.<h:p/>
 							</test>	
 						</testlist>
-						If the client supports only one authentication method, the evaluator can test this failure of connection by
-						configuring the server with an authentication method not supported by the client. In order to facilitate
-						this test, it is acceptable for the evaluator to configure an authentication method that is outside of the 
-						selections in the SFR.<h:p/>
+
 					</Tests>
 				</aactivity>
 			</f-element>
@@ -510,8 +509,6 @@
 				<title>
 					The TSF shall protect data in transit from unauthorised disclosure using the following mechanisms: 
 					<selectables linebreak="yes"> 
-						<selectable>aes256-ctr (RFC 4344)</selectable>
-						<selectable>aes256-cbc (RFC 4253)</selectable> 
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable> 
 						<selectable>aes256-gcm@openssh.com (RFC 5647)</selectable>
 					</selectables> and no other mechanisms.
@@ -565,8 +562,6 @@
 				<title>
 					The TSF shall protect data in transit from modification, deletion, and insertion using: 
 					<selectables linebreak="yes">
-<!--						<selectable>hmac-sha1 (RFC 4253)</selectable>  -->
-						<selectable>hmac-sha2-512 (RFC 6668)</selectable>
 						<selectable>AEAD_AES_256_GCM (RFC 5647)</selectable>
 						<selectable>implicit</selectable></selectables> and no other mechanisms.
 				</title>
@@ -837,8 +832,7 @@
 							by the host name.</test>
 						<test>[conditional] If using a local database by associating each host name with its corresponding public key,
 							the evaluator shall configure the TOE with only a single host name and non-corresponding public key in 
-							the local database. The evaluator shall verify that the TOE fails to connect to a host not identified by 
-							the host name. </test>
+							the local database. The evaluator shall verify that the TOE fails to connect to the configured host due to a public key mismatch. </test>
 						<test>[conditional] If using a local database by associating each host name with its corresponding public
 							key, the evaluator shall try to connect to a host not configured in the local database. The evaluator 
 							shall verify that the TOE either fails to connect to a host identified by the host name or there is a prompt
