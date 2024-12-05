@@ -21,7 +21,7 @@
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
       <PPVersion>1.1</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2024-06-07</PPPubDate>
+      <PPPubDate>2024-12-05</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -34,7 +34,7 @@
     </entry>
   	<entry>
   		<version>1.1</version>
-  		<date>2024-06-07</date>
+  		<date>2024-12-05</date>
   		<subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
   	</entry>
   </RevisionHistory>
