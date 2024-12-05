@@ -49,7 +49,7 @@ found https://www.niap-ccevs.org/Profile/Info.cfm?id=389[here].
 
 === Draft Version
 
-* https://commoncriteria.github.io/pp/ssh/ssh-release.html[Functional
+* https://commoncriteria.github.io/ssh/master/ssh-release.html[Functional
 Package for Secure Shell] (html)
 
 === Release Version
