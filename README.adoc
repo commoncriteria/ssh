@@ -51,12 +51,10 @@ found https://www.niap-ccevs.org/Profile/Info.cfm?id=389[here].
 
 * https://commoncriteria.github.io/pp/ssh/ssh-release.html[Functional
 Package for Secure Shell] (html)
-* https://commoncriteria.github.io/pp/ssh/ssh-release.pdf[Functional
-Package for Secure Shell] (pdf)
 
 === Release Version
 
-https://www.niap-ccevs.org/Profile/Info.cfm?PPID=459&id=459[Functional
+https://www.niap-ccevs.org/protectionprofiles/459[Functional
 Package for Secure Shell (SSH) v1.0]
 
 === Contributing
