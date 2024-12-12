@@ -35,9 +35,9 @@
   <PPReference>
    <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
-      <PPVersion>1.1</PPVersion>
+      <PPVersion>2.0</PPVersion>
       <PPAuthor>National Information Assurance Partnership</PPAuthor>
-      <PPPubDate>2024-12-05</PPPubDate>
+      <PPPubDate>2024-12-12</PPPubDate>
       <Keywords>SSH; secure shell</Keywords>
     </ReferenceTable>
   </PPReference>
@@ -49,8 +49,8 @@
       <subject>Converted SSH EP to a Functional Package and incorporated CCUF CWG input.</subject>
     </entry>
   	<entry>
-  		<version>1.1</version>
-  		<date>2024-12-05</date>
+  		<version>2.0</version>
+  		<date>2024-12-12</date>
   		<subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
   	</entry>
   </RevisionHistory>
