@@ -1,6 +1,6 @@
 == Functional Package for Secure Shell (SSH)
 |===
-8+|ssh 
+8+| *ssh*
 | https://github.com/commoncriteria/ssh/tree/master[master] 
 a| https://commoncriteria.github.io/ssh/master/ssh-release.html[📄]
 a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/ValidationReport.txt]
@@ -12,10 +12,25 @@ image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/spel
 a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/TDValidationReport.txt]
 image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/tds.svg[TDs]
 a|image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/transforms.svg[transforms,150]
-a| 
-https://commoncriteria.github.io/ssh/master/ssh-release-linkable.html[ssh-release-linkable.html] +
-https://commoncriteria.github.io/ssh/master/ssh-release.html[ssh-release.html] +
-https://commoncriteria.github.io/ssh/master/ssh.html[ssh.html] +
+a| [link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/HTMLs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/html_count.svg[HTML Count]
+[link=https://github.com/commoncriteria/ssh/blob/gh-pages/master/PDFs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/master/pdf_count.svg[PDF Count]
+| https://github.com/commoncriteria/ssh/tree/release-2.0[release-2.0] 
+a| https://commoncriteria.github.io/ssh/release-2.0/ssh-release.html[📄]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/ValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/validation.svg[Validation]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/SanityChecksOutput.md]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/warnings.svg[SanityChecks]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/SpellCheckReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/spell-badge.svg[SpellCheck]
+a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/TDValidationReport.txt]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/tds.svg[TDs]
+a|image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/transforms.svg[transforms,150]
+a| [link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/HTMLs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/html_count.svg[HTML Count]
+[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-2.0/PDFs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-2.0/pdf_count.svg[PDF Count]
 | https://github.com/commoncriteria/ssh/tree/release-1.0[release-1.0] 
 a| https://commoncriteria.github.io/ssh/release-1.0/ssh-release.html[📄]
 a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/ValidationReport.txt]
@@ -27,11 +42,11 @@ image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0
 a|[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/TDValidationReport.txt]
 image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/tds.svg[TDs]
 a|image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/transforms.svg[transforms,150]
-a| 
-https://commoncriteria.github.io/ssh/release-1.0/ssh-release-linkable.html[ssh-release-linkable.html] +
-https://commoncriteria.github.io/ssh/release-1.0/ssh-release.html[ssh-release.html] +
-https://commoncriteria.github.io/ssh/release-1.0/ssh.html[ssh.html] +
-https://commoncriteria.github.io/ssh/release-1.0/ssh-paged.pdf[ssh-paged.pdf] +
+a| [link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/HTMLs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/html_count.svg[HTML Count]
+[link=https://github.com/commoncriteria/ssh/blob/gh-pages/release-1.0/PDFs.adoc]
+image::https://raw.githubusercontent.com/commoncriteria/ssh/gh-pages/release-1.0/pdf_count.svg[PDF Count]
+
 
 |===
 
