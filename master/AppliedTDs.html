@@ -734,17 +734,27 @@ The following sections list Common Criteria and technology terms used in this do
 					Note however that support for time-based rekey thresholds is selectable and not mandatory.<br/></td></tr></table>
 	
 <h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1>
-	<dl><dt class="cclaim defined" id="Conformance Statement">Conformance Statement</dt><dd><span class="description">An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>.
-				<br/><br/>
-				The evaluation methods used for evaluating the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are a combination of the workunits defined in <a href="#bibCEM">[CEM]</a> as well as the
-				EAs for ensuring that individual <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> have a sufficient level of supporting evidence in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> and 
-				guidance documentation, and have been sufficiently tested by the laboratory as part of completing ATE_IND.1.
-			</span></dd><dt class="cclaim defined" id="CC Conformance Claims">CC Conformance Claims</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is conformant to Part 2 (extended) of Common Criteria <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1. FPs
-			do not contain any <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr>, so no <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 3 claim is made. The </span></dd><dt class="cclaim defined" id="PP Claim">PP Claim</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> does not claim conformance to any <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.<br/><br/>
-				<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Configurations do not require enumeration of FPs; this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> can be claimed in any <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> that includes
-				a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that permits the <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to be claimed as part of it.
-			</span></dd><dt class="cclaim defined" id="Package Claim">Package Claim</dt><dd><span class="description">This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> does not claim conformance to any other FPs.
-			</span></dd></dl>
+    <dl><dt>Conformance Statement</dt><p></p><dd>An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance 
+		 to this Functional Package.</dd><p></p><dd>The evaluation methods used for evaluating the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> are a combination of the workunits 
+			defined in <a href="#bibCEM">[CEM]</a> as well as the Evaluation Activities for ensuring that individual <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> 
+			and <abbr class="dyn-abbr"><a href="#abbr_SAR">SARs</a></abbr> have a sufficient level of supporting evidence in the Security Target and guidance 
+			documentation and have been sufficiently tested by the laboratory as part of completing 
+			ATE_IND.1. Any functional packages this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> claims similarly contain their own Evaluation 
+			Activities that are used in this same manner.
+			</dd><dt>CC Conformance Claims</dt><p></p><dd>This Functional Package is conformant to 
+			Part 2 (extended) 
+			
+			
+				of Common Criteria <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1 as corrected and interpreted in <a href="#bibERRv11">[ERR]</a>, Version 1.1.
+			</dd><dt>PP Claim</dt><p></p><dd>
+					This Functional Package does not claim conformance to 
+					any Protection Profile.
+				</dd><p></p><dd>There are no <abbr class="dyn-abbr"><a href="#abbr_PP">PPs</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Modules that are allowed in a <abbr class="dyn-abbr"><a href="#abbr_PP-Configuration">PP-Configuration</a></abbr> 
+					with this Functional Package.</dd><dt>Package Claim</dt><p></p><dd>This Functional Package is not conformant to any 
+						Functional or Assurance Packages.</dd></dl>	
+
+
+
 <h1 class="indexable" data-level="1" id="Security_Functional_Requirements">3 Security Functional Requirements</h1>
       This chapter describes the security requirements which have to be fulfilled by the product under evaluation.
       Those requirements comprise functional components from Part 2 of <a href="#bibCC">[CC]</a>.
@@ -1526,13 +1536,20 @@ The following sections list Common Criteria and technology terms used in this do
    			<a href="https://commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">Common
    				Methodology for Information Technology Security - Evaluation Methodology</a>,
    			CCMB-2022-11-006, <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>:2022, Revision 1, November 2022. </span></td></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
-            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part
-                1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5,
-              April 2017.</li>
-            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART2V3.1R5.pdf">Part
-                2: Security Functional Components</a>, CCMB-2017-04-002, Version 3.1 Revision 5,
-              April 2017.</li>
-            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART3V3.1R5.pdf">Part
-                3: Security Assurance Components</a>, CCMB-2017-04-003, Version 3.1 Revision 5,
-              April 2017.</li>
-          </ul></span></td></tr></table></body></html>
+            <li><a href="https://www.commoncriteriaportal.org/files/ccfiles/CC2022PART1R1.pdf">Part 1: 
+				Introduction and general model</a>, CCMB-2022-11-001, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART2R1.pdf">Part 2: 
+				Security functional requirements</a>, CCMB-2022-11-002, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART3R1.pdf">Part 3: 
+                Security assurance requirements</a>, CCMB-2022-11-003, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART4R1.pdf">Part 4: 
+                Framework for the specification of evaluation methods and activities</a>, CCMB-2022-11-004, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART5R1.pdf">Part 5: 
+                 Pre-defined packages of security requirements</a>, CCMB-2022-11-005, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+          </ul></span></td></tr><tr><td><span id="bibCEM">[<abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr>]</span></td><td><span class="description">Common Methodology for Information Technology Security Evaluation - <ul>
+            <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CEM2022R1.pdf">
+                 Evaluation methodology</a>, CCMB-2022-11-006, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
+          </ul></span></td></tr><tr><td><span id="bibERRv11">[ERR]</span></td><td><span class="description"><a href="https://www.commoncriteriaportal.org/files/ccfiles/CCMB-2024-002-v1_1-Errata_Interpretation_CC_CEM_2022.pdf">
+              Errata and Interpretation for CC:2022 (Release 1) and CEM:2022 (Release 1), Version 1.1</a>, 
+			  CCMB-2024-02-002, 22 July 2024.
+        </span></td></tr></table></body></html>

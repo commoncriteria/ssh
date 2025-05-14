@@ -3,7 +3,6 @@ output/ssh-release-linkable.html: CCUF
 output/ssh-release-linkable.html: CWG
 output/ssh-release-linkable.html: FFC
 output/ssh-release-linkable.html: FIA
-output/ssh-release-linkable.html: FPs
 output/ssh-release-linkable.html: Fi
 output/ssh-release-linkable.html: KDFs
 output/ssh-release-linkable.html: KEXINIT
@@ -27,7 +26,6 @@ output/ssh-release.html: CCUF
 output/ssh-release.html: CWG
 output/ssh-release.html: FFC
 output/ssh-release.html: FIA
-output/ssh-release.html: FPs
 output/ssh-release.html: Fi
 output/ssh-release.html: KDFs
 output/ssh-release.html: KEXINIT
@@ -51,7 +49,6 @@ output/ssh.html: CCUF
 output/ssh.html: CWG
 output/ssh.html: FFC
 output/ssh.html: FIA
-output/ssh.html: FPs
 output/ssh.html: Fi
 output/ssh.html: KDFs
 output/ssh.html: KEXINIT
