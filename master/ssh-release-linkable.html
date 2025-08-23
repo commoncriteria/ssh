@@ -888,7 +888,7 @@ The following sections list Common Criteria and technology terms used in this do
       Note:
     </span><span class="note">
 					RFC 4253, Section 6.1 provides for the acceptance of &#8220;large packets&#8221; with the caveat that the packets should
-					be of &#8220;reasonable length&#8221; or dropped<a id="period_91" href="#period_91">. </a>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<a id="period_92" href="#period_92">. </a><p></p>
+					be of &#8220;reasonable length&#8221; or dropped<a id="period_91" href="#period_91">. </a>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr><a id="period_92" href="#period_92">. </a><p></p>
 					The upper bound on the packet size is driven by the size identified in <a href="#FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</a><a id="period_93" href="#period_93">. </a>				</span></div></div></div>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.4"><a href="#FCS_SSH_EXT.1.4" class="abbr">FCS_SSH_EXT.1.4</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms: 
@@ -1010,7 +1010,8 @@ The following sections list Common Criteria and technology terms used in this do
 								</ol>
 							</li>
 							<li class="test-"><a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>:
-      [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall initiate an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using each supported authentication method and verify that the session is successfully established<a id="period_138" href="#period_138">. </a>Specifically, if password authentication is supported, then the evaluator shall use interactive, noninteractive, or both, depending on the claims made in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a><a id="period_139" href="#period_139">. </a>If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a><a id="period_140" href="#period_140">. </a>
+      [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, the evaluator shall initiate an
+								<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> session using each supported authentication method and verify that the session is successfully established<a id="period_138" href="#period_138">. </a>Specifically, if password authentication is supported, then the evaluator shall use interactive, non-interactive, or both, depending on the claims made in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a><a id="period_139" href="#period_139">. </a>If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a><a id="period_140" href="#period_140">. </a>
 							</li>
 							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>:
       
