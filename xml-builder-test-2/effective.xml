@@ -684,7 +684,12 @@
               <selectable>none</selectable>
             </selectables>
           </audit-event-descr>
-          <audit-event-info>Reason for failure and non-TOE endpoint of attempted connection (IP Address)</audit-event-info>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Reason for failure and non-TOE endpoint of attempted connection (IP Address)</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-info>
         </audit-event>
         <audit-event>
           <audit-event-descr>
@@ -693,7 +698,12 @@
               <selectable>none</selectable>
             </selectables>
           </audit-event-descr>
-          <audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-info>
         </audit-event>
         <audit-event>
           <audit-event-descr>
@@ -702,7 +712,12 @@
               <selectable>none</selectable>
             </selectables>
           </audit-event-descr>
-          <audit-event-info>Non-TOE endpoint of connection (IP Address)</audit-event-info>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-info>
         </audit-event>
         <audit-event>
           <audit-event-descr>
@@ -711,7 +726,12 @@
               <selectable>none</selectable>
             </selectables>
           </audit-event-descr>
-          <audit-event-info>Packet size</audit-event-info>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Packet size</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-info>
         </audit-event>
       </f-component>
     </section>
