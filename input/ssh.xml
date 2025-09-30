@@ -690,7 +690,7 @@
           <audit-event-info>
             <selectables onlyone="yes">
               <selectable>Reason for failure and non-TOE endpoint of attempted connection (IP Address)</selectable>
-              <selectable>None</selectable>
+              <selectable>No additional information</selectable>
             </selectables>
           </audit-event-info>
         </audit-event>
@@ -704,7 +704,7 @@
           <audit-event-info>
             <selectables onlyone="yes">
               <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
-              <selectable>None</selectable>
+              <selectable>No additional information</selectable>
             </selectables>
           </audit-event-info>
         </audit-event>
@@ -718,7 +718,7 @@
           <audit-event-info>
             <selectables onlyone="yes">
               <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
-              <selectable>None</selectable>
+              <selectable>No additional information</selectable>
             </selectables>
           </audit-event-info>
         </audit-event>
@@ -732,7 +732,7 @@
           <audit-event-info>
             <selectables onlyone="yes">
               <selectable>Packet size</selectable>
-              <selectable>None</selectable>
+              <selectable>No additional information</selectable>
             </selectables>
           </audit-event-info>
         </audit-event>
