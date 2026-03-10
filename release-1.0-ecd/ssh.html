@@ -92,7 +92,9 @@ function showTarget(id){
     #toc a{
         display: block;
     }
-
+    .td-{
+        display: block;
+    }
     svg{
       width: 100%;
     }
@@ -146,7 +148,7 @@ function showTarget(id){
        max-width: 15px;
     }
 
-    a.definition{
+    a.defined{
       color: inherit;
       text-decoration: inherit;
     }
@@ -255,6 +257,21 @@ function showTarget(id){
        background-color:#F4F4F4;
    }
 
+   table.ecd_heir_dep{
+       width: 100%;
+   }
+   table.ecd_heir_dep tr{
+       background-color: inherit;
+   }
+       
+   table.ecd_heir_dep tr :first-child{
+       white-space: nowrap;
+   }
+   table.ecd_heir_dep tr :last-child{
+       width: 100%;
+   }
+
+       
    .dependent{
        border: 1px solid gray;
        border-radius: 1px
@@ -614,7 +631,7 @@ function showTarget(id){
           }
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Functional Package for Secure Shell (SSH)</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 1.0<br/>2021-05-13<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>1.0</td><td>2021-05-13</td><td>Converted <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> <abbr class="dyn-abbr"><a href="#abbr_EP">EP</a></abbr> to a Functional Package and incorporated CCUF CWG input.</td></tr>
-</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#toes" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">3<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">3.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#cryptsup" style="text-indent:10px">3.2<span>Cryptographic Support (FCS)</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-based Requirements</span></a><a href="#acronyms" style="text-indent:0px">Appendix B - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix C - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#toes" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">3<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">3.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#cryptsup" style="text-indent:10px">3.2<span>Cryptographic Support (FCS)</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-dependent Requirements</span></a><a href="#acronyms" style="text-indent:0px">Appendix B - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix C - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
 	
 
 
@@ -648,6 +665,12 @@ The following sections list Common Criteria and technology terms used in this do
       accredited by the National Voluntary Laboratory Accreditation Program (NVLAP) and approved by the NIAP Validation Body to conduct Common Criteria-based evaluations.
     </td></tr>
 <tr><td><div id="Common_Evaluation_Methodology">Common Evaluation Methodology (CEM)</div></td><td>Common Evaluation Methodology for Information Technology Security Evaluation.</td></tr>
+<tr><td><div id="Direct_Rationale">Direct Rationale</div></td><td>
+		A type of Protection Profile, PP-Module, or Security Target in which the security
+		problem definition (SPD) elements are mapped directly to the SFRs and possibly to the 
+		security objectives for the operational environment. There are no security objectives
+		for the TOE.
+	</td></tr>
 <tr><td><div id="Distributed_TOE">Distributed TOE</div></td><td>A TOE composed of multiple components operating as a logical whole.</td></tr>
 <tr><td><div id="Extended_Package">Extended Package (EP)</div></td><td>A deprecated document form for collecting SFRs that implement a particular protocol, technology,
 	    or functionality. See Functional Packages.</td></tr>
@@ -687,29 +710,25 @@ The following sections list Common Criteria and technology terms used in this do
 		ensure that dependence on these components is satisfied, either by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or by assumptions about its Operational Environment.
 		</p><p>An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must identify the applicable version of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> and this
 		Functional Package in its conformance claims.</p>
-		<table><tr class="header"><th>Component</th><th>Explanation</th></tr><tr><td class="componentneeded" id="FCS_CKM.1"><a href="#FCS_CKM.1">FCS_CKM.1</a></td><td>To support key generation for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the incoporating document must
-					include <a href="#FCS_CKM.1">FCS_CKM.1</a> and specify the corresponding algorithm(s).<br/></td></tr><tr><td class="componentneeded" id="FCS_CKM.2"><a href="#FCS_CKM.2">FCS_CKM.2</a></td><td>To support key establishment for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the incoporating document must
-						include <a href="#FCS_CKM.2">FCS_CKM.2</a> and specify the corresponding algorithm(s).<br/></td></tr><tr><td class="componentneeded" id="FCS_COP.1"><a href="#FCS_COP.1">FCS_COP.1</a></td><td>
+		<table><tr class="header"><th>Component</th><th>Explanation</th></tr><tr><td class="componentneeded" id="FCS_CKM.1"><span class="no-link">FCS_CKM.1</span></td><td>To support key generation for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the incoporating document must
+					include <a href="#FCS_CKM.1">FCS_CKM.1</a> and specify the corresponding algorithm(s).<br/></td></tr><tr><td class="componentneeded" id="FCS_CKM.2"><span class="no-link">FCS_CKM.2</span></td><td>To support key establishment for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the incoporating document must
+						include <a href="#FCS_CKM.2">FCS_CKM.2</a> and specify the corresponding algorithm(s).<br/></td></tr><tr><td class="componentneeded" id="FCS_COP.1"><span class="no-link">FCS_COP.1</span></td><td>
 					To support the cryptography needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications, the incoporating document must include <a href="#FCS_COP.1">FCS_COP.1</a> 
 					(iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and 
 					verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message
 					authentication function. In particular, the incoporating document must support AES-CTR as defined in NIST SP 800-38A 
 					with key sizes of both 128 and 256 bits.
-				<br/></td></tr><tr><td class="componentneeded" id="FCS_RBG_EXT.1"><a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a></td><td>To support random bit generation needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key generation,
+				<br/></td></tr><tr><td class="componentneeded" id="FCS_RBG_EXT.1"><span class="no-link">FCS_RBG_EXT.1</span></td><td>To support random bit generation needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key generation,
 					the incorporating document must include a requirement that specifies the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>'s ability to invoke or provide 
-					random bit generation services, commonly identified as <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.1"><a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					random bit generation services, commonly identified as <a href="#FCS_RBG_EXT.1">FCS_RBG_EXT.1</a>.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.1"><span class="no-link">FIA_X509_EXT.1</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
 					the incorporating document must include <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a>. Note however that support for X.509 is selectable 
-					and not mandatory.  <br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.2"><a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					and not mandatory.  <br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.2"><span class="no-link">FIA_X509_EXT.2</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
 					the incoporating document must include <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a>. Note however that support for X.509 is selectable 
-					and not mandatory. <br/></td></tr><tr><td class="componentneeded" id="FPT_STM.1"><a href="#FPT_STM.1">FPT_STM.1</a></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
+					and not mandatory. <br/></td></tr><tr><td class="componentneeded" id="FPT_STM.1"><span class="no-link">FPT_STM.1</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, 
 					the incorporating document must include <a href="#FPT_STM.1">FPT_STM.1</a> or some other requirement that ensures reliable system time.  
 					Note however that support for time-based rekey thresholds is selectable and not mandatory.<br/></td></tr></table>
 	
-<h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1><dl><dt>Conformance Statement</dt><dd><p>
-            An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must claim exact conformance to this <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Package, 
-            as defined in the <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> and <abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr> addenda for Exact Conformance, Selection-based <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>, and 
-            Optional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr> (dated May 2017).
-	  </p></dd><dt>CC Conformance Claims</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Package is conformant to Parts 2 (extended) and 3 (conformant) of Common Criteria Version 3.1, Revision 5.</dd><dt>PP Claim </dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Package does not claim conformance to any Protection Profile. </dd><dt>Package Claim</dt><dd>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>-Package  does not claim conformance to any packages.</dd></dl>
+<h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1>
       
 
 	  
@@ -722,8 +741,7 @@ The following sections list Common Criteria and technology terms used in this do
      <ul>
        <li>
          <b>Refinement</b> operation (denoted by <b>bold text</b> or <strike>strikethrough
-         text</strike>): Is used to add details to a requirement (including replacing an assignment
-         with a more restrictive selection) or to remove part of the requirement that is made irrelevant
+         text</strike>): Is used to add details to a requirement or to remove part of the requirement that is made irrelevant
          through the completion of another operation, and thus further restricts a requirement.
          </li>
        <li>
@@ -761,9 +779,9 @@ The following sections list Common Criteria and technology terms used in this do
 	
 		<div class="comp" id="FCS_SSH_EXT.1"><h4>FCS_SSH_EXT.1 SSH Protocol</h4>
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.1"><a href="#FCS_SSH_EXT.1.1" class="abbr">FCS_SSH_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <i><abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr></i> acting as a
-					[<b>selection</b>: <span class="selectable-content" id="ssh-client">client</span>,  <span class="selectable-content" id="ssh-server">server</span> ] in accordance with
+					[<b>selection</b>: <span class="selectable-content" id="ssh-client">client</span>, <span class="selectable-content" id="ssh-server">server</span>] in accordance with
 				that complies with RFCs 4251, 4252, 4253, 4254,
-					[<b>selection</b>: <span class="selectable-content" id="sel-rfc4256">4256</span>,  <span class="selectable-content" id="sel-rfc4344">4344</span>,  <span class="selectable-content" id="sel-rfc5647">5647</span>,  <span class="selectable-content" id="sel-rfc5656">5656</span>,  <span class="selectable-content" id="sel-rfc6187">6187</span>,  <span class="selectable-content" id="sel-rfc6668">6668</span>,  <span class="selectable-content" id="sel-rfc8268">8268</span>,  <span class="selectable-content" id="sel-rfc8308">8308</span>,  <span class="selectable-content" id="sel-rfc8332">8332</span>,  <span class="selectable-content" id="sel-rfc8709">8709</span>,  <span class="selectable-content" id="sel-rfc8731">8731</span>,  <span class="selectable-content" id="_s_14">no other RFCs</span> ] and [<i>no other standard</i>].
+					[<b>selection</b>: <span class="selectable-content" id="sel-rfc4256">4256</span>, <span class="selectable-content" id="sel-rfc4344">4344</span>, <span class="selectable-content" id="sel-rfc5647">5647</span>, <span class="selectable-content" id="sel-rfc5656">5656</span>, <span class="selectable-content" id="sel-rfc6187">6187</span>, <span class="selectable-content" id="sel-rfc6668">6668</span>, <span class="selectable-content" id="sel-rfc8268">8268</span>, <span class="selectable-content" id="sel-rfc8308">8308</span>, <span class="selectable-content" id="sel-rfc8332">8332</span>, <span class="selectable-content" id="sel-rfc8709">8709</span>, <span class="selectable-content" id="sel-rfc8731">8731</span>, <span class="selectable-content" id="_s_14">no other RFCs</span>] and [<i>no other standard</i>].
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -833,8 +851,7 @@ The following sections list Common Criteria and technology terms used in this do
 			<div class="element"><div class="reqid" id="FCS_SSH_EXT.1.2"><a href="#FCS_SSH_EXT.1.2" class="abbr">FCS_SSH_EXT.1.2</a></div><div class="reqdesc">
 					The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods: 
 					[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_15">“password” (RFC 4252)</span></li><li style=""><span class="selectable-content" id="_s_16">“keyboard-interactive” (RFC 4256)</span></li><li style=""><span class="selectable-content" id="_s_17">“publickey” (RFC 4252): 
-							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_18">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_19">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_20">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_21">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_22">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_23">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_24">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_25">ssh-ed448 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_26">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_27">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_28">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_29">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
-						</span></li></ul>] and no other methods.
+							[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_18">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_19">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_20">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_21">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_22">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_23">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_24">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_25">ssh-ed448 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_26">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_27">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_28">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_29">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]</span></li></ul>] and no other methods.
 				<div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
@@ -947,7 +964,7 @@ The following sections list Common Criteria and technology terms used in this do
 					</div>
 					<div class="eacategory">Tests</div><div class="ea">
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_1">Test 1<a href="#_t_1" class="definition"></a></span>:
+							<li class="test-"><a id="_t_1" class="defined" href="#_t_1">Test FCS_SSH_EXT.1.2:1</a>:
        [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server: <p></p>
 								<ol type="a">
 									<li>The evaluator shall use a suitable <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>, enable debug messages
@@ -968,7 +985,7 @@ The following sections list Common Criteria and technology terms used in this do
 									</li>
 								</ol>
 							</li>
-							<li class="test-"><span id="_t_2">Test 2<a href="#_t_2" class="definition"></a></span>:
+							<li class="test-"><a id="_t_2" class="defined" href="#_t_2">Test FCS_SSH_EXT.1.2:2</a>:
       [conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client, the evaluator shall test for a successful 
 								configuration setting of each authentication method as follows:
 								<ol type="a">
@@ -979,7 +996,7 @@ The following sections list Common Criteria and technology terms used in this do
 								</ol>
 							  Steps a-b shall be repeated for each independently configurable authentication method supported by the server. 
 							</li>
-							<li class="test-"><span id="_t_3">Test 3<a href="#_t_3" class="definition"></a></span>:
+							<li class="test-"><a id="_t_3" class="defined" href="#_t_3">Test FCS_SSH_EXT.1.2:3</a>:
       
 								[conditional] If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is acting as <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client, the evaluator shall verify that the connection
 								fails upon configuration mismatch as follows: 
@@ -1001,9 +1018,9 @@ The following sections list Common Criteria and technology terms used in this do
 					</div>
 					<div class="eacategory">Tests</div><div class="ea">
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_4">Test 4<a href="#_t_4" class="definition"></a></span>:
+							<li class="test-"><a id="_t_4" class="defined" href="#_t_4">Test FCS_SSH_EXT.1.3:1</a>:
       The evaluator shall demonstrate that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> accepts the maximum allowed packet size.</li>
-							<li class="test-"><span id="_t_5">Test 5<a href="#_t_5" class="definition"></a></span>:
+							<li class="test-"><a id="_t_5" class="defined" href="#_t_5">Test FCS_SSH_EXT.1.3:2</a>:
       This test is performed to verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> drops packets that are larger than size
 								specified in the component.
 								<ol type="a">
@@ -1031,7 +1048,7 @@ The following sections list Common Criteria and technology terms used in this do
 						The evaluator shall perform the following tests.  <p></p>
 						If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can be both a client and a server, these tests must be performed for both roles. 
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_6">Test 6<a href="#_t_6" class="definition"></a></span>:
+							<li class="test-"><a id="_t_6" class="defined" href="#_t_6">Test FCS_SSH_EXT.1.4:1</a>:
       The evaluator must ensure that only claimed algorithms and cryptographic primitives are used to 
 								establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection. To verify this, the evaluator shall establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection with a 
 								remote endpoint. The evaluator shall capture the traffic exchanged between the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and the remote
@@ -1045,10 +1062,10 @@ The following sections list Common Criteria and technology terms used in this do
 								The data collected from the connection above shall be used for verification of the advertised
 								hashing and shared secret establishment algorithms in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a> and <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a> respectively. 
 							</li>
-							<li class="test-"><span id="_t_7">Test 7<a href="#_t_7" class="definition"></a></span>:
+							<li class="test-"><a id="_t_7" class="defined" href="#_t_7">Test FCS_SSH_EXT.1.4:2</a>:
       For the connection established in Test 1, the evaluator shall terminate the connection and observe
 								that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> terminates the connection.</li>
-							<li class="test-"><span id="_t_8">Test 8<a href="#_t_8" class="definition"></a></span>:
+							<li class="test-"><a id="_t_8" class="defined" href="#_t_8">Test FCS_SSH_EXT.1.4:3</a>:
       The evaluator shall configure the remote endpoint to only allow a mechanism that is not included in 
 								the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the attempt fails.</li>
 						</ul></span><p></p>
@@ -1065,10 +1082,10 @@ The following sections list Common Criteria and technology terms used in this do
 					</div>
 					<div class="eacategory">Tests</div><div class="ea">
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_9">Test 9<a href="#_t_9" class="definition"></a></span>:
+							<li class="test-"><a id="_t_9" class="defined" href="#_t_9">Test FCS_SSH_EXT.1.5:1</a>:
        The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that
 								appropriate mechanisms are advertised.</li>
-							<li class="test-"><span id="_t_10">Test 10<a href="#_t_10" class="definition"></a></span>:
+							<li class="test-"><a id="_t_10" class="defined" href="#_t_10">Test FCS_SSH_EXT.1.5:2</a>:
        The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a hashing algorithm that is not included
 								in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that 
 								the connection is rejected.</li>
@@ -1086,10 +1103,10 @@ The following sections list Common Criteria and technology terms used in this do
 					</div>
 					<div class="eacategory">Tests</div><div class="ea">
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_11">Test 11<a href="#_t_11" class="definition"></a></span>:
+							<li class="test-"><a id="_t_11" class="defined" href="#_t_11">Test FCS_SSH_EXT.1.6:1</a>:
       The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate 
 								mechanisms are advertised.</li>
-							<li class="test-"><span id="_t_12">Test 12<a href="#_t_12" class="definition"></a></span>:
+							<li class="test-"><a id="_t_12" class="defined" href="#_t_12">Test FCS_SSH_EXT.1.6:2</a>:
       The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a key exchange method that is not included in the
 								<abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that the
 								connection is rejected.</li>
@@ -1124,15 +1141,15 @@ The following sections list Common Criteria and technology terms used in this do
 						the limits supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> -- it is expected that the test harness should not be initiating the
 						connection rekey or termination. <p></p>
 						<span class="testlist-"><ul>
-							<li class="test-"><span id="_t_13">Test 13<a href="#_t_13" class="definition"></a></span>:
+							<li class="test-"><a id="_t_13" class="defined" href="#_t_13">Test FCS_SSH_EXT.1.8:1</a>:
       Establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection.  Wait until the identified connection rekey limit is met.  Observed 
 								that a connection rekey or termination is initiated.  This may require traffic to periodically be sent, 
 								or connection keep alive to be set, to ensure that the connection is not closed due to an idle
 								timeout. </li>
-							<li class="test-"><span id="_t_14">Test 14<a href="#_t_14" class="definition"></a></span>:
+							<li class="test-"><a id="_t_14" class="defined" href="#_t_14">Test FCS_SSH_EXT.1.8:2</a>:
       Establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection.  Transmit data from the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey or
 								termination limit is met.  Observe that a connection rekey or termination is initiated. </li>
-							<li class="test-"><span id="_t_15">Test 15<a href="#_t_15" class="definition"></a></span>:
+							<li class="test-"><a id="_t_15" class="defined" href="#_t_15">Test FCS_SSH_EXT.1.8:3</a>:
        Establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection.  Send data to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> until the identified connection rekey limit or
 								termination is met.  Observe that a connection rekey or termination is initiated.</li>
 						</ul></span><p></p>
@@ -1148,10 +1165,8 @@ The following sections list Common Criteria and technology terms used in this do
 		       
 		<div class="element"><div class="reqid" id="FCS_SSHC_EXT.1.1"><a href="#FCS_SSHC_EXT.1.1" class="abbr">FCS_SSHC_EXT.1.1</a></div><div class="reqdesc">The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using: 
 				[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_57">using a local database by associating each host name with a public key corresponding to the following list:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_58">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_59">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_60">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_61">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_62">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_63">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_64">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_65">ssh-ed448 (RFC 8709)</span></li></ul>]
-					</span></li><li style=""><span class="selectable-content" id="_s_66">a list of trusted certification authorities when the public key is in the following formats:
-						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_67">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_68">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_69">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_70">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]
-					</span></li></ul>]
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_58">ssh-rsa (RFC 4253)</span></li><li style=""><span class="selectable-content" id="_s_59">rsa-sha2-256 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_60">rsa-sha2-512 (RFC 8332)</span></li><li style=""><span class="selectable-content" id="_s_61">ecdsa-sha2-nistp256 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_62">ecdsa-sha2-nistp384 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_63">ecdsa-sha2-nistp521 (RFC 5656)</span></li><li style=""><span class="selectable-content" id="_s_64">ssh-ed25519 (RFC 8709)</span></li><li style=""><span class="selectable-content" id="_s_65">ssh-ed448 (RFC 8709)</span></li></ul>]</span></li><li style=""><span class="selectable-content" id="_s_66">a list of trusted certification authorities when the public key is in the following formats:
+						[<b>selection</b>: <ul><li style=""><span class="selectable-content" id="_s_67">x509v3-ecdsa-sha2-nistp256 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_68">x509v3-ecdsa-sha2-nistp384 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_69">x509v3-ecdsa-sha2-nistp521 (RFC 6187)</span></li><li style=""><span class="selectable-content" id="_s_70">x509v3-rsa2048-sha256  (RFC 6187)</span></li></ul>]</span></li></ul>]
 				as described in RFC 4251 section 4.1.
 			<div class="appnote"><span class="note-header">Application
       Note:
@@ -1163,39 +1178,39 @@ The following sections list Common Criteria and technology terms used in this do
 				
 				
 				
-			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
 					No activities.<p></p>
-				</div><div class="eacategory">Guidance</div><div class="ea">
+				</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the 
 					administrator on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.<p></p>
-				</div><div class="eacategory">Tests</div><div class="ea">
+				</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 					The evaluator shall perform the following tests: 
 					<span class="testlist-"><ul>
-						<li class="test-"><span id="_t_16">Test 16<a href="#_t_16" class="definition"></a></span>:
+						<li class="test-"><a id="_t_16" class="defined" href="#_t_16">Test FCS_SSHC_EXT.1:1</a>:
       [conditional] If using a local database by associating each host name with its corresponding public 
 							key, the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and corresponding public key in
 							the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified
 							by the host name.</li>
-						<li class="test-"><span id="_t_17">Test 17<a href="#_t_17" class="definition"></a></span>:
+						<li class="test-"><a id="_t_17" class="defined" href="#_t_17">Test FCS_SSHC_EXT.1:2</a>:
       [conditional] If using a local database by associating each host name with its corresponding public key,
 							the evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single host name and non-corresponding public key in 
 							the local database. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to connect to a host not identified by 
 							the host name. </li>
-						<li class="test-"><span id="_t_18">Test 18<a href="#_t_18" class="definition"></a></span>:
+						<li class="test-"><a id="_t_18" class="defined" href="#_t_18">Test FCS_SSHC_EXT.1:3</a>:
       [conditional] If using a local database by associating each host name with its corresponding public
 							key, the evaluator shall try to connect to a host not configured in the local database. The evaluator 
 							shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> either fails to connect to a host identified by the host name or there is a prompt
 							provided to store the public key in the local database. </li>
-						<li class="test-"><span id="_t_19">Test 19<a href="#_t_19" class="definition"></a></span>:
+						<li class="test-"><a id="_t_19" class="defined" href="#_t_19">Test FCS_SSHC_EXT.1:4</a>:
       [conditional] If using a list of trusted certification authorities, the evaluator shall configure the
 							<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority corresponding to the host. The evaluator shall 
 							verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> can successfully connect to the host identified by the host name.</li>
-						<li class="test-"><span id="_t_20">Test 20<a href="#_t_20" class="definition"></a></span>:
+						<li class="test-"><a id="_t_20" class="defined" href="#_t_20">Test FCS_SSHC_EXT.1:5</a>:
       [conditional] If using a list of trusted certification authorities, the evaluator shall configure the 
 							<abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> with only a single trusted certification authority that does not correspond to the host. The evaluator 
 							shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fails to the host identified by the host name.</li>
 					</ul></span><p></p>
-				</div></div></div></div>
+				</div></div></div></div></div>
 
 
 
@@ -1217,25 +1232,26 @@ The following sections list Common Criteria and technology terms used in this do
 				
 				
 				
-			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
+			<div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea"><div class="ea">
 					No activites.<p></p>
-				</div><div class="eacategory">Guidance</div><div class="ea">
+				</div></div><div class="eacategory">Guidance</div><div class="ea"><div class="ea">
 					The evaluator shall check the guidance documentation to ensure that it contains instructions to the administrator
 					on how to ensure that only the allowed mechanisms are used in <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connections with the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>. <p></p>
-				</div><div class="eacategory">Tests</div><div class="ea">
+				</div></div><div class="eacategory">Tests</div><div class="ea"><div class="ea">
 					The evaluator shall repeat Test 1 and Test 2 from <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a> for each of the authentication mechanisms 
 					supported by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr>.  <p></p>
 					Next the evaluator shall configure the remote peer to only allow an authentication mechanism that is not included 
 					in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to connect to the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> and observe that the attempt fails.<p></p>
-				</div></div></div></div>
+				</div></div></div></div></div>
 
 
-<h1 id="impl-reqs" class="indexable" data-level="A">Appendix A -  Implementation-based Requirements</h1>
-                Implementation-based Requirements 
-are dependent on the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implementing a particular function.
-If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of these requirements, the vendor must either add the related <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> or disable the functionality for the
-	  evaluated configuration. 
-  <h1 id="acronyms" class="indexable" data-level="A">Appendix B -  Acronyms</h1><table><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
+<h1 id="impl-reqs" class="indexable" data-level="A">Appendix A -  Implementation-dependent Requirements</h1>
+                Implementation-dependent Requirements 
+		Appendix <a href="#feat-based-reqs" class="dynref"></a> defines requirements that must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>  
+		if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements particular product features. 
+		For this technology type, the following product features require the claiming of additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>:
+  <h1 id="acronyms" class="indexable" data-level="A">Appendix B -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">2</span></span>: Acronyms
+		</caption><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
 <tr><td><span class="term" id="abbr_cPP" data-plural="cPPs"><abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr></span></td><td><span id="long_abbr_cPP">Collaborative Protection Profile</span></td></tr>
@@ -1253,7 +1269,7 @@ If the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> fulfills any of
 <tr><td><span class="term" id="abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span></td><td><span id="long_abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Functionality</span></td></tr>
 <tr><td><span class="term" id="abbr_TSFI" data-plural="TSFIs"><abbr class="dyn-abbr"><a href="#abbr_TSFI">TSFI</a></abbr></span></td><td><span id="long_abbr_TSFI"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix C -  Bibliography</h1><table><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibAppPP">[AppPP]</span></td><td><span class="description">
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix C -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">3</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibAppPP">[AppPP]</span></td><td><span class="description">
 				<a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=429">Protection Profile for Application Software</a>
 			</span></td></tr><tr><td><span id="bibGPOS">[GPOSPP]</span></td><td><span class="description">
 				<a href="https://www.niap-ccevs.org/Profile/Info.cfm?id=442">Protection Profile for General Purpose Operating Systems</a>

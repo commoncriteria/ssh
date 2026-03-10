@@ -12,6 +12,7 @@ output/ssh-release-linkable.html: Fi
 output/ssh-release-linkable.html: KDF
 output/ssh-release-linkable.html: KDFs
 output/ssh-release-linkable.html: OpenSSH
+output/ssh-release-linkable.html: SPD
 output/ssh-release-linkable.html: STM
 output/ssh-release-linkable.html: Wi
 output/ssh-release-linkable.html: activites
@@ -52,6 +53,7 @@ output/ssh-release.html: Fi
 output/ssh-release.html: KDF
 output/ssh-release.html: KDFs
 output/ssh-release.html: OpenSSH
+output/ssh-release.html: SPD
 output/ssh-release.html: STM
 output/ssh-release.html: Wi
 output/ssh-release.html: activites
@@ -91,6 +93,7 @@ output/ssh.html: Fi
 output/ssh.html: KDF
 output/ssh.html: KDFs
 output/ssh.html: OpenSSH
+output/ssh.html: SPD
 output/ssh.html: STM
 output/ssh.html: Wi
 output/ssh.html: activites
