@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet type="text/xsl" href="../transforms/pp2html.xsl"?>
-
-<!--
-<?xml-model href="CCProtectionProfile.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>    
--->
-
-<!-- 
--->  
-
-<!-- <Package name="Secure Shell" repo-name="ssh" pp-version="1.0"  -->
+<?xml-model href="https://raw.githubusercontent.com/commoncriteria/transforms/master/schemas/CCPackage.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
 
 <Package name="Secure Shell"
   xmlns="https://niap-ccevs.org/cc/v1"
@@ -232,7 +224,32 @@
 				fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-256 OR fcs-sshs-ext-1e4:sel-sshs-rsa-sha2-512
 -->
 <!--			-->	
+		
+		<ext-comp-def fam-id="FCS_SSH_EXT" title="SSH Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified
+				for trusted communications in CC Part 2.
+			</fam-behavior>
+		</ext-comp-def>
+		
 		<f-component cc-id="fcs_ssh_ext.1" name="SSH Protocol">
+			
+			<comp-lev> requires the TSF to specify the details of its SSH protocol implementation.</comp-lev>
+			<management>No specific management functions are identified.</management>
+			<audit>The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
+				PP, PP-Module, FP, or ST:<h:ul>
+					<h:li>Failure to establish SSH connection</h:li>
+					<h:li>Establishment of SSH connection</h:li>
+					<h:li>Termination of SSH connection</h:li>
+					<h:li>Dropping of packets outside defined size limits</h:li>
+				</h:ul>
+			</audit>
+			<dependencies>
+				FCS_CKM.1 Cryptographic Key Generation<h:br/>
+				FCS_CKM.2 Cryptographic Key Derivation<h:br/>
+				FCS_COP.1 Cryptographic Operation<h:br/>
+				FCS_RBG.1 Random Bit Generation
+			</dependencies>
+			
 			<f-element id="fcs-ssh-ext-1e1">
 				<title>The TOE shall implement <h:i>SSH</h:i> acting as a
 					<selectables>
@@ -697,7 +714,15 @@
 <!-- FCS_SSHC_EXT.1	-->
 <!--			-->	
     <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
-		<depends on="ssh-client"/>       
+		<depends on="ssh-client"/>    
+    	
+    	<comp-lev> requires the TSF to specify the details of its SSH client implementation.</comp-lev>
+    	<management>No specific management functions are identified.</management>
+    	<audit>There are no auditable events foreseen.</audit>
+    	<dependencies>
+    		FCS_SSH_EXT.1 SSH Protocol
+    	</dependencies>
+    	
 		<f-element id="fcs-sshc-ext-1e1">
 			<title>The TSF shall authenticate its peer (SSH server) using: 
 				<selectables linebreak="yes">
@@ -768,6 +793,14 @@
 <!--			-->	
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
 		<depends on="ssh-server"/>
+    	
+    	<comp-lev> requires the TSF to specify the details of its SSH server implementation.</comp-lev>
+    	<management>No specific management functions are identified.</management>
+    	<audit>There are no auditable events foreseen.</audit>
+    	<dependencies>
+    		FCS_SSH_EXT.1 SSH Protocol
+    	</dependencies>
+    	
 		<f-element id="fcs-sshs-ext-1e1"> 
 			<title>The TSF shall authenticate itself to its peer (SSH Client) using:
 				<selectables linebreak="yes">
