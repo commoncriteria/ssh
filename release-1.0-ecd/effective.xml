@@ -706,6 +706,12 @@
 <!-- 			-->
 <!-- FCS_SSHC_EXT.1	-->
 <!--			-->	
+		
+		<ext-comp-def fam-id="FCS_SSHC_EXT" title="SSH Client Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a client.
+			</fam-behavior>
+		</ext-comp-def>
+		
     <f-component cc-id="fcs_sshc_ext.1" name="SSH Protocol - Client" status="sel-based">
 		<depends on="ssh-client"/>    
     	
@@ -784,6 +790,12 @@
 <!-- 			-->
 <!-- FCS_SSHS_EXT.1	-->
 <!--			-->	
+		<ext-comp-def fam-id="FCS_SSHS_EXT" title="SSH Server Protocol">
+			<fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a server.
+			</fam-behavior>
+		</ext-comp-def>
+		
+		
     <f-component cc-id="fcs_sshs_ext.1" name="SSH Protocol - Server" status="sel-based">
 		<depends on="ssh-server"/>
     	
