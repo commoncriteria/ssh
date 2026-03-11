@@ -35,7 +35,7 @@
   
   <RevisionHistory>
     <entry>
-      <version>1.0</version>
+      <version>1.0-ecd</version>
       <date>2026-03-10</date>
       <subject>Dummy build for the prupose of generating an ECD which wasn't supported in older package builds.</subject>
     </entry>
