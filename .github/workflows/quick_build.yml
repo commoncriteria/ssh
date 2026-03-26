@@ -84,7 +84,6 @@ jobs:
         [ -d "output/images" ] || mkdir "output/images";
         cp -u -r ExecuteDaisy-master/js ExecuteDaisy-master/css output;
         cp -u ExecuteDaisy-master/images/* output/images;
-
       
     - name: Make tmp dir
       run: mkdir tmp
@@ -95,6 +94,16 @@ jobs:
     # The current checkout has  depth=1 and has no history
     #- name: little diff
     #  run: make little-diff || true
+
+    # Create a diff against master branch (rename gh-pages:main if necessary)
+    - name: Diff master
+      id: master_diff
+      run: |
+        git fetch origin gh-pages
+        git show origin/gh-pages:master/${{ env.action_projname }}.html > /tmp/master.html 2>/dev/null || true
+        if [ -f /tmp/master.html ]; then
+          java -jar ExecuteDaisy-master/*.jar /tmp/master.html output/${{ env.action_projname }}.html --file=output/Master-Diff.html
+        fi
 
     - name: Outstanding TDs
       id: tds
