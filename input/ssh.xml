@@ -240,7 +240,7 @@
 	<!-- 			-->
 	<!-- 3.1.1 FCS: Cryptgraphic Support	-->
 	<!--			-->
-	<sec:cryptsup title="Cryptographic Support (FCS)">
+	<sec:cryptsup title="Class FCS: Cryptographic Support">
 	
 	<!-- 			-->
 	<!-- FCS_SSH_EXT.1	-->
