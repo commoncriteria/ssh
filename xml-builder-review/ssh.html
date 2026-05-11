@@ -632,7 +632,7 @@ function showTarget(id){
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Functional Package for Secure Shell (SSH)</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 2.0<br/>2024-12-12<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>1.0</td><td>2021-05-13</td><td>Converted <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> EP to a Functional Package and incorporated CCUF CWG input.</td></tr>
 <tr><td>2.0</td><td>2024-12-12</td><td>Updated for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022 conformance, incorporated applicable errata.</td></tr>
-</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#TOEdescription" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Problem_Definition" style="text-indent:0px">3<span>Security Problem Definition</span></a><a href="#Threats" style="text-indent:10px">3.1<span>Threats</span></a><a href="#Assumptions" style="text-indent:10px">3.2<span>Assumptions</span></a><a href="#Organizational_Security_Policies" style="text-indent:10px">3.3<span>Organizational Security Policies</span></a><a href="#Security_Objectives" style="text-indent:0px">4<span>Security Objectives</span></a><a href="#Security_Objectives_for_the_TOE" style="text-indent:10px">4.1<span>Security Objectives for the TOE</span></a><a href="#Security_Objectives_for_the_Operational_Environment" style="text-indent:10px">4.2<span>Security Objectives for the Operational Environment</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">5<span>Security Functional Requirements</span></a><a href="#fcs" style="text-indent:10px">5.1<span>Cryptographic Support (FCS)</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-dependent Requirements</span></a><a href="#ext-comp-defs" style="text-indent:0px">Appendix B - <span>Extended Component Definitions</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.1<span>Extended Components Table</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.2<span>Extended Component Definitions</span></a><a href="#ext-comp-FCS" style="text-indent:20px">B.2.1<span>Cryptographic Support (FCS)</span></a><a href="#ext-comp-FCS_SSH_EXT" style="text-indent:30px">B.2.1.1<span>FCS_SSH_EXT SSH Protocol</span></a><a href="#ext-comp-FCS_SSHC_EXT" style="text-indent:30px">B.2.1.2<span>FCS_SSHC_EXT SSH Client Protocol</span></a><a href="#ext-comp-FCS_SSHS_EXT" style="text-indent:30px">B.2.1.3<span>FCS_SSHS_EXT SSH Server Protocol</span></a><a href="#acronyms" style="text-indent:0px">Appendix C - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix D - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#Compliant_Targets_of_Evaluation" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Problem_Definition" style="text-indent:0px">3<span>Security Problem Definition</span></a><a href="#Threats" style="text-indent:10px">3.1<span>Threats</span></a><a href="#Assumptions" style="text-indent:10px">3.2<span>Assumptions</span></a><a href="#Organizational_Security_Policies" style="text-indent:10px">3.3<span>Organizational Security Policies</span></a><a href="#Security_Objectives" style="text-indent:0px">4<span>Security Objectives</span></a><a href="#Security_Objectives_for_the_TOE" style="text-indent:10px">4.1<span>Security Objectives for the TOE</span></a><a href="#Security_Objectives_for_the_Operational_Environment" style="text-indent:10px">4.2<span>Security Objectives for the Operational Environment</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">5<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">5.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#fcs" style="text-indent:10px">5.2<span>Cryptographic Support (FCS)</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-dependent Requirements</span></a><a href="#ext-comp-defs" style="text-indent:0px">Appendix B - <span>Extended Component Definitions</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.1<span>Extended Components Table</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.2<span>Extended Component Definitions</span></a><a href="#ext-comp-FCS" style="text-indent:20px">B.2.1<span>Cryptographic Support (FCS)</span></a><a href="#ext-comp-FCS_SSH_EXT" style="text-indent:30px">B.2.1.1<span>FCS_SSH_EXT SSH Protocol</span></a><a href="#ext-comp-FCS_SSHC_EXT" style="text-indent:30px">B.2.1.2<span>FCS_SSHC_EXT SSH Client Protocol</span></a><a href="#ext-comp-FCS_SSHS_EXT" style="text-indent:30px">B.2.1.3<span>FCS_SSHS_EXT SSH Server Protocol</span></a><a href="#acronyms" style="text-indent:0px">Appendix C - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix D - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
     <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
       <p>Secure Shell (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>) is a protocol for secure remote login and other secure network services over
 	    an untrusted network. <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> software can act as a client, server, or both.</p>
@@ -681,7 +681,31 @@ The following sections list Common Criteria and technology terms used in this do
 		   on remote systems.</td></tr>
 <tr><td><div id="Session">Session</div></td><td>A discrete stream of data within a connection.  </td></tr>
 </table></div>
-    <h2 class="indexable" data-level="2" id="TOEdescription">1.3 Compliant Targets of Evaluation</h2>
+    <h2 class="indexable" data-level="2" id="Compliant_Targets_of_Evaluation">1.3 Compliant Targets of Evaluation</h2>
+      The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is a product that acts as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> 
+	    server, or both. This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> describes the extended security functionality of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in terms of
+      <a href="#bibCC">[CC]</a>.
+      <br/>
+      <br/>
+      The contents of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> must be appropriately incorporated into a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>. When this package 
+		is incorporated as such, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include selection-based requirements in accordance with the selections or assignments 
+		indicated in the incorporating document.
+      <br/>
+      <br/>
+      The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that instantiates this Package must typically include the following components in order to satisfy 
+		dependencies of this Package. It is the responsibility of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> author who incorporates this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to 
+		ensure that dependence on these components is satisfied, either by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or by assumptions about its <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>.
+      <br/>
+      <br/>
+      An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must identify the applicable version of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, and of this
+		<abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> in its conformance claims.
+      <br/>
+      <br/>
+      <div class="table-caption">
+        <span class="ctr" data-myid="dependencies" data-counter-type="ct-Table" id="dependencies">Table <span class="counter">1</span>: Dependent Components Required for Package Functionality</span>
+      </div>
+      <table><tr class="header"><th>Component</th><th>Explanation</th></tr><tr><td class="componentneeded" id="FCS_CKM.1"><span class="no-link">FCS_CKM.1</span></td><td>To support key generation for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FCS_CKM.1">FCS_CKM.1</a> and specify the corresponding algorithms.<br/></td></tr><tr><td class="componentneeded" id="FCS_CKM.2"><span class="no-link">FCS_CKM.2</span></td><td>To support key establishment for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FCS_CKM.2">FCS_CKM.2</a> and specify the corresponding algorithms.<br/></td></tr><tr><td class="componentneeded" id="FCS_COP.1"><span class="no-link">FCS_COP.1</span></td><td>To support the cryptography needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FCS_COP.1">FCS_COP.1</a> (iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message authentication function. In particular, the incorporating document must support AES-GCM as defined in NIST SP 800-38D with key sizes of 256 bits.<br/></td></tr><tr><td class="componentneeded" id="FCS_RBG.1"><span class="no-link">FCS_RBG.1</span></td><td>To support random bit generation needed for <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key generation, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FCS_RBG.1">FCS_RBG.1</a> or an extended <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> that defines comparable functionality.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.1"><span class="no-link">FIA_X509_EXT.1</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FIA_X509_EXT.1">FIA_X509_EXT.1</a>. Note however that support for X.509 is selectable and not mandatory.<br/></td></tr><tr><td class="componentneeded" id="FIA_X509_EXT.2"><span class="no-link">FIA_X509_EXT.2</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FIA_X509_EXT.2">FIA_X509_EXT.2</a>. Note however that support for X.509 is selectable and not mandatory.<br/></td></tr><tr><td class="componentneeded" id="FPT_STM.1"><span class="no-link">FPT_STM.1</span></td><td>To support establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> communications using a public key algorithm that includes X.509, the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> must include <a href="#FPT_STM.1">FPT_STM.1</a> or some other requirement that ensures reliable system time. Note however that support for time-based rekey thresholds is selectable and not mandatory.<br/></td></tr></table>
+    
   <h1 class="indexable" data-level="1" id="Conformance_Claims">2 Conformance Claims</h1><h1 class="indexable" data-level="1" id="Security_Problem_Definition">3 Security Problem Definition</h1>
     
     <h2 class="indexable" data-level="2" id="Threats">3.1 Threats</h2>
@@ -712,8 +736,54 @@ The following sections list Common Criteria and technology terms used in this do
     <h2 class="indexable" data-level="2" id="Security_Objectives_for_the_Operational_Environment">4.2 Security Objectives for the Operational Environment</h2>
     
   <h1 class="indexable" data-level="1" id="Security_Functional_Requirements">5 Security Functional Requirements</h1>
+      This chapter describes the security requirements which have to be fulfilled by the product under evaluation.
+      Those requirements comprise functional components from Part 2 of <a href="#bibCC">[CC]</a>.
+ 
+       
+    The following conventions are used for the completion of operations:
+     <ul>
+       <li>
+         <b>Refinement</b> operation (denoted by <b>bold text</b> or <strike>strikethrough
+         text</strike>): Is used to add details to a requirement or to remove part of the requirement that is made irrelevant
+         through the completion of another operation, and thus further restricts a requirement.
+         </li>
+       <li>
+         <b>Selection</b> (denoted by <i>italicized text</i>): Is used to select one or more options
+         provided by the [<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>] in stating a requirement.</li>
+       <li>
+         <b>Assignment</b> operation (denoted by <span class="assignable-content">italicized text</span>): Is used to assign a
+         specific value to an unspecified parameter, such as the length of a password. Showing the
+         value in square brackets indicates assignment.</li>
+       <li>
+         <b>Iteration</b> operation: Is indicated by appending the <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr> name with a slash and unique identifier
+            suggesting the purpose of the operation, e.g. "/EXAMPLE1."
+       </li>
+     </ul>
+   
+    <h2 class="indexable" data-level="2" id="ss-audit-table">5.1 Auditable Events for Mandatory SFRs</h2>
+      <p>The auditable events specified in this Package are included in an <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> 
+			if the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> supports audit event reporting through FAU_GEN.1,
+			and if all other criteria in the incorporating <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> are met.</p>
+      <table class="sort_kids_" border="1"><caption data-sortkey="#0"><span class="ctr" data-myid="at-man-audit" data-counter-type="ct-Table" id="at-man-audit">Table <span class="counter">2</span></span>: Auditable Events for Mandatory Requirements</caption><tr data-sortkey="#1"><th>Requirement</th><th>Auditable Events</th><th>Additional Audit Record Contents</th></tr><tr data-sortkey="FCS_SSH_EXT.1"><td rowspan="5"><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a></td><td style="display:none"></td></tr><tr style="display:none;" data-sortkey="FCS_SSH_EXT.1#"><td></td></tr><tr data-sortkey="FCS_SSH_EXT.1.12"><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_50">Failure to establish <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</span>, <span class="selectable-content" id="_s_51">None</span>]
+          </td><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_52">Reason for failure and non-TOE endpoint of attempted connection (IP Address)</span>, <span class="selectable-content" id="_s_53">No additional information</span>]
+          </td></tr><tr data-sortkey="FCS_SSH_EXT.1.13"><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_54">Establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</span>, <span class="selectable-content" id="_s_55">None</span>]
+          </td><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_56">Non-TOE endpoint of connection (IP Address)</span>, <span class="selectable-content" id="_s_57">No additional information</span>]
+          </td></tr><tr data-sortkey="FCS_SSH_EXT.1.14"><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_58">Termination of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection session</span>, <span class="selectable-content" id="_s_59">None</span>]
+          </td><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_60">Non-TOE endpoint of connection (IP Address)</span>, <span class="selectable-content" id="_s_61">No additional information</span>]
+          </td></tr><tr data-sortkey="FCS_SSH_EXT.1.15"><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_62">Dropping of packets outside defined size limits</span>, <span class="selectable-content" id="_s_63">None</span>]
+          </td><td>
+            [<b>selection</b><b>, choose one of</b>: <span class="selectable-content" id="_s_64">Packet size</span>, <span class="selectable-content" id="_s_65">No additional information</span>]
+          </td></tr></table>
     
-    <h2 id="fcs" class="indexable" data-level="2">5.1 Cryptographic Support (FCS)</h2>
+    
+    <h2 id="fcs" class="indexable" data-level="2">5.2 Cryptographic Support (FCS)</h2>
       
       
       
@@ -736,6 +806,7 @@ The following sections list Common Criteria and technology terms used in this do
             <p>The local database may be implemented using any equivalent local storage mechanism.</p>
             <p>Validation of X.509 certificates is expected to conform to the Functional Package for X.509.</p>
           </span></div></div></div>
+        
       <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a></div>
             
             
@@ -785,6 +856,7 @@ The following sections list Common Criteria and technology terms used in this do
 				in <a href="#FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</a>.</p>
             <p>Validation of X.509 certificates is expected to conform to the Functional Package for X.509.</p>
           </span></div></div></div>
+        
       <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="component-activity-header"><a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a></div>
             
             
@@ -967,6 +1039,10 @@ The following sections list Common Criteria and technology terms used in this do
 					testing of this (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> rekeying based on data transfer threshold). See EAs for details.
             <p></p>
           </span></div></div></div>
+        
+        
+        
+        
       <div class="activity_pane hide"><div class="activity_pane_header"><a onclick="toggle(this);return false;" href="#"><span class="activity_pane_label"> Evaluation Activities </span><span class="toggler"></span></a></div><div class="activity_pane_body"><div class="element-activity-header"><a href="#FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</a></div>
             <div class="eacategory"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></div><div class="ea">
               The evaluator shall ensure that the selections indicated in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> are consistent with selections in this element
@@ -1170,13 +1246,13 @@ The following sections list Common Criteria and technology terms used in this do
 		if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements particular product features. 
 		For this technology type, the following product features require the claiming of additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>:
   <h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix B -  Extended Component Definitions</h1>
-	This appendix contains the definitions for all extended requirements specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>.
+	This appendix contains the definitions for all extended requirements specified in the Functional Package.
 
     <h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.1 Extended Components Table</h2>
 
-	All extended components specified in the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> are listed in this table:
+	All extended components specified in the Functional Package are listed in this table:
 
-<table class="sort_kids_"><caption data-sortkey="#0"><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">1</span></span>: Extended Component Definitions</b></caption><tr data-sortkey="#1"><th>Functional Class</th><th>Functional Components</th></tr><tr data-sortkey="Cryptographic Support (FCS)"><td>Cryptographic Support (FCS)</td><td>FCS_SSHC_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol<br/>FCS_SSHS_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol<br/>FCS_SSH_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.2 Extended Component Definitions</h2><span class="sort_kids_"><span data-sortkey="Cryptographic Support (FCS)"><h3 id="ext-comp-FCS" class="indexable" data-level="3">B.2.1 Cryptographic Support (FCS)</h3>This <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr> defines the following extended components as part of the
+<table class="sort_kids_"><caption data-sortkey="#0"><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">3</span></span>: Extended Component Definitions</b></caption><tr data-sortkey="#1"><th>Functional Class</th><th>Functional Components</th></tr><tr data-sortkey="Cryptographic Support (FCS)"><td>Cryptographic Support (FCS)</td><td>FCS_SSHC_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol<br/>FCS_SSHS_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol<br/>FCS_SSH_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.2 Extended Component Definitions</h2><span class="sort_kids_"><span data-sortkey="Cryptographic Support (FCS)"><h3 id="ext-comp-FCS" class="indexable" data-level="3">B.2.1 Cryptographic Support (FCS)</h3>This Functional Package defines the following extended components as part of the
 	 FCS class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
 	<h3 id="ext-comp-FCS_SSH_EXT" class="indexable" data-level="4">B.2.1.1 FCS_SSH_EXT SSH Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol that goes beyond the level of detail specified for trusted communications in <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSH_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a>,
              <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol,
@@ -1190,13 +1266,13 @@ The following sections list Common Criteria and technology terms used in this do
             <li>Dropping of packets outside defined size limits</li>
           </ul>
         </p><h4>FCS_SSH_EXT.1 SSH Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
-          FCS_CKM.1 Cryptographic Key Generation
+          <a href="#FCS_CKM.1">FCS_CKM.1</a> Cryptographic Key Generation
           <br/>
-          FCS_CKM.2 Cryptographic Key Derivation
+          <a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic Key Derivation
           <br/>
-          FCS_COP.1 Cryptographic Operation
+          <a href="#FCS_COP.1">FCS_COP.1</a> Cryptographic Operation
           <br/>
-          FCS_RBG.1 Random Bit Generation
+          <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation
         </td></tr></table><h4 id="ext-comp-FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</h4>
               The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
               [<b>selection</b>: <span class="selectable-content" id="_s_25">client</span>, <span class="selectable-content" id="_s_26">server</span>]
@@ -1260,7 +1336,7 @@ The following sections list Common Criteria and technology terms used in this do
               The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using:
               [<b>assignment</b>: 
      <span class="assignable-content">peer authentication method</span>].
-            </div></div></span></span><h1 id="acronyms" class="indexable" data-level="A">Appendix C -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">2</span></span>: Acronyms
+            </div></div></span></span><h1 id="acronyms" class="indexable" data-level="A">Appendix C -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">4</span></span>: Acronyms
 		</caption><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
@@ -1281,7 +1357,7 @@ The following sections list Common Criteria and technology terms used in this do
 <tr><td><span class="term" id="abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span></td><td><span id="long_abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Functionality</span></td></tr>
 <tr><td><span class="term" id="abbr_TSFI" data-plural="TSFIs"><abbr class="dyn-abbr"><a href="#abbr_TSFI">TSFI</a></abbr></span></td><td><span id="long_abbr_TSFI"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix D -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">3</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix D -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">5</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
             <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CCPART1V3.1R5.pdf">Part
                 1: Introduction and General Model</a>, CCMB-2017-04-001, Version 3.1 Revision 5,
               April 2017.</li>
