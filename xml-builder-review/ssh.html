@@ -632,7 +632,7 @@ function showTarget(id){
     </style></head><body onLoad="init()"><h1 class="title" style="page-break-before:auto;">Functional Package for Secure Shell (SSH)</h1><noscript><h1 style="text-align:center; border-style: dashed; border-width: medium; border-color: red;">This page is best viewed with JavaScript enabled!</h1></noscript><div class="center"><img src="images/niaplogo.png" alt="NIAP Logo"></img><br/>
       Version: 2.0<br/>2024-12-12<br/><b>National Information Assurance Partnership</b><br/></div><h2 style="page-break-before:always;">Revision History</h2><table><tr class="header"><th>Version</th><th>Date</th><th>Comment</th></tr><tr><td>1.0</td><td>2021-05-13</td><td>Converted <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> EP to a Functional Package and incorporated CCUF CWG input.</td></tr>
 <tr><td>2.0</td><td>2024-12-12</td><td>Updated for <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022 conformance, incorporated applicable errata.</td></tr>
-</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#Compliant_Targets_of_Evaluation" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">3<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">3.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#" style="text-indent:10px">3.2<span>Class FCS: Cryptographic Support</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-dependent Requirements</span></a><a href="#ext-comp-defs" style="text-indent:0px">Appendix B - <span>Extended Component Definitions</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.1<span>Extended Components Table</span></a><a href="#ext-comp-defs-bg" style="text-indent:10px">B.2<span>Extended Component Definitions</span></a><a href="#ext-comp-" style="text-indent:20px">B.2.1<span>Class FCS: Cryptographic Support</span></a><a href="#ext-comp-FCS_SSH_EXT" style="text-indent:30px">B.2.1.1<span>FCS_SSH_EXT SSH Protocol</span></a><a href="#ext-comp-FCS_SSHC_EXT" style="text-indent:30px">B.2.1.2<span>FCS_SSHC_EXT SSH Client Protocol</span></a><a href="#ext-comp-FCS_SSHS_EXT" style="text-indent:30px">B.2.1.3<span>FCS_SSHS_EXT SSH Server Protocol</span></a><a href="#acronyms" style="text-indent:0px">Appendix C - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix D - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
+</table><h2>Contents</h2><div class="toc" id="toc"><a href="#Introduction" style="text-indent:0px">1<span>Introduction</span></a><a href="#Overview" style="text-indent:10px">1.1<span>Overview</span></a><a href="#glossary" style="text-indent:10px">1.2<span>Terms</span></a><a href="#cc-terms" style="text-indent:20px">1.2.1<span>Common Criteria Terms</span></a><a href="#tech-terms" style="text-indent:20px">1.2.2<span>Technical Terms</span></a><a href="#Compliant_Targets_of_Evaluation" style="text-indent:10px">1.3<span>Compliant Targets of Evaluation</span></a><a href="#Conformance_Claims" style="text-indent:0px">2<span>Conformance Claims</span></a><a href="#Security_Functional_Requirements" style="text-indent:0px">3<span>Security Functional Requirements</span></a><a href="#ss-audit-table" style="text-indent:10px">3.1<span>Auditable Events for Mandatory SFRs</span></a><a href="#" style="text-indent:10px">3.2<span>Class FCS: Cryptographic Support</span></a><a href="#impl-reqs" style="text-indent:0px">Appendix A - <span>Implementation-dependent Requirements</span></a><a href="#acronyms" style="text-indent:0px">Appendix B - <span>Acronyms</span></a><a href="#appendix-bibliography" style="text-indent:0px">Appendix C - <span>Bibliography</span></a></div><h1 class="indexable" data-level="1" id="Introduction">1 Introduction</h1>
     <h2 class="indexable" data-level="2" id="Overview">1.1 Overview</h2>
       <p>Secure Shell (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr>) is a protocol for secure remote login and other secure network services over
 	    an untrusted network. <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> software can act as a client, server, or both.</p>
@@ -682,23 +682,17 @@ The following sections list Common Criteria and technology terms used in this do
 <tr><td><div id="Session">Session</div></td><td>A discrete stream of data within a connection.  </td></tr>
 </table></div>
     <h2 class="indexable" data-level="2" id="Compliant_Targets_of_Evaluation">1.3 Compliant Targets of Evaluation</h2>
-      The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is a product that acts as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> 
-	    server, or both. This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> describes the extended security functionality of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in terms of
+      The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> in this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> is a product that acts as an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client, <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server, or both. This <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> describes the extended security functionality of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> in terms of
       <a href="#bibCC">[CC]</a>.
       <br/>
       <br/>
-      The contents of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> must be appropriately incorporated into a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>. When this package 
-		is incorporated as such, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include selection-based requirements in accordance with the selections or assignments 
-		indicated in the incorporating document.
+      The contents of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> must be appropriately incorporated into a <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>. When this package is incorporated as such, the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include selection-based requirements in accordance with the selections or assignments indicated in the incorporating document.
       <br/>
       <br/>
-      The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that instantiates this Package must typically include the following components in order to satisfy 
-		dependencies of this Package. It is the responsibility of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> author who incorporates this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to 
-		ensure that dependence on these components is satisfied, either by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or by assumptions about its <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>.
+      The <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. It is the responsibility of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr> author who incorporates this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> to ensure that dependence on these components is satisfied, either by the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> or by assumptions about its <abbr class="dyn-abbr"><a href="#abbr_OE">OE</a></abbr>.
       <br/>
       <br/>
-      An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must identify the applicable version of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, and of this
-		<abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> in its conformance claims.
+      An <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must identify the applicable version of the <abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_cPP">cPP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, and of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> in its conformance claims.
       <br/>
       <br/>
       <div class="table-caption">
@@ -774,9 +768,6 @@ The following sections list Common Criteria and technology terms used in this do
     
     
     <h2 id="" class="indexable" data-level="2">3.2 Class FCS: Cryptographic Support</h2>
-      
-      
-      
       
       <div class="comp" id="FCS_SSHC_EXT.1"><h4>FCS_SSHC_EXT.1 SSH Client Protocol</h4><div class="statustag"><b><i>This is a selection-based component. Its inclusion depends upon selection from
 	  <a href="#FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</a>.
@@ -883,53 +874,53 @@ The following sections list Common Criteria and technology terms used in this do
           <div class="appnote"><span class="note-header">Application
       Note:
     </span><span class="note">
-            The following mapping is provided as a guide to <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors to ensure the appropriate RFC selections are made 
-					based on applicable selections in subsequent <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>.
+            <p style="text-align: left;">The following mapping is provided as a guide to <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> authors to ensure the appropriate RFC selections are made based on applicable selections in subsequent <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>.</p>
             <ul>
-              <li>RFC 4256: Select for keyboard-interactive authentication </li>
-              <li>RFC 4344: Select for AES-256-CTR  </li>
-              <li>RFC 5647: Select for AEAD_AES_256_GCM or aes256-gcm@openssh.com </li>
-              <li>RFC 5656: Select for elliptic curve cryptography (<abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr>) </li>
-              <li>RFC 6187: Select for X.509 certificate use </li>
-              <li>RFC 6668: Select for HMAC-SHA-2 algorithms </li>
-              <li>RFC 8268: Select for FFC DH groups with SHA-2  </li>
-              <li>RFC 8308: Select if RFC 8332 is selected </li>
-              <li>RFC 8332: Select if SHA-2 is available with ssh-rsa </li>
+              <li>
+                <p style="text-align: left;">RFC 4256: Select for keyboard-interactive authentication</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 4344: Select for AES-256-CTR</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 5647: Select for AEAD_AES_256_GCM or aes256-gcm@openssh.com</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 5656: Select for elliptic curve cryptography (<abbr class="dyn-abbr"><a href="#abbr_ECC">ECC</a></abbr>)</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 6187: Select for X.509 certificate use</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 6668: Select for HMAC-SHA-2 algorithms</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 8268: Select for FFC DH groups with SHA-2</p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 8308: Select if <u>'publickey' (RFC 4252)</u> is selected <u>in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a> and the "server-sig-algs" extension is supported</u></p>
+              </li>
+              <li>
+                <p style="text-align: left;">RFC 8332: Select if SHA-2 is available with ssh-rsa</p>
+              </li>
             </ul>
-            <p>The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the additional RFCs to which
-					conformance is being claimed. An <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> product can implement additional RFCs, but only those
-					listed in the selection can be claimed as conformant under <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>. 
-					The RFC selections for this requirement must be consistent with selections in
-					later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> (e.g., cryptographic algorithms permitted).</p>
-            <p>For the purposes of this package (and subsequent integration into <abbr class="dyn-abbr"><a href="#abbr_cPP">cPPs</a></abbr>), only the claimed algorithms listed 
-					in the package must be enabled for use.</p>
-            <p>RFC 4251 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol.</p>
-            <p>RFC 4252 defines support for the required <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> authentication method.</p>
-            <p>RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
-					Internet Engineering Task Force's perspective, the implementation must include support, not that the algorithms must 
-					be enabled for use. For the purposes of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_EA">EA</a></abbr> and this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>
-					overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
-					but not listed in later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> are actually implemented.</p>
-            <p>RFC 4254 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection protocol.</p>
-            <p>RFC 4256 must be selected if "keyboard-interactive" is selected in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
-            <p>RFC 4344 must be selected if aes256-ctr is selected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>.</p>
-            <p>RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm
-					in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a> and when AEAD_AES_256_GCM is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
-            <p>RFC 5656 must be selected when ecdsa-sha2-nistp384 or ecdsa-sha2-nistp521 is selected as a public key algorithm
-					in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>, or when ecdh-sha2-nistp384 or ecdh-sha2-nistp521 is selected
-					as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>, or when "RFC 5656" is selected in <a href="#FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</a>.</p>
-            <p>RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp384 or x509v3-ecdsa-sha2-nistp521
-					is selected as a public key algorithm in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
-            <p>RFC 6668 must be selected when hmac-sha2-512 is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
-            <p>RFC 8268 must be selected when diffie-hellman-group15-sha512,   
-						diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512
-						is selected as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>.</p>
-            <p>RFC 8308 defines support for secure negotiation of protocol extensions, and must be 
-						claimed when RFC 8332 is claimed.</p>
-            <p>RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in
-					<a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
-            <p>If "client" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>.</p>
-            <p>If "server" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>.</p>
+            <p style="text-align: left;">The <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> author selects the additional RFCs to which conformance is being claimed. An <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> product can implement additional RFCs, but only those listed in the selection can be claimed as conformant under <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>. The RFC selections for this requirement must be consistent with selections in later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> (e.g., cryptographic algorithms permitted).</p>
+            <p style="text-align: left;">For the purposes of this package (and subsequent integration into <abbr class="dyn-abbr"><a href="#abbr_cPP">cPPs</a></abbr>), only the claimed algorithms listed in the package must be enabled for use.</p>
+            <p style="text-align: left;">RFC 4251 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol.</p>
+            <p style="text-align: left;">RFC 4252 defines support for the required <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> authentication method.</p>
+            <p style="text-align: left;">RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the Internet Engineering Task Force's perspective, the implementation must include support, not that the algorithms must be enabled for use. For the purposes of this <abbr class="dyn-abbr"><a href="#abbr_SFR">SFR</a></abbr>'s <abbr class="dyn-abbr"><a href="#abbr_EA">EA</a></abbr> and this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC but not listed in later elements of this <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr> are actually implemented.</p>
+            <p style="text-align: left;">RFC 4254 defines support for the general implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection protocol.</p>
+            <p style="text-align: left;">RFC 4256 must be selected if "keyboard-interactive" is selected in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+            <p style="text-align: left;">RFC 4344 must be selected if aes256-ctr is selected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>.</p>
+            <p style="text-align: left;">RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a> and when AEAD_AES_256_GCM is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
+            <p style="text-align: left;">RFC 5656 must be selected when ecdsa-sha2-nistp384 or ecdsa-sha2-nistp521 is selected as a public key algorithm in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>, or when ecdh-sha2-nistp384 or ecdh-sha2-nistp521 is selected as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>, or when "RFC 5656" is selected in <a href="#FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</a>.</p>
+            <p style="text-align: left;">RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp384 or x509v3-ecdsa-sha2-nistp521 is selected as a public key algorithm in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+            <p style="text-align: left;">RFC 6668 must be selected when hmac-sha2-512 is selected as a MAC algorithm in <a href="#FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</a>.</p>
+            <p style="text-align: left;">RFC 8268 must be selected when diffie-hellman-group15-sha512, diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512 is selected as a key exchange algorithm in <a href="#FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</a>.</p>
+            <p style="text-align: left;">RFC 8308 defines support for secure negotiation of protocol extensions. <u>If public key methods are selected in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>, then the "server-sig-algs" extension should be supported and used, and RFC 8308 should be claimed.</u></p>
+            <p style="text-align: left;">RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in <a href="#FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</a>.</p>
+            <p style="text-align: left;">If "client" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>.</p>
+            <p style="text-align: left;">If "server" is selected, then the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> must include <a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>.</p>
           </span></div></div></div>
         <div class="element"><div class="reqid" id="FCS_SSH_EXT.1.2"><a href="#FCS_SSH_EXT.1.2" class="abbr">FCS_SSH_EXT.1.2</a></div><div class="reqdesc">
             The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods:
@@ -1010,7 +1001,7 @@ The following sections list Common Criteria and technology terms used in this do
               <li>no more than [<b>assignment</b>: 
      <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
               <li>no more than [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]  of received data.</li>
+     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]   of received data.</li>
             </ul>
           <div class="appnote"><span class="note-header">Application
       Note:
@@ -1235,98 +1226,7 @@ The following sections list Common Criteria and technology terms used in this do
 		Appendix <a href="#feat-based-reqs" class="dynref"></a> defines requirements that must be claimed in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>  
 		if the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> implements particular product features. 
 		For this technology type, the following product features require the claiming of additional <abbr class="dyn-abbr"><a href="#abbr_SFR">SFRs</a></abbr>:
-  <h1 id="ext-comp-defs" class="indexable" data-level="A">Appendix B -  Extended Component Definitions</h1>
-	This appendix contains the definitions for all extended requirements specified in the Functional Package.
-
-    <h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.1 Extended Components Table</h2>
-
-	All extended components specified in the Functional Package are listed in this table:
-
-<table class="sort_kids_"><caption data-sortkey="#0"><b><span class="ctr" data-myid="" data-counter-type="ct-Table" id="">Table <span class="counter">3</span></span>: Extended Component Definitions</b></caption><tr data-sortkey="#1"><th>Functional Class</th><th>Functional Components</th></tr><tr data-sortkey="Class FCS: Cryptographic Support"><td>Class FCS: Cryptographic Support</td><td>FCS_SSHC_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol<br/>FCS_SSHS_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol<br/>FCS_SSH_EXT <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol<br/></td></tr></table><h2 id="ext-comp-defs-bg" class="indexable" data-level="2">B.2 Extended Component Definitions</h2><span class="sort_kids_"><span data-sortkey="Class FCS: Cryptographic Support"><h3 id="ext-comp-" class="indexable" data-level="3">B.2.1 Class FCS: Cryptographic Support</h3>This Functional Package defines the following extended components as part of the
-	  class originally defined by <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2:
-	<h3 id="ext-comp-FCS_SSH_EXT" class="indexable" data-level="4">B.2.1.1 FCS_SSH_EXT SSH Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol that goes beyond the level of detail specified for trusted communications in <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr> Part 2.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSH_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a>,
-             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol,
-              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation.</p><h4>Management: FCS_SSH_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSH_EXT.1</h4><p>
-          The following actions should be auditable if FAU_GEN Security Audit Data Generation is included in the
-				<abbr class="dyn-abbr"><a href="#abbr_PP">PP</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_PP-Module">PP-Module</a></abbr>, <abbr class="dyn-abbr"><a href="#abbr_FP">FP</a></abbr>, or <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr>:
-          <ul>
-            <li>Failure to establish <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
-            <li>Establishment of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
-            <li>Termination of <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection</li>
-            <li>Dropping of packets outside defined size limits</li>
-          </ul>
-        </p><h4>FCS_SSH_EXT.1 SSH Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td>
-          <a href="#FCS_CKM.1">FCS_CKM.1</a> Cryptographic Key Generation
-          <br/>
-          <a href="#FCS_CKM.2">FCS_CKM.2</a> Cryptographic Key Derivation
-          <br/>
-          <a href="#FCS_COP.1">FCS_COP.1</a> Cryptographic Operation
-          <br/>
-          <a href="#FCS_RBG.1">FCS_RBG.1</a> Random Bit Generation
-        </td></tr></table><h4 id="ext-comp-FCS_SSH_EXT.1.1">FCS_SSH_EXT.1.1</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> shall implement <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> acting as a
-              [<b>selection</b>: <span class="selectable-content" id="_s_25">client</span>, <span class="selectable-content" id="_s_26">server</span>]
-              that complies with RFCs 4251, 4252, 4253, 4254,
-              [<b>assignment</b>: 
-     <span class="assignable-content">other RFCs</span>]
-              and
-              [<b>assignment</b>: 
-     <span class="assignable-content">other standards</span>].
-            <h4 id="ext-comp-FCS_SSH_EXT.1.2">FCS_SSH_EXT.1.2</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol implementation supports the following authentication methods:
-              [<b>assignment</b>: 
-     <span class="assignable-content">supported authentication methods</span>]
-              and no other methods.
-            <h4 id="ext-comp-FCS_SSH_EXT.1.3">FCS_SSH_EXT.1.3</h4>
-            The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that, as described in RFC 4253, packets greater than
-            [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes between 35 KB and 1 GB (inclusive)</span>]
-            in an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> transport connection are dropped.
-          <h4 id="ext-comp-FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from unauthorised disclosure using the following mechanisms:
-              [<b>assignment</b>: 
-     <span class="assignable-content">confidentiality mechanisms</span>]
-              and no other mechanisms.
-            <h4 id="ext-comp-FCS_SSH_EXT.1.5">FCS_SSH_EXT.1.5</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall protect data in transit from modification, deletion, and insertion using:
-              [<b>assignment</b>: 
-     <span class="assignable-content">data integrity mechanisms</span>]
-              and no other mechanisms.
-            <h4 id="ext-comp-FCS_SSH_EXT.1.6">FCS_SSH_EXT.1.6</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall establish a shared secret with its peer using:
-              [<b>assignment</b>: 
-     <span class="assignable-content">key agreement mechanisms</span>]
-              and no other mechanisms.
-            <h4 id="ext-comp-FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</h4>
-            The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.7_1">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.7_2">RFC 5656, Section 4</span></li></ul>]
-            to derive the following cryptographic keys from a shared secret: session keys.
-          <h4 id="ext-comp-FCS_SSH_EXT.1.8">FCS_SSH_EXT.1.8</h4>
-            The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall ensure that
-            [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.8_1">a rekey of the session keys</span></li><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.8_2">connection termination</span></li></ul>]
-            occurs when any of the following thresholds are met:
-            <ul>
-              <li>[<b>assignment</b>: 
-     <span class="assignable-content">length of time lesser than or equal to one hour</span>] connection time</li>
-              <li>no more than [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
-              <li>no more than [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]  of received data.</li>
-            </ul>
-          </div></div><h3 id="ext-comp-FCS_SSHC_EXT" class="indexable" data-level="4">B.2.1.2 FCS_SSHC_EXT SSH Client Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol when the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is acting as a client.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSHC_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>,
-             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol,
-              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client implementation.</p><h4>Management: FCS_SSHC_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSHC_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FCS_SSHC_EXT.1 SSH Client Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a> <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol</td></tr></table><h4 id="ext-comp-FCS_SSHC_EXT.1.1">FCS_SSHC_EXT.1.1</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server) using:
-              [<b>assignment</b>: 
-     <span class="assignable-content">peer authentication method</span>]
-              as described in RFC 4251, Section 4.1.
-            </div></div><h3 id="ext-comp-FCS_SSHS_EXT" class="indexable" data-level="4">B.2.1.3 FCS_SSHS_EXT SSH Server Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol when the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is acting as a server.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSHS_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSHS_EXT.1">FCS_SSHS_EXT.1</a>,
-             <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Server Protocol,
-              requires the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> to specify the details of its <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> server implementation.</p><h4>Management: FCS_SSHS_EXT.1</h4><p>No specific management functions are identified.</p><h4>Audit: FCS_SSHS_EXT.1</h4><p>There are no auditable events foreseen.</p><h4>FCS_SSHS_EXT.1 SSH Server Protocol</h4><div style="margin-left: 1em;"><table class="ecd_heir_dep" style="width: 100%"><tr><td style="whitespace: nowrap">Hierarchical to:</td><td style="width: 100%">No other components.</td></tr><tr style="background-color: inherit"><td>Dependencies to:</td><td><a href="#FCS_SSH_EXT.1">FCS_SSH_EXT.1</a> <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Protocol</td></tr></table><h4 id="ext-comp-FCS_SSHS_EXT.1.1">FCS_SSHS_EXT.1.1</h4>
-              The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall authenticate itself to its peer (<abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> client) using:
-              [<b>assignment</b>: 
-     <span class="assignable-content">peer authentication method</span>].
-            </div></div></span></span><h1 id="acronyms" class="indexable" data-level="A">Appendix C -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">4</span></span>: Acronyms
+  <h1 id="acronyms" class="indexable" data-level="A">Appendix B -  Acronyms</h1><table><caption><span class="ctr" data-myid="t-acronyms" data-counter-type="ct-Table" id="t-acronyms">Table <span class="counter">3</span></span>: Acronyms
 		</caption><tr class="header"><th>Acronym</th><th>Meaning</th></tr><tr><td><span class="term" id="abbr_Base-PP" data-plural="Base-PPs"><abbr class="dyn-abbr"><a href="#abbr_Base-PP">Base-PP</a></abbr></span></td><td><span id="long_abbr_Base-PP">Base Protection Profile</span></td></tr>
 <tr><td><span class="term" id="abbr_CC"><abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr></span></td><td><span id="long_abbr_CC">Common Criteria</span></td></tr>
 <tr><td><span class="term" id="abbr_CEM"><abbr class="dyn-abbr"><a href="#abbr_CEM">CEM</a></abbr></span></td><td><span id="long_abbr_CEM">Common Evaluation Methodology</span></td></tr>
@@ -1347,7 +1247,7 @@ The following sections list Common Criteria and technology terms used in this do
 <tr><td><span class="term" id="abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr></span></td><td><span id="long_abbr_TSF"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Security Functionality</span></td></tr>
 <tr><td><span class="term" id="abbr_TSFI" data-plural="TSFIs"><abbr class="dyn-abbr"><a href="#abbr_TSFI">TSFI</a></abbr></span></td><td><span id="long_abbr_TSFI"><abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> Interface</span></td></tr>
 <tr><td><span class="term" id="abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TSS">TSS</a></abbr></span></td><td><span id="long_abbr_TSS"><abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> Summary Specification</span></td></tr>
-</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix D -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">5</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
+</table><h1 id="appendix-bibliography" class="indexable" data-level="A">Appendix C -  Bibliography</h1><table><caption><span class="ctr" data-myid="t-biblio" data-counter-type="ct-Table" id="t-biblio">Table <span class="counter">4</span></span>: Bibliography</caption><tr class="header"><th>Identifier</th><th>Title</th></tr><tr><td><span id="bibCC">[<abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>]</span></td><td><span class="description">Common Criteria for Information Technology Security Evaluation - <ul>
             <li><a href="https://www.commoncriteriaportal.org/files/ccfiles/CC2022PART1R1.pdf">Part 1: 
 				Introduction and general model</a>, CCMB-2022-11-001, <abbr class="dyn-abbr"><a href="#abbr_CC">CC</a></abbr>:2022, Revision 1, November 2022.</li>
             <li><a href="http://www.commoncriteriaportal.org/files/ccfiles/CC2022PART2R1.pdf">Part 2: 
