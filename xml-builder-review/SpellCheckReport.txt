@@ -16,7 +16,6 @@ output/ssh-release-linkable.html: group17
 output/ssh-release-linkable.html: group18
 output/ssh-release-linkable.html: nistp384
 output/ssh-release-linkable.html: nistp521
-output/ssh-release-linkable.html: noninteractive
 output/ssh-release-linkable.html: openssh
 output/ssh-release-linkable.html: publickey
 output/ssh-release-linkable.html: rekeying
@@ -39,7 +38,6 @@ output/ssh-release.html: group17
 output/ssh-release.html: group18
 output/ssh-release.html: nistp384
 output/ssh-release.html: nistp521
-output/ssh-release.html: noninteractive
 output/ssh-release.html: openssh
 output/ssh-release.html: publickey
 output/ssh-release.html: rekeying
@@ -62,7 +60,6 @@ output/ssh.html: group17
 output/ssh.html: group18
 output/ssh.html: nistp384
 output/ssh.html: nistp521
-output/ssh.html: noninteractive
 output/ssh.html: openssh
 output/ssh.html: publickey
 output/ssh.html: rekeying
