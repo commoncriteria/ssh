@@ -100,9 +100,19 @@ jobs:
       id: master_diff
       run: |
         git fetch origin gh-pages
-        git show origin/gh-pages:master/${{ env.action_projname }}.html > /tmp/master.html 2>/dev/null || true
+        git show origin/gh-pages:master/${{ env.action_projname }}-release.html > /tmp/master.html 2>/dev/null || true
         if [ -f /tmp/master.html ]; then
-          java -jar ExecuteDaisy-master/*.jar /tmp/master.html output/${{ env.action_projname }}.html --file=output/Master-Diff.html
+          java -jar ExecuteDaisy-master/*.jar /tmp/master.html output/${{ env.action_projname }}-release.html --file=output/Master-Diff.html
+        fi
+
+    # Create a diff against release-2.0 branch
+    - name: Diff Release 2.0
+      id: Release-2_0_diff
+      run: |
+        git fetch origin gh-pages
+        git show origin/gh-pages:release-2.0/${{ env.action_projname }}-release.html > /tmp/master.html 2>/dev/null || true
+        if [ -f /tmp/master.html ]; then
+          java -jar ExecuteDaisy-master/*.jar /tmp/master.html output/${{ env.action_projname }}-release.html --file=output/Release-2_0-Diff.html
         fi
 
     - name: Outstanding TDs
