@@ -7,7 +7,7 @@
 <!-- 
 -->
 <!-- <Package name="Secure Shell" repo-name="ssh" pp-version="1.0"  -->
-<PP name="Secure Shell" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
+<Package name="Secure Shell" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
   <PPReference>
     <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
@@ -62,7 +62,60 @@
       <term full="Elliptic Curve Cryptography" abbr="ECC"/>
       <term full="Key Derivation Function" abbr="KDF"/>
     </tech-terms>
-    <section title="Compliant Targets of Evaluation" id="TOEdescription"/>
+    <sec:Compliant_Targets_of_Evaluation>
+      The TOE in this FP is a product that acts as an SSH client, SSH 
+	    server, or both. This FP describes the extended security functionality of SSH in terms of
+      <xref g="CC"/>.
+      <h:br/>
+      <h:br/>
+      The contents of this FP must be appropriately incorporated into a PP, cPP, or PP-Module. When this package 
+		is incorporated as such, the ST must include selection-based requirements in accordance with the selections or assignments 
+		indicated in the incorporating document.
+      <h:br/>
+      <h:br/>
+      The PP, cPP, or PP-Module that instantiates this Package must typically include the following components in order to satisfy 
+		dependencies of this Package. It is the responsibility of the PP, cPP, or PP-Module author who incorporates this FP to 
+		ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its OE.
+      <h:br/>
+      <h:br/>
+      An ST must identify the applicable version of the PP, cPP, or PP-Module, and of this
+		FP in its conformance claims.
+      <h:br/>
+      <h:br/>
+      <h:div class="table-caption">
+        <ctr ctr-type="Table" id="dependencies">: Dependent Components Required for Package Functionality</ctr>
+      </h:div>
+      <componentsneeded>
+        <componentneeded>
+          <componentid>FCS_CKM.1</componentid>
+          <notes>To support key generation for SSH, the PP or PP-Module must include FCS_CKM.1 and specify the corresponding algorithms.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FCS_CKM.2</componentid>
+          <notes>To support key establishment for SSH, the PP or PP-Module must include FCS_CKM.2 and specify the corresponding algorithms.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FCS_COP.1</componentid>
+          <notes>To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message authentication function. In particular, the incorporating document must support AES-GCM as defined in NIST SP 800-38D with key sizes of 256 bits.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FCS_RBG.1</componentid>
+          <notes>To support random bit generation needed for SSH key generation, the PP or PP-Module must include FCS_RBG.1 or an extended SFR that defines comparable functionality.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FIA_X509_EXT.1</componentid>
+          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FIA_X509_EXT.1. Note however that support for X.509 is selectable and not mandatory.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FIA_X509_EXT.2</componentid>
+          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FIA_X509_EXT.2. Note however that support for X.509 is selectable and not mandatory.</notes>
+        </componentneeded>
+        <componentneeded>
+          <componentid>FPT_STM.1</componentid>
+          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FPT_STM.1 or some other requirement that ensures reliable system time. Note however that support for time-based rekey thresholds is selectable and not mandatory.</notes>
+        </componentneeded>
+      </componentsneeded>
+    </sec:Compliant_Targets_of_Evaluation>
   </sec:Introduction>
   <sec:Conformance_Claims/>
   <!-- 3.0 Security Problem Definition-->
@@ -92,6 +145,16 @@
   </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
   <sec:Security_Functional_Requirements>
+    <sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
+      <h:p>The auditable events specified in this Package are included in an ST 
+			if the incorporating PP, cPP, or PP-Module supports audit event reporting through FAU_GEN.1,
+			and if all other criteria in the incorporating PP or PP-Module are met.</h:p>
+      <audit-table id="at-man-audit" table="mandatory">
+        <h:div class="table-caption">
+          <ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr>
+        </h:div>
+      </audit-table>
+    </sec:ss-audit-table>
     <!-- 5.1.1 Cryptographic Support (FCS) -->
     <section id="fcs" title="Cryptographic Support (FCS)">
       <ext-comp-def title="SSH Protocol" fam-id="FCS_SSH_EXT">
@@ -155,6 +218,7 @@
             </Tests>
           </aactivity>
         </f-element>
+        <audit-event/>
       </f-component>
       <!-- FCS_SSHS_EXT.1 SSH Server Protocol -->
       <f-component cc-id="fcs_sshs_ext.1" id="fcs-sshs-ext-1" name="SSH Server Protocol" status="sel-based">
@@ -204,6 +268,7 @@
             </Tests>
           </aactivity>
         </f-element>
+        <audit-event/>
       </f-component>
       <!-- FCS_SSH_EXT.1 SSH Protocol -->
       <f-component cc-id="fcs_ssh_ext.1" id="fcs-ssh-ext-1" name="SSH Protocol">
@@ -650,6 +715,62 @@
             </Tests>
           </aactivity>
         </f-element>
+        <audit-event>
+          <audit-event-descr>
+            <selectables onlyone="yes">
+              <selectable>Failure to establish SSH connection</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-descr>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Reason for failure and non-TOE endpoint of attempted connection (IP Address)</selectable>
+              <selectable>No additional information</selectable>
+            </selectables>
+          </audit-event-info>
+        </audit-event>
+        <audit-event>
+          <audit-event-descr>
+            <selectables onlyone="yes">
+              <selectable>Establishment of SSH connection</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-descr>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
+              <selectable>No additional information</selectable>
+            </selectables>
+          </audit-event-info>
+        </audit-event>
+        <audit-event>
+          <audit-event-descr>
+            <selectables onlyone="yes">
+              <selectable>Termination of SSH connection session</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-descr>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
+              <selectable>No additional information</selectable>
+            </selectables>
+          </audit-event-info>
+        </audit-event>
+        <audit-event>
+          <audit-event-descr>
+            <selectables onlyone="yes">
+              <selectable>Dropping of packets outside defined size limits</selectable>
+              <selectable>None</selectable>
+            </selectables>
+          </audit-event-descr>
+          <audit-event-info>
+            <selectables onlyone="yes">
+              <selectable>Packet size</selectable>
+              <selectable>No additional information</selectable>
+            </selectables>
+          </audit-event-info>
+        </audit-event>
       </f-component>
     </section>
   </sec:Security_Functional_Requirements>
@@ -747,4 +868,4 @@
       </description>
     </entry>
   </bibliography>
-</PP>
+</Package>
