@@ -29,8 +29,16 @@
       <subject>Updated for CC:2022 conformance, incorporated applicable errata.</subject>
     </entry>
   </RevisionHistory>
+  <TechnicalDecisionHistory>
+    <TD>
+	<number>TD0910</number>
+	<date>2025-04-16</date>
+	<subject>Updates to FCS_SSH_EXT.1.1 App Note in SSH FP 2.0</subject>
+        <url>https://www.niap-ccevs.org/technical-decisions/TD0910</url>
+	</TD>
+  </TechnicalDecisionHistory>
   <pp-preferences>
-    <!--          <pp-pref name="display-audit-with-sfrs">0</pp-pref>   -->
+    <!--            <pp-pref name="display-audit-with-sfrs">0</pp-pref>     -->
     <audit-events-in-sfrs/>
   </pp-preferences>
   <sec:Introduction>
@@ -63,23 +71,17 @@
       <term full="Key Derivation Function" abbr="KDF"/>
     </tech-terms>
     <sec:Compliant_Targets_of_Evaluation>
-      The TOE in this FP is a product that acts as an SSH client, SSH 
-	    server, or both. This FP describes the extended security functionality of SSH in terms of
+      The TOE in this FP is a product that acts as an SSH client, SSH server, or both. This FP describes the extended security functionality of SSH in terms of
       <xref g="CC"/>.
       <h:br/>
       <h:br/>
-      The contents of this FP must be appropriately incorporated into a PP, cPP, or PP-Module. When this package 
-		is incorporated as such, the ST must include selection-based requirements in accordance with the selections or assignments 
-		indicated in the incorporating document.
+      The contents of this FP must be appropriately incorporated into a PP, cPP, or PP-Module. When this package is incorporated as such, the ST must include selection-based requirements in accordance with the selections or assignments indicated in the incorporating document.
       <h:br/>
       <h:br/>
-      The PP, cPP, or PP-Module that instantiates this Package must typically include the following components in order to satisfy 
-		dependencies of this Package. It is the responsibility of the PP, cPP, or PP-Module author who incorporates this FP to 
-		ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its OE.
+      The PP, cPP, or PP-Module that instantiates this Package must typically include the following components in order to satisfy dependencies of this Package. It is the responsibility of the PP, cPP, or PP-Module author who incorporates this FP to ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its OE.
       <h:br/>
       <h:br/>
-      An ST must identify the applicable version of the PP, cPP, or PP-Module, and of this
-		FP in its conformance claims.
+      An ST must identify the applicable version of the PP, cPP, or PP-Module, and of this FP in its conformance claims.
       <h:br/>
       <h:br/>
       <h:div class="table-caption">
@@ -143,15 +145,6 @@
     </sec:ss-audit-table>
     <!-- 5.1.1 Class FCS: Cryptographic Support -->
     <section id="" title="Class FCS: Cryptographic Support">
-      <ext-comp-def title="SSH Protocol" fam-id="FCS_SSH_EXT">
-        <fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified for trusted communications in CC Part 2.</fam-behavior>
-      </ext-comp-def>
-      <ext-comp-def title="SSH Client Protocol" fam-id="FCS_SSHC_EXT">
-        <fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a client.</fam-behavior>
-      </ext-comp-def>
-      <ext-comp-def title="SSH Server Protocol" fam-id="FCS_SSHS_EXT">
-        <fam-behavior>This family defines requirements for implementation of the SSH protocol when the TSF is acting as a server.</fam-behavior>
-      </ext-comp-def>
       <!-- FCS_SSHC_EXT.1 SSH Client Protocol -->
       <f-component cc-id="fcs_sshc_ext.1" id="fcs-sshc-ext-1" name="SSH Client Protocol" status="sel-based">
         <depends on-sel="ssh-client"/>
@@ -315,53 +308,53 @@
             </title>
           </ext-comp-def-title>
           <note role="application">
-            The following mapping is provided as a guide to ST authors to ensure the appropriate RFC selections are made 
-					based on applicable selections in subsequent SFRs.
+            <h:p style="text-align: left;">The following mapping is provided as a guide to ST authors to ensure the appropriate RFC selections are made based on applicable selections in subsequent SFRs.</h:p>
             <h:ul>
-              <h:li>RFC 4256: Select for keyboard-interactive authentication </h:li>
-              <h:li>RFC 4344: Select for AES-256-CTR  </h:li>
-              <h:li>RFC 5647: Select for AEAD_AES_256_GCM or aes256-gcm@openssh.com </h:li>
-              <h:li>RFC 5656: Select for elliptic curve cryptography (ECC) </h:li>
-              <h:li>RFC 6187: Select for X.509 certificate use </h:li>
-              <h:li>RFC 6668: Select for HMAC-SHA-2 algorithms </h:li>
-              <h:li>RFC 8268: Select for FFC DH groups with SHA-2  </h:li>
-              <h:li>RFC 8308: Select if RFC 8332 is selected </h:li>
-              <h:li>RFC 8332: Select if SHA-2 is available with ssh-rsa </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 4256: Select for keyboard-interactive authentication</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 4344: Select for AES-256-CTR</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 5647: Select for AEAD_AES_256_GCM or aes256-gcm@openssh.com</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 5656: Select for elliptic curve cryptography (ECC)</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 6187: Select for X.509 certificate use</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 6668: Select for HMAC-SHA-2 algorithms</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 8268: Select for FFC DH groups with SHA-2</h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 8308: Select if <h:u>'publickey' (RFC 4252)</h:u> is selected <h:u>in FCS_SSH_EXT.1.2 and the "server-sig-algs" extension is supported</h:u></h:p>
+              </h:li>
+              <h:li>
+                <h:p style="text-align: left;">RFC 8332: Select if SHA-2 is available with ssh-rsa</h:p>
+              </h:li>
             </h:ul>
-            <h:p>The ST author selects the additional RFCs to which
-					conformance is being claimed. An SSH product can implement additional RFCs, but only those
-					listed in the selection can be claimed as conformant under CC. 
-					The RFC selections for this requirement must be consistent with selections in
-					later elements of this FP (e.g., cryptographic algorithms permitted).</h:p>
-            <h:p>For the purposes of this package (and subsequent integration into cPPs), only the claimed algorithms listed 
-					in the package must be enabled for use.</h:p>
-            <h:p>RFC 4251 defines support for the general implementation of the SSH protocol.</h:p>
-            <h:p>RFC 4252 defines support for the required SSH authentication method.</h:p>
-            <h:p>RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the 
-					Internet Engineering Task Force's perspective, the implementation must include support, not that the algorithms must 
-					be enabled for use. For the purposes of this SFR's EA and this FP
-					overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC 
-					but not listed in later elements of this FP are actually implemented.</h:p>
-            <h:p>RFC 4254 defines support for the general implementation of the SSH connection protocol.</h:p>
-            <h:p>RFC 4256 must be selected if "keyboard-interactive" is selected in FCS_SSH_EXT.1.2.</h:p>
-            <h:p>RFC 4344 must be selected if aes256-ctr is selected in FCS_SSH_EXT.1.4.</h:p>
-            <h:p>RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm
-					in FCS_SSH_EXT.1.4 and when AEAD_AES_256_GCM is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
-            <h:p>RFC 5656 must be selected when ecdsa-sha2-nistp384 or ecdsa-sha2-nistp521 is selected as a public key algorithm
-					in FCS_SSH_EXT.1.2, or when ecdh-sha2-nistp384 or ecdh-sha2-nistp521 is selected
-					as a key exchange algorithm in FCS_SSH_EXT.1.6, or when "RFC 5656" is selected in FCS_SSH_EXT.1.7.</h:p>
-            <h:p>RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp384 or x509v3-ecdsa-sha2-nistp521
-					is selected as a public key algorithm in FCS_SSH_EXT.1.2.</h:p>
-            <h:p>RFC 6668 must be selected when hmac-sha2-512 is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
-            <h:p>RFC 8268 must be selected when diffie-hellman-group15-sha512,   
-						diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512
-						is selected as a key exchange algorithm in FCS_SSH_EXT.1.6.</h:p>
-            <h:p>RFC 8308 defines support for secure negotiation of protocol extensions, and must be 
-						claimed when RFC 8332 is claimed.</h:p>
-            <h:p>RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in
-					FCS_SSH_EXT.1.2.</h:p>
-            <h:p>If "client" is selected, then the ST must include FCS_SSHC_EXT.1.</h:p>
-            <h:p>If "server" is selected, then the ST must include FCS_SSHS_EXT.1.</h:p>
+            <h:p style="text-align: left;">The ST author selects the additional RFCs to which conformance is being claimed. An SSH product can implement additional RFCs, but only those listed in the selection can be claimed as conformant under CC. The RFC selections for this requirement must be consistent with selections in later elements of this FP (e.g., cryptographic algorithms permitted).</h:p>
+            <h:p style="text-align: left;">For the purposes of this package (and subsequent integration into cPPs), only the claimed algorithms listed in the package must be enabled for use.</h:p>
+            <h:p style="text-align: left;">RFC 4251 defines support for the general implementation of the SSH protocol.</h:p>
+            <h:p style="text-align: left;">RFC 4252 defines support for the required SSH authentication method.</h:p>
+            <h:p style="text-align: left;">RFC 4253 indicates that certain cryptographic algorithms are "REQUIRED." This means that from the Internet Engineering Task Force's perspective, the implementation must include support, not that the algorithms must be enabled for use. For the purposes of this SFR's EA and this FP overall, it is not necessary to ensure that algorithms listed as "REQUIRED" by the RFC but not listed in later elements of this FP are actually implemented.</h:p>
+            <h:p style="text-align: left;">RFC 4254 defines support for the general implementation of the SSH connection protocol.</h:p>
+            <h:p style="text-align: left;">RFC 4256 must be selected if "keyboard-interactive" is selected in FCS_SSH_EXT.1.2.</h:p>
+            <h:p style="text-align: left;">RFC 4344 must be selected if aes256-ctr is selected in FCS_SSH_EXT.1.4.</h:p>
+            <h:p style="text-align: left;">RFC 5647 must be selected when AEAD_AES_256_GCM or aes256-gcm@openssh.com is selected as an encryption algorithm in FCS_SSH_EXT.1.4 and when AEAD_AES_256_GCM is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
+            <h:p style="text-align: left;">RFC 5656 must be selected when ecdsa-sha2-nistp384 or ecdsa-sha2-nistp521 is selected as a public key algorithm in FCS_SSH_EXT.1.2, or when ecdh-sha2-nistp384 or ecdh-sha2-nistp521 is selected as a key exchange algorithm in FCS_SSH_EXT.1.6, or when "RFC 5656" is selected in FCS_SSH_EXT.1.7.</h:p>
+            <h:p style="text-align: left;">RFC 6187 must be selected when x509v3-ecdsa-sha2-nistp384 or x509v3-ecdsa-sha2-nistp521 is selected as a public key algorithm in FCS_SSH_EXT.1.2.</h:p>
+            <h:p style="text-align: left;">RFC 6668 must be selected when hmac-sha2-512 is selected as a MAC algorithm in FCS_SSH_EXT.1.5.</h:p>
+            <h:p style="text-align: left;">RFC 8268 must be selected when diffie-hellman-group15-sha512, diffie-hellman-group16-sha512, diffie-hellman-group17-sha512, or diffie-hellman-group18-sha512 is selected as a key exchange algorithm in FCS_SSH_EXT.1.6.</h:p>
+            <h:p style="text-align: left;">RFC 8308 defines support for secure negotiation of protocol extensions. <h:u>If public key methods are selected in FCS_SSH_EXT.1.2, then the "server-sig-algs" extension should be supported and used, and RFC 8308 should be claimed.</h:u></h:p>
+            <h:p style="text-align: left;">RFC 8332 must be selected when rsa-sha2-512 is selected as a public key algorithm in FCS_SSH_EXT.1.2.</h:p>
+            <h:p style="text-align: left;">If "client" is selected, then the ST must include FCS_SSHC_EXT.1.</h:p>
+            <h:p style="text-align: left;">If "server" is selected, then the ST must include FCS_SSHS_EXT.1.</h:p>
           </note>
           <aactivity level="element">
             <TSS>
@@ -648,7 +641,7 @@
             <h:ul>
               <h:li><assignable>length of time lesser than or equal to one hour</assignable> connection time</h:li>
               <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of transmitted data, or</h:li>
-              <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable>  of received data.</h:li>
+              <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable>   of received data.</h:li>
             </h:ul>
           </title>
           <note role="application">
