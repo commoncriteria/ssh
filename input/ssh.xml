@@ -117,32 +117,18 @@
       </componentsneeded>
     </sec:Compliant_Targets_of_Evaluation>
   </sec:Introduction>
-  <sec:Conformance_Claims/>
+  <sec:Conformance_Claims boilerplate="no">
+    <CClaimsInfo cc-version="cc-2022r1" cc-approach="direct-rationale" cc-errata="v1.1">
+      <cc-st-conf>exact</cc-st-conf>
+      <cc-pt2-conf>extended</cc-pt2-conf>
+      <cc-pt3-conf>conformant</cc-pt3-conf>
+      <cc-pp-conf/>
+      <cc-pp-config-with/>
+      <cc-pkg-claim/>
+    </CClaimsInfo>
+  </sec:Conformance_Claims>
   <!-- 3.0 Security Problem Definition-->
-  <sec:Security_Problem_Definition>
-    <!-- 3.1 Threats -->
-    <sec:Threats>
-      <threats/>
-    </sec:Threats>
-    <!-- 3.2 Assumptions -->
-    <sec:Assumptions>
-      <assumptions/>
-    </sec:Assumptions>
-    <!-- 3.3 Organizational Security Policies -->
-    <sec:Organizational_Security_Policies>
-      <OSPs/>
-    </sec:Organizational_Security_Policies>
-  </sec:Security_Problem_Definition>
   <!-- 4.0 Security Objectives -->
-  <sec:Security_Objectives>
-    <!-- 4.1 Security Objectives for the TOE -->
-    <sec:Security_Objectives_for_the_TOE>
-      <SOs/>
-    </sec:Security_Objectives_for_the_TOE>
-    <!-- 4.2 Security Objctives for the Operational Environment -->
-    <sec:Security_Objectives_for_the_Operational_Environment/>
-    <!-- 4.3 Security Objectives Rationale -->
-  </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
   <sec:Security_Functional_Requirements>
     <sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
@@ -155,8 +141,8 @@
         </h:div>
       </audit-table>
     </sec:ss-audit-table>
-    <!-- 5.1.1 Cryptographic Support (FCS) -->
-    <section id="fcs" title="Cryptographic Support (FCS)">
+    <!-- 5.1.1 Class FCS: Cryptographic Support -->
+    <section id="" title="Class FCS: Cryptographic Support">
       <ext-comp-def title="SSH Protocol" fam-id="FCS_SSH_EXT">
         <fam-behavior>This family defines requirements for implementation of the SSH protocol that goes beyond the level of detail specified for trusted communications in CC Part 2.</fam-behavior>
       </ext-comp-def>
@@ -438,7 +424,7 @@
 												a different X.509 certificate which is not associated with the username. The evaluator
 												shall verify that the session does not establish. </h:li></h:ol></h:li> <h:li>If the TOE supports keyboard-interactive password authentication, the evaluator shall verify that the TOE issues an authentication challenge to the SSH client for each supported method when the client specifies the use of a keyboard-interactive method.</h:li> <h:li>For each supported authentication method, the evaluator shall verify that an SSH client can be used to establish a session with the TOE while using the supported method.</h:li> <h:li>For each supported authentication method, the evaluator shall use an SSH client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</h:li></h:ol></test>
                 <h:br/>
-                <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, noninteractive, or both, depending on the claims made in FCS_SSH_EXT.1.2. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in FCS_SSH_EXT.1.2.</test>
+                <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, non-interactive, or both, depending on the claims made in FCS_SSH_EXT.1.2. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in FCS_SSH_EXT.1.2.</test>
                 <h:br/>
                 <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection fails upon configuration mismatch as follows: <h:ol type="a"><h:li>The evaluator shall configure the client with an authentication method not supported by
 										the server.  </h:li> <h:li>The evaluator shall verify that the connection fails. </h:li></h:ol> If the client supports only one authentication method, the evaluator can test this failure of connection by configuring the server with an authentication method not supported by the client. In order to facilitate this test, it is acceptable for the evaluator to configure an authentication method that is outside of the selections in the SFR. <h:p/></test>
@@ -454,7 +440,7 @@
           </title>
           <note role="application">
             RFC 4253, Section 6.1 provides for the acceptance of “large packets” with the caveat that the packets should
-					be of “reasonable length” or dropped. The ST author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the TOE..
+					be of “reasonable length” or dropped. The ST author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the TOE.
             <h:p/>
             The upper bound on the packet size is driven by the size identified in FCS_SSH_EXT.1.8.
           </note>
