@@ -7,7 +7,7 @@
 <!-- 
 -->
 <!-- <Package name="Secure Shell" repo-name="ssh" pp-version="1.0"  -->
-<Package name="Secure Shell" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
+<PP name="Secure Shell" xmlns="https://niap-ccevs.org/cc/v1" xmlns:h="http://www.w3.org/1999/xhtml" xmlns:sec="https://niap-ccevs.org/cc/v1/section">
   <PPReference>
     <ReferenceTable>
       <PPTitle>Functional Package for Secure Shell (SSH)</PPTitle>
@@ -34,7 +34,7 @@
     <audit-events-in-sfrs/>
   </pp-preferences>
   <sec:Introduction>
-    <sec:Overview title="Overview">
+    <sec:Overview>
       <h:p>Secure Shell (SSH) is a protocol for secure remote login and other secure network services over
 	    an untrusted network. SSH software can act as a client, server, or both.</h:p>
       <h:p>
@@ -62,85 +62,36 @@
       <term full="Elliptic Curve Cryptography" abbr="ECC"/>
       <term full="Key Derivation Function" abbr="KDF"/>
     </tech-terms>
-    <sec:Compliant_Targets_of_Evaluation>
-      The TOE in this FP is a product that acts as an SSH client, SSH 
-	    server, or both. This FP describes the extended security functionality of SSH in terms of
-      <xref g="CC"/>.
-      <h:br/>
-      <h:br/>
-      The contents of this FP must be appropriately incorporated into a PP, cPP, or PP-Module. When this package 
-		is incorporated as such, the ST must include selection-based requirements in accordance with the selections or assignments 
-		indicated in the incorporating document.
-      <h:br/>
-      <h:br/>
-      The PP, cPP, or PP-Module that instantiates this Package must typically include the following components in order to satisfy 
-		dependencies of this Package. It is the responsibility of the PP, cPP, or PP-Module author who incorporates this FP to 
-		ensure that dependence on these components is satisfied, either by the TOE or by assumptions about its OE.
-      <h:br/>
-      <h:br/>
-      An ST must identify the applicable version of the PP, cPP, or PP-Module, and of this
-		FP in its conformance claims.
-      <h:br/>
-      <h:br/>
-      <h:div class="table-caption">
-        <ctr ctr-type="Table" id="dependencies">: Dependent Components Required for Package Functionality</ctr>
-      </h:div>
-      <componentsneeded>
-        <componentneeded>
-          <componentid>FCS_CKM.1</componentid>
-          <notes>To support key generation for SSH, the PP or PP-Module must include FCS_CKM.1 and specify the corresponding algorithms.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FCS_CKM.2</componentid>
-          <notes>To support key establishment for SSH, the PP or PP-Module must include FCS_CKM.2 and specify the corresponding algorithms.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FCS_COP.1</componentid>
-          <notes>To support the cryptography needed for SSH communications, the PP or PP-Module must include FCS_COP.1 (iterating as needed) to specify AES with corresponding key sizes and modes, digital signature generation and verification function (at least one of RSA or ECDSA), a cryptographic hash function, and a keyed-hash message authentication function. In particular, the incorporating document must support AES-GCM as defined in NIST SP 800-38D with key sizes of 256 bits.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FCS_RBG.1</componentid>
-          <notes>To support random bit generation needed for SSH key generation, the PP or PP-Module must include FCS_RBG.1 or an extended SFR that defines comparable functionality.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FIA_X509_EXT.1</componentid>
-          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FIA_X509_EXT.1. Note however that support for X.509 is selectable and not mandatory.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FIA_X509_EXT.2</componentid>
-          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FIA_X509_EXT.2. Note however that support for X.509 is selectable and not mandatory.</notes>
-        </componentneeded>
-        <componentneeded>
-          <componentid>FPT_STM.1</componentid>
-          <notes>To support establishment of SSH communications using a public key algorithm that includes X.509, the PP or PP-Module must include FPT_STM.1 or some other requirement that ensures reliable system time. Note however that support for time-based rekey thresholds is selectable and not mandatory.</notes>
-        </componentneeded>
-      </componentsneeded>
-    </sec:Compliant_Targets_of_Evaluation>
+    <section title="Compliant Targets of Evaluation" id="TOEdescription"/>
   </sec:Introduction>
-  <sec:Conformance_Claims boilerplate="no">
-    <CClaimsInfo cc-version="cc-2022r1" cc-approach="direct-rationale" cc-errata="v1.1">
-      <cc-st-conf>exact</cc-st-conf>
-      <cc-pt2-conf>extended</cc-pt2-conf>
-      <cc-pt3-conf>conformant</cc-pt3-conf>
-      <cc-pp-conf/>
-      <cc-pp-config-with/>
-      <cc-pkg-claim/>
-    </CClaimsInfo>
-  </sec:Conformance_Claims>
+  <sec:Conformance_Claims/>
   <!-- 3.0 Security Problem Definition-->
+  <sec:Security_Problem_Definition>
+    <!-- 3.1 Threats -->
+    <sec:Threats>
+      <threats/>
+    </sec:Threats>
+    <!-- 3.2 Assumptions -->
+    <sec:Assumptions>
+      <assumptions/>
+    </sec:Assumptions>
+    <!-- 3.3 Organizational Security Policies -->
+    <sec:Organizational_Security_Policies>
+      <OSPs/>
+    </sec:Organizational_Security_Policies>
+  </sec:Security_Problem_Definition>
   <!-- 4.0 Security Objectives -->
+  <sec:Security_Objectives>
+    <!-- 4.1 Security Objectives for the TOE -->
+    <sec:Security_Objectives_for_the_TOE>
+      <SOs/>
+    </sec:Security_Objectives_for_the_TOE>
+    <!-- 4.2 Security Objctives for the Operational Environment -->
+    <sec:Security_Objectives_for_the_Operational_Environment/>
+    <!-- 4.3 Security Objectives Rationale -->
+  </sec:Security_Objectives>
   <!-- 5.0 Security Requirements -->
   <sec:Security_Functional_Requirements>
-    <sec:ss-audit-table title="Auditable Events for Mandatory SFRs">
-      <h:p>The auditable events specified in this Package are included in an ST 
-			if the incorporating PP, cPP, or PP-Module supports audit event reporting through FAU_GEN.1,
-			and if all other criteria in the incorporating PP or PP-Module are met.</h:p>
-      <audit-table id="at-man-audit" table="mandatory">
-        <h:div class="table-caption">
-          <ctr ctr-type="Table" id="atref-mandatory">: Auditable Events for Mandatory SFRs</ctr>
-        </h:div>
-      </audit-table>
-    </sec:ss-audit-table>
     <!-- 5.1.1 Cryptographic Support (FCS) -->
     <section id="fcs" title="Cryptographic Support (FCS)">
       <ext-comp-def title="SSH Protocol" fam-id="FCS_SSH_EXT">
@@ -190,17 +141,20 @@
               The evaluator shall perform the following tests:
               <testlist>
                 <test>[conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the TOE with only a single host name and corresponding public key in the local database. The evaluator shall verify that the TOE can successfully connect to the host identified by the host name.</test>
+                <h:br/>
                 <test>[conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall configure the TOE with only a single host name and non-corresponding public key in the local database. The evaluator shall verify that the TOE fails to connect to the configured host due to a public key mismatch.</test>
+                <h:br/>
                 <test>[conditional] If using a local database by associating each host name with its corresponding public key, the evaluator shall try to connect to a host not configured in the local database. The evaluator shall verify that the TOE either fails to connect to a host identified by the host name or there is a prompt provided to store the public key in the local database.</test>
+                <h:br/>
                 <test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the TOE with only a single trusted certification authority corresponding to the host's certificate. The evaluator shall verify that the TOE can successfully connect to the host identified by the host name.</test>
+                <h:br/>
                 <test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the TOE with only a single trusted certification authority that does not correspond to the host's certificate. The evaluator shall verify that the TOE fails to connect to the host identified by the host name.</test>
+                <h:br/>
                 <test>[conditional] If using a list of trusted certification authorities, the evaluator shall configure the test server with a certificate that does not belong to it, but is otherwise valid (i.e., it has an invalid reference identifier). This certificate shall be signed by a certificate authority that is one of the trusted certificate authorities configured on the TOE. The evaluator shall verify that the TOE fails to connect to the test server.</test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
-        <audit-event/>
       </f-component>
       <!-- FCS_SSHS_EXT.1 SSH Server Protocol -->
       <f-component cc-id="fcs_sshs_ext.1" id="fcs-sshs-ext-1" name="SSH Server Protocol" status="sel-based">
@@ -242,13 +196,14 @@
               The evaluator shall perform the following tests:
               <testlist>
                 <test>The evaluator shall use a suitable SSH client to connect to the TOE and examine the list of server host key algorithms in the SSH_MSG_KEXINIT packet sent from the server to the client to determine that only the configured server authentication methods for the TOE were offered by the server.</test>
+                <h:br/>
                 <test>The evaluator shall test for a successful configuration setting of each server authentication method as follows. The evaluator shall initiate an SSH session using the authentication method configured and verify that the session is successfully established. Repeat this process for each independently configurable server authentication method supported by the server.</test>
+                <h:br/>
                 <test>The evaluator shall configure the peer to only allow an authentication mechanism that is not included in the ST selection. The evaluator shall attempt to connect to the TOE and observe that the TOE sends a disconnect message.</test>
               </testlist>
             </Tests>
           </aactivity>
         </f-element>
-        <audit-event/>
       </f-component>
       <!-- FCS_SSH_EXT.1 SSH Protocol -->
       <f-component cc-id="fcs_ssh_ext.1" id="fcs-ssh-ext-1" name="SSH Protocol">
@@ -367,10 +322,7 @@
               There are no guidance EAs for this element. This SFR is evaluated by activities for other SFRs.
               <h:p/>
             </Guidance>
-            <Tests>
-              There are no test EAs for this element. This SFR is evaluated by activities for other SFRs.
-              <h:p/>
-            </Tests>
+            <Tests>There are no test EAs for this element. This SFR is evaluated by activities for other SFRs.</Tests>
           </aactivity>
         </f-element>
         <f-element id="fcs-ssh-ext-1e2">
@@ -420,7 +372,9 @@
 												session does not establish.</h:li> <h:li>Finally, the evaluator shall use the correct username (from step a above), but use 
 												a different X.509 certificate which is not associated with the username. The evaluator
 												shall verify that the session does not establish. </h:li></h:ol></h:li> <h:li>If the TOE supports keyboard-interactive password authentication, the evaluator shall verify that the TOE issues an authentication challenge to the SSH client for each supported method when the client specifies the use of a keyboard-interactive method.</h:li> <h:li>For each supported authentication method, the evaluator shall verify that an SSH client can be used to establish a session with the TOE while using the supported method.</h:li> <h:li>For each supported authentication method, the evaluator shall use an SSH client provided with bad authentication data (e.g., incorrectly generated certificate or incorrect password) and verify that the connection is rejected.</h:li></h:ol></test>
-                <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, non-interactive, or both, depending on the claims made in FCS_SSH_EXT.1.2. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in FCS_SSH_EXT.1.2.</test>
+                <h:br/>
+                <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall initiate an SSH session using each supported authentication method and verify that the session is successfully established. Specifically, if password authentication is supported, then the evaluator shall use interactive, noninteractive, or both, depending on the claims made in FCS_SSH_EXT.1.2. If public key authentication is supported, then the evaluator shall use each supported algorithm claimed in FCS_SSH_EXT.1.2.</test>
+                <h:br/>
                 <test>[conditional] If the TOE is acting as an SSH client, the evaluator shall verify that the connection fails upon configuration mismatch as follows: <h:ol type="a"><h:li>The evaluator shall configure the client with an authentication method not supported by
 										the server.  </h:li> <h:li>The evaluator shall verify that the connection fails. </h:li></h:ol> If the client supports only one authentication method, the evaluator can test this failure of connection by configuring the server with an authentication method not supported by the client. In order to facilitate this test, it is acceptable for the evaluator to configure an authentication method that is outside of the selections in the SFR. <h:p/></test>
               </testlist>
@@ -435,7 +389,7 @@
           </title>
           <note role="application">
             RFC 4253, Section 6.1 provides for the acceptance of “large packets” with the caveat that the packets should
-					be of “reasonable length” or dropped. The ST author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the TOE.
+					be of “reasonable length” or dropped. The ST author should fill in the assignment with the maximum packet size accepted, thus defining "reasonable length for the TOE..
             <h:p/>
             The upper bound on the packet size is driven by the size identified in FCS_SSH_EXT.1.8.
           </note>
@@ -448,6 +402,7 @@
             <Tests>
               <testlist>
                 <test>The evaluator shall demonstrate that the TOE accepts the maximum allowed packet size.</test>
+                <h:br/>
                 <test>This test is performed to verify that the TOE drops packets that are larger than the size specified in the element. <h:ol type="a"><h:li>The evaluator shall establish a successful SSH connection with the peer. </h:li> <h:li>Next, the evaluator shall craft a packet that is slightly larger than the maximum
 										size specified in this element and send it through the established SSH connection
 										to the TOE. The packet should not be greater than the maximum packet size plus 16 bytes. 
@@ -455,7 +410,6 @@
 										Examples include reviewing the TOE audit log for a dropped packet audit or observing that 
 										the TOE terminates the connection.</h:li></h:ol></test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
@@ -490,15 +444,15 @@
               <h:p/>
             </Guidance>
             <Tests>
-              The evaluator shall perform the following tests.
-              <h:p/>
-              If the TOE can be both a client and a server, these tests must be performed for both roles.
+              The evaluator shall perform the following tests.  
+						If the TOE can be both a client and a server, these tests must be performed for both roles.
               <testlist>
                 <test>The evaluator shall ensure that only claimed algorithms and cryptographic primitives are used to establish an SSH connection. To verify this, the evaluator shall establish an SSH connection with a remote endpoint. The evaluator shall capture the traffic exchanged between the TOE and the remote endpoint during protocol negotiation (e.g., using a packet capture tool or information provided by the endpoint, respectively). The evaluator shall verify from the captured traffic that the TOE offers only the algorithms defined in the ST for the TOE for SSH connections. The evaluator shall perform one successful negotiation of an SSH connection and verify that the negotiated algorithms were included in the advertised set. If the evaluator detects that not all algorithms defined in the ST for SSH are advertised by the TOE or the TOE advertises additional algorithms not defined in the ST for SSH, the test shall be regarded as failed. <h:p/> The data collected from the connection above shall be used for verification of the advertised hashing and shared secret establishment algorithms in FCS_SSH_EXT.1.5 and FCS_SSH_EXT.1.6 respectively.</test>
+                <h:br/>
                 <test>For the connection established in Test 1, the evaluator shall terminate the connection and observe that the TOE terminates the connection.</test>
+                <h:br/>
                 <test>The evaluator shall configure the remote endpoint to only allow a mechanism that is not included in the ST selection. The evaluator shall attempt to connect to the TOE and observe that the attempt fails.</test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
@@ -545,9 +499,9 @@
             <Tests>
               <testlist>
                 <test>The evaluator shall use the test data collected in FCS_SSH_EXT.1.4, Test 1 to verify that appropriate mechanisms are advertised.</test>
+                <h:br/>
                 <test>The evaluator shall configure an SSH peer to allow only a hashing algorithm that is not included in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that the connection is rejected.</test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
@@ -591,11 +545,13 @@
 								mechanisms are advertised.</h:p>
                   <h:p>Note that it is permissible for the TOE to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms. These values are associated with client and server, respectively.</h:p>
                 </test>
+                <h:br/>
                 <test>The evaluator shall configure an SSH peer to allow only a key exchange method that is not included in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that the connection is rejected.</test>
+                <h:br/>
                 <test>The evaluator shall configure the SSH peer to omit the strict-kex value from the kex_algorithms field. The evaluator shall verify that the TOE is able to successfully establish a connection with the SSH peer.</test>
+                <h:br/>
                 <test>The evaluator shall configure the SSH peer to include the strict-kex value in the kex_algorithms field. The evaluator shall verify that the TOE is able to successfully establish a connection with the SSH peer.</test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
@@ -684,72 +640,16 @@
               The evaluator shall ensure that the test harness is configured so that its connection rekey or termination limits are greater than
 						the limits supported by the TOE. It is expected that the test harness should not be initiating the
 						connection rekey or termination.
-              <h:p/>
               <testlist>
                 <test>The evaluator shall establish an SSH connection, wait until the identified connection rekey limit is met, and observe that a connection rekey or termination is initiated. This may require traffic to periodically be sent or a keep-alive setting for the connection to be applied to ensure that the connection is not closed due to an idle timeout.</test>
+                <h:br/>
                 <test>The evaluator shall establish an SSH connection, transmit data from the TOE until the identified connection rekey or termination limit is met, and observe that a connection rekey or termination is initiated.</test>
+                <h:br/>
                 <test>The evaluator shall establish an SSH connection, send data to the TOE until the identified connection rekey limit or termination is met, and observe that a connection rekey or termination is initiated.</test>
               </testlist>
-              <h:p/>
             </Tests>
           </aactivity>
         </f-element>
-        <audit-event>
-          <audit-event-descr>
-            <selectables>
-              <selectable>Failure to establish SSH connection</selectable>
-              <selectable>None</selectable>
-            </selectables>
-          </audit-event-descr>
-          <audit-event-info>
-            <selectables onlyone="yes">
-              <selectable>Reason for failure and non-TOE endpoint of attempted connection (IP Address)</selectable>
-              <selectable>No additional information</selectable>
-            </selectables>
-          </audit-event-info>
-        </audit-event>
-        <audit-event>
-          <audit-event-descr>
-            <selectables>
-              <selectable>Establishment of SSH connection</selectable>
-              <selectable>None</selectable>
-            </selectables>
-          </audit-event-descr>
-          <audit-event-info>
-            <selectables onlyone="yes">
-              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
-              <selectable>No additional information</selectable>
-            </selectables>
-          </audit-event-info>
-        </audit-event>
-        <audit-event>
-          <audit-event-descr>
-            <selectables>
-              <selectable>Termination of SSH connection session</selectable>
-              <selectable>None</selectable>
-            </selectables>
-          </audit-event-descr>
-          <audit-event-info>
-            <selectables onlyone="yes">
-              <selectable>Non-TOE endpoint of connection (IP Address)</selectable>
-              <selectable>No additional information</selectable>
-            </selectables>
-          </audit-event-info>
-        </audit-event>
-        <audit-event>
-          <audit-event-descr>
-            <selectables>
-              <selectable>Dropping of packets outside defined size limits</selectable>
-              <selectable>None</selectable>
-            </selectables>
-          </audit-event-descr>
-          <audit-event-info>
-            <selectables onlyone="yes">
-              <selectable>Packet size</selectable>
-              <selectable>No additional information</selectable>
-            </selectables>
-          </audit-event-info>
-        </audit-event>
       </f-component>
     </section>
   </sec:Security_Functional_Requirements>
@@ -847,4 +747,4 @@
       </description>
     </entry>
   </bibliography>
-</Package>
+</PP>
