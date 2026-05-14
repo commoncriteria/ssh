@@ -898,7 +898,9 @@ The following sections list Common Criteria and technology terms used in this do
             and no other mechanisms.
           <div class="appnote"><span class="note-header">Application
       Note:
-    </span><span class="note">The values "strict-kex-c-v00@openssh.com" and "strict-kex-s-v00@openssh.com" may also be present in the key exchange offering. These values are used to protect against <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> prefix data truncation (i.e. Terrapin attack). These values are used to ensure that key exchange proceeds in an appropriate order; they are not exchange methods in and of themselves.</span></div></div></div>
+    </span><span class="note">
+            <p style="text-align: left;">The values "kex-strict-c-v00@openssh.com" and "kex-strict-s-v00@openssh.com" may also be present in the key exchange offering. These values are used to protect against <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> prefix data truncation (i.e. Terrapin attack). These values are used to ensure that key exchange proceeds in an appropriate order; they are not exchange methods in and of themselves.</p>
+          </span></div></div></div>
         <div class="element"><div class="reqid" id="FCS_SSH_EXT.1.7"><a href="#FCS_SSH_EXT.1.7" class="abbr">FCS_SSH_EXT.1.7</a></div><div class="reqdesc">
             The <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> shall use an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> key derivation function (<abbr class="dyn-abbr"><a href="#abbr_KDF">KDF</a></abbr>) as defined in
             [<b>selection</b>: <ul><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.7_1">RFC 4253, Section 7.2</span></li><li style=""><span class="selectable-content" id="fcs_ssh_ext.1.7_2">RFC 5656, Section 4</span></li></ul>]
@@ -923,7 +925,7 @@ The following sections list Common Criteria and technology terms used in this do
               <li>no more than [<b>assignment</b>: 
      <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
               <li>no more than [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]   of received data.</li>
+     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]    of received data.</li>
             </ul>
           <div class="appnote"><span class="note-header">Application
       Note:
@@ -1078,19 +1080,22 @@ The following sections list Common Criteria and technology terms used in this do
               <span class="testlist-"><ul>
                 <li class="test-"><a id="_t_20" class="defined" href="#_t_20">Test FCS_SSH_EXT.1.6:1</a>:
       
-                  <p>The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate 
-								mechanisms are advertised.</p>
-                  <p>Note that it is permissible for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to advertise the "strict-kex-c-v00@openssh.com" or "strict-kex-s-v00@openssh.com" value alongside the other key exchange mechanisms. These values are associated with client and server, respectively.</p>
+                  <p style="text-align: left;">The evaluator shall use the test data collected in <a href="#FCS_SSH_EXT.1.4">FCS_SSH_EXT.1.4</a>, Test 1 to verify that appropriate mechanisms are advertised.</p>
+                  <p style="text-align: left;">Note that it is permissible for the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> to advertise the "kex-strict-c-v00@openssh.com" or "kex-strict-s-v00@openssh.com" value alongside the other key exchange mechanisms. These values are associated with client and server, respectively.</p>
                 </li>
                 <br/>
                 <li class="test-"><a id="_t_21" class="defined" href="#_t_21">Test FCS_SSH_EXT.1.6:2</a>:
       The evaluator shall configure an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to allow only a key exchange method that is not included in the <abbr class="dyn-abbr"><a href="#abbr_ST">ST</a></abbr> selection. The evaluator shall attempt to establish an <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> connection and observe that the connection is rejected.</li>
                 <br/>
                 <li class="test-"><a id="_t_22" class="defined" href="#_t_22">Test FCS_SSH_EXT.1.6:3</a>:
-      The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to omit the strict-kex value from the kex_algorithms field. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is able to successfully establish a connection with the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer.</li>
+      
+                  <p style="text-align: left;">The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to omit the kex-strict value from the kex_algorithms field. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is able to successfully establish a connection with the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer.</p>
+                </li>
                 <br/>
                 <li class="test-"><a id="_t_23" class="defined" href="#_t_23">Test FCS_SSH_EXT.1.6:4</a>:
-      The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to include the strict-kex value in the kex_algorithms field. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is able to successfully establish a connection with the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer.</li>
+      
+                  <p style="text-align: left;">The evaluator shall configure the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer to include the kex-strict value in the kex_algorithms field. The evaluator shall verify that the <abbr class="dyn-abbr"><a href="#abbr_TOE">TOE</a></abbr> is able to successfully establish a connection with the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> peer.</p>
+                </li>
               </ul></span>
             </div>
           <div class="element-activity-header"><a href="#FCS_SSH_EXT.1.7">FCS_SSH_EXT.1.7</a></div>
@@ -1344,7 +1349,7 @@ The following sections list Common Criteria and technology terms used in this do
               <li>no more than [<b>assignment</b>: 
      <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>] of transmitted data, or</li>
               <li>no more than [<b>assignment</b>: 
-     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]   of received data.</li>
+     <span class="assignable-content">number of bytes less than or equal to one gigabyte</span>]    of received data.</li>
             </ul>
           </div></div><h3 id="ext-comp-FCS_SSHC_EXT" class="indexable" data-level="4">C.2.1.2 FCS_SSHC_EXT SSH Client Protocol</h3><div style="margin-left: 1em;"><h4>Family Behavior</h4><div>This family defines requirements for implementation of the <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> protocol when the <abbr class="dyn-abbr"><a href="#abbr_TSF">TSF</a></abbr> is acting as a client.</div><h4>Component Leveling</h4><svg style="max-height: 30px;"><text x="4" fill="black" font-size="15" y="24">FCS_SSHC_EXT</text><rect x="2" y="11" width="150" height="16" fill="none" stroke="black"></rect><text x="234" fill="black" font-size="15" y="24">1</text><rect x="232" y="11" width="12" height="16" fill="none" stroke="black"></rect><line x1="152" y1="17" x2="231" y2="17" stroke="black"></line></svg><p><a href="#FCS_SSHC_EXT.1">FCS_SSHC_EXT.1</a>,
              <abbr class="dyn-abbr"><a href="#abbr_SSH">SSH</a></abbr> Client Protocol,

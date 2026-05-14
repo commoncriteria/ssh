@@ -1,3 +1,5 @@
 /home/runner/work/ssh/ssh/input/ssh.xml:32:29: error: element "TechnicalDecisionHistory" not allowed anywhere; expected element "RevisionHistory", "foreword", "pp-preferences", "release-notes" or "sec:Introduction"
 /home/runner/work/ssh/ssh/input/ssh.xml:35:25: error: element "TechnicalDecisionHistory" not allowed anywhere; expected element "RevisionHistory", "foreword", "pp-preferences", "release-notes" or "sec:Introduction"
 /home/runner/work/ssh/ssh/input/ssh.xml:36:70: error: element "TechnicalDecisionHistory" not allowed anywhere; expected element "RevisionHistory", "foreword", "pp-preferences", "release-notes" or "sec:Introduction"
+/home/runner/work/ssh/ssh/input/ssh.xml:41:25: error: element "TechnicalDecisionHistory" not allowed anywhere; expected element "RevisionHistory", "foreword", "pp-preferences", "release-notes" or "sec:Introduction"
+/home/runner/work/ssh/ssh/input/ssh.xml:42:69: error: element "TechnicalDecisionHistory" not allowed anywhere; expected element "RevisionHistory", "foreword", "pp-preferences", "release-notes" or "sec:Introduction"
