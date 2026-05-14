@@ -9,6 +9,7 @@ output/ssh-release-linkable.html: KEXINIT
 output/ssh-release-linkable.html: OpenSSH
 output/ssh-release-linkable.html: STM
 output/ssh-release-linkable.html: Wi
+output/ssh-release-linkable.html: algs
 output/ssh-release-linkable.html: cPPs
 output/ssh-release-linkable.html: group15
 output/ssh-release-linkable.html: group16
@@ -31,6 +32,7 @@ output/ssh-release.html: KEXINIT
 output/ssh-release.html: OpenSSH
 output/ssh-release.html: STM
 output/ssh-release.html: Wi
+output/ssh-release.html: algs
 output/ssh-release.html: cPPs
 output/ssh-release.html: group15
 output/ssh-release.html: group16
@@ -53,6 +55,7 @@ output/ssh.html: KEXINIT
 output/ssh.html: OpenSSH
 output/ssh.html: STM
 output/ssh.html: Wi
+output/ssh.html: algs
 output/ssh.html: cPPs
 output/ssh.html: group15
 output/ssh.html: group16
