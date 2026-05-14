@@ -11,6 +11,7 @@ output/ssh-release-linkable.html: SPD
 output/ssh-release-linkable.html: STM
 output/ssh-release-linkable.html: TD0910
 output/ssh-release-linkable.html: TD0925
+output/ssh-release-linkable.html: TD1022
 output/ssh-release-linkable.html: Wi
 output/ssh-release-linkable.html: algs
 output/ssh-release-linkable.html: cPPs
@@ -37,6 +38,7 @@ output/ssh-release.html: SPD
 output/ssh-release.html: STM
 output/ssh-release.html: TD0910
 output/ssh-release.html: TD0925
+output/ssh-release.html: TD1022
 output/ssh-release.html: Wi
 output/ssh-release.html: algs
 output/ssh-release.html: cPPs
@@ -63,6 +65,7 @@ output/ssh.html: SPD
 output/ssh.html: STM
 output/ssh.html: TD0910
 output/ssh.html: TD0925
+output/ssh.html: TD1022
 output/ssh.html: Wi
 output/ssh.html: algs
 output/ssh.html: cPPs
