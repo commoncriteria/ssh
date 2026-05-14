@@ -42,9 +42,15 @@
 	<subject>Correction to strict KEX extension specification</subject>
         <url>https://www.niap-ccevs.org/technical-decisions/TD0925</url>
 	</TD>
-  </TechnicalDecisionHistory>  
+	<TD>
+	<number>TD1022</number>
+	<date>2026-04-01</date>
+	<subject>Clarifications to FCS_SSH_EXT.1.5 When aes256-gcm@openssh.com Is Selected</subject>
+        <url>https://www.niap-ccevs.org/technical-decisions/TD1022</url>
+	</TD>
+  </TechnicalDecisionHistory>
   <pp-preferences>
-    <!--              <pp-pref name="display-audit-with-sfrs">0</pp-pref>       -->
+    <!--                <pp-pref name="display-audit-with-sfrs">0</pp-pref>         -->
     <audit-events-in-sfrs/>
   </pp-preferences>
   <sec:Introduction>
@@ -532,16 +538,12 @@
             </title>
           </ext-comp-def-title>
           <note role="application">
-            As described in RFC 5647, AEAD_AES_256_GCM needs the corresponding encryption algorithm 
-					to be selected.
-            <h:p/>
-            In AES-GCM mode, integrity is not provided using a MAC, it is implicit in the AES-GCM mode itself. There is no need
-					for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this.
-            <h:p/>
-            If the negotiated encryption algorithm is aes256-gcm@openssh.com algorithms, then the MAC field is 
-					ignored during negotiation and AES-GCM is implicitly selected for the MAC. The selection “implicit” is not an SSH identifier and
-					will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit.”
-            <h:p/>
+            <h:p style="text-align: left;">As described in RFC 5647, AEAD_AES_256_GCM needs the corresponding encryption algorithm to be selected.</h:p>
+            <h:p style="text-align: left;"></h:p>
+            <h:p style="text-align: left;"> In AES-GCM mode, integrity is not provided using a MAC, it is implicit in the AES-GCM mode itself. There is no need for a corresponding FCS_COP element. The FCS_COP element for AES would already cover this.</h:p>
+            <h:p style="text-align: left;"></h:p>
+            <h:p style="text-align: left;"> If the negotiated encryption algorithm is aes256-gcm@openssh.com algorithms, then the MAC field is ignored during negotiation<h:u>, so anything in that field is innocuous and counts as appropriate,</h:u> and AES-GCM is implicitly selected for the MAC. The selection “implicit” is not an SSH identifier and will not be seen on the wire; however, the negotiated MAC might be decoded as “implicit.”</h:p>
+            <h:p style="text-align: left;"></h:p>
           </note>
           <aactivity level="element">
             <TSS>
@@ -559,7 +561,9 @@
               <testlist>
                 <test>The evaluator shall use the test data collected in FCS_SSH_EXT.1.4, Test 1 to verify that appropriate mechanisms are advertised.</test>
                 <h:br/>
-                <test>The evaluator shall configure an SSH peer to allow only a hashing algorithm that is not included in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that the connection is rejected.</test>
+                <test>
+                  <h:p style="text-align: left;"><h:u>[conditional] If </h:u><h:a target="_blank" rel="noopener noreferrer nofollow" class="text-blue-600 underline hover:text-blue-800" href="mailto:aes256-gcm@openssh.com"><h:u>aes256-gcm@openssh.com</h:u></h:a><h:u> is not being negotiated, t</h:u>he evaluator shall configure an SSH peer to allow only a hashing algorithm that is not included in the ST selection. The evaluator shall attempt to establish an SSH connection and observe that the connection is rejected.</h:p>
+                </test>
               </testlist>
             </Tests>
           </aactivity>
@@ -661,7 +665,7 @@
             <h:ul>
               <h:li><assignable>length of time lesser than or equal to one hour</assignable> connection time</h:li>
               <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable> of transmitted data, or</h:li>
-              <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable>    of received data.</h:li>
+              <h:li>no more than <assignable>number of bytes less than or equal to one gigabyte</assignable>     of received data.</h:li>
             </h:ul>
           </title>
           <note role="application">
